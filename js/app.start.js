@@ -45,7 +45,7 @@ router.hooks({
 			  (route === "/") 
 		  ){
 				return "";
-		  }else{
+		  } else{
 				return route;  
 		  }
 		  
@@ -65,8 +65,10 @@ router.hooks({
 	  
 	  //Track page views in this session
 	  app.session.pageViews++; 
+
+	//   console.error("app.currentRoute: " + app.currentRoute);
 	  
-	  //Update Back button URL
+	  // Update Back button URL
 	  app.hashHistory.push(app.currentRoute);
 	  var backHrefDefault =  "#!/";
 	  app.backHref = backHrefDefault;
