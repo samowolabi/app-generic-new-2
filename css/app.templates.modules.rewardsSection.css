@@ -1,0 +1,271 @@
+.rewardWrap {
+	background-color: hsl(44deg 100% 4%);
+	box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), inset 0 0 7px rgb(0 0 0 / 83%);
+	overflow: hidden; /* TODO: fix the real cause of why we need to add overflow hidden */
+}
+ 
+.rewardWrap .br-right {
+	border-right: 2px solid #2e2408;
+}
+
+.rewardWrap .rewardContent img {
+	max-width: 40px;
+	float: left;
+	margin: 19px 15px 15px 0;
+}
+
+.rewardWrap .rewardContent img.cup {
+	max-width: 48px;
+	margin: 23px 15px 20px 0;
+}
+
+.rewardWrap .rewardContent h3 {
+	color: #c5ac40;
+	margin: 20px 0 5px 0;
+}
+
+.rewardWrap .rewardContent p {
+	color: #bdbdbd;
+}
+
+.rewardWrap .rewardPoints {
+	text-align: center;
+	border-top: 2px solid #2e2408;
+}
+.rewardWrap .rewardPoints span, 
+.rewardWrap .rewardPoints a {
+	font-size: 1.17em;
+	margin: 0;
+	padding: 15px 0;
+	display: block;
+	text-decoration: none;
+	color: #dac776;
+	font-weight: bold;
+	transition: 0.2s;
+}
+
+.rewardWrap .rewardPoints span{
+	color: #bdbdbd;
+}
+
+.rewardWrap .rewardPoints a:hover {
+	color: #ffbb00;
+}
+
+
+/*------------page 2 --------------*/
+ 
+.owl-carousel {
+	margin: 10px 0 35px;
+} 
+
+
+.navbar-header a.back-btn {
+	position: absolute;
+	top: 19px;
+	color: #a2a2a2;
+	font-size: 10px;
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+.navbar-header a.back-btn:hover {
+	color: #fff;
+}
+
+.rewardUser {
+	text-align: center;
+	padding: 20px 0;
+	background: #fffae5;
+	margin: 50px 0 30px;
+	box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), inset 0 0 7px rgb(0 0 0 / 83%);
+}
+
+.rewardUser a {
+	display: block;
+}
+
+.rewardUser a.pass-btn {
+	display: inline-block;
+	background: #9d0007;
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 11px;
+	text-transform: uppercase;
+	border-radius: 4px;
+	box-shadow: 0px 0px 2px #000;
+	border: 1px solid #000;
+	margin: 30px 0 10px;
+	font-family: Lato, sans-serif;
+	text-decoration: none;
+	letter-spacing: 1px;
+	transition: 0.3s;
+}
+
+.rewardUser a.pass-btn:hover {
+	opacity: 0.8;
+}
+
+.rewardUser h4 {
+	font-size: 32px;
+	font-family: OptimusPrinceps, serif;
+	color: #790004;
+	margin: 0;
+}
+
+.rewardUser a {
+	font-family: OptimusPrinceps, serif;
+	color: #790004;
+	font-size: 18px;
+	letter-spacing: 1px;
+	transition: 0.3s;
+	margin: 0 10px;
+	word-break: break-word;
+}
+
+.rewardUser a:hover {
+	opacity: 0.8;
+}
+
+.rewardLock .cardHead {
+	background: #535353;
+	color: #ebdcb5;
+}
+
+.rewardUnlock .cardHead {
+	background: #4c370c;
+	color: #ebdcb5;
+}
+
+.rewardLock .cardHead,
+.rewardUnlock .cardHead {
+	text-transform: uppercase;
+	padding: 10px 15px;
+}
+
+.rewardLock .cardHead .fa-lock {
+	margin-right: 5px;
+	font-size: 20px;
+}
+
+.rewardUnlock .cardHead .fa-unlock {
+	margin-right: 5px;
+	font-size: 20px;
+}
+
+.rewardLock .cardHead p {
+	margin: 0;
+	color: #ebdcb5;
+}
+
+.rewardUnlock .cardHead p {
+	margin: 0;
+	color: #ebdcb5;
+}
+
+.rewardLock .cardContent {
+	background-color: #b7b3a3;
+	padding: 20px;
+	height: 315px;
+	overflow: auto;
+}
+
+.rewardUnlock .cardContent {
+	background-color: #d7c189;
+	padding: 20px;
+	height: 315px;
+	overflow: auto;
+}
+
+.rewardLock .cardContent ul,
+.rewardUnlock .cardContent ul {
+	padding-left: 15px;
+}
+
+.rewardLock .cardContent ul li,
+.rewardUnlock .cardContent ul li,
+.rewardLock .cardContent ul li a,
+.rewardUnlock .cardContent ul li a  {
+	color: #9E0000;
+	font-weight: bold; 
+}
+
+.rewardLock .cardContent ul li a:hover,
+.rewardUnlock .cardContent ul li a:hover  {
+	color: #7E0000;
+	font-weight: bold; 
+}
+
+/*
+.rewardSlider .item {
+	width: 32.4%;
+	display: inline-block;
+	margin: 15px 10px 15px 0;
+	text-align: left;
+}
+*/
+
+.rewardSlider .item:last-child {
+	margin: 0;
+}
+
+.materialThemeDark.benefitContent {
+	margin: 30px 0;
+	text-align: center;
+	font-family: OptimusPrinceps, serif;
+	padding: 20px 0;
+	color: #eebb3a;
+	font-size: 20px;
+}
+
+
+/*------------page 2 End------------*/
+ 
+
+@media (max-width:992px) {
+	.rewardWrap .rewardContent img {
+		max-width: 40px;
+		float: left;
+		margin: 20px 15px 15px 25px;
+	}
+
+	.rewardWrap .rewardContent img.cup {
+		margin: 23px 15px 15px 40px;
+	} 
+
+	/*.rewardWrap .rewardContent h3 span {
+		display: none;
+	}*/
+}
+
+@media (max-width:767px) {
+	.rewardWrap .rewardContent {
+		text-align: center;
+		padding: 0 25px;
+	}
+
+	.rewardWrap .rewardContent h3 {
+		margin: 10px 0 5px 0;
+	}
+
+	.rewardWrap .rewardContent img {
+		max-width: 43px;
+		float: none;
+		margin: 15px;
+	}
+
+	.rewardWrap .rewardPoints a {
+		padding: 15px;
+	}
+
+	.rewardWrap .rewardContent img.cup {
+		max-width: 48px;
+		float: none;
+		margin: 25px 15px 15px;
+	}
+ 
+
+	.rewardUser a {
+		font-size: 14px;
+	}
+}

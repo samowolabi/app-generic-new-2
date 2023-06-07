@@ -1,0 +1,383 @@
+.backgroundPositionCenter{
+     background-position: center !important;
+}
+ .backgroundWoodCaoba{
+     background: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 35%,rgba(0, 0, 0, 0.82) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)),color-stop(35%, rgba(88, 4, 4, 0.39)),to(rgba(0, 0, 0, 0.82)) ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 35%,rgba(0, 0, 0, 0.82) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background: linear-gradient(0deg, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 35%,rgba(0, 0, 0, 0.82) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background-position: center;
+     background-repeat: repeat;
+}
+ .backgroundWoodCaobaGold{
+     background: -webkit-gradient(linear, left bottom, left top, from(hsla(41, 100%, 35%, 1)),color-stop(28%, hsla(55, 100%, 76%, 1)),to(hsla(48, 100%, 45%, 0.58)) ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background: -webkit-linear-gradient(bottom, hsla(41, 100%, 35%, 1) 0%,hsla(55, 100%, 76%, 1) 28%,hsla(48, 100%, 45%, 0.58) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background: -o-linear-gradient(bottom, hsla(41, 100%, 35%, 1) 0%,hsla(55, 100%, 76%, 1) 28%,hsla(48, 100%, 45%, 0.58) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background: linear-gradient(0deg, hsla(41, 100%, 35%, 1) 0%,hsla(55, 100%, 76%, 1) 28%,hsla(48, 100%, 45%, 0.58) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+     background-repeat: repeat;
+}
+ .backgroundDamaskBlack{
+     background: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.2) 60%,rgba(0, 0, 0, 0.8) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)),color-stop(60%, rgba(88, 4, 4, 0.2)),to(rgba(0, 0, 0, 0.8)) ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.2) 60%,rgba(0, 0, 0, 0.8) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background: linear-gradient(0deg, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.2) 60%,rgba(0, 0, 0, 0.8) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background-repeat: repeat;
+}
+ .backgroundDamaskBlack2{
+     background: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 60%,rgba(0, 0, 0, 0.82) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)),color-stop(60%, rgba(88, 4, 4, 0.39)),to(rgba(0, 0, 0, 0.82)) ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 60%,rgba(0, 0, 0, 0.82) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background: linear-gradient(0deg, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 60%,rgba(0, 0, 0, 0.82) 100% ), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png);
+     background-repeat: repeat;
+}
+ .backgroundDamaskBlack3{
+     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(3.5%, rgba(255, 0, 0, 0.5)), color-stop(8.5%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgba(95, 1, 1, 0.82))), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background-repeat: repeat;
+     background-position: top center;
+     background-size: initial;
+}
+ .backgroundDamaskBlack4{
+     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(3.5%, rgba(255, 0, 0, 0.5)), color-stop(8.5%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgba(95, 1, 1, 0.82))), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+}
+ .backgroundDamaskBlack3{
+     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(8%, rgba(255, 0, 0, 0.5)), color-stop(25%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgb(1, 0, 0))), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 8%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 90%, rgb(1, 0, 0) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 8%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 90%, rgb(1, 0, 0) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 8%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 90%, rgb(1, 0, 0) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/black-damask.min.png), #450100;
+}
+ .backgroundElegantBlur{
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/repeat-bg-blur.min.jpg) center top #411f0f;
+     background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0,0,0,0.9) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/repeat-bg-blur.min.jpg), #450100;
+     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(10%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgba(0, 0, 0, 0.9))), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/repeat-bg-blur.min.jpg), #450100;
+     background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.9) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/repeat-bg-blur.min.jpg), #450100;
+     background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.9) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/repeat-bg-blur.min.jpg), #450100;
+     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.9) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/repeat-bg-blur.min.jpg), #450100;
+     background-repeat: repeat;
+}
+ .backgroundPianoSecrets{
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/background-piano-secrets-straight.min.jpg) no-repeat top center #8a0e02;
+     background-size: cover;
+}
+ .backgroundPianoLounge{
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/authority-two-bg-med.min.jpg) no-repeat top center;
+     background-size: cover;
+     background-position-y: -59px;
+}
+ .backgroundYellowSecretNotes{
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundYellowSecretNotes.min.jpg) no-repeat top center;
+     background-size: cover;
+}
+ .backgroundBlackSecretNotes{
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/back_ground.min.jpg) no-repeat top center;
+     background-size: cover;
+}
+ .backgroundMajesticRedTheatre{
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/product-feature-overview-bg.jpg);
+     background-size: cover;
+     background-position: center center;
+}
+ .backgroundGoldSecretNotes{
+     background:#ffeecd;
+     background:-webkit-gradient(linear,left top, right top,from(rgb(245 228 185)),color-stop(40%, rgba(255,255,255,.6)),color-stop(60%, rgba(255,255,255,.6)),to(rgb(245 228 185))), #ffeecd;
+     background:-o-linear-gradient(left,rgb(245 228 185) 0%,rgba(255,255,255,.6) 40%,rgba(255,255,255,.6) 60%,rgb(245 228 185) 100%), #ffeecd;
+     background:linear-gradient(to right,rgb(245 228 185) 0%,rgba(255,255,255,.6) 40%,rgba(255,255,255,.6) 60%,rgb(245 228 185) 100%), #ffeecd;
+}
+ @media (min-width: 768px) {
+     .backgroundGoldSecretNotes{
+         background: #ffeecd;
+         background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.3)),color-stop(40%, rgba(255, 255, 255,0.6)), color-stop(60%, rgba(255, 255, 255,0.6)), to(rgba(255, 255, 255, 0.3))), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundCreamSecretNotesGradient.min.jpg) #ffeecd;
+         background: -o-linear-gradient(left, rgba(255, 255, 255, 0.3) 0%,rgba(255, 255, 255,0.6) 40%, rgba(255, 255, 255,0.6) 60%, rgba(255, 255, 255, 0.3) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundCreamSecretNotesGradient.min.jpg) #ffeecd;
+         background: linear-gradient(to right, rgba(255, 255, 255, 0.3) 0%,rgba(255, 255, 255,0.6) 40%, rgba(255, 255, 255,0.6) 60%, rgba(255, 255, 255, 0.3) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundCreamSecretNotesGradient.min.jpg) #ffeecd;
+         background-size: initial;
+         background-position: top center;
+    }
+}
+ @media (min-width: 1099px) {
+     .backgroundGoldSecretNotes{
+         background: #ffeecd;
+         background: -webkit-gradient(linear, left top, right top, from(rgba(255, 179, 0, 0.2)),color-stop(40%, rgba(255, 255, 255,0.8)), color-stop(60%, rgba(255, 255, 255,0.8)), to(rgba(255, 179, 0, 0.2))), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundCreamSecretNotesGradient.min.jpg) #ffeecd;
+         background: -o-linear-gradient(left, rgba(255, 179, 0, 0.2) 0%,rgba(255, 255, 255,0.8) 40%, rgba(255, 255, 255,0.8) 60%, rgba(255, 179, 0, 0.2) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundCreamSecretNotesGradient.min.jpg) #ffeecd;
+         background: linear-gradient(to right, rgba(255, 179, 0, 0.2) 0%,rgba(255, 255, 255,0.8) 40%, rgba(255, 255, 255,0.8) 60%, rgba(255, 179, 0, 0.2) 100%), url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/backgroundCreamSecretNotesGradient.min.jpg) #ffeecd;
+    }
+}
+/* # Transparent Texture Backgrounds # # Sample Usage: <div class="overlay-texture oleo"></div> */
+ .overlay-texture, .overlay-texture-top-reduced-30, .overlay-texture-top-reduced-60 {
+     opacity: 0.2;
+     top: 0;
+     left: 0;
+     bottom: 0;
+     right: 0;
+     position: absolute;
+     z-index: -1;
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+}
+ .overlay-texture-top-reduced-30 {
+     margin-top: 30px;
+     height: calc(100% - 30px);
+}
+ .overlay-texture-top-reduced-60 {
+     margin-top: 60px;
+     height: calc(100% - 60px);
+}
+ .opacity1 {
+     opacity: 0.1 !important;
+}
+ .opacity2 {
+     opacity: 0.2 !important;
+}
+ .opacity3 {
+     opacity: 0.3 !important;
+}
+ .opacity4 {
+     opacity: 0.4 !important;
+}
+ .opacity5 {
+     opacity: 0.5 !important;
+}
+ .opacity6 {
+     opacity: 0.6 !important;
+}
+ .opacity7 {
+     opacity: 0.7 !important;
+}
+ .opacity8 {
+     opacity: 0.8 !important;
+}
+ .opacity9 {
+     opacity: 0.9 !important;
+}
+ .z-index-1 {
+     z-index: -1 !important;
+}
+ .z-index0 {
+     z-index: 0 !important;
+}
+ .z-index1 {
+     z-index: 1 !important;
+}
+ .z-index2 {
+     z-index: 2 !important;
+}
+ .ttexture1 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-white-feathers.min.png);
+     opacity: 0.3;
+}
+ .ttexture2 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-white-feathers-transparent-red.min.png);
+     opacity: 0.3;
+}
+ .ttexture3 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-white-feathers-scarlet.min.png);
+     opacity: 0.3;
+}
+ .ttexture4 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-white-feathers-scarlet.min.png);
+     opacity: 1;
+}
+ .ttexture5 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-white-feathers.min.png);
+     opacity: 0.15;
+}
+ .ttexture6 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/leopard.min.png);
+     opacity: 0.5;
+}
+ .ttexture7 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/dry-canvas.min.png);
+     opacity: 0.4;
+}
+ .ttexture8 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/scanlines.gif);
+     opacity: 0.3;
+}
+ .ttexture9 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/scanlines-2.min.png);
+     opacity: 0.2;
+}
+ .ttexture10 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/bgnoise.min.png);
+     opacity: 1;
+}
+ .ttexture11 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/scanlines.gif);
+     opacity: 0.3;
+}
+ .ttexture12 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/black-orchid.min.png);
+     opacity: 0.3;
+}
+ .ttexture13 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/bo-play.min.png);
+     opacity: 0.3;
+}
+ .ttexture14 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/carbon-fibre-big.min.png);
+     opacity: 0.6;
+}
+ .ttexture15 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/carbon-fibre.min.png);
+     opacity: 0.8;
+}
+ .ttexture16 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/cross-stripes.min.png);
+     opacity: 0.3;
+}
+ .ttexture17 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/cross.min.png);
+     opacity: 0.7;
+}
+ .ttexture18 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/debut-light.min.png);
+     opacity: 0.5;
+}
+ .ttexture19 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/diagonal-noise.min.png);
+     opacity: 0.3;
+}
+ .ttexture20 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/football-no-lines.min.png);
+     opacity: 0.3;
+}
+ .ttexture21 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/gravel.min.png);
+     opacity: 0.3;
+}
+ .ttexture22 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/leather.min.png);
+     opacity: 0.3;
+}
+ .ttexture23 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/light-gray.min.png);
+     opacity: 0.3;
+}
+ .ttexture24 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/little-triangles.min.png);
+     opacity: 0.3;
+}
+ .ttexture25 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/maze-white.min.png);
+     opacity: 0.3;
+}
+ .ttexture26 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/medic-packaging-foil.min.png);
+     opacity: 0.3;
+}
+ .ttexture27 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/noisy.min.png);
+     opacity: 0.3;
+}
+ .ttexture28 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/old-map.min.png);
+     opacity: 0.3;
+}
+ .ttexture29 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/p4.min.png);
+     opacity: 0.3;
+}
+ .ttexture30 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/rough-cloth-light.min.png);
+     opacity: 0.3;
+}
+ .ttexture31 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/shley-tree-1.min.png);
+     opacity: 0.7;
+}
+ .ttexture32 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/shley-tree-2.min.png);
+     opacity: 0.3;
+}
+ .ttexture33 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/starring.min.png);
+     opacity: 0.6;
+}
+ .ttexture34 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/stucco.min.png);
+     opacity: 0.3;
+}
+ .ttexture35 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-carbon.min.png);
+     opacity: 0.6;
+}
+ .ttexture36 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-carbon-black.min.png);
+     opacity: 0.6;
+}
+ .ttexture37 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-dots.min.png);
+     opacity: 0.6;
+}
+ .ttexture38 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/subtle-grunge.min.png);
+     opacity: 0.3;
+}
+ .ttexture39 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/swirl.min.png);
+     opacity: 0.7;
+}
+ .ttexture40 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/translucent-fibres.min.png);
+     opacity: 0.6;
+}
+ .ttexture41 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/green-fibers.min.png);
+     opacity: 0.6;
+}
+ .ttexture42 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/wavecut.min.png);
+     opacity: 0.75;
+}
+ .ttexture43 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/white-brushed.min.png);
+     opacity: 0.3;
+}
+ .ttexture44 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/white-carbon.min.png);
+     opacity: 0.6;
+}
+ .ttexture45 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/rhombus.min.png);
+     opacity: 1;
+}
+ .ttexture46 {
+     background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/transparent-textures/premium-dots.min.png);
+     opacity: 1;
+}
+ .black1 {
+     background-color: rgba(0, 0, 0, 0.1);
+}
+ .black2 {
+     background-color: rgba(0, 0, 0, 0.2);
+}
+ .black3 {
+     background-color: rgba(0, 0, 0, 0.3);
+}
+ .black4 {
+     background-color: rgba(0, 0, 0, 0.4);
+}
+ .black5 {
+     background-color: rgba(0, 0, 0, 0.5);
+}
+ .white1 {
+     background-color: rgba(255, 255, 255, 0.1);
+}
+ .white2 {
+     background-color: rgba(255, 255, 255, 0.2);
+}
+ .white3 {
+     background-color: rgba(255, 255, 255, 0.3);
+}
+ .white4 {
+     background-color: rgba(255, 255, 255, 0.4);
+}
+ .white5 {
+     background-color: rgba(255, 255, 255, 0.5);
+}
+ 

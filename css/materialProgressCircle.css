@@ -1,0 +1,510 @@
+.materialProgressCircle {
+  width: 220px;
+  height: 220px;
+  line-height: 220px;
+  background: none;
+  margin: 0 auto;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  position: relative;
+  font-family: Lato;
+}
+.materialProgressCircle:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 25px solid #ffe8e8;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.materialProgressCircle > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+.materialProgressCircle .materialProgressCircle-left {
+  left: 0;
+}
+.materialProgressCircle .materialProgressCircle-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 25px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+  border-color: #7a0000;
+}
+.materialProgressCircle .materialProgressCircle-left .materialProgressCircle-bar {
+  left: 100%;
+  border-top-right-radius: 110px;
+  border-bottom-right-radius: 110px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  -ms-transform-origin: center left;
+      transform-origin: center left;
+}
+.materialProgressCircle .materialProgressCircle-right {
+  right: 0;
+}
+.materialProgressCircle .materialProgressCircle-right .materialProgressCircle-bar {
+  left: -100%;
+  border-top-left-radius: 110px;
+  border-bottom-left-radius: 110px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  -ms-transform-origin: center right;
+      transform-origin: center right;
+}
+.materialProgressCircle .materialProgressCircle-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 50%; 
+  text-transform: uppercase; 
+  text-align: center;
+  line-height: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  color: #5d0000;
+  font-size: 14px;
+  font-weight: bold;
+}
+.materialProgressCircle .materialProgressCircle-value div {
+  margin-top: 10px;
+}
+.materialProgressCircle .materialProgressCircle-value span {
+  font-size: 44px;
+  text-transform: uppercase; 
+  font-weight: 300;
+}
+
+/* Dark Theme */
+.materialThemeDark.materialProgressCircle:after {
+	border: 25px solid #fffae4;
+}
+.materialThemeDark.materialProgressCircle .materialProgressCircle-bar{
+	border-color: #f5b400;
+}
+.materialThemeDark.materialProgressCircle .materialProgressCircle-value {
+	color: #fff2bb;
+}
+
+
+/* Dark Gold Theme */
+.materialThemeGoldDark.materialProgressCircle:after {
+	border: 25px solid #fffae4;
+}
+.materialThemeGoldDark.materialProgressCircle .materialProgressCircle-bar{
+	border-color: #f5b400;
+}
+.materialThemeGoldDark.materialProgressCircle .materialProgressCircle-value {
+	color: #fff2bb;
+}
+
+/* Light Gold Theme */
+.materialThemeGoldLight.materialProgressCircle:after {
+	border: 25px solid #f3ebc8;
+}
+.materialThemeGoldLight.materialProgressCircle .materialProgressCircle-bar{
+	border-color: #f5b400;
+}
+.materialThemeGoldLight.materialProgressCircle .materialProgressCircle-value {
+	color: #130e00;
+}
+
+/* This for loop creates the 	necessary css animation names 
+Due to the split circle of materialProgressCircle-left and materialProgressCircle right, we must use the animations on each side. 
+*/
+.materialProgressCircle[data-percentage="5"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-1 1.5s linear forwards;
+          animation: loading-1 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="5"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="10"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-2 1.5s linear forwards;
+          animation: loading-2 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="10"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="15"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-3 1.5s linear forwards;
+          animation: loading-3 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="15"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="20"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-4 1.5s linear forwards;
+          animation: loading-4 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="20"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="25"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-5 1.5s linear forwards;
+          animation: loading-5 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="25"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="30"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-6 1.5s linear forwards;
+          animation: loading-6 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="30"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="35"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-7 1.5s linear forwards;
+          animation: loading-7 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="35"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="40"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-8 1.5s linear forwards;
+          animation: loading-8 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="40"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="45"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-9 1.5s linear forwards;
+          animation: loading-9 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="45"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="50"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="50"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: 0;
+          animation: 0;
+}
+
+.materialProgressCircle[data-percentage="55"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="55"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-1 1.5s linear forwards 1.5s;
+          animation: loading-1 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="60"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="60"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-2 1.5s linear forwards 1.5s;
+          animation: loading-2 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="65"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="65"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-3 1.5s linear forwards 1.5s;
+          animation: loading-3 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="70"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="70"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-4 1.5s linear forwards 1.5s;
+          animation: loading-4 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="75"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="75"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-5 1.5s linear forwards 1.5s;
+          animation: loading-5 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="80"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="80"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-6 1.5s linear forwards 1.5s;
+          animation: loading-6 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="85"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="85"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-7 1.5s linear forwards 1.5s;
+          animation: loading-7 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="90"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="90"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-8 1.5s linear forwards 1.5s;
+          animation: loading-8 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="95"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="95"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-9 1.5s linear forwards 1.5s;
+          animation: loading-9 1.5s linear forwards 1.5s;
+}
+
+.materialProgressCircle[data-percentage="100"] .materialProgressCircle-right .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards;
+          animation: loading-10 1.5s linear forwards;
+}
+.materialProgressCircle[data-percentage="100"] .materialProgressCircle-left .materialProgressCircle-bar {
+  -webkit-animation: loading-10 1.5s linear forwards 1.5s;
+          animation: loading-10 1.5s linear forwards 1.5s;
+}
+
+@-webkit-keyframes loading-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(18);
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes loading-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(18);
+    transform: rotate(18deg);
+  }
+}
+@-webkit-keyframes loading-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(36);
+    transform: rotate(36deg);
+  }
+}
+@keyframes loading-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(36);
+    transform: rotate(36deg);
+  }
+}
+@-webkit-keyframes loading-3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(54);
+    transform: rotate(54deg);
+  }
+}
+@keyframes loading-3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(54);
+    transform: rotate(54deg);
+  }
+}
+@-webkit-keyframes loading-4 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(72);
+    transform: rotate(72deg);
+  }
+}
+@keyframes loading-4 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(72);
+    transform: rotate(72deg);
+  }
+}
+@-webkit-keyframes loading-5 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(90);
+    transform: rotate(90deg);
+  }
+}
+@keyframes loading-5 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(90);
+    transform: rotate(90deg);
+  }
+}
+@-webkit-keyframes loading-6 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(108);
+    transform: rotate(108deg);
+  }
+}
+@keyframes loading-6 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(108);
+    transform: rotate(108deg);
+  }
+}
+@-webkit-keyframes loading-7 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(126);
+    transform: rotate(126deg);
+  }
+}
+@keyframes loading-7 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(126);
+    transform: rotate(126deg);
+  }
+}
+@-webkit-keyframes loading-8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(144);
+    transform: rotate(144deg);
+  }
+}
+@keyframes loading-8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(144);
+    transform: rotate(144deg);
+  }
+}
+@-webkit-keyframes loading-9 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(162);
+    transform: rotate(162deg);
+  }
+}
+@keyframes loading-9 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(162);
+    transform: rotate(162deg);
+  }
+}
+@-webkit-keyframes loading-10 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180);
+    transform: rotate(180deg);
+  }
+}
+@keyframes loading-10 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180);
+    transform: rotate(180deg);
+  }
+}

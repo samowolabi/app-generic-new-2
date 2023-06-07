@@ -1,0 +1,344 @@
+ 
+/*common shared class for all buttons*/
+.materialButtonText, .materialButtonOutline, .materialButtonFill{
+    border: inherit;
+    color: hsl(0, 0%, 100%); 
+	text-align: center;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 0.625em 1.095em;
+    font-family: Lato,  sans-serif;
+    font-size: 1em;
+    font-weight: 600; 
+    outline: none;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    vertical-align: middle;
+	display: inline-block;
+	margin: 8px;
+	margin-bottom:0;
+	line-height: 1.3em;
+	-webkit-transition-property: background, color, border;
+	-o-transition-property: background, color, border;
+	transition-property: background, color, border;
+	-webkit-transition-duration: 0.2s;
+	     -o-transition-duration: 0.2s;
+	        transition-duration: 0.2s;
+	-webkit-transition-timing-function: ease-out;
+	     -o-transition-timing-function: ease-out;
+	        transition-timing-function: ease-out;
+	
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+	    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none; 
+}
+
+
+.materialButtonText:not([disabled]),
+.materialButtonOutline:not([disabled]), 
+.materialButtonFill:not([disabled]){
+  -ms-touch-action: manipulation;
+  touch-action: manipulation; 
+  cursor: pointer; 
+ }
+
+.materialButtonText:hover, .materialButtonText:focus, .materialButtonText:active,
+.materialButtonOutline:hover, .materialButtonOutline:focus, .materialButtonOutline:active
+.materialButtonFill:hover, .materialButtonFill:focus, .materialButtonFill:active {
+	text-decoration: none;
+	outline: none;
+}
+
+.materialButtonText:first-of-type, 
+.materialButtonOutline:first-of-type, 
+.materialButtonFill:first-of-type{
+	margin-left: 0;
+}
+.materialButtonText:last-of-type, 
+.materialButtonOutline:last-of-type, 
+.materialButtonFill:last-of-type{
+	margin-right: 0;
+}
+
+/*class for button Text*/
+.materialButtonText,
+.materialButtonOutline{
+	color: hsl(0, 100%, 31%);
+	background-color: transparent;
+	border: 2px solid transparent;
+}
+
+.materialButtonText:hover:not([disabled]){
+    color: hsl(0, 100%, 31%); 
+    background-color: hsla(0, 100%, 70%, 0.1); 
+}
+
+.materialButtonOutline:hover:not([disabled]){
+	background-color: hsla(0, 100%, 70%, 0.1);
+    color: hsl(0, 100%, 31%); 
+}
+.materialButtonText:active:not([disabled]), .materialButtonText.active:not([disabled]),
+.materialButtonOutline:active:not([disabled]), .materialButtonOutline.active:not([disabled]){
+	background: hsl(0, 100%, 90%);
+}
+.materialButtonText:focus:not([disabled]),
+.materialButtonOutline:focus:not([disabled]){
+	background-color: hsl(0, 100%, 30%, 0.1);
+	color: hsl(0, 100%, 31%); 
+}
+
+.materialButtonText[disabled],
+.materialButtonOutline[disabled]{
+	color: hsl(0, 1%, 70%);
+}
+
+/*class for button Raised*/
+.materialButtonFill{
+	background-color: hsl(0, 100%, 31%);
+	-webkit-box-shadow: 0 3px 1px -2px 	hsla(0, 0%, 0%,.2), 0 2px 2px 0 	hsla(0, 0%, 0%,.14), 0 1px 5px 0 	hsla(0, 0%, 0%,.12);
+    box-shadow: 0 3px 1px -2px 	hsla(0, 0%, 0%,.2), 0 2px 2px 0 	hsla(0, 0%, 0%,.14), 0 1px 5px 0 	hsla(0, 0%, 0%,.12);
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s, -webkit-box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+	border: 2px solid  #6d0000;
+}
+.materialButtonFill:hover:not([disabled]){
+	background-color: hsl(0, 100%, 40%);
+	-webkit-box-shadow: 0 2px 4px -1px 	hsla(0, 0%, 0%,.2), 0 4px 5px 0 	hsla(0, 0%, 0%,.14), 0 1px 10px 0 	hsla(0, 0%, 0%,.12);
+    box-shadow: 0 2px 4px -1px 	hsla(0, 0%, 0%,.2), 0 4px 5px 0 	hsla(0, 0%, 0%,.14), 0 1px 10px 0 	hsla(0, 0%, 0%,.12);
+    color: hsl(0, 100%, 100%);
+    text-decoration: none;
+}
+.materialButtonFill:active:not([disabled]), .materialButtonText.active:not([disabled]){
+	background-color: hsl(0, 100%, 45%);
+	color: hsl(0, 0%, 100%);
+}
+.materialButtonFill:focus:not([disabled]){
+	background-color: hsl(0, 100%, 35%);
+	color: hsl(0, 0%, 100%);
+}
+ 
+.materialButtonFill[disabled] {
+	color:  hsl(0, 1%, 45%);
+	background-color: hsl(0, 1%, 80%);
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+	border: 2px solid  #ccc;
+	text-decoration: none;
+}
+
+/*class for button Outlined*/
+.materialButtonOutline{
+	color: hsl(0, 100%, 31%);
+	background-color: transparent;
+	border: 2px solid hsl(0, 100%, 31%);
+}
+ 
+.materialButtonOutline[disabled] {
+	border: 2px solid hsl(0, 1%, 70%); 
+}
+
+
+
+/* Theme Dark */
+.materialButtonText.materialThemeDark{ 
+	 color: hsl(44, 100%, 50%);
+}
+
+.materialButtonText.materialThemeDark:hover:not([disabled]),
+.materialButtonOutline.materialThemeDark:hover:not([disabled]){ 
+ 	background: hsla(44, 100%, 50%, 0.2);
+ 	color: hsl(44, 100%, 50%);
+}
+
+.materialButtonText.materialThemeDark:focus:not([disabled]),
+.materialButtonOutline.materialThemeDark:focus:not([disabled]){ 
+ 	background: hsla(44, 100%, 50%, 0.2);
+ 	color: hsl(44, 100%, 50%);
+}
+.materialButtonText.materialThemeDark:active:not([disabled]),
+.materialButtonOutline.materialThemeDark:active:not([disabled]){
+	background: hsla(44, 100%, 65%, 0.2);
+    color: hsl(44, 90%, 37%);
+}
+
+.materialButtonText.materialThemeDark:active:not([disabled]), .materialButtonText.materialThemeDark.active:not([disabled]),
+.materialButtonOutline.materialThemeDark:active:not([disabled]), .materialButtonOutline.materialThemeDark.active:not([disabled]){
+	background: hsla(44, 100%, 50%, 0.24);
+}
+
+.materialButtonText.materialThemeDark[disabled],
+.materialButtonOutline.materialThemeDark[disabled]{
+	color: hsl(0, 1%, 70%);
+}
+.materialButtonFill.materialThemeDark{
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 50%);
+	border: 2px solid  hsl(44, 100%, 55%);
+}
+.materialButtonFill.materialThemeDark:hover:not([disabled]){
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 60%);
+}
+.materialButtonFill.materialThemeDark:focus:not([disabled]){
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 50%);
+}
+.materialButtonFill.materialThemeDark:active:not([disabled]){
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 65%);
+}
+.materialButtonFill.materialThemeDark[disabled] {
+	color:  hsl(0, 1%, 45%);
+	background-color: hsl(0, 1%, 80%);
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+	border: 2px solid  #ccc;
+	text-decoration: none;
+}
+.materialButtonOutline.materialThemeDark{
+	color: hsl(44, 100%, 50%);
+	background-color: transparent;
+	border: 2px solid  hsl(44, 100%, 50%);
+}
+.materialButtonOutline.materialThemeDark[disabled] {
+	border: 2px solid hsl(0, 1%, 70%); 
+}
+
+
+/* Theme Dark Gold*/
+.materialButtonText.materialThemeGoldDark{ 
+	 color: hsl(44, 100%, 50%);
+}
+
+.materialButtonText.materialThemeGoldDark:hover:not([disabled]),
+.materialButtonOutline.materialThemeGoldDark:hover:not([disabled]){ 
+ 	background: hsla(44, 100%, 50%, 0.2);
+ 	color: hsl(44, 100%, 50%);
+}
+
+.materialButtonText.materialThemeGoldDark:focus:not([disabled]),
+.materialButtonOutline.materialThemeGoldDark:focus:not([disabled]){ 
+ 	background: hsla(44, 100%, 50%, 0.2);
+ 	color: hsl(44, 100%, 50%);
+}
+.materialButtonText.materialThemeGoldDark:active:not([disabled]),
+.materialButtonOutline.materialThemeGoldDark:active:not([disabled]){
+	background: hsla(44, 100%, 65%, 0.2);
+    color: hsl(44, 90%, 37%);
+}
+
+.materialButtonText.materialThemeGoldDark:active:not([disabled]), .materialButtonText.materialThemeGoldDark.active:not([disabled]),
+.materialButtonOutline.materialThemeGoldDark:active:not([disabled]), .materialButtonOutline.materialThemeGoldDark.active:not([disabled]){
+	background: hsla(44, 100%, 50%, 0.24);
+}
+
+.materialButtonText.materialThemeGoldDark[disabled],
+.materialButtonOutline.materialThemeGoldDark[disabled]{
+	color: hsl(0, 1%, 70%);
+}
+.materialButtonFill.materialThemeGoldDark{
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 50%);
+	border: 2px solid  hsl(44, 100%, 55%);
+}
+.materialButtonFill.materialThemeGoldDark:hover:not([disabled]){
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 60%);
+}
+.materialButtonFill.materialThemeGoldDark:focus:not([disabled]){
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 50%);
+}
+.materialButtonFill.materialThemeGoldDark:active:not([disabled]){
+	color: hsl(44, 100%, 10%);
+	background: hsl(44, 100%, 65%);
+}
+.materialButtonFill.materialThemeGoldDark[disabled] {
+	color:  hsl(0, 1%, 45%);
+	background-color: hsl(0, 1%, 80%);
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+	border: 2px solid  #ccc;
+	text-decoration: none;
+}
+.materialButtonOutline.materialThemeGoldDark{
+	color: hsl(44, 100%, 50%);
+	background-color: transparent;
+	border: 2px solid  hsl(44, 100%, 50%);
+}
+.materialButtonOutline.materialThemeGoldDark[disabled] {
+	border: 2px solid hsl(0, 1%, 70%); 
+}
+
+
+/* Theme Light Gold*/
+.materialButtonText.materialThemeGoldLight{ 
+	 color: hsl(44, 100%, 20%);
+	 background: hsla(49, 64%, 97%, 1);
+}
+
+.materialButtonText.materialThemeGoldLight:hover:not([disabled]),
+.materialButtonOutline.materialThemeGoldLight:hover:not([disabled]){ 
+ 	background: hsla(44, 100%, 20%, 0.2);
+ 	color: hsl(44, 100%, 20%);
+}
+
+.materialButtonText.materialThemeGoldLight:focus:not([disabled]),
+.materialButtonOutline.materialThemeGoldLight:focus:not([disabled]){ 
+ 	background: hsla(44, 100%, 20%, 0.2);
+ 	color: hsl(44, 100%, 20%);
+}
+.materialButtonText.materialThemeGoldLight:active:not([disabled]),
+.materialButtonOutline.materialThemeGoldLight:active:not([disabled]){
+	background: hsla(44, 100%, 35%, 0.2);
+    color: hsl(44, 90%, 7%);
+}
+
+.materialButtonText.materialThemeGoldLight:active:not([disabled]), .materialButtonText.materialThemeGoldLight.active:not([disabled]),
+.materialButtonOutline.materialThemeGoldLight:active:not([disabled]), .materialButtonOutline.materialThemeGoldLight.active:not([disabled]){
+	background: hsla(44, 100%, 20%, 0.24);
+}
+
+.materialButtonText.materialThemeGoldLight[disabled],
+.materialButtonOutline.materialThemeGoldLight[disabled]{
+	color: hsl(0, 1%, 40%);
+}
+.materialButtonFill.materialThemeGoldLight{
+	color: hsl(0, 0%, 100%);
+    background: hsla(44, 100%, 41%, 1);
+    border: 2px solid hsla(44, 94%, 45%, 1);
+}
+.materialButtonFill.materialThemeGoldLight:hover:not([disabled]){
+	color: hsl(0, 0%, 100%);
+    background: hsla(44, 100%, 35%, 1);
+}
+.materialButtonFill.materialThemeGoldLight:focus:not([disabled]){
+	color: hsl(0, 0%, 100%);
+    background: hsla(44, 100%, 39%, 1);
+}
+.materialButtonFill.materialThemeGoldLight:active:not([disabled]){
+	color: hsl(0, 2%, 100%);
+    background: hsla(44, 100%, 39%, 1);
+}
+.materialButtonFill.materialThemeGoldLight[disabled] {
+	color:  hsl(0, 1%, 15%);
+	background-color: hsl(0, 1%, 50%);
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+	border: 2px solid  #ccc;
+	text-decoration: none;
+}
+.materialButtonOutline.materialThemeGoldLight{
+	color: hsl(44, 100%, 20%);
+	background-color: transparent;
+	border: 2px solid  hsl(44, 100%, 20%);
+}
+.materialButtonOutline.materialThemeGoldLight[disabled] {
+	border: 2px solid hsl(0, 1%, 40%); 
+}

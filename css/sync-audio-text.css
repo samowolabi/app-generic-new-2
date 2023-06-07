@@ -1,0 +1,79 @@
+@-webkit-keyframes highlight-text {
+ to {
+   background-position: 0 0;
+ }
+}
+
+@keyframes highlight-text {
+ to {
+   background-position: 0 0;
+ }
+}
+.sync-audio-text-play-show {display: none;}
+
+.highlight,
+.highlight-animated { 
+	 -webkit-animation: 1.5s highlight-text 0.0s 1 ease-out forwards;
+			 animation: 1.5s highlight-text 0.0s 1 ease-out forwards;
+	 background-color: none;
+	 background: linear-gradient(90deg,#ff151554 50%,rgba(255,255,255,0) 50%);
+	 background-size: 200% 100%;
+	 background-position: 40% 0;
+}
+
+.highlight-animated3 { 
+	 -webkit-animation: 0.7s highlight-text 0.0s 1 ease-out forwards;
+			 animation: 0.7s highlight-text 0.0s 1 ease-out forwards;
+	 background-color: none;
+	 background: linear-gradient(90deg, #7efff5 50%, rgba(255, 255, 255, 0) 50%);
+	 background-size: 200% 100%;
+	 background-position: 40% 0;
+}
+
+.highlight-animated2 {
+	 -webkit-animation: 3.0s highlight-text 0.0s 1 ease-out forwards;
+			 animation: 3.0s highlight-text 0.0s 1 ease-out forwards;
+	 background-color: none;
+	 background: linear-gradient(90deg, #7efff5 50%, rgba(255, 255, 255, 0) 50%);
+	 background-size: 200% 100%;
+	 background-position: 100% 0;
+}
+
+.highlight-red {
+	 border-radius: 1em 0 1em 0;
+	 background-image: linear-gradient(
+	   -100deg,
+	   rgba(255, 20, 0, 0.2),
+	   rgba(255, 20, 0, 0.7) 95%,
+	   rgba(255, 20, 0, 0.1)
+	 );
+}
+
+.highlight-yellow {
+	 border-radius: 1em 0 1em 0;
+	 background-image: linear-gradient(
+	   -100deg,
+	   rgba(255, 224, 0, 0.2),
+	   rgba(255, 224, 0, 0.7) 95%,
+	   rgba(255, 224, 0, 0.1)
+	 );
+}
+.highlight-green {
+	 border-radius: 1em 0 1em 0;
+	 background-image: linear-gradient(
+	   -100deg,
+	   rgba(0, 255, 20, 0.2),
+	   rgba(0, 255, 20, 0.7) 95%,
+	   rgba(0, 255, 20, 0.1)
+	 );
+}
+
+.highlight-blue {
+	 border-radius: 1em 0 1em 0;
+	 background-image: linear-gradient(
+	   -100deg,
+	   rgba(0, 20, 255, 0.2),
+	   rgba(0, 20, 255, 0.7) 95%,
+	   rgba(0, 20, 255, 0.1)
+	 );
+}

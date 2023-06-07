@@ -1,0 +1,45 @@
+.materialCardSizeMega {
+    background: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/backgrounds/product-feature-overview-bg.jpg) !important;
+	background-position: bottom !important;
+    background-size: cover !important; 
+}
+
+.materialCardSizeMega .materialCardProgressLeftDouble  {
+    margin: 0 auto;
+    float: none;
+    overflow: hidden;
+	clear: both;
+	padding-bottom: 30px;
+}
+
+.materialCardSizeMega .materialCardProgressRightDouble {
+    width: 90% !important;
+    clear: both;
+    text-align: center;
+    margin: 0 auto 15px;
+    float: none;
+    overflow: hidden;
+    max-width: 800px;
+}
+
+
+.materialCardSizeMega .materialHeader.materialThemeDark {
+    font-family: OptimusPrinceps, Helvetica, serif;
+    letter-spacing: 2px;
+}
+
+
+.materialCardSizeMega.materialThemeDark .materialImageCircle {
+    border: 5px solid #3e0001;
+    -webkit-box-shadow: 1px 1px 5px 4px rgba(48, 1, 0, 0.90);
+    box-shadow: 1px 1px 5px 4px rgba(48, 1, 0, 0.90);
+}
+
+.materialCardSizeMega.materialCardProgress.materialThemeDark::before{
+	background: rgba(2, 2, 0, 0.1);
+}
+
+
+.materialCardSizeMega .materialHeader.materialThemeDark {
+    color: #ffc100;
+}

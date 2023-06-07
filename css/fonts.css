@@ -1,0 +1,1266 @@
+/* Disable drag and drop for links and images */
+a, img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+} 
+
+.overflow-hidden{
+	overflow: hidden;
+}
+
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+
+/* Font awesome icon */
+.fa{
+	vertical-align: middle;
+}
+.tooltip{
+	font-size: 15px;
+	font-family: Lato, "Myriad Pro", sans-serif !important;
+ }
+
+	
+ /* Headers */
+.elementHeaderWhite{
+  font-weight: normal;
+  color: hsla(44, 99%, 99%, 1);
+  text-shadow: 0 5px 4px rgba(63, 17, 4, 0.68);
+}
+.elementHeaderYellow{
+	font-weight: normal;
+	color: #ffcb28;
+    text-shadow: 5px 5px 4px rgba(63,17,4,0.96);
+}
+
+ /* Center element vertically by putting it inside a <div class="valign-wrapper"><p>Content to vertically center</p></div> */
+.valign-wrapper{
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.center-align {
+    text-align: center;
+}
+
+/* Use to add ... ellipsis to text */
+.truncate {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+}
+
+/* The hoverable is a hover class that adds an animation for box shadow as seen below. It can be used on most elements, but meant for use on cards. */
+.hoverable {
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    -o-transition: box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+}
+
+.hoverable:hover {
+    -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+/*This is a gold link*/
+.elementLinkGold {
+    color: #fdd96e; 
+}
+/*This is hover effect on gold link*/
+.elementLinkGold:hover {
+   color: #f5cd01;
+    text-shadow: 0px 0px 15px #F5CD01; 
+}
+
+/*This is a white link*/
+.elementLinkWhite {
+    color: #fff; 
+}
+/*This is hover effect on white link*/
+.elementLinkWhite:hover {
+   color: #fffff1;
+    text-shadow: 0px 0px 15px #fffff1;  
+}
+
+
+
+
+
+
+/* Vertical align */
+.fullscreenWrapper{
+	display: table;
+	width: 100%;
+	min-height: calc(100vh - 150px); /* half wood section */
+}
+
+/* Div that comes inmmediatly after*/
+.fullscreen{ 
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	table-layout: fixed;
+	overflow: hidden;
+}
+
+
+
+
+@media (min-height: 750px) {
+	.fullscreenWrapper.fullscreenWrapperMaxHeight650{
+		min-height: 650px !important;
+		max-height: 650px !important;
+	}
+}
+
+
+@media (min-height: 850px) {
+	.fullscreenWrapper.fullscreenWrapperMaxHeight750{
+		min-height: 750px !important;
+		max-height: 750px !important;
+	}
+}
+
+@media (min-height: 1000px) {
+	.fullscreenWrapper.fullscreenWrapperMaxHeight900{
+		min-height: 900px !important;
+		max-height: 900px !important;
+	}
+}
+
+@media (min-height: 1100px) {
+	.fullscreenWrapper.fullscreenWrapperMaxHeight1000{
+		min-height: 1000px !important;
+		max-height: 1000px !important;
+	}
+}
+ 
+
+/* Ken Burns */
+.kenBurnsWrapper {
+  width: 100%;
+  height: 50vw;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.kenBurnsWrapper img {
+  width: 100%;
+  animation: move 40s ease;
+  /* Add infinite to loop. */
+  
+  -ms-animation: move 40s ease;
+  -webkit-animation: move 40s ease;
+  -o-animation: move 40s ease;
+  -moz-animation: move 40s ease;
+  position: absolute;
+}
+
+@-webkit-keyframes move {
+  0% {
+    -webkit-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
+    transform-origin: bottom left;
+    transform: scale(1.0);
+    -ms-transform: scale(1.0);
+    /* IE 9 */
+    
+    -webkit-transform: scale(1.0);
+    /* Safari and Chrome */
+    
+    -o-transform: scale(1.0);
+    /* Opera */
+    
+    -moz-transform: scale(1.0);
+    /* Firefox */
+  }
+  100% {
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    /* IE 9 */
+    
+    -webkit-transform: scale(1.2);
+    /* Safari and Chrome */
+    
+    -o-transform: scale(1.2);
+    /* Opera */
+    
+    -moz-transform: scale(1.2);
+    /* Firefox */
+  }
+}
+
+/** falta agregar cross browser */
+.animated.delay1{
+    -webkit-transition-delay:10ms;
+         -o-transition-delay:10ms;
+            transition-delay:10ms
+}
+.animated.delay2{
+    -webkit-transition-delay:160ms;
+         -o-transition-delay:160ms;
+            transition-delay:160ms
+}
+.animated.delay3{
+    -webkit-transition-delay:310ms;
+         -o-transition-delay:310ms;
+            transition-delay:310ms
+}
+.animated.delay4{
+    -webkit-transition-delay:460ms;
+         -o-transition-delay:460ms;
+            transition-delay:460ms
+}
+.animated.delay5{
+    -webkit-transition-delay:610ms;
+         -o-transition-delay:610ms;
+            transition-delay:610ms
+}
+.animated.delay6{
+    -webkit-transition-delay:760ms;
+         -o-transition-delay:760ms;
+            transition-delay:760ms
+}
+.animated.delay7{
+    -webkit-transition-delay:910ms;
+         -o-transition-delay:910ms;
+            transition-delay:910ms
+}
+.animated.delay8{
+    -webkit-transition-delay:1060ms;
+         -o-transition-delay:1060ms;
+            transition-delay:1060ms
+}
+.animated.delay9{
+    -webkit-transition-delay:1210ms;
+         -o-transition-delay:1210ms;
+            transition-delay:1210ms
+}
+.animated.delay10{
+    -webkit-transition-delay:1360ms;
+         -o-transition-delay:1360ms;
+            transition-delay:1360ms
+}
+.animated.fast.delay1{
+    -webkit-transition-delay:10ms;
+         -o-transition-delay:10ms;
+            transition-delay:10ms
+}
+.animated.fast.delay2{
+    -webkit-transition-delay:110ms;
+         -o-transition-delay:110ms;
+            transition-delay:110ms
+}
+.animated.fast.delay3{
+    -webkit-transition-delay:210ms;
+         -o-transition-delay:210ms;
+            transition-delay:210ms
+}
+.animated.fast.delay4{
+    -webkit-transition-delay:310ms;
+         -o-transition-delay:310ms;
+            transition-delay:310ms
+}
+.animated.fast.delay5{
+    -webkit-transition-delay:410ms;
+         -o-transition-delay:410ms;
+            transition-delay:410ms
+}
+.animated.fast.delay6{
+    -webkit-transition-delay:510ms;
+         -o-transition-delay:510ms;
+            transition-delay:510ms
+}
+.animated.fast.delay7{
+    -webkit-transition-delay:610ms;
+         -o-transition-delay:610ms;
+            transition-delay:610ms
+}
+.animated.fast.delay8{
+    -webkit-transition-delay:710ms;
+         -o-transition-delay:710ms;
+            transition-delay:710ms
+}
+.animated.fast.delay9{
+    -webkit-transition-delay:810ms;
+         -o-transition-delay:810ms;
+            transition-delay:810ms
+}
+.animated.fast.delay10{
+    -webkit-transition-delay:910ms;
+         -o-transition-delay:910ms;
+            transition-delay:910ms
+}
+.animated.slow.delay1{
+    -webkit-transition-delay:10ms;
+         -o-transition-delay:10ms;
+            transition-delay:10ms
+}
+.animated.slow.delay2{
+    -webkit-transition-delay:210ms;
+         -o-transition-delay:210ms;
+            transition-delay:210ms
+}
+.animated.slow.delay3{
+    -webkit-transition-delay:410ms;
+         -o-transition-delay:410ms;
+            transition-delay:410ms
+}
+.animated.slow.delay4{
+    -webkit-transition-delay:610ms;
+         -o-transition-delay:610ms;
+            transition-delay:610ms
+}
+.animated.slow.delay5{
+    -webkit-transition-delay:810ms;
+         -o-transition-delay:810ms;
+            transition-delay:810ms
+}
+.animated.slow.delay6{
+    -webkit-transition-delay:1010ms;
+         -o-transition-delay:1010ms;
+            transition-delay:1010ms
+}
+.animated.slow.delay7{
+    -webkit-transition-delay:1210ms;
+         -o-transition-delay:1210ms;
+            transition-delay:1210ms
+}
+.animated.slow.delay8{
+    -webkit-transition-delay:1410ms;
+         -o-transition-delay:1410ms;
+            transition-delay:1410ms
+}
+.animated.slow.delay9{
+    -webkit-transition-delay:1610ms;
+         -o-transition-delay:1610ms;
+            transition-delay:1610ms
+}
+.animated.slow.delay10{
+    -webkit-transition-delay:1810ms;
+         -o-transition-delay:1810ms;
+            transition-delay:1810ms
+}
+.wrap-text{
+	display: inline-block;
+}
+.themeButtonRed{ 
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc0217+0,cf070e+16,c5071a+43,af091f+52,8a0a26+93,850926+98 */
+	background: #cc0217; /* Old browsers */ /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #cc0217 0%,#cf070e 16%,#c5071a 43%,#af091f 52%,#8a0a26 93%,#850926 98%); /* Chrome10-25,Safari5.1-6 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#cc0217),color-stop(16%, #cf070e),color-stop(43%, #c5071a),color-stop(52%, #af091f),color-stop(93%, #8a0a26),color-stop(98%, #850926));
+	background: -o-linear-gradient(top, #cc0217 0%,#cf070e 16%,#c5071a 43%,#af091f 52%,#8a0a26 93%,#850926 98%);
+	background: linear-gradient(to bottom, #cc0217 0%,#cf070e 16%,#c5071a 43%,#af091f 52%,#8a0a26 93%,#850926 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0217', endColorstr='#850926',GradientType=0 ); /* IE6-9 */
+ -webkit-box-shadow:  inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+	box-shadow:inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+    font-weight: bold;  
+    color: #ffffff;	
+    text-align: center;
+    text-shadow: 1px 1px 0px rgba(70, 0, 0, 0.6);
+	font-style: normal;
+    border-radius: 4px;
+    text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border: none;
+	display: inline-block;		
+}
+
+.themeButtonRed:hover{
+ 
+    -webkit-animation: themeButtonRedNeon 1.5s ease-in-out infinite alternate;
+    animation: themeButtonRedNeon 1.5s ease-in-out infinite alternate;
+    color: #f3c000 !important; 
+	text-shadow: 1px 1px 0px rgba(78, 72, 0, 0.65);
+}
+
+.themeButtonRed:focus{
+  color: #ffffff;
+  outline: none;
+}
+
+@-webkit-keyframes themeButtonRedNeon {
+  from {
+	   -webkit-box-shadow: 0 0 50px rgb(255, 24, 0), 0 0 75px rgba(241, 234, 0, 0.51), 0 0 1px rgba(255, 134, 31, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+	           box-shadow: 0 0 50px rgb(255, 24, 0), 0 0 75px rgba(241, 234, 0, 0.51), 0 0 1px rgba(255, 134, 31, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+  }
+  to {
+        -webkit-box-shadow: 0 0 50px rgb(255, 10, 5), 0 0 75px rgba(255, 10, 10, 0.51), 0 0 125px rgba(230, 230, 230, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+                box-shadow: 0 0 50px rgb(255, 10, 5), 0 0 75px rgba(255, 10, 10, 0.51), 0 0 125px rgba(230, 230, 230, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+  }
+}
+
+@keyframes themeButtonRedNeon {
+  from {
+	   -webkit-box-shadow: 0 0 50px rgb(255, 24, 0), 0 0 75px rgba(241, 234, 0, 0.51), 0 0 1px rgba(255, 134, 31, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+	           box-shadow: 0 0 50px rgb(255, 24, 0), 0 0 75px rgba(241, 234, 0, 0.51), 0 0 1px rgba(255, 134, 31, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+  }
+  to {
+        -webkit-box-shadow: 0 0 50px rgb(255, 10, 5), 0 0 75px rgba(255, 10, 10, 0.51), 0 0 125px rgba(230, 230, 230, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+                box-shadow: 0 0 50px rgb(255, 10, 5), 0 0 75px rgba(255, 10, 10, 0.51), 0 0 125px rgba(230, 230, 230, 0.51), inset 0px 0px 2px rgb(181, 26, 26), inset 0px 4px 0px rgb(251, 38, 47), 0 0 1px #484848;
+  }
+}
+
+
+
+
+.themeButtonGold{
+	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7cd4f+0,ecd468+16,eac65a+43,dab14a+52,b58635+93,af7f33+98 */
+	background: #f7cd4f; /* Old browsers */ /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #f7cd4f 0%,#ecd468 16%,#eac65a 43%,#dab14a 52%,#b58635 93%,#af7f33 98%); /* Chrome10-25,Safari5.1-6 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#f7cd4f),color-stop(16%, #ecd468),color-stop(43%, #eac65a),color-stop(52%, #dab14a),color-stop(93%, #b58635),color-stop(98%, #af7f33));
+	background: -o-linear-gradient(top, #f7cd4f 0%,#ecd468 16%,#eac65a 43%,#dab14a 52%,#b58635 93%,#af7f33 98%);
+	background: linear-gradient(to bottom, #f7cd4f 0%,#ecd468 16%,#eac65a 43%,#dab14a 52%,#b58635 93%,#af7f33 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7cd4f', endColorstr='#af7f33',GradientType=0 ); /* IE6-9 */
+	-webkit-box-shadow: inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848, 0 1px 1px black, 0 0 87px 0px rgba(198, 154, 63, 0.28), 0 0 68px 0px rgba(214, 172, 72, 0.45);
+ box-shadow: inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848, 0 1px 1px black, 0 0 87px 0px rgba(198, 154, 63, 0.28), 0 0 68px 0px rgba(214, 172, 72, 0.45); 
+    font-weight: bold;  
+    color: rgb(65, 16, 0);
+    text-align: center;
+    text-shadow: 1px 1px 0 rgba(255, 255, 115, 0.65);
+	font-style: normal;
+    border-radius: 4px;
+    text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border: none;
+	display: inline-block;	
+}
+
+.themeButtonGold:hover{
+ 
+    -webkit-animation: themeButtonGoldNeon 1.5s ease-in-out infinite alternate;
+    animation: themeButtonGoldNeon 1.5s ease-in-out infinite alternate;
+    color: #fff !important; 
+	text-shadow: 1px 1px 0px rgba(78, 72, 0, 0.65);
+}
+
+.themeButtonGold:focus{
+  color: rgb(65, 16, 0);
+  outline: none;
+}
+
+
+@-webkit-keyframes themeButtonGoldNeon {
+  from {
+	   -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+	           box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+  }
+  to {
+        -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400,  inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+                box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400,  inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+  }
+}
+
+@keyframes themeButtonGoldNeon {
+  from {
+	   -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+	           box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+  }
+  to {
+        -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400, inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+                box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400, inset 0px 0px 2px rgb(255, 219, 175), inset 0px 4px 0px rgb(255, 231, 156), 0 0 1px #484848;
+  }
+}
+
+.themeButtonOrange{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffba39+0,ffcb47+16,ffba39+43,ffa719+52,e07700+93,d87000+98 */
+	background: #ffba39; /* Old browsers */ /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #ffba39 0%,#ffcb47 16%,#ffba39 43%,#ffa719 52%,#e07700 93%,#d87000 98%); /* Chrome10-25,Safari5.1-6 */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffba39),color-stop(16%, #ffcb47),color-stop(43%, #ffba39),color-stop(52%, #ffa719),color-stop(93%, #e07700),color-stop(98%, #d87000));
+	background: -o-linear-gradient(top, #ffba39 0%,#ffcb47 16%,#ffba39 43%,#ffa719 52%,#e07700 93%,#d87000 98%);
+	background: linear-gradient(to bottom, #ffba39 0%,#ffcb47 16%,#ffba39 43%,#ffa719 52%,#e07700 93%,#d87000 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffba39', endColorstr='#d87000',GradientType=0 ); /* IE6-9 */
+ -webkit-box-shadow:  inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+ box-shadow: inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+    font-weight: bold;
+    color: rgb(51,14,2);
+    text-align: center;
+    text-shadow: 1px 1px 0px rgba(255,210,77,0.65);
+    font-style: normal;
+    border-radius: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    display: inline-block;	
+}
+
+.themeButtonOrange:hover{
+ 
+    text-decoration: none;
+    -webkit-animation: themeButtonOrangeNeon 1.5s ease-in-out infinite alternate;
+    animation: themeButtonOrangeNeon 1.5s ease-in-out infinite alternate;
+    color: #fff !important; 
+	text-shadow: 1px 1px 0px rgba(78, 72, 0, 0.65);
+}
+
+.themeButtonOrange:focus{
+  color:  rgb(51,14,2);
+  outline: none;
+}
+ 
+@-webkit-keyframes goldenGlow {
+  from {
+	   -webkit-box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 45px 5px rgba(255, 192, 15, 0.78), 0px 0px 75px 5px rgba(255, 10, 15, 0.78);
+	           box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 45px 5px rgba(255, 192, 15, 0.78), 0px 0px 75px 5px rgba(255, 10, 15, 0.78);
+  }
+  to {
+      -webkit-box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 15px 2px rgba(255, 192, 15, 0.78);
+              box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 15px 2px rgba(255, 192, 15, 0.78); 
+  }
+}
+
+@keyframes goldenGlow {
+  from {
+	   -webkit-box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 45px 5px rgba(255, 192, 15, 0.78), 0px 0px 75px 5px rgba(255, 10, 15, 0.78);
+	           box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 45px 5px rgba(255, 192, 15, 0.78), 0px 0px 75px 5px rgba(255, 10, 15, 0.78);
+  }
+  to {
+      -webkit-box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 15px 2px rgba(255, 192, 15, 0.78);
+              box-shadow: 0 7px 17px 6px rgba(0, 0, 0, 0.52), 0px 0px 15px 2px rgba(255, 192, 15, 0.78); 
+  }
+}
+
+
+@-webkit-keyframes themeButtonOrangeNeon {
+  from {
+	   -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+	           box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+  }
+  to {
+        -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400,  inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+                box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400,  inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+  }
+}
+
+@keyframes themeButtonOrangeNeon {
+  from {
+	   -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+	           box-shadow: 0 0 50px #ffc700, 0 0 75px #ff0006, inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+  }
+  to {
+        -webkit-box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400, inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+                box-shadow: 0 0 50px #ffc700, 0 0 75px #ffa400, inset 0px 0px 2px rgb(251, 196, 127), inset 0px 4px 0px rgb(255, 218, 136), 0 0 1px #484848;
+  }
+}
+
+
+/* Make the element have as minimum the same width as the countdown element */
+.minWidthCountdown {
+		min-width: 279px;	
+}
+
+@media (min-width: 400px) {
+	.minWidthCountdown {
+		min-width: 291px;	
+	}
+}
+
+@media (min-width: 768px) {
+	.minWidthCountdown {
+		min-width: 301px;	
+	}
+} 
+@media (min-width: 1450px) {
+	.minWidthCountdown {
+		min-width: 315px;	
+	}
+}
+@media (min-width: 1600px) {
+	.minWidthCountdown {
+		min-width: 319px;	
+	}
+}
+@media (min-width: 1920px) {
+	.minWidthCountdown{
+		min-width: 332px;		
+	}
+} 
+
+
+ /* Shared structures */
+.elementRedCurtainTop{
+	background: url(../images/curtain-top/curtain-top-m.min.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 298px;
+	z-index: 1;
+	position: relative;
+}
+
+.elementRedCurtainBody{
+	background-repeat: repeat-y;
+	background: url(../images/curtain-top/curtain-background-repeat.min.png) #450100;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+25,1+100 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.0) 0%,rgba(0,0,0,0.3) 90%,rgba(0,0,0,0.9) 100%), url(../images/curtain-top/curtain-background-repeat.min.png) #450100;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.0)),color-stop(90%, rgba(0,0,0,0.3)),to(rgba(0,0,0,0.9))), url(../images/curtain-top/curtain-background-repeat.min.png) #450100;
+	background: -o-linear-gradient(top, rgba(0,0,0,0.0) 0%,rgba(0,0,0,0.3) 90%,rgba(0,0,0,0.9) 100%), url(../images/curtain-top/curtain-background-repeat.min.png) #450100;
+	background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%,rgba(0,0,0,0.3) 90%,rgba(0,0,0,0.9) 100%), url(../images/curtain-top/curtain-background-repeat.min.png) #450100;
+	margin-top: -141px;
+	z-index: 0;
+	position: relative;	
+	padding-top: 1px;
+	padding-bottom: 4px;
+	margin-left: auto;
+    margin-right: auto;
+	text-align: center;
+}
+.elementPianoKeyboardGreen{
+    background: url(../images/pianoKeyboardGreen.min.png) no-repeat top center;
+    height: 285px;
+    margin-top: -15px;
+    z-index: 0;
+    position: relative;
+    background-repeat: repeat-x;
+}
+
+.elementPYellow{
+	color: rgb(255, 201, 38);
+}
+
+
+.textColorDarkBrown{
+	color: #2b2b2b;
+}
+
+.textColorBlack{
+	color: #000000;
+}
+
+.textColorYellow{
+	color: rgb(255,201,38);
+}
+
+.textShadowYellowGlow{
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.6784313725490196), 0 0 21px rgba(255, 237, 0, 0.78), 0 0 32px #fff, 0 0 30px rgba(255, 235, 59, 0.8);
+} 
+
+.elementCountdownBlack.labelColorWhite .label{
+	color: #ffffff;
+}
+
+.elementCountdownBlack.labelColorBlack .label{
+	color: #170700;
+}
+	
+	
+	
+.elementCountdownBlack{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.elementCountdownBlack li {
+    list-style: none;
+    float: left;
+}
+
+.elementCountdownBlack li span.label{
+    font-family: Lato, "Myriad Pro", sans-serif !important;
+    display: block; 
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+	padding: .2em .6em .3em;
+	line-height: 1;
+	text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.elementCountdownBlack li span.time{
+    font-family: Lato, "Myriad Pro", sans-serif !important;
+    display: block; 
+    background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-bootstrap-secrets/images/flip-clock.png);
+    background-repeat: no-repeat;
+    text-align: center; 
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.65);
+    position: relative;
+    background-size: 100% 100%;
+    color: #fff;
+    font-weight: normal; 
+    margin: 0 auto;
+}
+
+.elementCountdownBlack li span.label{
+	font-size:0.4375em;
+}
+
+.elementCountdownBlack li span.time{
+	width: 2.75em;
+    line-height: 2.75em;
+    font-size: 1em;
+}
+/* Mobile Only */ 
+.elementCountdownBlack{
+	font-size: 27px;
+}
+
+@media (min-width: 400px) {
+	.elementCountdownBlack {
+		font-size: 28px;
+	} 
+}
+
+@media (min-width: 768px) {
+	.elementCountdownBlack {
+		font-size: 29px;
+	} 
+} 
+@media (min-width: 1450px) {
+	.elementCountdownBlack {
+		font-size: 30.5px;
+	}
+}
+@media (min-width: 1600px) {
+	.elementCountdownBlack {
+		font-size: 31px;
+	}
+}
+@media (min-width: 1920px) {
+	.elementCountdownBlack {
+		font-size: 32px;
+	}
+}
+
+
+.elementSeparatorOrnament{
+	max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: url(../images/Separator.min.png) no-repeat bottom center;
+    height: 50px;
+}
+
+.elementWoodenCurveTop{
+	background: url(../images/wooden-shelf/wooden-shelf-curve.min.png) repeat top center;
+    height: 245px;
+    background-size: initial;
+    z-index: 2;
+    position: relative;
+}
+
+.elementWoodenDarkCurveTop{
+	background: url(../images/wooden-shelf/wooden-shelf-curve-black.min.png) repeat top center;
+    height: 245px;
+    background-size: initial;
+    z-index: 2;
+    position: relative;
+}
+
+.elementWoodenStraight{
+	background: url(../images/wooden-shelf/wooden-shelf-straight.min.png) repeat top center;
+    height: 125px;
+    background-size: initial;
+    z-index: 0;
+    position: relative;
+}
+
+.elementCurtainBlackStraight{
+	background: url(../images/straight_curtain_black.png.min.png) repeat top center;
+    height: 113px;
+    background-size: initial;
+    z-index: 1;
+    position: relative;
+}
+
+.elementCurtainRedStraight{
+	background: url(../images/straight_curtain_red.min.png) repeat top center;
+    height: 113px;
+    background-size: initial;
+    z-index: 1;
+    position: relative;
+}
+
+.elementWoodenCurveBody{
+    background-repeat: no-repeat;
+	background-position: top center;
+	background-color: #8a0e02;
+    background-size: cover;
+    margin-top: -168px;
+    z-index: 1;
+    position: relative;
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 5000px / 300px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; 
+	overflow: hidden;
+} 
+ 
+.elementScarletCurveBody{
+	background: #411f0f url(../images/repeat-bg.min.jpg) center top;
+	background-size: contain;
+    background-repeat: repeat;
+	margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.elementScarletCurveBody .firstElement{
+	padding-top: 65px;
+}
+
+
+.elementScarletCurveBody .firstElement{
+	margin-top: -20px;
+}
+
+@media (min-width: 420px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -7%;
+	}
+}
+@media (min-width: 1200px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -6%;
+	}
+}
+@media (min-width: 1400px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -7%;
+	}
+} 
+@media (min-width: 1500px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -8%;
+	}
+} 
+@media (min-width: 1600px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -6%;
+	}
+}
+@media (min-width: 1700px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -6.5%;
+	}
+}
+@media (min-width: 1800px){
+	.elementScarletCurveBody .firstElement{
+		margin-top: -7%;
+	}
+}
+
+.backgroundPositionCenter{
+	background-position: center !important;
+}
+
+
+.backgroundWoodCaoba{
+    background: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 35%,rgba(0, 0, 0, 0.82) 100% ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)),color-stop(35%, rgba(88, 4, 4, 0.39)),to(rgba(0, 0, 0, 0.82)) ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+	background: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 35%,rgba(0, 0, 0, 0.82) 100% ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+	background: linear-gradient(0deg, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 35%,rgba(0, 0, 0, 0.82) 100% ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+	background-position: center;   
+    background-repeat: repeat;		
+}
+.backgroundWoodCaobaGold{
+	background: -webkit-gradient(linear, left bottom, left top, from(hsla(41, 100%, 35%, 1)),color-stop(28%, hsla(55, 100%, 76%, 1)),to(hsla(48, 100%, 45%, 0.58)) ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+    background: -webkit-linear-gradient(bottom, hsla(41, 100%, 35%, 1) 0%,hsla(55, 100%, 76%, 1) 28%,hsla(48, 100%, 45%, 0.58) 100% ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+   background: -o-linear-gradient(bottom, hsla(41, 100%, 35%, 1) 0%,hsla(55, 100%, 76%, 1) 28%,hsla(48, 100%, 45%, 0.58) 100% ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+    background: linear-gradient(0deg, hsla(41, 100%, 35%, 1) 0%,hsla(55, 100%, 76%, 1) 28%,hsla(48, 100%, 45%, 0.58) 100% ), url(../images/wooden-shelf-background-for-pattern-seamless.min.jpg);
+	background-repeat: repeat;		
+}
+
+
+.backgroundDamaskBlack{
+    background: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.2) 60%,rgba(0, 0, 0, 0.8) 100% ), url(../images/backgrounds/black-damask.min.png);
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)),color-stop(60%, rgba(88, 4, 4, 0.2)),to(rgba(0, 0, 0, 0.8)) ), url(../images/backgrounds/black-damask.min.png);
+	background: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.2) 60%,rgba(0, 0, 0, 0.8) 100% ), url(../images/backgrounds/black-damask.min.png);
+	background: linear-gradient(0deg, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.2) 60%,rgba(0, 0, 0, 0.8) 100% ), url(../images/backgrounds/black-damask.min.png);
+    background-repeat: repeat;		
+}
+
+.backgroundDamaskBlack2{
+    background: -webkit-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 60%,rgba(0, 0, 0, 0.82) 100% ), url(../images/backgrounds/black-damask.min.png);
+	background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)),color-stop(60%, rgba(88, 4, 4, 0.39)),to(rgba(0, 0, 0, 0.82)) ), url(../images/backgrounds/black-damask.min.png);
+	background: -o-linear-gradient(bottom, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 60%,rgba(0, 0, 0, 0.82) 100% ), url(../images/backgrounds/black-damask.min.png);
+	background: linear-gradient(0deg, rgb(0, 0, 0) 0%,rgba(88, 4, 4, 0.39) 60%,rgba(0, 0, 0, 0.82) 100% ), url(../images/backgrounds/black-damask.min.png);
+    background-repeat: repeat;		
+}
+
+
+
+.backgroundDamaskBlack3{
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(3.5%, rgba(255, 0, 0, 0.5)), color-stop(8.5%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgba(95, 1, 1, 0.82))), url(../images/backgrounds/black-damask.min.png), #450100;
+    background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+    background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+
+    background-repeat: repeat; 
+    background-position: top center; 
+    background-size: initial;
+}
+
+.backgroundDamaskBlack4{
+	 background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(3.5%, rgba(255, 0, 0, 0.5)), color-stop(8.5%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgba(95, 1, 1, 0.82))), url(../images/backgrounds/black-damask.min.png), #450100;
+    background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+    background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 3.5%, rgba(0, 0, 0, 0.0) 8.5%, rgba(0, 0, 0, 0.0) 90%, rgba(95, 1, 1, 0.82) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+}
+	
+	
+.backgroundDamaskBlack3{
+	 background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(8%, rgba(255, 0, 0, 0.5)), color-stop(25%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgb(1, 0, 0))), url(../images/backgrounds/black-damask.min.png), #450100;
+		background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 8%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 90%, rgb(1, 0, 0) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+		background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 8%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 90%, rgb(1, 0, 0) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+		background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(255, 0, 0, 0.5) 8%, rgba(0, 0, 0, 0.0) 25%, rgba(0, 0, 0, 0.0) 90%, rgb(1, 0, 0) 100%), url(../images/backgrounds/black-damask.min.png), #450100;
+}
+
+
+
+.backgroundElegantBlur{
+	background:  url(../images/repeat-bg-blur.min.jpg) center top #411f0f;
+	background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%,  rgba(0, 0, 0, 0.0) 90%, rgba(0,0,0,0.9) 100%), url(../images/repeat-bg-blur.min.jpg), #450100;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 0, 0, 0.9)),color-stop(10%, rgba(0, 0, 0, 0.0)), color-stop(90%, rgba(0, 0, 0, 0.0)), to(rgba(0, 0, 0, 0.9))), url(../images/repeat-bg-blur.min.jpg), #450100;
+	background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.9) 100%), url(../images/repeat-bg-blur.min.jpg), #450100;
+	background: -o-linear-gradient(top, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.9) 100%), url(../images/repeat-bg-blur.min.jpg), #450100;
+	background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9) 0%,rgba(0, 0, 0, 0.0) 10%, rgba(0, 0, 0, 0.0) 90%, rgba(0, 0, 0, 0.9) 100%), url(../images/repeat-bg-blur.min.jpg), #450100;
+    background-repeat: repeat;		
+}
+
+.backgroundPianoSecrets{
+	background: url(../images/backgrounds/background-piano-secrets-straight.min.jpg) no-repeat top center #8a0e02;
+	background-size: cover; 
+}
+
+.backgroundPianoLounge{
+	background: url(../images/authority-two-bg-med.min.jpg) no-repeat top center;
+	background-size: cover;
+    background-position-y: -59px;
+}
+
+.backgroundYellowSecretNotes{
+	background: url(../images/backgrounds/backgroundYellowSecretNotes.min.jpg) no-repeat top center;
+	background-size: cover; 
+}
+
+.backgroundBlackSecretNotes{
+	background: url(../images/back_ground.min.jpg) no-repeat top center;
+	background-size: cover; 
+}
+
+.backgroundMajesticRedTheatre{
+    background: url(../images/backgrounds/product-feature-overview-bg.jpg);
+    background-size: cover;
+	background-position: center center;
+}
+
+.elementQuoteLeft{
+    font-size: 115%;
+    margin-right: 3px;
+	font-weight: bold;
+}
+
+.elementQuoteRight{
+    font-size: 100%;
+    margin-left: 1px;
+	font-weight: bold;	
+}
+
+.strikethrough-diagonal {
+  background: -webkit-gradient(linear, right bottom, left top, color-stop(47.75%, transparent), color-stop(49.5%, red), color-stop(50.5%, red), color-stop(52.25%, transparent));
+  background: -webkit-linear-gradient(right bottom, transparent 47.75%, red 49.5%, red 50.5%, transparent 52.25%);
+  background: -o-linear-gradient(right bottom, transparent 47.75%, red 49.5%, red 50.5%, transparent 52.25%);
+  background: linear-gradient(to left top, transparent 47.75%, red 49.5%, red 50.5%, transparent 52.25%);
+}
+
+.text-strikethrough {
+  text-decoration: line-through !important;
+}
+
+.text-red {
+  color: red !important;
+}
+
+/* If navigation menu is visible, and the next section is curved, adjust the margin top of the first element */
+@media (min-width: 768px) {
+	div[data-navigation-menu] + div > section.elementIsCurved {
+		margin-top: -228px;
+	}
+}
+/* If navigation menu is not visible, and the next section is curved, adjust the margin top of the first element */
+@media (max-width: 767px) {
+	div[data-landing-page] + div > section.elementIsCurved {
+		margin-top: -304px;
+	}
+}
+
+.elementIsCurved{
+	margin-top: -179px; 
+	position: relative;
+}
+.nextElementIsCurved{ 
+	padding-bottom: 163px;
+}
+
+/* Mobile Only */
+.maxWidth45{
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+
+@media (min-width: 768px) and (max-width: 849px) {
+	.maxWidth45{
+		max-width: 80%; 
+	}
+}
+
+@media (min-width: 850px) and (max-width: 949px) {
+	.maxWidth45{
+		max-width: 75%; 
+	}
+}
+
+@media (min-width: 950px) and (max-width: 1099px) {
+	.maxWidth45{
+		max-width: 72.5%; 
+	}
+}
+@media (min-width: 1100px) and (max-width: 1249px) {
+	.maxWidth45{
+		max-width: 70%; 
+	}
+}
+@media (min-width: 1250px) and (max-width: 1449px) {
+	.maxWidth45{
+		max-width: 60%; 
+	}
+}
+@media (min-width: 1450px) and (max-width: 1599px) {
+	.maxWidth45{
+		max-width: 55%; 
+	}
+}
+@media (min-width: 1600px) and (max-width: 1919px) {
+	.maxWidth45{
+		max-width: 50%; 
+	}
+}
+@media (min-width: 1920px) {
+	.maxWidth45{
+		max-width: 45%; 
+	}
+}
+
+
+/* Mobile Only */
+.maxWidth70{
+	max-width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+	.maxWidth70{
+		max-width: 60%; 
+	}
+}
+
+@media (min-width: 768px) and (max-width: 849px) {
+	.maxWidth70{
+		max-width: 90%; 
+	}
+}
+
+@media (min-width: 850px) and (max-width: 949px) {
+	.maxWidth70{
+		max-width: 85%; 
+	}
+}
+
+@media (min-width: 950px) and (max-width: 1099px) {
+	.maxWidth70{
+		max-width: 82.5%; 
+	}
+}
+@media (min-width: 1100px) and (max-width: 1249px) {
+	.maxWidth70{
+		max-width: 80%; 
+	}
+}
+@media (min-width: 1250px) and (max-width: 1449px) {
+	.maxWidth70{
+		max-width: 77.5%; 
+	}
+}
+@media (min-width: 1450px) and (max-width: 1599px) {
+	.maxWidth70{
+		max-width: 75%; 
+	}
+}
+@media (min-width: 1600px) and (max-width: 1919px) {
+	.maxWidth70{
+		max-width: 72.5%; 
+	}
+}
+@media (min-width: 1920px) {
+	.maxWidth70{
+		max-width: 70%; 
+	}
+}
+
+
+/* Mobile Only */
+.maxWidth85{
+	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+@media (min-width: 500px) and (max-width: 767px) {
+	.maxWidth85{
+		max-width: 82%; 
+	}
+}
+@media (min-width: 768px) and (max-width: 849px) {
+	.maxWidth85{
+		max-width: 95%; 
+	}
+}
+
+@media (min-width: 850px) and (max-width: 949px) {
+	.maxWidth85{
+		max-width: 90%; 
+	}
+}
+
+@media (min-width: 950px) and (max-width: 1099px) {
+	.maxWidth85{
+		max-width: 90%; 
+	}
+}
+@media (min-width: 1100px) and (max-width: 1249px) {
+	.maxWidth85{
+		max-width: 90%; 
+	}
+}
+@media (min-width: 1250px) and (max-width: 1449px) {
+	.maxWidth85{
+		max-width: 90%; 
+	}
+}
+@media (min-width: 1450px) and (max-width: 1599px) {
+	.maxWidth85{
+		max-width: 87.50%; 
+	}
+}
+@media (min-width: 1600px) and (max-width: 1919px) {
+	.maxWidth85{
+		max-width: 87.5%; 
+	}
+}
+@media (min-width: 1920px) {
+	.maxWidth85{
+		max-width: 85%; 
+	}
+}
+
+
+
+/*==================================================
+ * Box Shadow Effects
+ * ===============================================*/
+.boxShadowEffect1
+{
+    position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.boxShadowEffect1:before, .boxShadowEffect1:after
+{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+    border-radius:100px / 10px;
+}
+.boxShadowEffect1:after
+{
+    right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
+}
+
+
+.boxShadowEffect2
+{
+  position: relative;
+}
+.boxShadowEffect2:before, .boxShadowEffect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: rgba(0, 0, 0, 0.74);
+  -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.74);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.74);
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.boxShadowEffect2:after
+{
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}

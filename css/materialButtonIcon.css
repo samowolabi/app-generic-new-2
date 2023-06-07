@@ -1,0 +1,90 @@
+ .materialButtonIcon {
+    display: inline-block; 
+    border-radius: 3.125em; 
+	width: 2.5em;	
+	height: 2.5em;	
+	text-decoration: none !important; 
+	position: relative; 
+	border: none;
+    background: transparent;
+    padding: 0;
+    color: #9e0000;
+}
+.materialButtonIcon:hover,.materialButtonIcon:focus {
+    text-decoration: none;
+	outline: none;
+	color: #8c0000;
+}
+
+.materialButtonIcon.active, .materialButtonIcon:active {
+     background: rgba(241, 2, 2, 0.3); 
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125); 
+    outline: 0;
+    text-decoration: none;
+}
+
+
+
+.materialButtonIcon > i{  
+    border-radius: 3.125em;
+	width: 2.5em;
+	height: 2.5em;
+	background-color: transparent;
+	color: inherit;
+	padding: 0.875em 0em; /* Fallback for IE 9*/
+	/* For modern browsers we use perfect centering thanks to flex */
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	-webkit-box-shadow: inset 0 3px 5px rgba(107,0,0,.1);
+    box-shadow: inset 0 3px 5px rgba(107,0,0,.1);
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease; 
+    -webkit-transform: rotateX(0deg); 
+            transform: rotateX(0deg);  /* Force GPU rendering for soft borders */
+}
+
+.materialButtonIcon > i:hover{
+  background-color: #ffe5e5;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.15);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.15);
+}
+ 
+
+.materialButtonIcon > i.pressed{
+	background: rgba(128, 128, 128, 0.63);
+}
+
+
+/*Theme Dark css*/
+.materialThemeDark.materialButtonIcon:hover,.materialThemeDark.materialButtonIcon:focus { 
+	color:  hsl(44,100%,40%);
+}
+.materialThemeDark.materialButtonIcon.active, .materialThemeDark.materialButtonIcon:active {
+     background: rgba(241, 238, 51, 0.278); 
+}
+
+.materialButtonIcon.materialThemeDark{
+ 	color: hsl(44,100%,50%);
+}
+.materialButtonIcon.materialThemeDark > i:hover{
+  background-color: hsla(44, 100%, 50%, 0.2);
+ -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.15);
+   box-shadow: inset 0 3px 5px rgba(0,0,0,.15);
+}
+.materialButtonIcon.materialThemeDark > i{
+	/*background-color: hsl(44, 100%, 30%);*/
+	-webkit-box-shadow: inset 0 3px 5px hsla(44, 100%, 50%, .125);
+    box-shadow: inset 0 3px 5px hsla(44, 100%, 50%, .125); 
+}
+.materialButtonIcon.materialThemeDark > i.pressed{
+	background: hsla(44, 100%, 70%, .225);
+}

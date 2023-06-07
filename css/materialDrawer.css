@@ -1,0 +1,200 @@
+.materialDrawer .materialDrawerHead{
+  text-align: left;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.materialDrawer .materialDrawerHead h6{
+  font-size: 1.1em;
+  font-weight: 500;
+  color: rgba(0,0,0,.6);
+  letter-spacing: 0.5px;
+  -webkit-text-decoration-style: solid;
+          text-decoration-style: solid;
+  margin-top: 0;
+  padding-left: 0.5%;
+  color: hsl(0, 12%, 64%);
+}
+.materialDrawer .materialDrawerHead h3{
+  font-size: 1.575em;
+  font-weight: 620;
+  color: rgba(0,0,0,0.87);
+  letter-spacing: 0.25px;
+  display: block;
+  text-align: left;
+  -webkit-text-decoration-style: solid;
+          text-decoration-style: solid;
+  margin-bottom: 5px;
+  padding-left: 2px;
+  color: hsl(0, 100%, 8%);
+
+}
+.materialDrawer {
+  top: 0;
+  -webkit-transition-property: left, right;
+  -o-transition-property: left, right;
+  transition-property: left, right; 
+  -webkit-transition-duration: .5s; 
+       -o-transition-duration: .5s; 
+          transition-duration: .5s;
+  -webkit-transition-timing-function: ease-in;
+       -o-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+  position: fixed;
+  height: 100%;
+  width: 315px;
+  background-color: white;
+  -webkit-box-shadow: 0 0.350em 0.850em rgba(0, 0, 0, 0.42), 0 0.073em 0.475em rgba(0, 0, 0, 0.34);
+          box-shadow: 0 0.350em 0.850em rgba(0, 0, 0, 0.42), 0 0.073em 0.475em rgba(0, 0, 0, 0.34); 
+  overflow-x: hidden;
+  z-index: 9999;
+  overflow: hidden;
+  overflow-y: auto;
+  font-family: 'Roboto',sans-serif;
+  display: none; 
+  background-color: hsl(0, 100%, 99%);
+  
+  /* Enable scrolling on mobile touch */
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  -ms-touch-action: auto !important;
+      touch-action: auto !important;  
+}
+
+.materialDrawer ul{
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border-top: 0 none;
+    cursor: pointer;
+    color: black;  
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff; 
+    text-align: center;
+    list-style: none;
+    padding-top: 0;
+	  border-bottom: 2px solid  #ededed; 
+    margin-bottom: 0px;
+    background-color: hsl(0, 100%, 99%);
+}
+
+
+.materialDrawer ul.dark{
+	background: #262626;
+	padding-top: 1px;
+}
+
+.materialDrawer ul.dark li{
+	color: wheat;
+}
+.materialDrawer ul.dark li:hover{
+   color: #ffffff;
+   background: #3e3e3e;
+}
+
+.materialDrawer ul.dark li:focus{
+   background-color: hsl(0, 100%, 30%, 0.1);
+}
+
+
+.materialDrawer ul li{
+  text-align: center;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.05em;
+  font-weight: 610;
+  color: rgba(0,0,0,.77);
+  letter-spacing: 0.5px;
+  padding-right: 15px; 
+  overflow: hidden;
+  border-radius: 0.5em;
+}
+ 
+.materialDrawer ul li span{
+  color: inherit;
+  text-decoration: none !important; 
+  padding-top: 3px; 
+  color: hsl(0, 100%, 8%);
+}
+.materialDrawer ul li:active, .materialDrawer ul li.active{ 
+  border-radius: 0.5em;
+  background-color: hsl(0, 100%, 90%);
+}
+.materialDrawer ul li i{
+  padding-right: 36px; 
+  padding-left: 12px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.75em;
+  font-weight: 565;
+  color: hsl(0, 100%, 8%);
+}
+.materialDrawer li:hover{
+  background-color: hsla(0, 100%, 70%, 0.1);
+}
+.materialDrawer.left {
+  left: 0;
+}
+.materialDrawer.right {
+  right: 0;
+}
+
+
+/*Dark Theme CSS*/
+
+.materialDrawer.materialThemeDark{
+background-color: hsl(44, 0%, 15%);
+}
+.materialDrawer.materialThemeDark ul{
+background-color: hsl(44, 0%, 15%);
+border-bottom: 2px solid hsl(44, 0%, 13%);
+}
+.materialDrawer.materialThemeDark li:hover{
+  background-color: hsl(44, 100%, 50%, 0.2);
+}
+.materialDrawer.materialThemeDark ul li:active, .materialDrawer.materialThemeDark ul li.active{ 
+  border-radius: 0.5em;
+  background-color: hsl(44, 100%, 65%);
+}
+.materialDrawer.materialThemeDark ul li span{
+  color: hsl(44, 100%, 94%);
+}
+.materialDrawer.materialThemeDark ul li:active span, 
+.materialDrawer.materialThemeDark ul li.active span{
+  color: hsl(44, 100%, 10%);
+}
+.materialDrawer.materialThemeDark ul li:focus span{
+  color: hsl(44, 100%, 10%);
+}
+.materialDrawer.materialThemeDark ul li:active i, 
+.materialDrawer.materialThemeDark ul li.active i{
+  color: hsl(44, 100%, 10%);
+}
+.materialDrawer.materialThemeDark ul li:focus i{
+  color: hsl(44, 100%, 10%);
+}
+.materialDrawer.materialThemeDark ul li i{
+  color: hsl(44, 100%, 94%);
+}
+.materialDrawer.materialThemeDark .materialDrawerHead h3{
+  color: hsl(44, 100%, 94%);
+}
+.materialDrawer.materialThemeDark .materialDrawerHead h6{
+  color: hsl(44, 16%, 59%);
+}

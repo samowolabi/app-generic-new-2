@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<meta charset="utf-8" />
+	<title>%appName%</title>
+	
+	<!-- App Version %version% -->
+	
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+	<!-- TODO: Re generate bootstrap custom with navbar -->
+	<!--link rel="stylesheet" href="http://localhost/app-generic-new-2/css/bootstrap-custom.min.css" >-->
+	
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Not loading due to CORS error: <link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/font-awesome.min.css"> -->
+	
+	<!-- Hydra Start CSS Minify -->  
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/bootstrap.min.css" >
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/fonts.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/fontface.css"> 
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/style.css">
+		
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/owl.theme.default.css">
+	
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialButtonIcon.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialContextMenu.css"> 
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialDrawer.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialShared.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialCard.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialChip.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialButton.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialSnackBar.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialDialogBox.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialRating.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialInputChoice.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialInputTextArea.css"> 
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialProgressCircle.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialDeadlineCircle.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialDeadlineCircleMega.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialText.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialLink.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialCardProgress.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialLesson.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialProgressBar.css">  
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialBarDashboard.css"> 
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/animate.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialSwitch.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialOutline.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialPlaceHolder.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialInput.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/materialForm.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/margin-helpers-compiled.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/app.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/app.templates.pages.dashboard-infinite.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/app.templates.pages.course.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/app.templates.modules.rewardsSection.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/backgrounds.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost/app-generic-new-2/css/sync-audio-text.css">
+		
+	<!-- Hydra End CSS Minify -->
+
+ 
+	 
+</head>
+<body style="%themeBody%">
+ 
+	<!-- Navigation Bar -->
+    <div class="materialBarDashboardNavigation materialBarDashboard">
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-inverse materialBarDashboardNavBar materialBarDashboardNavWidth">
+                    <div class="navbar-header">
+						<!-- 
+						<button type="button" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="app.showAnnoucementDialog(true)" style="float: left; margin: 5px 5px 3px; position: relative; display: block">
+							 <span class="sr-only">Notifications</span>
+							 <span class="fa fa-envelope" style="color: white;  font-size: 21px;">
+								<span class="num animated headShake fast infinite announcementNotificationsCounter" style="position: absolute; right: 1px; top: 6px; color: #fff; background: red; padding: 2px 5px; font-family: 'Lato', sans-serif; font-size: 13px; border-radius: 18px; font-weight: bold;">1</span>
+							 </span>
+						</button>
+						-->
+						<button type="button" class="navbar-toggle materialBarDashboardNavbarToggle" data-button data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
+							 <span class="sr-only">Toggle navigation</span> 
+							 <span class="icon-bar"></span> 
+							 <span class="icon-bar"></span> 
+							 <span class="icon-bar"></span> 
+						</button>
+                        <div class="materialBarDashboardStandardImage">
+                            <img src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-text.min.svg">
+                        </div>
+                        <a class="materialBarDashboardSearch"></a>
+                        <a class="navbar-brand materialBarDashboardBackBtn materialBarDashboardNavLink" href="#!/">
+                            <i class="fa fa-angle-left"></i>&nbsp;<span>Go Back</span>
+                        </a>
+
+                    </div>
+                    <div class="collapse navbar-collapse materialBarDashboardNavbarCollapse" id="example-navbar-collapse">
+                        <div class="materialBarDashboardDiv">
+                            <img class="materialBarDashboardImage" src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-text.min.svg">
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- <li><a class="materialBarDashboardNavLink" href="#" data-button>My Classes</a></li> -->
+                            
+							<!-- 
+							<li>
+								<a class="materialBarDashboardNavLink" href="#" data-button data-button data-script="app.showAnnoucementDialog(true)">
+								<i class="fa fa-envelope" aria-hidden="true"></i> UNREAD MESSAGE (1)
+								</a>
+							</li>
+							-->
+							<li>
+                                <a class="materialBarDashboardNavLink" href="#" data-button data-button data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> <span class="valueFirstName">YOU</span>
+                                </a>
+                            </li> 
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--  End Navigation Bar -->
+	
+	 <!--  Start Bottom Navigation Bar -->
+	 <div class="materialBarDashboardNavigation materialBarDashboard" style="bottom: 0; top: initial;box-shadow: 0px -1px 3px 0px #0000008c, 0px -1px 10px 0px #ffde008c">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-expand-lg navbar-inverse materialBarDashboardNavBar materialBarDashboardNavWidth">
+					<div class="navbar-header" style="display: flex; flex-direction: row; flex-basis: 0; float: none !important">
+						<button title="Home" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="router.navigate('#!/newest/'); setTimeout(function(){$('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top-85},500,'linear');}, 600)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Home</span> <i class="material-icons" style="color: white;">home</i></button> 
+						<button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/profile/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Profile</span><i class="material-icons" style=" color: white;">face</i></button> 
+						<button title="Messages" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="app.showAnnoucementDialog(true)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Unread Messages</span> <span class="material-icons" style="color: white;position: relative;">mail <span class="num animated headShake fast infinite announcementNotificationsCounter" style="display: none; position: absolute;right: -10px;top: -4px;color: #fff;background: red;padding: 2px 5px;font-family: 'Lato', sans-serif;font-size: 13px;border-radius: 18px;font-weight: bold;">1</span></span></button>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+    <!--  End Navigation Bar -->
+	
+	<div id="content" style="margin-bottom: 56px">
+		<!-- Placeholder Start -->
+		<div class="container" style="margin-top: 90px;">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="materialCard">
+						<div class="materialCardTop">
+							<div class="materialCardImg materialPlaceHolder"></div>
+							<div class="materialCardInfo">
+								<h2 class="materialPlaceHolder" style="height: 30px;width: 70%"></h2>
+								<h6 class="materialPlaceHolder" style="height: 20px;width: 50%"></h6>
+								<p class="materialPlaceHolder" style="height: 80px;width: 100%"></p>
+							</div>
+						</div>
+						<div class="materialCardAction materialPlaceHolder" style="height: 45px;width: 100%"></div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="materialCard">
+						<div class="materialCardTop">
+							<div class="materialCardImg materialPlaceHolder"></div>
+							<div class="materialCardInfo">
+								<h2 class="materialPlaceHolder" style="height: 30px;width: 70%"></h2>
+								<h6 class="materialPlaceHolder" style="height: 20px;width: 50%"></h6>
+								<p class="materialPlaceHolder" style="height: 80px;width: 100%"></p>
+							</div>
+						</div>
+						<div class="materialCardAction materialPlaceHolder" style="height: 25px;width: 100%"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Placeholder End -->
+	</div>
+    
+    <div id="q-app"></div>
+  
+	<script>   
+		var config = {
+			"appName"	: "%appName%",
+			"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
+			"root" 		: "http://localhost/app-generic-new-2/",
+			"layout": {
+				"searchResults": "col-lg-4 col-md-4 col-sm-6 col-xs-12",
+				"searchResultsMinHeight": "445px",
+				"searchResultsCourseTitleFontSize": "1.9em",
+				"searchResultsSortFx" : function(course){if(course.filters){if(course.filters.level){return course.filters.level;}}}
+			},
+			"text": {
+				"header"					: function(){ return config.appName; },
+				"searchBarPlaceholder"		: "Search for composers or your favorite music",
+				"searchResultsTopLeft"		: function(course){ return ((course.filters && course.filters.era) 		? course.filters.era 					: ""); },
+				"searchResultsBottomLeft"	: function(course){ return ((course.filters && course.filters.duration) ? course.filters.duration + " minutes"  : ""); },
+				"searchResultsLineText1"	: function(course){ return ((course.filters && course.filters.level) 	? course.filters.level 					: ""); },			
+				"searchResultsLineText2"	: function(course){ return ((course.filters && course.filters.composer) ? course.filters.composer 				: ""); }
+			},
+			"theme":{
+				"header": "background: #fffae4; color: #7a0000; padding-top: 90px; padding-bottom: 40px; font-size: 25px; font-weight: 300; margin: 0;" 
+			}
+		}; 
+	</script>
+	<script>
+	 var HydraSystem = {}
+	 HydraSystem.track = function(){} //dummy function
+	</script>
+	<!-- Hydra Start JS Minify -->
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/polyfills.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/ripplet.js@0.1.13.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/hammer.min.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/owl.carousel.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialShared.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialHistory.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialComponent.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialButton.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialSnackBar.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialDrawer.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialRating.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialDialog.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialInputChoice.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/moment.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/moment-timezone.js"></script>
+
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.functions.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.modules.lessonCards.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.modules.lesson.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.modules.actionCards.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.modules.lessonsOutline.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.pages.lesson.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.pages.course.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.pages.profile.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.modules.rewardsSection.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.dialogs.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.dialogs.user-authentication.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.pages.dashboard-infinite.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.pages.dashboard.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.templates.pages.dashboard-infinite.lib.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/navigo.min.js"></script> 		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/jquery.countdown.min.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/countdown.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/trackReadProgress.js"></script> 
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/mailcheck.min.js"></script>
+		
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/app.start.js"></script>
+
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/sync-audio-text.babel.js"></script>
+		<script type="text/javascript" src="http://localhost/app-generic-new-2/js/materialAttentionButton.js"></script>
+		 
+	 <!-- Hydra End JS Minify -->	 
+
+ 
+ 
+	 
+	<div id="appSidebarMenu" class="materialDrawer materialThemeDark">
+		<div class="materialDrawerHead">
+			<h3>%appName%</h3>
+			<h6 class="valueMembershipType">Your Membership</h6></div>
+		<ul>
+			<li data-value="dashboard" class="active" data-on-click-callback="router.navigate('#!/');"><i class="material-icons">inbox</i><span>Dashboard</span></li>  
+			<li data-value="profile" data-on-click-callback="router.navigate('#!/profile/');"><i class="material-icons">face</i><span>Profile</span></li> 
+		</ul>
+	
+		<div class="materialDrawerHead"><h6>Bookmarks</h6></div>
+		<ul> 
+			<li data-value="courses" data-on-click-callback="router.navigate('#!/'); "><i class="material-icons">bookmark</i><span>All Courses</span></li>
+			<li data-value="newest" data-on-click-callback="router.navigate('#!/newest/'); "><i class="material-icons">bookmark</i><span>Newest Lessons</span></li>
+			<li data-value="expiring" data-on-click-callback="router.navigate('#!/expiring/');"><i class="material-icons">bookmark</i><span>Expiring Lessons</span></li>
+		</ul>
+		 
+		<div class="materialDrawerHead">
+			<h6>Go Premium</h6></div>
+		<ul> 
+			<li data-value="premium" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Interactive Courses</span></li> 
+		</ul>
+		<ul> 
+			<li data-value="logout"  data-on-click-callback="materialDialog.show('dialogLogout', {});"><i class="material-icons">power_settings_new</i><span>Log Out</span></li>
+		</ul>
+	</div>
+	
+	<div class="container-fluid hidden-xs hidden-sm">
+		<div class="row">   
+			<div class="col-md-12">
+				<h2 class="materialHeaderBox materialThemeGlassDark materialTextCenter fontFamilyLato materialColorDarkGrey" style="margin-bottom: 0;  color: #c8c8c8;">
+					<a href="https://pianoencyclopedia.com/en/home/" target="_blank"><img src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-for-black-background.min.png"></a>
+				</h2> 
+			</div>	 
+		</div>
+	</div>
+  
+ 
+	
+	<script src="https://player.vimeo.com/api/player.js"></script>
+	
+	<!-- Debug for mobile 
+	<script src="//cdn.jsdelivr.net/npm/eruda"></script><script>eruda.init();</script>--> 
+
+</body>
+</html>

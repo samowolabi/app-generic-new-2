@@ -1,0 +1,71 @@
+.materialContextMenu{
+	display: none;
+}
+
+.materialContextMenu{
+	position: absolute;
+	padding: 0;
+    padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	max-width: 100vh;
+	min-width: 10em;
+	background-color: white;
+	-webkit-box-shadow: 0 0.250em 0.750em rgba(0, 0, 0, 0.32), 0 0.063em 0.375em rgba(0, 0, 0, 0.24);
+	        box-shadow: 0 0.250em 0.750em rgba(0, 0, 0, 0.32), 0 0.063em 0.375em rgba(0, 0, 0, 0.24); 
+	overflow: hidden;
+	z-index: 9999;
+	margin: 0;
+	border-radius: 4px; 
+}
+ 
+
+.materialContextMenu li {
+     position: relative;
+    display: block;
+    padding: 10px 16px; 
+    background-color: #fff;
+    border: none;
+    font-size: 1em;
+    text-align: left;
+    color: black;
+    z-index: 9999;
+}
+ 
+
+.materialContextMenu li:hover{
+	background-color: #ededed;
+	color: black;
+}
+ 
+
+.materialContextMenu li i.fa{
+	margin-right: 10px;
+}
+ 
+ 
+.materialContextMenu.on{
+	display: block;
+	position: absolute; 
+}
+.materialContextMenu.left{
+	right: 0;	
+}
+.materialContextMenu.right{
+	left: 0;
+}
+.materialContextMenu.bottom{
+	top: 2.8em;
+}
+.materialContextMenu.top{
+	bottom: 2.8em;
+}
+.materialContextMenu.center{
+	right: -100%;
+	top: 0;
+	left: auto;
+	bottom: auto;	
+} 
+
+.materialMenu li{
+	display: none;
+}

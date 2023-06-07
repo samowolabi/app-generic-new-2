@@ -1,0 +1,271 @@
+.materialChipChoice, 
+.materialChipFilter,
+.materialChipAction, 
+.materialChipInput{
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;	
+}
+
+.materialChipChoice:first-of-type, 
+.materialChipFilter:first-of-type,
+.materialChipAction:first-of-type, 
+.materialChipInput:first-of-type{ 
+	margin-left: 0;
+}
+
+.materialChipChoice:last-of-type, 
+.materialChipFilter:last-of-type,
+.materialChipAction:last-of-type, 
+.materialChipInput:last-of-type{ 
+	margin-right: 0;
+}
+
+.materialChipChoice,.materialChipFilter,.materialChipAction {
+  font-size: .875em;
+  display: inline-block;
+  padding: .5em .87em;
+  border-radius: 1em;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+  outline: none;
+  font-family: Lato;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: hsl(0, 100%, 31%);
+}
+.materialChipInput {
+  width: 100%;
+  height: 100%;
+  border:none;
+  border-radius: 0;
+  display:inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  display: block;
+  cursor: pointer;
+  z-index: 20;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  margin: 0;
+  padding: 0;
+}
+
+.materialChipInputText {
+  position: static;
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+}
+
+.materialChipInputText:after, .materialChipInputText:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsl(0, 100%, 50%);
+  border-radius: 1em;
+  z-index: -1;
+  will-change: opacity;
+  opacity: 0;
+  -webkit-transition: opacity .2s cubic-bezier(0,0,.2,1);
+  -o-transition: opacity .2s cubic-bezier(0,0,.2,1);
+  transition: opacity .2s cubic-bezier(0,0,.2,1);
+}
+
+.materialChipInputText:after {
+/*  background-color: #333;*/
+  color: #fff;
+}
+
+.materialChipInput:checked ~ .materialChipInputText:before{
+  opacity: 1;
+}
+
+
+.materialChipChoice .materialChipInputText:after,
+.materialChipInput:focus ~ .materialChipInputText:after{
+  /*opacity: 0.2;*/
+}
+.materialChipFlter .materialChipInputText:after,
+.materialChipInput:focus ~ .materialChipInputText:after{
+  /*opacity: 0.2;*/
+}
+.materialChipAction .materialChipInputText:after,
+.materialChipInput:focus ~ .materialChipInputText:after{
+  /*opacity: 0.2;*/
+}
+
+.materialChipInput:focus:checked ~ .materialChipInputText:after {
+  /*background-color: #2196f3;*/
+  opacity: 0.2;
+}
+
+.materialChipInput:checked ~ .materialChipInputText{
+  /*color: #2196f3;*/
+  color: #fff;
+}
+
+.materialChipIcon {
+  height: 1.5em;
+  width: 1.5em;
+  display: inline;
+  vertical-align: middle;
+  margin: -.3em .1em -.3em -.3em;
+  -webkit-transition: opacity .2s .3s linear;
+  -o-transition: opacity .2s .3s linear;
+  transition: opacity .2s .3s linear;
+  fill: #fff;
+}
+
+.materialChipIcon + .materialChipCheckbox {
+  position: absolute;
+  left: 1em;
+  top: calc(50% - .45em);
+  width: 1.5em;
+}
+
+.materialChipCheckbox {
+  width: 0;
+  height: 1.5em;
+  display: inline;
+  vertical-align: middle;
+  margin: -.3em -.1em -.3em -.3em;
+  -webkit-transition: width .15s cubic-bezier(.4,0,.2,1);
+  -o-transition: width .15s cubic-bezier(.4,0,.2,1);
+  transition: width .15s cubic-bezier(.4,0,.2,1);
+}
+
+.materialChipInput:checked ~ .materialChipIcon {
+  opacity: 0;
+  -webkit-transition: opacity .01s linear;
+  -o-transition: opacity .01s linear;
+  transition: opacity .01s linear;
+}
+.materialChipInput:checked ~ .materialChipCheckbox {
+  width: 1.5em;
+}
+.materialChipCheckboxPath {
+  stroke-dashoffset: 29.78334;
+  stroke-dasharray: 29.78334;
+  -webkit-transition: stroke-dashoffset .15s cubic-bezier(.4,0,.6,1) 50ms;
+  -o-transition: stroke-dashoffset .15s cubic-bezier(.4,0,.6,1) 50ms;
+  transition: stroke-dashoffset .15s cubic-bezier(.4,0,.6,1) 50ms;
+}
+
+.materialChipInput:checked ~ .materialChipCheckbox .materialChipCheckboxPath {
+  stroke: #fff;
+  stroke-dashoffset: 0;
+}
+.materialChipChoice:hover, .materialChipFilter:hover, .materialChipAction:hover{
+    background-color: hsl(0, 100%, 40%);
+}
+
+/*Dark Theme CSS*/
+
+.materialChipChoice.materialThemeDark, .materialChipFilter.materialThemeDark, .materialChipAction.materialThemeDark {
+  background-color: hsl(0,0%,13.1%);
+}
+.materialChipChoice.materialThemeDark:hover, .materialChipFilter.materialThemeDark:hover, .materialChipAction.materialThemeDark:hover{
+  background-color: hsl(0,0%,27.5%);
+
+}
+.materialChipInputText.materialThemeDark:after, .materialChipInputText.materialThemeDark:before {
+  background-color: hsl(44, 100%, 65%);
+}
+.materialChipInput.materialThemeDark:checked ~ .materialChipInputText.materialThemeDark {
+  color: hsl(44, 100%, 10%);
+}
+.materialChipInput.materialThemeDark:hover ~ .materialChipInputText.materialThemeDark {
+  /*color: hsl(44, 100%, 10%);*/
+}
+.materialChipInput.materialThemeDark:checked ~ .materialChipCheckbox .materialChipCheckboxPath{
+  stroke: hsl(44, 100%, 10%);
+  stroke-dashoffset: 0;
+}
+/*.materialChipFilter.materialThemeDark:hover .materialChipIcon{
+  fill: hsl(44, 100%, 10%);
+}
+.materialChipAction.materialThemeDark:hover .materialChipIcon{
+  fill: hsl(44, 100%, 10%);
+}*/
+/*.materialChipInputText.materialThemeDark:hover{
+  color: hsl(44, 100%, 10%);
+}
+*/
+
+
+/*Light Theme ALT*/
+.materialChipChoice.materialThemeLightAlt, .materialChipFilter.materialThemeLightAlt, .materialChipAction.materialThemeLightAlt {
+  background-color: hsl(0, 100%, 90%);
+}
+.materialChipInputText.materialThemeLightAlt {
+  color: hsl(0, 100%, 18%);
+}
+.materialChipChoice.materialThemeLightAlt:hover, .materialChipFilter.materialThemeLightAlt:hover, .materialChipAction.materialThemeLightAlt:hover{
+  background-color: hsl(0, 100%, 85%);
+
+}
+.materialChipInputText.materialThemeLightAlt:after, .materialChipInputText.materialThemeLightAlt:before {
+  background-color: hsl(0, 100%, 80%);
+}
+.materialChipFilter.materialThemeLightAlt .materialChipIcon{
+  fill: hsl(0, 100%, 18%);
+}
+.materialChipAction.materialThemeLightAlt .materialChipIcon{
+  fill: hsl(0, 100%, 18%);
+}
+
+/*Dark Theme ALT*/
+.materialChipChoice.materialThemeDarkAlt, .materialChipFilter.materialThemeDarkAlt, .materialChipAction.materialThemeDarkAlt {
+  background-color: hsl(0, 32%, 94%);
+}
+.materialChipInputText.materialThemeDarkAlt {
+  color: hsl(0, 100%, 10%);
+}
+.materialChipChoice.materialThemeDarkAlt:hover, .materialChipFilter.materialThemeDarkAlt:hover, .materialChipAction.materialThemeDarkAlt:hover{
+  background-color: hsl(0, 32%, 90%);
+}
+.materialChipInputText.materialThemeDarkAlt:after, .materialChipInputText.materialThemeDarkAlt:before {
+  background-color: hsl(0, 100%, 10%);
+}
+.materialChipInput.materialThemeDarkAlt:checked ~ .materialChipInputText.materialThemeDarkAlt {
+  color: hsl(0, 32%, 94%);
+}
+.materialChipInput.materialThemeDarkAlt:checked ~ .materialChipCheckbox .materialChipCheckboxPath{
+  stroke: hsl(0, 32%, 94%);
+  stroke-dashoffset: 0;
+}
+.materialChipFilter.materialThemeDarkAlt .materialChipIcon{
+  fill: hsl(0, 100%, 18%);
+}
+.materialChipAction.materialThemeDarkAlt .materialChipIcon{
+ fill: hsl(0, 100%, 18%);
+}
+
+
+@media screen and (max-width: 499px){
+	.materialChipChoice, .materialChipFilter, .materialChipAction, .materialChipInput{
+		margin: 0;
+		width: 90%;
+		max-width: 320px;
+		margin-bottom: 20px;
+	}
+	
+	.materialChipChoice:last-of-type, 
+	.materialChipFilter:last-of-type,
+	.materialChipAction:last-of-type, 
+	.materialChipInput:last-of-type{ 
+		margin-bottom: 0;
+	}
+}

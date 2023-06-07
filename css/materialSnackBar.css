@@ -1,0 +1,44 @@
+.materialSnackBar {
+    display: none;
+    width: 350px; 
+    margin-left: -144px;         /* Divide value of min-width by 2 */
+    background-color: #333; 
+    color: #fff; 
+    padding: 15px 20px;
+    position: fixed;
+    z-index: 99999; 
+    left: 50%;  
+    bottom: 20px;  
+	-webkit-box-shadow: 0 4px 13px rgba(0, 0, 0, 0.71);  
+	        box-shadow: 0 4px 13px rgba(0, 0, 0, 0.71);
+	opacity: 0.95;
+	max-width: 100%;
+}
+
+.materialSnackBar a{
+    float: right; 
+	line-height: 1em;
+	margin-right: 0; 
+	font-size: 17px;
+    z-index:100001;
+	margin-top: 0;
+}
+  
+
+.materialSnackBar span{
+    float: left;
+	text-align: left; 
+	padding: 0.46em 0;
+	font-size: 17px;
+}
+
+@media screen and (max-width: 767px){
+    .materialSnackBar{
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+		bottom: 0;
+		font-size: 18px;
+    }
+}
+ 

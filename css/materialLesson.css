@@ -1,0 +1,392 @@
+.materialLesson .container-fluid{
+	background: white;
+    padding: 3em;
+	-webkit-box-shadow: inset 0 6px 10px 7px rgba(0, 0, 0, 0.07);
+	        box-shadow: inset 0 6px 10px 7px rgba(0, 0, 0, 0.07);
+}
+
+.materialLessonVideo{
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	height: 0;
+	background: #000;
+}
+
+
+.materialLessonVideo iframe, .materialLessonVideo div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.materialLesson h3{ 
+    color: rgb(103, 70, 70);
+    margin-bottom: 15px;
+	font-family: Lato, Helvetica, sans-serif;
+}
+
+.materialLesson{
+	margin-bottom: 30px;
+}
+
+
+.materialLesson .container-fluid{
+	background: white; 
+	padding: 3em;
+}
+
+.materialLesson h1{
+    font-size: 3.75em; 
+    font-weight: 300;
+    color: rgb(103, 70, 70);
+    margin-bottom: 15px; 
+	font-family: Lato, Helvetica, sans-serif;
+}
+
+.materialLesson p{
+    font-size: 1.4em;
+    color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+    line-height: 1.5em;
+    font-family: Lato, Helvetica, sans-serif;
+    font-weight: 300;
+    text-shadow: 0 0 1px black;
+}
+
+.materialLesson p .fa{
+	vertical-align: baseline;
+} 
+
+.materialLesson p.expiring{
+	color: #DC143C;
+
+}
+.materialLesson p.coming{
+	color: #926f00;
+	
+}
+.materialLesson p.coming, .materialLesson p.expiring{
+	font-weight: 400;
+}
+
+
+.materialLesson p.expiring .fa,
+.materialLesson p.coming .fa{
+	margin-right: 10px;
+}
+
+.materialLessonFile a:hover{
+	outline: 0;
+	text-decoration: none;
+	
+}	
+
+.materialLessonFileIcon{
+	float: left; font-size: 50px; margin-right: 15px;
+}
+
+.materialLessonFileText{
+	float: left; 
+	margin-top: 12px; 
+	font-size: 20px; 
+}
+
+.materialLessonFileText span:last-child{
+	text-transform: capitalize;
+}
+.materialLessonFile .materialLessonFileText, .materialLessonFile .materialLessonFileIcon{
+	color: #a70000;
+}
+.materialLessonRating {
+    overflow: hidden;
+    float: right;
+}
+.materialLessonRatingCaption{ 
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-right: 7px;
+    position: relative;
+    top: 27px;
+    font-family: Lato, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgb(103, 70, 70);
+	float: left;
+}
+
+
+.materialLessonFile .materialButtonText{ 
+		text-align: left;
+		text-transform: inherit;
+		line-height: inherit;
+		letter-spacing: inherit;
+		padding: 5px 15px 0;
+		border: inherit;
+		margin: inherit;
+		margin-left: -15px;
+}
+
+.materialLessonRating .materialRating{
+	float: left;
+	margin: 20px 0;
+}
+
+.materialLessonVideoIcon{
+	color: hsla(0,0%,100%,1); 
+	font-size: 11em; text-align: center; 
+	display: block; 
+	z-index: 2; 
+	position: relative; 
+	text-shadow: 0 0 19px rgba(0, 0, 0, 0.57), 0 0 19px rgba(0, 0, 0, 0.48), 0 0 19px rgba(0, 0, 0, 0.66); 
+	display: table-cell; 
+	vertical-align: middle;
+}
+
+.materialLessonVideoIcon{
+	color: hsla(0,0%,100%,1); 
+	font-size: 13em; 
+	text-align: center; 
+	display: block; 
+	z-index: 2; 
+	position: relative; 
+	text-shadow: 0 0 19px rgba(0, 0, 0, 0.57), 0 0 19px rgba(0, 0, 0, 0.48), 0 0 19px rgba(0, 0, 0, 0.66); 
+	display: table-cell; 
+	vertical-align: middle;
+}
+
+.materiaLessonBottomProgress{
+	font-size: 1.3em;
+	color: rgba(255, 255, 255, 0.61) !important;
+	letter-spacing: 1px;
+	margin: 0px 0 0px;
+	background: rgb(45, 45, 45);
+	padding: 20px;
+	font-family: Lato, Helvetica, sans-serif;
+	-webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.92), 0 0 2px rgba(0, 0, 0, 0.92), inset 0 0 16px rgba(0, 0, 0, 0.92), inset 0 -2px 4px rgba(255, 255, 255, 0.28);
+	        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.92), 0 0 2px rgba(0, 0, 0, 0.92), inset 0 0 16px rgba(0, 0, 0, 0.92), inset 0 -2px 4px rgba(255, 255, 255, 0.28);
+	padding: 20px 3.1em;
+}
+
+@media only screen and (max-width: 450px){
+	.materiaLessonBottomProgress {
+		padding: 20px;
+		text-align: center;
+	}
+}
+										
+@media only screen and (max-width: 991px){
+	.materialLessonVideoIcon{
+		font-size: 11em; 
+	}
+}
+
+@media only screen and (max-width: 599px){
+	.materialLessonVideoIcon{
+		font-size: 9em; 
+	}
+}
+
+@media only screen and (max-width: 399px){
+	.materialLessonVideoIcon{
+		font-size: 7em; 
+	}
+}
+
+
+/*Dark Theme*/
+
+.materialLessonFileText.materialThemeDark{
+	color: hsl(44, 100%, 50%);
+}
+
+.materialLessonFile .materialLessonFileIcon.materialThemeDark{
+	color: hsl(44, 100%, 50%);
+}
+
+.materialButtonText.materialThemeDark:hover{
+	background-color: hsla(44, 100%, 50%, 0.05);
+}
+
+.materialLesson.materialThemeDark h1, .materialLesson.materialThemeDark h3, .materialLesson.materialThemeDark p, .materialLessonRatingCaption.materialThemeDark{
+	color: 	hsl(44, 80%, 88%);
+}
+
+.materialLesson p.expiring.materialThemeDark{
+	color: rgb(255, 88, 88);
+}
+.materialLesson p.coming.materialThemeDark{
+	color: #ffde75;
+}
+
+.materialLesson.materialThemeDark .container-fluid{
+	background: #222; 
+}
+
+
+
+@media only screen and (max-width: 450px){
+ 
+	.materialLessonRatingCaption{ 
+	    position: initial;
+		top: auto;
+		margin-top: 30px;
+	}
+	
+	.materialLessonRating .materialRating {
+    	margin: 10px 0;
+	}
+	
+	.materialLesson .container-fluid{
+		padding: 3em 0.7em;
+	}	
+	
+	.materialLesson p{
+	    font-size: 1.4em;
+	}
+}
+	
+	
+@media only screen and (max-width: 991px){
+
+	.materialLessonRating{
+		float: left;
+	}
+	
+	.materialLesson h1 {
+		font-size: 3em;
+	}
+}
+@media only screen and (max-width: 600px){
+
+
+	.materialLesson h1 {
+		font-size: 2.5em;
+	}
+}
+/* Article */
+.materialLesson.article h1 {
+	font-size: 3em;
+	font-weight: 300;
+	margin-bottom: 0;
+	font-family: OptimusPrinceps, Helvetica, serif;
+	background: #000000;
+	padding: 0.3em 0.3em 0.2em;
+	color: #f5deb3;
+	text-transform: uppercase;
+	line-height: 1em;
+	letter-spacing: 3px;
+}
+
+.materialLesson.article h2 {
+	font-size: 1.75em;
+	font-weight: 300; 
+	font-family: OptimusPrinceps, Helvetica, serif;
+	background: #1b1b1b;
+	padding: 0.5em 0.7em 0.4em;
+	color: #d9c293;
+	text-transform: uppercase;
+	line-height: 1em;
+	letter-spacing: 3px; 
+	-webkit-box-shadow: inset 0px 0px 13px 0px #000000;
+	box-shadow: inset 0px 0px 13px 0px #000000;
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+.materialLesson.article .editorial-profile {
+	padding: 2em;
+	background: #444443;
+	background: -o-radial-gradient(center, ellipse, #444443 0%, #000000 100%);
+	background: radial-gradient(ellipse at center, #444443 0%, #000000 100%);
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 6px 10px 7px rgba(0, 0, 0, 0.07);
+	box-shadow: inset 0 6px 10px 7px rgba(0, 0, 0, 0.07);
+}
+
+.materialLesson.article .editorial-profile h4 {
+	color: #d2d2d2;
+	font-size: 1.7em;
+	letter-spacing: 1px; 
+}
+
+.materialLesson.article .editorial-profile p {
+	color: #d2d2d2;
+	font-size: 1.3em;
+	line-height: 1.3em;
+	padding: 0;
+	text-align: justify; 
+}
+
+.materialLesson.article .editorial-profile img {
+	border: 2px solid black; 
+	box-shadow: -3px 0px 9px rgba(0, 0, 0, 0.54);
+	filter: sepia(0.2);
+}
+ 
+.materialLesson.article article h2 {
+	padding: 0.5em 0.6em;
+	color: #fdfdfd;
+	text-transform: uppercase;
+	font-family: Lato, Helvetica, Arial, sans-serif;
+	letter-spacing: 1px;
+	font-size: 1.6em;
+	margin-bottom: 0 !important;
+	margin-top: 15px;
+	background: #230000;
+	background: -webkit-gradient(linear, left top, right top, from(#230000), to(#000000));
+	background: -o-linear-gradient(left, #230000 0%, #000000 100%);
+	background: linear-gradient(to right, #230000 0%, #000000 100%); 
+}
+.materialLesson.article article h3 {
+	color: rgb(0, 0, 0);
+	margin-bottom: 15px;
+	font-family: Lato, Helvetica, sans-serif;
+	padding: 0.6em 0.6em 0.2em;
+	font-size: 1.4em;
+	line-height: 1.3em;
+	margin-top: 5px;
+	border: 3px #353535 solid;
+	border-bottom: none;
+	border-right: none;
+}
+.materialLesson.article article p {
+	font-size: 1.4em;
+	color: rgb(0, 0, 0);
+	margin-bottom: 30px;
+	line-height: 1.5em;
+	font-family: Lato, Helvetica, sans-serif;
+	font-weight: 300;
+	text-shadow: 0 0 1px black;
+}
+
+@media only screen and (max-width: 600px) {
+	.materialLesson.article h1 {
+		font-size: 2em;
+		text-align: center;
+	}
+	
+	.materialLesson.article h2 {
+		font-size: 1.5em;
+		text-align: center;
+	}
+	
+	.materialLesson.article article h2{
+		font-size: 1.4em;
+		line-height: 1.2em;
+	}
+	
+	.materialLesson.article .editorial-profile h4 {
+		text-align: center;
+	}
+	
+	.materialLesson.article .editorial-profile p {
+		text-align: center;
+	}
+	
+	
+	.materialLesson.article p {
+		font-size: 1.35em;
+		line-height: 1.35em;
+	} 
+} 

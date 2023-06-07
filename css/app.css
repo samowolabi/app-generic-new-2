@@ -1,0 +1,103 @@
+body {
+	background: -webkit-gradient(linear,right top, left top,color-stop(18%, rgba(0, 0, 0, 0.57)),color-stop(23%, rgba(0, 0, 0, 0.95)),color-stop(72%, rgba(0, 0, 0, 0.95)),to(rgba(0, 0, 0, 0.57))),url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/websites/apps/members-only-lessons-dashboard/client//images/ruby-dark.jpg), black;
+	background: -webkit-linear-gradient(right,rgba(0, 0, 0, 0.57) 18%,rgba(0, 0, 0, 0.95) 23%,rgba(0, 0, 0, 0.95) 72%,rgba(0, 0, 0, 0.57) 100%),url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/websites/apps/members-only-lessons-dashboard/client//images/ruby-dark.jpg), black;
+	background: -o-linear-gradient(right,rgba(0, 0, 0, 0.57) 18%,rgba(0, 0, 0, 0.95) 23%,rgba(0, 0, 0, 0.95) 72%,rgba(0, 0, 0, 0.57) 100%),url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/websites/apps/members-only-lessons-dashboard/client//images/ruby-dark.jpg), black;
+	background: linear-gradient(to left,rgba(0, 0, 0, 0.57) 18%,rgba(0, 0, 0, 0.95) 23%,rgba(0, 0, 0, 0.95) 72%,rgba(0, 0, 0, 0.57) 100%),url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/websites/apps/members-only-lessons-dashboard/client//images/ruby-dark.jpg), black;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-position: center; 
+    background-size: cover;	
+}
+
+.materialOutlineHeaderTitle, .materialOutlineTitle, .heroDiv, .materiaLessonBottomProgress, .materialLessonRatingCaption, .rewardWrap{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+    -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+/* Scroll bar */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+.materialLesson p.read {
+	-webkit-transition: all 0.5s; 
+	-webkit-transition: all 2.5s; 
+	-o-transition: all 2.5s; 
+	transition: all 2.5s;
+    text-shadow:  0 0 1px black, 0px 0 3px rgb(255, 217, 113);
+}
+
+#dashboard-lessons .materialCardInfo h6 {
+	margin-top: 0.5em;
+}
+
+#dashboard-lessons .materialCardInfo { 
+    min-height: 176px;
+}
+
+#dashboard-lessons .materialCardInfo h2 {
+    margin: 0.5em 0 0;
+}
+
+.materialCardProgress {
+    min-height: 295px;
+	padding-top: 32px;
+}
+
+.materialHeaderBox{
+	border-radius: 1px;
+	-webkit-box-shadow: inset 1px 0 4px rgba(0, 0, 0, 0.9), 0px 0px 7px rgba(0, 0, 0, 0.84);
+	        box-shadow: inset 1px 0 4px rgba(0, 0, 0, 0.9), 0px 0px 7px rgba(0, 0, 0, 0.84);
+}
+ 
+.materialOutlineLearn .materialOutlineTitle {
+    color: #f3ebc8;
+    background-color: #130e00;
+}
+ 
+/**  CSS FOR CUSTOM PLATFORM BEHAVIOR **/ 
+/* Hide Signup */
+html.app-hide-signup .materialAuthFormBelowText:has(a[data-on-click-callback*="Signup"]){
+    display: none !important;
+}
+
+
+/* Disable Outline Native Ads, Card native Ads, and Dialog ads */
+html.app-hide-ads .materialOutlineLearn:has(a[href*="pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/"]),
+html.app-hide-ads .materialCard:has(a[href*="pianoencyclopedia.com/en/exclusive-invitation/"]),
+html.app-hide-ads .materialDialog:has(a[href*="pianoencyclopedia.com/en/exclusive-invitation/"]){
+    display: none !important;
+}
+
+/* Disable all custom dialogs */
+html.app-hide-custom-dialogs #materialOverlay-customDialog{
+    display: none !important;
+}
+
+/* Remove premium from sidebar */
+html.app-hide-premium ul:has(li[data-value*="premium"]),
+html.app-hide-premium .materialDrawer .materialDrawerHead:last-of-type{
+    display: none !important;
+}

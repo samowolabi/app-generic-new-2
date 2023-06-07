@@ -1,0 +1,365 @@
+ .materialOutlineVerticleProgressBar {
+    position: absolute;
+    width: 8px; 
+	background: -webkit-gradient(linear, left top, right top, from(rgb(132, 97, 0)),to(rgb(233, 189, 20)));
+	background: -webkit-linear-gradient(left, rgb(132, 97, 0) 0%,rgb(233, 189, 20) 100%);
+	background: -o-linear-gradient(left, rgb(132, 97, 0) 0%,rgb(233, 189, 20) 100%);
+	background: linear-gradient(to right, rgb(132, 97, 0) 0%,rgb(233, 189, 20) 100%);
+    top: 0;
+    left: 30px;
+}
+ 
+.materialOutlineLearn .materialOutlineListBody {
+    text-align: left;
+	overflow: hidden;
+}
+
+.materialOutlineLearn .materialOutlineListBody p .fa{
+	vertical-align: baseline;
+}
+
+.materialOutlineThumbnail{
+	background-size: cover;
+	background-position:center;
+	background-color: black;
+	width: 168px;
+	height: 94px;
+	float: left;
+	margin-right: 20px; 
+	-webkit-box-shadow: 0 0 3px 1px #380000; 
+	        box-shadow: 0 0 3px 1px #380000;
+	margin-left: 8px;
+	position: relative;
+}
+
+.materialOutlineThumbnail::after{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
+	content: " ";
+	opacity: 1; 
+	-webkit-transition: opacity 1s ease-out; 
+	-o-transition: opacity 1s ease-out; 
+	transition: opacity 1s ease-out;
+}
+
+.materialOutlineListBody a:hover .materialOutlineThumbnail::after{
+	opacity: 0;
+}
+
+
+@media screen and (max-width: 767px){ 
+	.materialOutlineThumbnail{
+		width: calc(100% - 6px);
+		height: auto;
+		padding-bottom: 56.25%;
+		margin: 0;
+		margin-bottom: 20px;
+		margin-left: 3px;
+	}
+}
+
+.materialOutlineThumbnail .materialProgressBar{
+	bottom: 0;
+	position: absolute;
+	z-index: 1;
+}
+ 
+.materialOutlineLearn li h6 {
+    font-family: 'Lato', sans-serif;
+    font-size: 17px;
+    font-weight: 700; 
+    color: hsl(0, 100%, 8%); 
+	text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.materialOutlineLearn li p {
+    font-size: 16px;
+    margin-top: 5px;
+    line-height: 1.6em; 
+	color: hsl(0, 100%, 8%);
+	font-family: Lato, sans-serif;
+}
+
+.materialOutlineLearn .materialOutlineListBody a {
+    display: block;
+	text-decoration: none;
+	color: inherit;
+	min-height: 94px;
+}
+
+.materialOutlineLearn li {
+    position: relative;
+    border-bottom: 1px solid hsla(0, 30%, 92%, 1);
+    padding: 14px 16px 14px 64px;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+	list-style-type: none; 
+}
+
+.materialOutlineLearn ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; 
+	background: hsl(0, 100%, 99%);
+}
+
+
+.materialOutlineLearn li:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 100%;
+    background-color: hsl(0, 54%, 92%);
+    top: 0;
+    left: 30px;
+}
+ 
+ 
+.materialOutlineLearn .materialOutlineIcon {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    margin: auto;
+    left: 20px;
+    top: 0;
+    bottom: 0; 
+    text-align: center;
+    border-radius: 50%; 
+    border: 3px solid hsl(0, 54%, 92%);
+    background-color: #fff;
+}
+
+.materialOutlineLearn .materialOutlineView.materialOutlineViewComplete .materialOutlineIcon { 
+	background: rgb(171,130,0); /* Old browsers */ /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(171,130,0,1) 0%,rgba(137,103,0,1) 44%,rgba(130,95,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(171,130,0,1)),color-stop(44%, rgba(137,103,0,1)),to(rgba(130,95,0,1)));
+	background: -o-linear-gradient(top, rgba(171,130,0,1) 0%,rgba(137,103,0,1) 44%,rgba(130,95,0,1) 100%);
+	background: linear-gradient(to bottom, rgba(171,130,0,1) 0%,rgba(137,103,0,1) 44%,rgba(130,95,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    border-color: rgb(142, 117, 38);
+}
+
+.materialOutlineLearn .materialOutlineTitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    padding: 0 15px;
+    line-height: 40px;
+    background-color: #000000;
+    margin: 0;
+}
+  
+.materialOutlineLearn .materialOutlineIcon .fa {  
+    color: #fff;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+.materialOutlineLearn .materialOutlineView .materialOutlineIcon .fa {
+    opacity: 1;
+	width: auto;
+    display: inline-block;
+}
+.materialOutlineLearn .materialOutlineTitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 700; 
+    padding: 0 15px;
+    line-height: 40px;
+    color: #fff8f8;
+    background-color: #5d0000;
+    margin: 0;
+	text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.materialOutlineLearn li:hover {
+    background-color: hsl(0, 100%, 98%);
+}
+.materialOutlineListBody a:hover {
+    text-decoration: none;
+    position: relative; 
+    -webkit-transition: all 0.2s ease-in; 
+    -o-transition: all 0.2s ease-in; 
+    transition: all 0.2s ease-in;
+}
+
+.materialOutlineLearn li.active {
+    background-color:  hsl(36, 100%, 82%);
+}
+
+.materialOutlineLearn li.active   h6 {
+    color: #ad0000;
+}
+	
+	
+.materialOutlineLearn li.active:hover {
+    background-color: hsl(0, 100%, 96%);
+}
+
+.materialOutlineHeaderTitle{
+    line-height: 28px;  
+    color: #e0ddcd;
+	text-align: center; 
+	font-weight: normal;
+     padding: 40px; 
+     background: hsl(0, 100%, 99%);
+	 margin: 0;
+	font-family: OptimusPrinceps, serif;
+    letter-spacing: 2px;
+	font-size: 28px;
+    color: #7a0000;
+	text-transform: uppercase;
+}
+
+.materialOutlineHeaderTitle p{
+	
+	margin-top: 15px;
+   text-transform: uppercase;
+    font-family: Lato,sans-serif;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 17px;
+	margin-bottom: 0;
+    color: #7a0000;
+}
+
+.materialOutlineTitle span{
+	font-size: 14px; 
+	color: #e0ddcd;
+}
+.materialOutlineLearn li p.materialOutlineExpire, .materialOutlineLearn li p.materialOutlineComingSoon {
+     text-transform: uppercase;
+    font-family: Lato,sans-serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.materialOutlineLearn li p.materialOutlineExpire {
+	color: rgb(212, 45, 45);
+}
+.materialOutlineLearn li p.materialOutlineComingSoon{
+	color: #926f00;
+}
+
+.materialOutlineExpire .fa, .materialOutlineComingSoon .fa {
+    margin-right: 5px;
+}
+.materialOutlineView:focus{
+        background-color: hsla(0, 100%, 90%, 0.1);
+}
+
+.materialOutlineLearn .materialOutlineListAltColor .materialOutlineVerticleProgressBar{
+       background: -webkit-gradient(linear, left top, right top, from(rgb(93, 0, 0)),to(rgb(169, 0, 0)));
+	   background: -webkit-linear-gradient(left, rgb(93, 0, 0) 0%,rgb(169, 0, 0) 100%);
+	   background: -o-linear-gradient(left, rgb(93, 0, 0) 0%,rgb(169, 0, 0) 100%);
+	   background: linear-gradient(to right, rgb(93, 0, 0) 0%,rgb(169, 0, 0) 100%);
+}
+
+.materialOutlineLearn .materialOutlineView.materialOutlineViewComplete.materialOutlineListAltColor .materialOutlineIcon {
+    border-color: rgb(93, 0, 0);
+    background: rgb(172,0,34); /* Old browsers */ /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(172,0,34,1) 0%,rgba(138,0,30,1) 44%,rgba(130,0,30,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(172,0,34,1)),color-stop(44%, rgba(138,0,30,1)),to(rgba(130,0,30,1)));
+	background: -o-linear-gradient(top, rgba(172,0,34,1) 0%,rgba(138,0,30,1) 44%,rgba(130,0,30,1) 100%);
+	background: linear-gradient(to bottom, rgba(172,0,34,1) 0%,rgba(138,0,30,1) 44%,rgba(130,0,30,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+/*Dark Theme CSS*/
+
+.materialOutlineLearn.materialThemeDark li h6 {
+    color: hsl(44, 80%, 88%);
+}
+
+.materialOutlineLearn.materialThemeDark li.active   h6 {
+	color: hsl(44, 105%, 83%);
+}
+
+.materialOutlineLearn.materialThemeDark li p {
+    color: hsl(44, 80%, 88%);
+}
+.materialOutlineLearn.materialThemeDark li:hover {
+    background-color: hsla(44, 100%, 50%, 0.05);
+}
+.materialOutlineView.materialThemeDark:focus{
+
+}
+.materialOutlineLearn.materialThemeDark li.active {
+    background-color: hsla(44, 100%, 50%, 0.2);
+}
+
+/*.materialOutlineLearn.materialThemeDark li.active h6, .materialOutlineLearn.materialThemeDark li.active p {
+    color: hsl(44, 100%, 7%);
+}
+*/
+.materialOutlineLearn.materialThemeDark li.active:hover {
+    background-color: hsla(44, 100%, 50%, 0.3);
+}
+.materialOutlineLearn.materialThemeDark .materialOutlineView.materialOutlineViewComplete .materialOutlineIcon {
+    background-color: rgb(179, 132, 0);
+    border-color: rgb(179, 132, 0);
+}
+.materialOutlineLearn.materialThemeDark .materialOutlineList {
+    background-color: hsl(44, 0%, 15%);
+}
+
+.materialOutlineLearn.materialThemeDark li{
+    border-bottom: 1px solid hsla(44, 34%, 18%, 0.8);
+}
+.materialOutlineVerticleProgressBar.materialThemeDark{
+    background: -webkit-gradient(linear, left top, right top, from(rgb(132, 97, 0)),to(rgb(233, 189, 20)));
+    background: -webkit-linear-gradient(left, rgb(132, 97, 0) 0%,rgb(233, 189, 20) 100%);
+    background: -o-linear-gradient(left, rgb(132, 97, 0) 0%,rgb(233, 189, 20) 100%);
+    background: linear-gradient(to right, rgb(132, 97, 0) 0%,rgb(233, 189, 20) 100%);
+
+}
+.materialOutlineLearn.materialThemeDark li p.materialOutlineExpire {
+    color: rgb(255, 88, 88);
+}
+.materialOutlineLearn.materialThemeDark li p.materialOutlineComingSoon{
+    color: #c99900;
+}
+.materialOutlineLearn.materialThemeDark .materialOutlineView.materialOutlineViewComplete.materialOutlineListAltColor .materialOutlineIcon {
+    border-color: rgb(204, 0, 0);
+    background: rgb(204, 0, 0);
+}
+.materialOutlineHeaderTitle.materialThemeDark{
+    background: hsl(44, 0%, 15%);
+    /*color: #e0ddcd;*/
+    color: hsl(44, 80%, 88%);
+}
+.materialOutlineHeaderTitle.materialThemeDark p{
+    color: hsl(44, 80%, 88%);
+}
+.materialOutlineLearn.materialThemeDark .materialOutlineTitle {
+    background-color: #f9f5d7;
+    color: rgb(41, 30, 0);
+}
+
+.materialOutlineLearn.materialThemeDark .materialOutlineIcon {
+    /*border: 3px solid rgb(255, 255, 186);*/
+    border: 3px solid hsl(44, 80%, 88%);
+    background-color: hsl(44, 0%, 15%);
+}
+.materialOutlineLearn.materialThemeDark li:before {
+    /*background-color: rgb(255, 255, 186);*/
+    background-color: hsl(44, 80%, 88%);
+}
+.materialOutlineLearn.materialThemeDark .materialOutlineListAltColor .materialOutlineVerticleProgressBar{
+       background: -webkit-gradient(linear, left top, right top, from(rgb(93, 0, 0)),to(rgb(169, 0, 0)));
+       background: -webkit-linear-gradient(left, rgb(93, 0, 0) 0%,rgb(169, 0, 0) 100%);
+       background: -o-linear-gradient(left, rgb(93, 0, 0) 0%,rgb(169, 0, 0) 100%);
+       background: -webkit-gradient(linear, left top, right top, from(rgb(93, 0, 0)),to(rgb(249, 0, 0)));
+       background: -webkit-linear-gradient(left, rgb(93, 0, 0) 0%,rgb(249, 0, 0) 100%);
+       background: -o-linear-gradient(left, rgb(93, 0, 0) 0%,rgb(249, 0, 0) 100%);
+       background: linear-gradient(to right, rgb(93, 0, 0) 0%,rgb(249, 0, 0) 100%);
+}

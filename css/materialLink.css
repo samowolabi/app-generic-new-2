@@ -1,0 +1,82 @@
+.materialLink{
+	color: hsl(0, 100%, 31%);
+}
+.materialLink:focus{
+	text-decoration: none;
+	color: hsl(0, 100%, 65%);
+}
+.materialLink:hover{
+	text-decoration: none;
+	color: hsl(0, 60%, 35%);
+     -webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink:active{
+	color: hsl(0, 60%, 30%);
+     -webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeDark{
+	color: hsl(44, 100%, 50%);
+}
+.materialLink.materialThemeDark:hover{
+	color: hsl(44, 100%, 41%);
+	-webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeDark:active{
+	color: hsl(44, 100%, 31%);
+	-webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeDark:focus{
+	color: hsl(44, 100%, 65%);
+}
+.materialLink.materialThemeLightGrey{
+	color: hsl(0, 0%, 28%);
+}
+.materialLink.materialThemeLightGrey:hover{
+	color: hsl(0, 0%, 51%);
+	-webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeLightGrey:active{
+	color: hsl(0, 0%, 36%);
+	-webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeLightGrey:focus{
+	color: hsl(0, 0%, 65%);
+}
+.materialLink.materialThemeDarkGrey{
+	color: hsl(0, 0%, 98%);
+}
+.materialLink.materialThemeDarkGrey:hover{
+	color: hsl(0, 0%, 80%);
+	-webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeDarkGrey:active{
+	color: hsl(0, 0%, 51%);
+	-webkit-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+}
+.materialLink.materialThemeDarkGrey:focus{
+	color: hsl(0, 0%, 65%);
+}

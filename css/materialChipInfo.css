@@ -1,0 +1,63 @@
+.materialChip{
+	border-radius: 0.625em; 
+	padding: 6px 6px;
+    background-color: #aaa;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: .01786em;
+	height: 32px;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    position: relative;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 7px 12px;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.materialChip:first-of-type{
+	margin-left: 0;
+}
+.materialChip:last-of-type{
+	margin-right: 0;
+}
+
+
+.materialChip.new {
+    background-color: #2cec7f;
+}
+
+.materialChip.expiring{
+	background-color: #f38296;
+	padding: 6px 20px;
+}
+.materialChip .fa{
+	margin-right: 10px;
+}
+
+.materialChipAction{
+	color: black;
+	outline: none;
+	text-decoration: none;
+}
+
+.materialChipAction:focus{
+	 background-color: white; 
+}
+
+.materialChipAction:hover{
+	 background-color: #ccc; 
+}
+
+.materialChipAction:hover, .materialChipAction:focus{
+	outline: none;
+	text-decoration: none;
+}

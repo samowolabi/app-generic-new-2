@@ -1,0 +1,144 @@
+.materialDialogLogin, 
+.materialDialogResetPassword, 
+.materialDialogSignup{
+  max-width: 500px;
+  
+}
+
+.materialAuthForm {
+    font-family: Lato, sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px 0 20px;
+}
+.materialAuthFormHeader {
+    position: relative;
+}
+ 
+
+.materialAuthForm .materialButtonOutline, 
+.materialAuthForm .materialButtonFill {
+	width: 100%;
+    display: block;
+    padding: 18px 0px;
+    font-size: 14px;
+}
+.materialAuthFormInput .materialInputTextArea:nth-last-child(1){
+        margin-bottom: 1.6em;
+
+}
+.materialAuthFormSubtitle {
+    color: hsl(217, 8%, 67%);
+    margin-bottom: 0px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.materialAuthForm .materialButtonOutline .fa{
+    font-size: 25px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+.materialAuthFormHeader h4 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 27px;
+    letter-spacing: 1px;
+}
+
+.materialAuthFormDivider {
+    padding: 20px 0px;
+    position: relative;
+}
+.materialAuthFormDivider p {
+    font-size: 18px;
+    margin-bottom: 0px;
+}
+.materialAuthFormDivider p::after {
+    content: '';
+    position: absolute;
+    top: 31px;
+    right: 0;
+    bottom: 0;
+    width: 43%;
+    height: 3px;
+    background-color: #d2c5c5;
+}
+.materialAuthFormDivider p::before {
+    content: '';
+    position: absolute;
+    top: 31px;
+    left: 0;
+    bottom: 0;
+    width: 43%;
+    height: 3px;
+    background-color: #d2c5c5;
+}
+.materialFormsInput input {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 13px 20px;
+}
+
+.materialAuthFormSecondaryText a,
+.materialAuthFormSecondaryText p{
+    text-align: right;
+    margin-bottom: 1.6em;
+    display: block;
+    font-size: 16px;
+} 
+
+.materialAuthFormBelowText {
+    margin-top: 17px;
+    font-size: 16px;
+}
+.materialAuthFormSubtitle p {
+    margin-bottom: 0px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.materialAuthFormActionText p {
+    padding: 6px 34px;
+}
+.materialAccountConditions {
+    color: hsl(0, 8%, 67%);
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 320px){
+	.materialAuthForm{
+		padding: 5px;
+	}
+	.materialAuthForm .materialButtonFill {
+		padding: 11px 0px; 
+	}
+	.materialAuthForm .materialButtonFill .fa {
+		padding-right: 10px;
+	}
+    .materialAuthFormInput .materialInputTextArea:nth-last-child(1){
+        margin:1.6em 0 0; 
+
+    }
+    .materialAuthFormSecondaryText a{
+        text-align: right;
+        margin-top: 15px;
+    }
+     
+	.materialAuthFormWrapper {
+	    padding-left: 0;
+		padding-right: 0;
+	}
+
+}
+
+/*DarkTheme*/
+
+.materialManageAccount.materialThemeDark {
+    color: hsl(44, 9%, 51%);
+}
+
+.materialAuthFormDivider p::after, .materialAuthFormDivider p::before{
+    background-color: #d2cfc5;
+}  

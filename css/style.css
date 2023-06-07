@@ -1,0 +1,43 @@
+.backgroundGreen{
+	background-color: rgba(0, 152, 0, 0.30) !important; 
+}
+.backgroundBlue{
+	background-color: rgba(0, 0, 152, 0.30) !important;  
+}
+.backgroundGrey{
+	background-color: rgba(152, 152, 152, 0.76) !important; 
+}
+.green{
+	color: rgb(0, 152, 0) !important; 
+}
+.blue{
+	color: rgb(0, 0, 152) !important;  
+}
+.red{
+	color: rgb(152, 0, 0) !important; 
+} 
+.flipY{ 
+    -webkit-transform: rotateY(180deg) !important; 
+            transform: rotateY(180deg) !important;
+}
+.flipX{ 
+    -webkit-transform: rotateX(180deg) !important; 
+            transform: rotateX(180deg) !important;
+}
+.flipZ{ 
+    -webkit-transform: rotateZ(360deg) !important; 
+        -ms-transform: rotate(360deg) !important; 
+            transform: rotateZ(360deg) !important;
+}
+.transparent1{
+	opacity: 0.5;
+}
+
+.jumbotron{
+    margin-top: 30px;
+}
+
+.scroller{
+	height: 800px;
+	width: 100%;
+}

@@ -1,0 +1,39 @@
+.infiniteScrollingCardsSearchContainer{
+    margin:0 auto;
+}
+.infiniteScrollingCardsSearchBar input{
+    background-color:red;
+    float:left;
+    margin-right:30px;
+    padding:10px 20px;
+    width:calc(100% - 158px);
+}
+.infiniteScrollingSearchDiv .searchBtn{
+    float:left;
+    width:128px;
+}
+.infiniteScrollingSearchDiv.container-fluid-max-width{
+    max-width:100%;
+}
+.infiniteScrollingContainer .materialCard .materialHeader,.infiniteScrollingContainer .materialCard .materialParagraph{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+@media only screen and (max-width:600px){
+    .container-fluid-max-width{
+        max-width:calc(100% - 30px);
+    }
+	
+	#content .container-fluid-max-width{
+        max-width: 100%;
+    }
+	.infiniteScrollingContainer .materialCard .materialHeader,.infiniteScrollingContainer .materialCard .materialParagraph{
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space: normal;
+	}
+}
+.cardSearchResult{
+     min-height: 445px;
+}

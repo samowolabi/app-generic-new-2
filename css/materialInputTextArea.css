@@ -1,0 +1,46 @@
+.materialInputTextArea{ 
+	border: 0;
+	padding: 15px 20px;
+	background: white no-repeat;
+	width: 100%; 
+	resize: none;
+	 /* 2 imgs : 1px gray line (normal state) AND 2px green line (focus state) */
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#9e0000), to(#9e0000)), -webkit-gradient(linear, left top, left bottom, from(silver), to(silver));
+	background-image: -webkit-linear-gradient(top, #9e0000, #9e0000), -webkit-linear-gradient(top, silver, silver);
+	background-image: -o-linear-gradient(top, #9e0000, #9e0000), -o-linear-gradient(top, silver, silver);
+	background-image: linear-gradient(to bottom, #9e0000, #9e0000), linear-gradient(to bottom, silver, silver);
+	/* sizes for the 2 images (default state) */
+	background-size: 0 2px, 100% 1px;
+	/* positions for the 2 images. Change both "50%" to "0%" or "100%" and tri again */
+	background-position: 50% 100%, 50% 100%;
+    -webkit-box-shadow: 0 0px 1px rgba(125, 125, 125, 0.2);
+            box-shadow: 0 0px 1px rgba(125, 125, 125, 0.2); 
+	/* animation solely on background-size */
+	-webkit-transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	-o-transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	margin: 0.6em 0 0;
+	background-color: hsl(0, 100%, 99%);
+	color: hsl(0, 100%, 10%);
+}
+  
+ .materialInputTextArea:hover{  
+	-webkit-box-shadow: 0 0px 1px rgba(125, 125, 125, 0.6);  
+	        box-shadow: 0 0px 1px rgba(125, 125, 125, 0.6); 
+}
+.materialInputTextArea:focus{
+  /* sizes for the 2 images (focus state) */
+	background-size: 100% 2px, 100% 1px;
+	outline: none;
+}
+
+
+ /* Dark theme */
+.materialInputTextArea.materialThemeDark{
+	background-image: -webkit-gradient(linear, left top, left bottom, from(hsl(44, 100%, 50%)),to(hsl(44, 100%, 50%)) ), -webkit-gradient(linear, left top, left bottom, from(silver), to(silver));
+	background-image: -webkit-linear-gradient(top, hsl(44, 100%, 50%),hsl(44, 100%, 50%) ), -webkit-linear-gradient(top, silver, silver);
+	background-image: -o-linear-gradient(top, hsl(44, 100%, 50%),hsl(44, 100%, 50%) ), -o-linear-gradient(top, silver, silver);
+	background-image: linear-gradient(to bottom, hsl(44, 100%, 50%),hsl(44, 100%, 50%) ), linear-gradient(to bottom, silver, silver);
+	background-color: hsl(44, 100%, 99%);
+	color: hsl(44, 100%, 10%);
+}

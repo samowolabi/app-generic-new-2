@@ -1,0 +1,195 @@
+.materialBarDashboardNavWidth{
+    width: 100%;
+}
+ 
+@media only screen and (min-width: 1025px){
+	.materialNoScroll .materialBarDashboardNavigation {
+		right: 16px;
+	}
+}
+	
+.materialBarDashboardNavbarToggle{
+	opacity:0.7;
+}
+.materialBarDashboardNavbarToggle:hover {
+	background:transparent;
+}
+.materialBarDashboardNavigation {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9997;
+	-webkit-box-shadow: inset 7px 1px 10px 0px rgba(0, 0, 0, 0.88), 0 1px 3px black;
+	        box-shadow: inset 7px 1px 10px 0px rgba(0, 0, 0, 0.88), 0 1px 3px black;
+    background: #171717;
+}
+
+.materialBarDashboardNavigation .materialBarDashboardNavBar {
+	margin-bottom: 0;
+	font-family: 'Lato',Helvetica,Arial,sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	background: transparent;
+	border:none;
+}
+.materialBarDashboardNavbarCollapse{ 
+	border:none;
+	-webkit-box-shadow:none;
+	        box-shadow:none;
+}
+
+.materialBarDashboardNavLink.materialBarDashboardNavLinkMobile {
+	display:none;
+}
+
+.materialBarDashboardNavLink:hover {
+    opacity: 1;
+    color: #fff !important;
+}
+.materialBarDashboardSearch{
+    display: none;
+}
+
+
+@media only screen and (max-width: 767px) and (min-width: 576px){
+	.materialBarDashboardSearch{
+		display: block;
+	}
+	.materialBarDashboardNavLink.materialBarDashboardNavLinkMobile {
+		display:block;
+	}
+}
+
+@media only screen and (max-width: 575px) and (min-width: 481px){
+	.materialBarDashboardSearch{
+		display: block;
+	}   
+	.materialBarDashboardNavLink.materialBarDashboardNavLinkMobile {
+		display:block;
+	}	
+}
+
+@media only screen and (max-width: 480px) and (min-width: 320px){
+	.materialBarDashboardSearch{
+		display: block;
+	}
+	.materialBarDashboardNavLink.materialBarDashboardNavLinkMobile {
+		display:block;
+	}	
+}
+
+.materialBarDashboard .materialBarDashboardImage,
+.materialBarDashboardStandardImage {
+    position: absolute;
+    left: 50%;
+    margin-left: 0;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    display: block;
+    margin-top: 14px;
+}
+
+.materialBarDashboard .fa {
+    vertical-align: baseline;
+}
+
+.materialBarDashboardImage {
+    display: none!important;
+}
+
+.materialBarDashboardBackBtn {
+    display: block;
+}
+
+.materialBarDashboard .navbar-toggle {
+    margin-right: 5px!important;
+}
+
+.materialBarDashboard .navbar-toggle .icon-bar {
+    width: 17px !important;
+}
+
+.materialBarDashboard .navbar-toggle:hover {
+    background: transparent!important;
+    color: white!important;
+    opacity: 1!important;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.materialBarDashboardNavLink {
+    display:none;
+	opacity: 0.6;
+	font-size: 12px;
+	word-spacing: 2px;
+    color: #fff !important;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out; 
+	text-transform: uppercase;
+}
+
+@media only screen and (max-width: 350px) {
+    .materialBarDashboard .materialBarDashboardStandardImage img {
+        margin-left: -39px;
+    }
+    .materialBarDashboard .materialBarDashboardStandardImage {
+        max-width: 200px;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 1024px) {
+    .materialBarDashboard .materialBarDashboardBackBtn.navbar-brand i.fa {
+        font-size: 21px;
+        position: relative;
+        top: -1.8px;
+    }
+    .materialBarDashboardImage {
+        display: none!important;
+    }
+    .materialBarDashboard .materialBarDashboardStandardImage {
+        display: block;
+    }
+    .materialBarDashboard .navbar-toggle {
+        border: none!important;
+    }
+    .materialBarDashboard .navbar-brand {
+        display: block;
+    }
+    .materialBarDashboard .navbar-brand span {
+        display: none!important;
+    }
+    .materialBarDashboard .navbar-header {
+        float: none;
+    }
+    .materialBarDashboard .navbar-right {
+        float: none !important;
+    }
+    .materialBarDashboard .navbar-toggle {
+        display: block;
+    }
+    .materialBarDashboard .navbar-collapse {
+        border-top: 1px solid transparent;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .materialBarDashboard .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .materialBarDashboard .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .materialBarDashboard .navbar-nav>li {
+        float: none;
+    }
+    .materialBarDashboard .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}

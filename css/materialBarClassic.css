@@ -1,0 +1,46 @@
+.materialBarClassic{
+	background-color: #212200;
+    padding: 0.7125em 0.9375em;
+	width:100%;
+	position:fixed;
+	top:0;
+	-webkit-transition: top 0.5s ease-in;
+	-o-transition: top 0.5s ease-in;
+	transition: top 0.5s ease-in;
+    z-index: 9999;;
+}
+
+.materialBarClassicInside {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+
+.materialBarClassicLeft {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.materialBarClassicLeft p {
+    margin-bottom: 0px;
+    font-size: 1.25em;
+    color: #fff;
+    font-weight: 400;
+    padding-left: 0.9375em;
+	font-family: Lato, sans-serif;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}

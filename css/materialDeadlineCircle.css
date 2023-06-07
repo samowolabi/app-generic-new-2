@@ -1,0 +1,70 @@
+.materialProgressCircle.materialDeadlineCircle .materialProgressCircle-bar, .materialProgressCircle.materialDeadlineCircle:after{
+	 border-width: 5px;
+}
+
+.materialImageCircle{
+	width: 220px; 
+	height: 220px; 
+	background: black; 
+	border-radius: 10em; 
+	background-position: center; 
+	background-size: cover;  
+	border: 5px solid #9e0000; 
+	-webkit-box-shadow: 1px 1px 5px #9e0000; 
+	        box-shadow: 1px 1px 5px #9e0000;
+	overflow: hidden;
+	position: relative;
+}
+
+.materialImageCircle div, .materialImageCircle img{
+	border-radius: 10em;
+}
+
+.materialCardProgressLeft.materialCardProgressLeftDouble{
+	width: 500px;
+}
+
+.materialCardProgressLeftDouble > div{
+	 float: left;
+}
+
+.materialCardProgressLeftDouble > div:first-child{
+	margin-right: 20px; 
+}
+.materialCardProgressRight.materialCardProgressRightDouble{
+	width: calc(100% - 500px);
+}
+
+
+@media only screen and (max-width: 991px) {
+
+	.materialCardProgressLeft.materialCardProgressLeftDouble, .materialCardProgressRight.materialCardProgressRightDouble{
+		width: 100%;
+		text-align: center;
+	}
+ 
+    .materialCardProgressLeftDouble .materialProgressCircle, .materialCardProgressLeftDouble .materialImageCircle{
+		display: inline-block;
+	}
+	
+	.materialCardProgressLeftDouble > div:first-child {
+		margin-right: 0;
+	}
+	
+	.materialCardProgressLeftDouble > div{
+		float: none;
+	}
+}
+
+
+.materialThemeDark.materialImageCircle{
+	border: 5px solid #f5b400; 
+	-webkit-box-shadow: 1px 1px 5px #f5b400; 
+	        box-shadow: 1px 1px 5px #f5b400;
+}
+
+.materialThemeGoldDark.materialImageCircle{
+	border: 5px solid #f5b400; 
+	-webkit-box-shadow: 1px 1px 5px #f5b400; 
+	        box-shadow: 1px 1px 5px #f5b400;
+}

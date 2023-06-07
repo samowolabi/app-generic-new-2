@@ -1,0 +1,327 @@
+.materialChoiceWrapper * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+} 
+.materialChoiceWrapper {
+    display: inline-block;
+    padding: 0.625em 1.25em;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    color: hsl(0, 12%, 64%);
+}
+.materialChoiceWrapper label {
+  cursor: pointer;
+  padding-left: 0;
+}
+.materialChoiceWrapper input[type=checkbox], .materialChoiceWrapper input[type=radio] {
+  opacity: 0 !important;
+  position: absolute;
+  margin: 0;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  left: 0;
+  pointer-events: none;
+}
+.materialChoiceWrapper .materialChoice {
+    vertical-align: middle;
+    position: relative;
+    top: 0.1875em;
+    margin-right: 0.625em;
+}
+.materialChoiceWrapper .materialChoice::before {
+    position: absolute;
+    left: 0.5em;
+    top: 0.125em;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 0.25em;
+    width: 0.25em;
+    border-radius: 100%;
+    z-index: 1;
+    opacity: 0;
+    margin: 0;
+}
+.materialChoiceWrapper .materialChoice .materialCheckmark {
+    position: relative;
+    display: inline-block;
+    width: 1.25em;
+    height: 1.25em;
+    border: 2px solid;
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 1;
+}
+.materialChoiceWrapper .materialChoice .materialCheckmark::before {
+    position: absolute;
+    content: "";
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    display: block;
+    top: -0.22em;
+    left: 0.44em;
+    width: 0;
+    height: 0;
+    -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+    -webkit-animation: materialChoiceOff 0.40ms ease-in-out;
+    animation: materialChoiceOff 0.40ms ease-in-out;
+}
+.materialChoiceWrapper input[type=checkbox]:focus + .materialChoice .materialCheckmark:after,
+.materialChoiceWrapper input[type=radio]:focus + .materialChoice .materialCheckmark:after {
+  opacity: 0.2;
+}
+.materialChoiceWrapper input[type=checkbox]:checked + .materialChoice .materialCheckmark:before,
+.materialChoiceWrapper input[type=radio]:checked + .materialChoice .materialCheckmark:before {
+  -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em;
+          box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em;
+  -webkit-animation: materialChoiceOn 0.3s forwards ease-out;
+          animation: materialChoiceOn 0.3s forwards ease-out;
+}
+.materialChoiceWrapper input[type=checkbox]:not(:checked) + .materialChoice:before,
+.materialChoiceWrapper input[type=radio]:not(:checked) + .materialChoice:before {
+  -webkit-animation: rippleOff 700ms forwards ease-out;
+          animation: rippleOff 700ms forwards ease-out;
+}
+.materialChoiceWrapper input[type=checkbox]:checked + .materialChoice:before,
+.materialChoiceWrapper input[type=radio]:checked + .materialChoice:before {
+  -webkit-animation: rippleOn 700ms forwards ease-out;
+          animation: rippleOn 700ms forwards ease-out;
+}
+.materialChoiceWrapper input[type=checkbox]:not(:checked) + .materialChoice .materialCheckmark:after,
+.materialChoiceWrapper input[type=radio]:not(:checked) + .materialChoice .materialCheckmark:after {
+  -webkit-animation: rippleOff 700ms forwards ease-out;
+          animation: rippleOff 700ms forwards ease-out;
+}
+.materialChoiceWrapper input[type=checkbox]:checked + .materialChoice .materialCheckmark:after,
+.materialChoiceWrapper input[type=radio]:checked + .materialChoice .materialCheckmark:after{
+  -webkit-animation: rippleOn 700ms forwards ease-out;
+          animation: rippleOn 700ms forwards ease-out;
+}
+.materialChoiceWrapper input[type=checkbox][disabled]:not(:checked) ~ .materialChoice .materialCheckmark,
+.materialChoiceWrapper input[type=checkbox][disabled],
+.materialChoiceWrapper input[type=radio][disabled]:not(:checked) ~ .materialChoice .materialCheckmark,
+.materialChoiceWrapper input[type=radio][disabled]  {
+  opacity: 0.5;
+}
+ 
+.materialChoiceWrapper input[type=checkbox][disabled] + .materialChoice .materialCheckmark,
+.materialChoiceWrapper input[type=radio][disabled] + .materialChoice .materialCheckmark { 
+ background-color: rgba(0, 0, 0, 0.54); 
+}
+
+.materialChoiceWrapper input[type=checkbox][disabled] ~.materialChoiceText,
+.materialChoiceWrapper input[type=radio][disabled] ~.materialChoiceText {
+  opacity: 0.5;
+}
+
+.materialChoiceText{
+  -webkit-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+  color: hsl(0, 12%, 64%);
+}
+.materialChoiceColored .materialChoiceText {
+  color: hsl(0, 100%, 8%);
+}
+.materialCheckmark{
+  -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.materialChoiceColored .materialChoice .materialCheckmark {
+  color: hsl(0, 100%, 31%);
+}
+.materialChoiceColored .materialChoice:before {
+  background-color: hsl(0, 100%, 31%);
+}
+.materialChoiceColored input[type=checkbox]:checked + .materialChoice .materialCheckmark,
+.materialChoiceColored input[type=radio]:checked + .materialChoice .materialCheckmark {
+  color: hsl(0, 100%, 31%);
+}
+
+.materialChoiceWrapper input[type=radio] + .materialChoice .materialCheckmark{
+  border-radius: 2em !important;
+}
+
+@-webkit-keyframes materialChoiceOn {
+  0% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 15px 0.125em 0 0.6875em;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 15px 0.125em 0 0.6875em;
+  }
+  50% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em 0.125em 0 0.6875em;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em 0.125em 0 0.6875em;
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em;
+  }
+}
+
+@keyframes materialChoiceOn {
+  0% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 15px 0.125em 0 0.6875em;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 15px 0.125em 0 0.6875em;
+  }
+  50% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em 0.125em 0 0.6875em;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em 0.125em 0 0.6875em;
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0em 0 1.25em, 0em 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em;
+  }
+}
+@-webkit-keyframes materialChoiceOff {
+  0% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+  }
+  25% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+  }
+  50% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    margin-top: -0.25em;
+    margin-left: 0.375em;
+    width: 0;
+    height: 0;
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 0.9375em 0.125em 0 0.6875em, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 0.9375em 0.125em 0 0.6875em, 0 0 0 0 inset;
+  }
+  51% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    margin-top: -0.125em;
+    margin-left: -0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0.625em inset;
+            box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0.625em inset;
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    margin-top: -0.125em;
+    margin-left: -0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+            box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+  }
+}
+@keyframes materialChoiceOff {
+  0% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+  }
+  25% {
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 1.25em -0.75em 0 0.6875em, 0 0 0 0 inset;
+  }
+  50% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    margin-top: -0.25em;
+    margin-left: 0.375em;
+    width: 0;
+    height: 0;
+    -webkit-box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 0.9375em 0.125em 0 0.6875em, 0 0 0 0 inset;
+            box-shadow: 0 0 0 0.625em, 0.625em -0.625em 0 0.625em, 2em 0px 0 1.25em, 0px 2em 0 1.25em, -0.3125em 0.3125em 0 0.625em, 0.9375em 0.125em 0 0.6875em, 0 0 0 0 inset;
+  }
+  51% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    margin-top: -0.125em;
+    margin-left: -0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0.625em inset;
+            box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0.625em inset;
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    margin-top: -0.125em;
+    margin-left: -0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+            box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+  }
+}
+@-webkit-keyframes rippleOn {
+0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(13, 13);
+            transform: scale(13, 13);
+  }
+}
+@keyframes rippleOn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(13, 13);
+            transform: scale(13, 13);
+  }
+}
+@-webkit-keyframes rippleOff {
+0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(13, 13);
+            transform: scale(13, 13);
+  }
+}
+@keyframes rippleOff {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(13, 13);
+            transform: scale(13, 13);
+  }
+}
+
+@media screen and (max-width: 767px){
+  .materialChoiceWrapper {
+    padding: 0.625em 0;
+  }
+}
+
+
+/*Dark Theme*/
+
+.materialChoiceColored.materialThemeDark .materialChoice .materialCheckmark {
+  color: hsl(44, 100%, 50%);
+}
+.materialChoiceColored.materialThemeDark .materialChoice:before {
+  background-color: hsl(44, 100%, 50%);
+}
+.materialChoiceColored.materialThemeDark input[type=checkbox]:checked + .materialChoice .materialCheckmark,
+.materialChoiceColored.materialThemeDark input[type=radio]:checked + .materialChoice .materialCheckmark {
+  color: hsl(44, 100%, 50%);
+}
+.materialChoiceColored.materialThemeDark .materialChoiceText {
+  color: hsl(44, 100%, 94%);
+}
+.materialChoiceText.materialThemeDark{
+  color: hsl(44, 16%, 59%);
+}
+.materialChoiceWrapper.materialThemeDark{
+  color: hsl(44, 16%, 59%);
+}

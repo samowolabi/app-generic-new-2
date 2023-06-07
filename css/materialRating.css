@@ -1,0 +1,100 @@
+.materialRating {
+    display: block;
+    margin: 30px 0 25px;	
+}
+
+.materialRating input {
+    display: none;
+}
+
+
+.materialRating input + label {
+    width: 1.125em;
+    height: 1.125em;
+    text-align: center;
+    font-size: 1.125em; 
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.47);
+    cursor: pointer;
+    border-radius: 4em;
+    padding: 1em;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; 
+    margin-right: 0.01em;
+    line-height: 0.15em;
+	color: #a70000;
+}
+
+.materialRating input + label.fa-heart {
+   color: #a70000; 
+}
+
+.materialRating input:checked + label ~ label {
+    color: #555;
+}
+ 
+.materialRating .tooltip{
+	font-size: 14px;
+	font-weight: bold; 
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+/* --------------------------------- */
+/* RATING CSS HOVER EFFECT */
+/* --------------------------------- */
+
+.materialRating input:checked + label ~ label {
+    opacity: 0.5;   
+	color: #2f2f2f; 
+}
+
+.materialRating:hover input + label ~ label {
+    opacity: 1; 
+	color: #a70000;
+	-webkit-transition: all .5s ease-out;
+	-o-transition: all .5s ease-out;
+	transition: all .5s ease-out;
+}
+
+.materialRating  input:hover + label ~ label {
+    opacity: 0.5;  
+	color: #2f2f2f; 
+	-webkit-transition: all .5s ease-out; 
+	-o-transition: all .5s ease-out; 
+	transition: all .5s ease-out;
+	
+}
+/* Theme Dark */
+
+.materialRating.materialThemeDark input + label {
+     color: hsl(44, 100%, 50%);
+}
+.materialRating.materialThemeDark input + label.fa-heart{
+    color: hsl(44, 100%, 50%);
+ }
+ .materialRating.materialThemeDark  input:checked + label ~ label {
+    color: #555;
+
+ } 
+ .materialRating.materialThemeDark  input:checked + label ~ label{
+    opacity: 0.5;   
+    color: #9a9a9a;  
+ }
+ .materialRating.materialThemeDark:hover input + label ~ label {
+    opacity: 1; 
+     color: hsl(44, 100%, 50%);
+    -webkit-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}
+.materialRating.materialThemeDark  input:hover + label ~ label {
+    opacity: 0.5;  
+    color: #9a9a9a;  
+    -webkit-transition: all .5s ease-out;  
+    -o-transition: all .5s ease-out;  
+    transition: all .5s ease-out;
+    
+}

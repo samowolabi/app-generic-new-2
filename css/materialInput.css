@@ -1,0 +1,183 @@
+/*.materialInputBox {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 5px;
+}
+.materialinput {
+    width: 100%;
+    height: 50px;
+    background-color: #f4f4f4;
+    border: inherit;
+}
+.materialInputSection {
+    position: relative;
+    margin-bottom: 15px;
+}
+*/
+.materialInputContainer {
+  position: relative;
+  width: 100%;
+  left: 0;
+  margin: 30px auto;
+  cursor:pointer;
+  background:#f5f5f5;
+}
+
+/* select starting stylings ------------------------------*/
+.materialInputWrap {
+  font-family:
+    'Roboto','Helvetica','Arial',sans-serif;
+    position: relative;
+    width: 100%;
+}
+
+.materialInputControl {
+    position: relative;
+    font-family: inherit;
+    background-color: transparent;
+    width: 100%;
+    padding: 0.625em;
+    font-size: 1.125em;
+    border-radius: 0;
+    border: none;
+    border-bottom: 0.0625em solid rgba(143,143,143, 0.82);
+    cursor:pointer;
+}
+
+/* Remove focus */
+.materialInputControl:focus {
+    outline: none;
+    border-bottom: 0.0625em solid rgba(0,0,0, 0);
+}
+
+    /* Use custom arrow */
+.materialInputWrap .materialInputControl {
+    -moz-appearance: none;
+         appearance: none;
+    -webkit-appearance:none
+}
+
+.materialInputWrap:after {
+    position: absolute;
+    top: 1.125em;
+    right: 0.625em;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 0.375em solid transparent;
+    border-right: 0.375em solid transparent;
+    border-top: 0.375em solid rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+}
+
+
+/* LABEL ======================================= */
+.materialInputLabel {
+    color: rgba(0,0,0, 0.26);
+    font-size: 1.125em;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 0.625em;
+    padding-left:0.625em;
+    -webkit-transition: 0.5s ease all;
+    -o-transition: 0.5s ease all;
+    transition: 0.5s ease all;
+    
+}
+
+/* active state */
+.materialInputControl:focus ~ .materialInputLabel, .materialInputControl:valid ~ .materialInputLabel {
+    color:  #9e0000;
+    top: -1.4em;
+    -webkit-transition: 0.5s ease all;
+    -o-transition: 0.5s ease all;
+    transition: 0.5s ease all;
+    font-size: 0.875em;
+}
+
+/* BOTTOM BARS ================================= */
+.materialInputBar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.materialInputBar:before, .materialInputBar:after {
+    content: '';
+    height: 0.125em;
+    width: 0;
+    bottom: 0.0625em;
+    position: absolute;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9e0000), to(#9e0000)), -webkit-gradient(linear, left top, left bottom, from(silver), to(silver));
+    background: -webkit-linear-gradient(top, #9e0000, #9e0000), -webkit-linear-gradient(top, silver, silver);
+    background: -o-linear-gradient(top, #9e0000, #9e0000), -o-linear-gradient(top, silver, silver);
+    background: linear-gradient(to bottom, #9e0000, #9e0000), linear-gradient(to bottom, silver, silver);
+    -webkit-transition: 0.5s ease all;
+    -o-transition: 0.5s ease all;
+    transition: 0.5s ease all;
+}
+
+.materialInputBar:before {
+    left: 50%;
+}
+
+.materialInputBar:after {
+    right: 50%;
+}
+
+ .materialInputWrap.materialInputText:after{
+    border: none !important;
+}
+
+/* active state */
+.materialInputControl:focus ~ .materialInputBar:before, .materialInputControl:focus ~ .materialInputBar:after {
+    width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.materialInputHighlight {
+    position: absolute;
+    height: 60%;
+    width: 6.25em;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Error */
+.materialInputTextArea.error{
+	background: #ffd5d5;
+    transition: 1s ease background;
+}
+
+/*DarkTheme*/
+
+.materialInputControl.materialThemeDark {
+    border-bottom: 0.0625em solid rgb(66, 66, 66);
+}
+
+.materialInputControl.materialThemeDark:focus ~ .materialInputLabel, .materialInputControl.materialThemeDark:valid ~ .materialInputLabel {
+    color:  hsl(44, 100%, 50%);
+    top: -1.4em;
+    -webkit-transition: 0.5s ease all;
+    -o-transition: 0.5s ease all;
+    transition: 0.5s ease all;
+    font-size: 0.875em;
+}
+
+
+.materialInputBar.materialThemeDark:before, .materialInputBar.materialThemeDark:after {
+    background: -webkit-gradient(linear, left top, left bottom, from(hsl(44, 100%, 50%)),to(hsl(44, 100%, 50%)) ), -webkit-gradient(linear, left top, left bottom, from(silver), to(silver));
+    background: -webkit-linear-gradient(top, hsl(44, 100%, 50%),hsl(44, 100%, 50%) ), -webkit-linear-gradient(top, silver, silver);
+    background: -o-linear-gradient(top, hsl(44, 100%, 50%),hsl(44, 100%, 50%) ), -o-linear-gradient(top, silver, silver);
+    background: linear-gradient(to bottom, hsl(44, 100%, 50%),hsl(44, 100%, 50%) ), linear-gradient(to bottom, silver, silver);
+}
+.materialInputLabel.materialThemeDark{
+    color: rgb(66, 66, 66);
+}

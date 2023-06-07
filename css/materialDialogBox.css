@@ -1,0 +1,232 @@
+
+.materialDialog.width90{
+	width: 90%;
+}
+ 
+.materialDialog {
+  padding: 2.5em 2em 2em;
+  background: #fff;
+  border-radius: 4px;
+  width: 80%;
+    max-width: 700px;
+  -webkit-box-shadow: 0 1.550em 2.950em rgba(0, 0, 0, 0.32), 0 0.063em 0.375em rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1.550em 2.950em rgba(0, 0, 0, 0.32), 0 0.063em 0.375em rgba(0, 0, 0, 0.24); 
+  position: fixed;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  z-index:9998;
+  display: none;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Enable scrolling on mobile touch */
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  -ms-touch-action: auto !important;
+      touch-action: auto !important;  
+
+}
+ 
+ 
+@media only screen and (min-width: 1025px){
+	body.materialIframeFullScreen{
+		overflow: hidden;
+		margin-right: 16px; /* Add margin to the right to prevent window bouncing */
+	}
+}
+
+.materialFullScreenIframe{
+  padding: 0;
+  margin: 0;
+  background: #fff; 
+  position: fixed; 
+  width: 100%; 
+  height: 100%;  
+  border: 0;
+  z-index: 9998; 
+  display: none; 
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  overflow: hidden;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.materialFullScreenIframe iframe{
+  padding: 0;
+  margin: 0; 
+  display: blocK;
+  width: 100%; 
+  height: 100%; 
+  border: 0;
+  overflow: hidden; 
+}
+.materialFullScreenIframe .materialCloseButton {
+    bottom: 10px;
+    top: auto;
+    right: 30px;
+    left: auto; 
+}
+
+.materialDialog h3, .materialDialog h4 {
+  font-family: Roboto,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0; 
+  margin-bottom: 0.6em;
+  font-size: 1.417em;
+  letter-spacing: .0175em;  
+}
+
+.materialDialog h3 { 
+  font-weight: 600;
+  font-size: 1.417em;  
+}
+
+.materialDialog h4 { 
+  font-size: 1em;  
+}
+.materialDialog .materialDialogContent{
+  font-size: 1.275em;
+  -webkit-font-smoothing: antialiased; 
+  font-weight: 400;
+  color: rgba(0,0,0,.6);
+  padding-right: 10px;
+  margin-bottom: .671em;
+}
+.materialDialogAction{ 
+	font-size: 1.010em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+	letter-spacing: 1.2px;
+	padding: 0;   
+}
+.materialDialogAction .materialButton{
+  color: #6200ee;
+  -webkit-font-smoothing: antialiased;
+  padding: 0.714em;
+  text-decoration: none; 
+}
+
+.materialDialogAction .materialButton:last-child { 
+  margin-right: 0;
+}
+
+@media screen and (max-width: 500px){
+	.materialDialog{
+		width: 100%;
+	}
+} 
+
+
+@-webkit-keyframes fadeInDownCenter {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -150%, 0);
+    transform: translate3d(-50%, -150%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes fadeInDownCenter {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -150%, 0);
+    transform: translate3d(-50%, -150%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.fadeInDownCenter {
+  -webkit-animation-name: fadeInDownCenter;
+  animation-name: fadeInDownCenter;
+}
+
+@-webkit-keyframes fadeInUpCenter {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, 50%, 0);
+    transform: translate3d(-50%, 50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes fadeInUpCenter {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, 50%, 0);
+    transform: translate3d(-50%, 50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.fadeInUpCenter {
+  -webkit-animation-name: fadeInUpCenter;
+  animation-name: fadeInUpCenter;
+}
+
+
+
+@-webkit-keyframes fadeOutUpCenter {
+  from {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -150%, 0);
+    transform: translate3d(-50%, -150%, 0);
+  }
+}
+
+@keyframes fadeOutUpCenter {
+  from {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -150%, 0);
+    transform: translate3d(-50%, -150%, 0);
+  }
+}
+
+.fadeOutUpCenter {
+  -webkit-animation-name: fadeOutUpCenter;
+  animation-name: fadeOutUpCenter;
+}
