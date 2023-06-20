@@ -31,13 +31,13 @@ router.hooks({
 		//Add micro delay between each page on purpose so ripple effect is visible and page seems more responsive  
 		setTimeout(done, 250);
 	},
-	after: function (params) {
+	after: async function (params) {
 		// after resolving 
 
 		app.currentRoute = function (router) {
 			var route = router._lastRouteResolved.url;
 
-			//Check if the current route is the same as the location href (with or without trailing slash), or a trailing slash, and if so set as "" 
+			// Check if the current route is the same as the location href (with or without trailing slash), or a trailing slash, and if so set as "" 
 			if (
 				(route === window.location.href) ||
 				((route + "/") === window.location.href) ||
@@ -48,10 +48,9 @@ router.hooks({
 			} else {
 				return route;
 			}
-
 		}(router);
 
-		//Cleans up URL of email tracking to avoid double tracking  email clicks
+		// Cleans up URL of email tracking to avoid double tracking  email clicks
 		app.cleanUpUrlEmailTracking();
 
 		if (!app.loaded) {
@@ -62,25 +61,49 @@ router.hooks({
 			app.callback("path=" + app.currentRoute + "&pageview=y");
 		}
 
-
-		//Track page views in this session
+		// Track page views in this session
 		app.session.pageViews++;
 
 		// Update Back button URL
-		
 		// If the previous route is not the same as the current route, push it to the history else pop it
-		app.hashHistory.push(app.currentRoute);
-		if(app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) { 
-		} else {
-			app.hashHistory.pop();
-		}
 
 		var baseUrl = window.location.protocol + "//" + window.location.host + "/app-generic-new-2/#!";
-
-		// Write function that updates back button URL from hashHistory
 		var updateBackHref = function (hashHistory) {
 			$(".materialBarDashboardBackBtn").attr("href", `${baseUrl}${hashHistory[hashHistory.length - 2] || ""}`);
-		}(app.hashHistory);
+		}
+
+		if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
+			// get the lessonId from the app.currentRoute
+			let lessonId = app.currentRoute.split("/lesson/")[1];
+
+			function appDataIsLoaded(obj, key, callback) {
+				if (!(key in obj)) { 
+					setTimeout(() => { appDataIsLoaded(obj, key, callback); }, 500); // Call the callback function after 0.5 second, to check again
+				} else { callback(); }
+			}
+
+			appDataIsLoaded(app, 'data', function () {
+				Object.keys(app.data.course).forEach(function (key) {
+					if (app.data.course[key].chapterIds.includes(lessonId)) {
+						app.hashHistory.push("/course/" + key);
+						app.hashHistory.push(app.currentRoute);
+					}
+				});
+				updateBackHref(app.hashHistory); // Update back button URL
+			})
+		} else {
+			if (app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) {
+				app.hashHistory.push(app.currentRoute);
+			} else {
+				app.hashHistory.pop();
+			}
+			updateBackHref(app.hashHistory); // Update back button URL
+		}
+
+		// // Write function that updates back button URL from hashHistory
+		// var updateBackHref = function (hashHistory) {
+		// 	$(".materialBarDashboardBackBtn").attr("href", `${baseUrl}${hashHistory[hashHistory.length - 2] || ""}`);
+		// }(app.hashHistory);
 
 
 		//   var backHrefDefault =  "#!/";

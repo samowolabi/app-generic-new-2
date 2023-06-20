@@ -2712,8 +2712,7 @@ app.html = function(params){
 			material.init(params.target);
 		});
 			
-		app.updateUI(); 
-		
+		app.updateUI();
 	};
 
 	//TODO: add a last datetime for fetching data, so if X time has passed ew fetch it again
