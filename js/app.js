@@ -1088,9 +1088,8 @@ app.refresh = function(lessonId, dataFromServer){
 
 
 app.refeshBackButtonUrl = function(){
-	var baseUrl = window.location.protocol + "//" + window.location.host + "/app-generic-new-2/#!";
 	var updateBackHref = function (hashHistory) {
-		$(".materialBarDashboardBackBtn").attr("href", `${baseUrl}${hashHistory[hashHistory.length - 2] || ""}`);
+		$(".materialBarDashboardBackBtn").attr("href", `#!${hashHistory[hashHistory.length - 2] || ""}`);
 	}
 
 	if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
