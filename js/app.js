@@ -1079,9 +1079,40 @@ app.refresh = function(lessonId, dataFromServer){
 		var parentCourseId = app.data.chapter[chapterId].parentCourse;
 		$("#page-lesson-outline").html(app.templates.modules.lessonsOutline.content(app.data, parentCourseId, lessonId));
 	}
+
+	// Update the back button URL
+	app.refeshBackButtonUrl();
  
 	material.init();
 }
+
+
+app.refeshBackButtonUrl = function(){
+	var baseUrl = window.location.protocol + "//" + window.location.host + "/app-generic-new-2/#!";
+	var updateBackHref = function (hashHistory) {
+		$(".materialBarDashboardBackBtn").attr("href", `${baseUrl}${hashHistory[hashHistory.length - 2] || ""}`);
+	}
+
+	if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
+
+		// get the lessonId from the app.currentRoute
+		let lessonId = app.currentRoute.split("/lesson/")[1];
+		let parentChapter = app.data.lesson[lessonId].parentChapter
+		let parentCourse = app.data.chapter[parentChapter].parentCourse
+		app.hashHistory.push("/course/" + parentCourse);
+		app.hashHistory.push(app.currentRoute);
+
+		updateBackHref(app.hashHistory); // Update back button URL
+	} else {
+		if (app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) {
+			app.hashHistory.push(app.currentRoute);
+		} else {
+			app.hashHistory.pop();
+		}
+		updateBackHref(app.hashHistory); // Update back button URL
+	}
+}
+
  
 app.getLessonIdsFromCourse = function(courseId){ 
 	var affectedLessons = [];

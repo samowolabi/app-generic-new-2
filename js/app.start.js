@@ -67,64 +67,9 @@ router.hooks({
 		// Update Back button URL
 		// If the previous route is not the same as the current route, push it to the history else pop it
 
-		var baseUrl = window.location.protocol + "//" + window.location.host + "/app-generic-new-2/#!";
-		var updateBackHref = function (hashHistory) {
-			$(".materialBarDashboardBackBtn").attr("href", `${baseUrl}${hashHistory[hashHistory.length - 2] || ""}`);
+		if (app.data) {
+			app.refeshBackButtonUrl();
 		}
-
-		if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
-			// get the lessonId from the app.currentRoute
-			let lessonId = app.currentRoute.split("/lesson/")[1];
-
-			function appDataIsLoaded(obj, key, callback) {
-				if (!(key in obj)) { 
-					setTimeout(() => { appDataIsLoaded(obj, key, callback); }, 500); // Call the callback function after 0.5 second, to check again
-				} else { callback(); }
-			}
-
-			appDataIsLoaded(app, 'data', function () {
-				Object.keys(app.data.course).forEach(function (key) {
-					if (app.data.course[key].chapterIds.includes(lessonId)) {
-						app.hashHistory.push("/course/" + key);
-						app.hashHistory.push(app.currentRoute);
-					}
-				});
-				updateBackHref(app.hashHistory); // Update back button URL
-			})
-		} else {
-			if (app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) {
-				app.hashHistory.push(app.currentRoute);
-			} else {
-				app.hashHistory.pop();
-			}
-			updateBackHref(app.hashHistory); // Update back button URL
-		}
-
-		// // Write function that updates back button URL from hashHistory
-		// var updateBackHref = function (hashHistory) {
-		// 	$(".materialBarDashboardBackBtn").attr("href", `${baseUrl}${hashHistory[hashHistory.length - 2] || ""}`);
-		// }(app.hashHistory);
-
-
-		//   var backHrefDefault =  "#!/";
-		//   app.backHref = backHrefDefault;
-		//   var hashHistoryReversed = app.hashHistory.reverse();
-
-		//   var updateBackHref = function(hashHistoryReversed){
-		// 	  for (const route of hashHistoryReversed) {
-		// 			var re = /(lesson|course|profile|rewards)/;
-		// 			var matches = re.exec(route);
-		// 			if(matches && matches.length){
-		// 				continue;
-		// 			}
-		// 			app.backHref =  "#!" + route;
-		// 			$(".materialBarDashboardBackBtn").attr("href", app.backHref); 
-		// 			app.hashHistory = [];
-		// 			return true;
-		// 	  }
-		//   }(hashHistoryReversed);
-
-
 	},
 	leave: function (params) {
 		// when you are going out of the that route
@@ -344,6 +289,7 @@ var plaformCustomBehavior = function () {
 	mobile=true
 	iphone=true
 	*/
+
 	var getPlatformId = function () {
 		var platform = getParameterByName("platform");
 		var electron = getParameterByName("electron") ? "-electron" : "";
