@@ -1111,7 +1111,7 @@ app.refeshBackButtonUrl = function(){
 		}
 		updateBackHref(app.hashHistory); // Update back button URL
 	}
-}
+} 
 
  
 app.getLessonIdsFromCourse = function(courseId){ 
