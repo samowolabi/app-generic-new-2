@@ -307,11 +307,6 @@ var dashboardInfiniteScrolling = function () {
 			var course = app.data.course[courseId]; 
 			html += that.createCard(courseId, course, columnWidthClass); 
 		});
-
-		// Object.keys(app.data.course).forEach(function (courseId, index) {
-		// 	var course = app.data.course[courseId];
-		// 	html += that.createCard(courseId, course, columnWidthClass);
-		// });
 		
 
 		$('.cardLoadingPlaceholder').hide();
