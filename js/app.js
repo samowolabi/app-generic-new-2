@@ -1082,6 +1082,8 @@ app.refresh = function(lessonId, dataFromServer){
 
 	// Update the back button URL
 	app.refeshBackButtonUrl();
+
+	// app.reorderData();
  
 	material.init();
 }
@@ -1110,7 +1112,7 @@ app.refeshBackButtonUrl = function(){
 		}
 		updateBackHref(app.hashHistory); // Update back button URL
 	}
-} 
+}
 
  
 app.getLessonIdsFromCourse = function(courseId){ 
@@ -2899,7 +2901,7 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 	
 	//Do a more complex sort.
 	//TODO: include  order by "new" (available date) and then by "expiring" (expire date)
-	var complexSort = function(matchedCourses){
+	var complexSort = function(matchedCourses) {
 		var matchedCoursesOrdered = [];
 		
 		for (const courseId of matchedCourses) {
@@ -2944,13 +2946,29 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 		
 	};
 	
-	matchedCourses = complexSort(matchedCourses);
+	// matchedCourses = complexSort(matchedCourses);
+	matchedCourses = app.reorderData(matchedCourses);
 	
 	//Save last search. TODO must do a better implementation
 	//app.saveLastSearch(filters, keyword); 
 	
 	return paginate(matchedCourses, pageSize, pageNumber);
 	
+}
+
+app.reorderData = function (data) {
+	const reorderedCourse = [];
+
+	data.sort((a, b) => {
+		const statusOrder = {
+			expiringAsap: 1, expiringSoon: 2, available: 3, comingAsap: 4, comingSoon: 5, expired: 6
+		};
+		return statusOrder[app.data.course[a].dateStatus] - statusOrder[app.data.course[b].dateStatus];
+	}).forEach((key) => {
+		reorderedCourse.push(key);
+	});
+
+	return reorderedCourse;
 }
 
 app.getFilterArray = function(){
@@ -2960,7 +2978,6 @@ app.getFilterArray = function(){
 	  var filterName = $( this ).data("filter");
 	  if(filterValue) {filters[filterName] = filterValue;}	  
 	});
-	
 	
 	return filters;
 }

@@ -1,47 +1,47 @@
-var dashboardInfiniteScrolling = function(){
+var dashboardInfiniteScrolling = function () {
 	var that = [];
-	
+
 	that.vars = [];
 	that.vars.currentscrollHeight = 0;
 	that.vars.count = 0;
 	that.vars.scrollDiv = true;
-	
+
 	that.callbacks = [];
-	that.callbacks.infiniteScrollingCardsSearchBar = function() {
-		if(that.fx.scrollHeightVariableAndClearHTML()){
+	that.callbacks.infiniteScrollingCardsSearchBar = function () {
+		if (that.fx.scrollHeightVariableAndClearHTML()) {
 			that.fx.loadInfiniteCards();
 		}
 	}
-	that.callbacks.searchBtn = function(event) {
-		 event.preventDefault()
-		if(that.fx.scrollHeightVariableAndClearHTML()) {
+	that.callbacks.searchBtn = function (event) {
+		event.preventDefault()
+		if (that.fx.scrollHeightVariableAndClearHTML()) {
 			that.fx.loadInfiniteCards();
 		}
 	}
-	that.callbacks.filterDropdown = function() {
-		if(that.fx.scrollHeightVariableAndClearHTML()) {
+	that.callbacks.filterDropdown = function () {
+		if (that.fx.scrollHeightVariableAndClearHTML()) {
 			that.fx.loadInfiniteCards();
 		}
 	}
-	that.callbacks.filterSwitch = function() {
+	that.callbacks.filterSwitch = function () {
 		$('.filterDropdown select.level').val('');
 		$('.filterDropdown select.duration').val('');
 		$('.filterDropdown select.era').val('');
 		$('.filterDropdown select.composer').val('');
 		$('.filterDropdown select.workType').val('');
-			
+
 		$('.filterDropdownToggle').toggle();
-		if(that.fx.scrollHeightVariableAndClearHTML()){
+		if (that.fx.scrollHeightVariableAndClearHTML()) {
 			that.fx.loadInfiniteCards();
 		}
 	}
-	
-	that.callbacks.onScroll = function() {
+
+	that.callbacks.onScroll = function () {
 		//console.log("START: ON SCROLL CALLBACK");
 		var scrollHeight = $(document).height();
 		var scrollPos = Math.floor($(window).height() + $(window).scrollTop());
 		var isBottom = ((scrollHeight - 100) < scrollPos) ? true : false;
-		if(that.vars.scrollDiv === false){
+		if (that.vars.scrollDiv === false) {
 			//console.log("Infinite Scrolling A", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "scrollPos", scrollPos, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
 			that.vars.currentscrollHeight = 0;
 		}
@@ -51,23 +51,23 @@ var dashboardInfiniteScrolling = function(){
 			that.vars.currentscrollHeight = scrollHeight;
 		}
 		//console.log("Infinite Scrolling C", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "(scrollHeight - 100)", (scrollHeight - 100), "scrollPos", scrollPos,  "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
-			
-	}
-	 
 
-	that.createCard = function (courseId, course, columnWidthClass){ 
+	}
+
+
+	that.createCard = function (courseId, course, columnWidthClass) {
 
 		var href = `#!/course/${courseId}`;
-		
-		var countdownHtml = function(date){
-				return `
+
+		var countdownHtml = function (date) {
+			return `
 				<span data-countdown="${date}"> 
 					<span data-days>00</span>
 					<span data-days-caption> Days </span>
 					<span data-hours>00</span>:<span data-minutes>00</span>:<span data-seconds>00</span>
 				</span>`;
-				};
-				
+		};
+
 		var shareButtonHtml = `
 			<span>
 				<a href="#" class="materialButtonIcon materialThemeDark" data-button data-icon-class-on="fa fa-share-alt pressed" data-icon-class-off="fa fa-share-alt" data-action="materialContextMenu">
@@ -88,35 +88,35 @@ var dashboardInfiniteScrolling = function(){
 					</ul> 
 				</a> 
 			</span>`;
-		
-		  
-		switch(course.progressStatus){			
+
+
+		switch (course.progressStatus) {
 			case "new":
 				var buttonAction = "Start";
 				break;
-			case "inProgress": 
+			case "inProgress":
 				var buttonAction = `Resume`;
 				break;
-			case "completed": 
+			case "completed":
 				var buttonAction = `Watch Again`;
-			default: 
+			default:
 				var buttonAction = "Start";
 		}
-		 
-		
-		
 
 
-		var icon;				
-		switch(course.type){ 
+
+
+
+		var icon;
+		switch (course.type) {
 			case "add-here-different-course-types":
-				icon = "fa-newspaper-o";			
+				icon = "fa-newspaper-o";
 				break;
-			default: 	
-				icon = "fa-graduation-cap";			
+			default:
+				icon = "fa-graduation-cap";
 		}
 
-		switch(course.dateStatus){
+		switch (course.dateStatus) {
 			case "expiringAsap":
 				var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring in ${countdownHtml(course.deadlineDateString)}</p>`;
 				var theme = "materialThemeLightGold";
@@ -129,10 +129,10 @@ var dashboardInfiniteScrolling = function(){
 				var progressChipHtml = `<span data-new><i>NEW</i></span>
 									<span data-incomplete><span data-progress-affects-html>0</span>%</span>
 									<span data-complete><i class="fa fa-check"></i></span>`;
-					
+
 				break;
-			case "expiringSoon": 
-				var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring Soon</p>`;  
+			case "expiringSoon":
+				var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring Soon</p>`;
 				var theme = "materialThemeLightGold";
 				var themeOverlay = "";
 				var themeButton = "materialButtonFill materialThemeDark";
@@ -142,7 +142,7 @@ var dashboardInfiniteScrolling = function(){
 								  ${shareButtonHtml}`;
 				var progressChipHtml = `<span data-new><i>NEW</i></span>
 									<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-									<span data-complete><i class="fa fa-check"></i></span>`;				   
+									<span data-complete><i class="fa fa-check"></i></span>`;
 				break;
 			case "comingAsap":
 				var scarcityHtml = ``;
@@ -153,10 +153,10 @@ var dashboardInfiniteScrolling = function(){
 				var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
 									<span data-incomplete>COMING SOON</span>
 									<span data-complete>COMING SOON</span>`;
-				var icon = "fa-clock-o";		
+				var icon = "fa-clock-o";
 				break;
 			case "comingSoon":
-				var scarcityHtml = ``;  
+				var scarcityHtml = ``;
 				var theme = "materialThemeDarkGold";
 				var themeOverlay = "materialOverlayShallowBlack";
 				var themeButton = "materialButtonText";
@@ -164,10 +164,10 @@ var dashboardInfiniteScrolling = function(){
 				var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
 									<span data-incomplete>COMING SOON</span>
 									<span data-complete>COMING SOON</span>`;
-				var icon = "fa-clock-o";		
+				var icon = "fa-clock-o";
 				break;
 			case "expired":
-				var scarcityHtml = ``;  
+				var scarcityHtml = ``;
 				var theme = "materialThemeDarkGrey";
 				var themeOverlay = "materialOverlayShallowBlack";
 				var themeButton = "materialButtonText materialThemeDarkGrey";
@@ -177,11 +177,11 @@ var dashboardInfiniteScrolling = function(){
 				var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
 									<span data-incomplete>EXPIRED</span>
 									<span data-complete>EXPIRED</span>`;
-				var icon = "fa-lock";		
-				
-				break;	
-			case "available": 
-			default: 
+				var icon = "fa-lock";
+
+				break;
+			case "available":
+			default:
 				var scarcityHtml = "";
 				var theme = "materialThemeLightGold";
 				var themeOverlay = "";
@@ -192,44 +192,40 @@ var dashboardInfiniteScrolling = function(){
 								  ${shareButtonHtml}`;
 				var progressChipHtml = `<span data-new><i>NEW</i></span>
 								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-								<span data-complete><i class="fa fa-check"></i></span>`; 	
-				
+								<span data-complete><i class="fa fa-check"></i></span>`;
+
 		}
-		
-		
-
-			 
 
 
-		var	progressBarStyling = `style="width:${course.stats.lessons.totalProgress}%; "`;
+		var progressBarStyling = `style="width:${course.stats.lessons.totalProgress}%; "`;
 
 		var progressHtml = `<div class="materialProgressBar ${theme}">
 								<div class="materialProgressBarInside" ${progressBarStyling}> 
 								</div>
 							</div>`;
-		
-							
+
+
 		//Use thumbnail if available, else use big image, else use defaulti mage;
 		var defaultImage = 'https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png';
-		var courseImage = course.imageThumbnail || course.image || defaultImage; 
-		
+		var courseImage = course.imageThumbnail || course.image || defaultImage;
+
 		var courseBackgroundColor = (courseImage === defaultImage) ? "black" : "grey";
-		
+
 		var bottomLeftChip = config.text.searchResultsBottomLeft(course) ?
-							`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
+			`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
 								${config.text.searchResultsBottomLeft(course)}
 							</div>;` : "";
-							
-		var topLeftChip =  config.text.searchResultsTopLeft(course) ?
-							`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
-								${config.text.searchResultsTopLeft(course)}
-							</div>;` : ""; 
-							
-							
-		var lineText1 =  config.text.searchResultsLineText1(course) ? `<h6 class="materialHeader">${config.text.searchResultsLineText1(course)}</h6>` : `<h6 class="materialHeader"></h6>`; 		
 
-		var lineText2 =  config.text.searchResultsLineText2(course) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(course)}</p>` : `<p class="materialParagraph ${theme}"></p>`; 					
-							
+		var topLeftChip = config.text.searchResultsTopLeft(course) ?
+			`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
+								${config.text.searchResultsTopLeft(course)}
+							</div>;` : "";
+
+
+		var lineText1 = config.text.searchResultsLineText1(course) ? `<h6 class="materialHeader">${config.text.searchResultsLineText1(course)}</h6>` : `<h6 class="materialHeader"></h6>`;
+
+		var lineText2 = config.text.searchResultsLineText2(course) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(course)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
+
 		var html = `
 			<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight}">
 					<div class="materialCard ${theme}">
@@ -265,122 +261,129 @@ var dashboardInfiniteScrolling = function(){
 						</div>
 					</div>   
 			</div>`;
-		
+
 		return html;
 	}
-					
+
 	that.fx = []
-	that.fx.loadInfiniteCards = function() {
-	 
-			// Load Infinite cards
-			var noOfRecordsPerPage = 9;
-			var paginationValue =  $('.addPaginationValue').val();
-			var searchValue = $(".infiniteScrollingCardsSearchBar input").val();
-			searchValue = searchValue ? searchValue.toLowerCase() : "";
-			
-			var level = $('.filterDropdown select.level').val();
-			var duration = $('.filterDropdown select.duration').val();
-			var era = $('.filterDropdown select.era').val();
-			var composer = $('.filterDropdown select.composer').val();
-			var workType = $('.filterDropdown select.workType').val();
-			
-			//Restore last used search and filters
-			//app.restoreLastSearch();	
-		 
-			var filters = app.getFilterArray();
-			var isFiltersEmpty = (Object.keys(filters).length === 0);
-			
-			if((searchValue === '' || searchValue === null) &&  (isFiltersEmpty)) {
-				$('.recommendedDiv').show();
+	that.fx.loadInfiniteCards = function () {
+
+		// Load Infinite cards
+		var noOfRecordsPerPage = 9;
+		var paginationValue = $('.addPaginationValue').val();
+		var searchValue = $(".infiniteScrollingCardsSearchBar input").val();
+		searchValue = searchValue ? searchValue.toLowerCase() : "";
+
+		var level = $('.filterDropdown select.level').val();
+		var duration = $('.filterDropdown select.duration').val();
+		var era = $('.filterDropdown select.era').val();
+		var composer = $('.filterDropdown select.composer').val();
+		var workType = $('.filterDropdown select.workType').val();
+
+		//Restore last used search and filters
+		//app.restoreLastSearch();	
+
+		var filters = app.getFilterArray();
+		var isFiltersEmpty = (Object.keys(filters).length === 0);
+
+		if ((searchValue === '' || searchValue === null) && (isFiltersEmpty)) {
+			$('.recommendedDiv').show();
+		}
+		else {
+			$('.recommendedDiv').hide();
+		}
+
+		// start
+
+		$('.cardLoadingPlaceholder').show();
+		var filters = app.getFilterArray();
+		var matchedCourses = app.searchCourses(searchValue, filters, paginationValue);
+
+		var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
+		var html = "";
+
+
+		matchedCourses.forEach(function (courseId, index) { 
+			var course = app.data.course[courseId]; 
+			html += that.createCard(courseId, course, columnWidthClass); 
+		});
+
+		// Object.keys(app.data.course).forEach(function (courseId, index) {
+		// 	var course = app.data.course[courseId];
+		// 	html += that.createCard(courseId, course, columnWidthClass);
+		// });
+		
+
+		$('.cardLoadingPlaceholder').hide();
+		if (matchedCourses.length == 0) {
+			if (paginationValue > 1) {
+			} else {
+				that.fx.scrollHeightVariableAndClearHTML();
+				$('.noResultsDiv').show();
 			}
-			else {
-				$('.recommendedDiv').hide();
-			}
-			 
-			// start
-			
-			$('.cardLoadingPlaceholder').show();
-			var filters = app.getFilterArray();
-			var matchedCourses = app.searchCourses(searchValue, filters, paginationValue);
-				 
-			var columnWidthClass =  `cardSearchResult ${config.layout.searchResults}`; 
-			var html = "";
-			matchedCourses.forEach(function (courseId, index) { 
-					var course = app.data.course[courseId]; 
-					html += that.createCard(courseId, course, columnWidthClass); 
-			});		
-			
-			
-			$('.cardLoadingPlaceholder').hide();
-			if(matchedCourses.length == 0) {
-				if(paginationValue > 1){
-				} else {
-					that.fx.scrollHeightVariableAndClearHTML();
-					$('.noResultsDiv').show();
-				}
-				that.vars.scrollDiv = false;
-			}
-			else {
-				that.vars.scrollDiv = true;
-				$('.noResultsDiv').hide(); 
-			}
-						
-			$('.infiniteScrollingContainer').append(html);
-			material.init(".infiniteScrollingContainer");
-			
-			Number(paginationValue++);
-			$('.addPaginationValue').val(paginationValue);			
-			 
+			that.vars.scrollDiv = false;
+		}
+		else {
+			that.vars.scrollDiv = true;
+			$('.noResultsDiv').hide();
+		}
+
+		$('.infiniteScrollingContainer').append(html);
+		material.init(".infiniteScrollingContainer");
+
+		Number(paginationValue++);
+		$('.addPaginationValue').val(paginationValue);
+
 	}
-	
-	that.fx.scrollHeightVariableAndClearHTML = function() {
+
+	that.fx.scrollHeightVariableAndClearHTML = function () {
 		// clear saved scrollHeightVariable and html 
 		that.vars.currentscrollHeight = 0;
 		$('.addPaginationValue').val('1');
 		$('.infiniteScrollingContainer').html('');
 		return true
 	}
-	
+
 	var exposed = [];
 	exposed.loaded = false;
-	exposed.load = function(){
-		if(!exposed.loaded){
+	exposed.load = function () {
+		if (!exposed.loaded) {
 			exposed.loaded = true;
 			that.fx.loadInfiniteCards();
-			
+
 			$('.filterDropdownToggle').hide();
-			
+
 			// On Scroll
 			that.vars.currentscrollHeight = 0;
 			that.vars.count = 0;
 			that.vars.scrollDiv = true;
-			
+
 			console.log("TURN ON SCROLL CALLBACK");
-			$(document).on("scroll", window, that.callbacks.onScroll); 
-			
+			$(document).on("scroll", window, that.callbacks.onScroll);
+
 			$('.filterSwitch').on("click", that.callbacks.filterSwitch);
 			$('.searchBtn').on("click", that.callbacks.searchBtn);
 			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
 			$('.filterDropdown select').on("change", that.callbacks.filterDropdown);
-		
-		
+
+
 		}
 	};
-	
+
 	exposed.callbacks = that.callbacks;
-	exposed.unload =  function (){
-		if(exposed.loaded){
+	exposed.unload = function () {
+		if (exposed.loaded) {
 			$(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
 			$(document).off("click", '.searchBtn', that.callbacks.searchBtn);
 			$(document).off("change", '.filterDropdown select', that.callbacks.filterDropdown);
 			$(document).off("click", '.filterSwitch', that.callbacks.filterSwitch);
-			
+
 			console.log("TURN OFF SCROLL CALLBACK");
 			$(document).off("scroll", window, that.callbacks.onScroll);
 			exposed.loaded = false;
-		}	 
+		}
 	};
-	
+
 	return exposed;
-	
+
 }();
