@@ -101,3 +101,8 @@ html.app-hide-premium ul:has(li[data-value*="premium"]),
 html.app-hide-premium .materialDrawer .materialDrawerHead:last-of-type{
     display: none !important;
 }
+
+.row.infiniteScrollingContainer {
+	display: flex;
+	flex-wrap: wrap
+}

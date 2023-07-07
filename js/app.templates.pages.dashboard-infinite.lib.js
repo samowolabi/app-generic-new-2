@@ -40,7 +40,8 @@ var dashboardInfiniteScrolling = function () {
 		//console.log("START: ON SCROLL CALLBACK");
 		var scrollHeight = $(document).height();
 		var scrollPos = Math.floor($(window).height() + $(window).scrollTop());
-		var isBottom = ((scrollHeight - 100) < scrollPos) ? true : false;
+		var distanceFromBottom = 500;
+		var isBottom = ((scrollHeight - distanceFromBottom) < scrollPos) ? true : false;
 		if (that.vars.scrollDiv === false) {
 			//console.log("Infinite Scrolling A", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "scrollPos", scrollPos, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
 			that.vars.currentscrollHeight = 0;
@@ -227,8 +228,9 @@ var dashboardInfiniteScrolling = function () {
 		var lineText2 = config.text.searchResultsLineText2(course) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(course)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
 
 		var html = `
-			<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight}">
-					<div class="materialCard ${theme}">
+			<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
+			<div class="${columnWidthClass}">
+			<div class="materialCard ${theme}">
 						<div class="materialCardTop" data-button data-href="${href}"> 
 							<div class="materialCardImg">
 								<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
