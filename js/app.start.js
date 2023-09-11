@@ -123,6 +123,18 @@ router.on({
 	'': function (params) {
 		app.html({
 			target: "#content",
+			loading: function () { return app.templates.pages.newHome.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newHome.content(); },
+			callback: function () { }
+		});
+
+		app.routeId = "/home/";
+		$(".materialBarDashboardBackBtn").hide();
+	},
+	'/old-home/': function (params) {
+		app.html({
+			target: "#content",
 			loading: function () { return app.templates.pages.dashboardInfiniteScrolling.loading(); },
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.dashboardInfiniteScrolling.content(); },
