@@ -22,18 +22,180 @@ app.templates.pages.newHome = {
 		var htmlRewardsSection1 = rewardsSectionResult.section1;
 		var htmlRewardsSection2 = rewardsSectionResult.section2; //Not used
 
-		var courseArray = ['', '', '', '', '', '', '', '', ''];
+		var courseArray = [
+			{
+				header: 'CONTINUE LEARNING',
+				courses: ['', '', '', '', '', '', '', '', '']
+			},
+			{
+				header: 'RECOMMENDED FOR YOU',
+				courses: ['', '', '', '', '', '', '', '', '']
+			},
+			{
+				header: 'NEW ON THE PIANO ENCYCLOPEDIA',
+				courses: ['', '', '', '', '', '', '', '', '']
+			},
+			{
+				header: 'MOST POPULAR COURSES',
+				courses: ['', '', '', '', '', '', '', '', '']
+			},
+			{
+				header: 'ARTICLES',
+				courses: ['', '', '', '', '', '', '', '', '']
+			},
+		]
 
 
 		var html = `
-			<main class="pianoLessonsHome">
+			<style>
+				body {
+					background: #120d0d !important;
+				}
+				.materialBarDashboardNavigation {
+					display: none !important;
+				}
+			</style>
+
+
+			<main class="app_mainContainer">
+				<header class="app_headerContainer">
+					<div class="overlay">
+						<div class="app_headerBody">
+							<div class="app_headerDiv">
+								<div><img src="images/logo.png" width="74" alt="logo" class="logo"></div>
+
+								<div class="materialSearchBar">
+									<div class="materialSearchInputDiv">
+										<input type="text" placeholder="Search for your composers or favorite music" class="">
+
+										<div class="filterSwitchBtn">
+											<svg width="21" height="21" viewBox="0 0 23 24" fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg">
+												<path d="M19.3716 4.63118V6.68328C19.3716 7.4295 18.9052 8.36228 18.4388 8.82866L14.4279 12.3732C13.8682 12.8396 13.4951 13.7724 13.4951 14.5186V18.5295C13.4951 19.0892 13.122 19.8354 12.6556 20.1152L11.3497 20.9547C10.1371 21.701 8.45811 20.8615 8.45811 19.369V14.4253C8.45811 13.7724 8.085 12.9329 7.71189 12.4665L7.27348 12.0094C6.98432 11.7016 6.92835 11.2352 7.16155 10.8714L11.9374 3.20403C12.1053 2.93352 12.4037 2.76562 12.7302 2.76562H17.506C18.5321 2.76562 19.3716 3.60512 19.3716 4.63118Z" />
+												<path d="M9.80994 4.19277L6.49858 9.50026C6.18144 10.0133 5.45388 10.0879 5.03413 9.64951L4.16665 8.73539C3.70026 8.269 3.32715 7.4295 3.32715 6.86984V4.72445C3.32715 3.60512 4.16665 2.76562 5.1927 2.76562H9.01708C9.74464 2.76562 10.1924 3.56781 9.80994 4.19277Z" />
+											</svg>
+										</div>
+									</div>
+
+									<div class="filterFormsContainer">
+										<select type="text" placeholder="Composer" class="">
+											<option value="" disabled="" selected="">Composer</option>
+											<option>All</option>
+											<option>Albeniz, Isaac</option>
+											<option>Bach, J.S</option>
+											<option>Beethoven, Ludwig Van</option>
+											<option>Boccherini, Luigi</option>
+											<option>Brahms, Johannes</option>
+											<option>Chaminade, Cecil</option>
+											<option>Chopin, Frédéric</option>
+										</select>
+
+										<select type="text" placeholder="Duration" class="">
+											<option value="" disabled="" selected="">Duration</option>
+											<option>All</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+
+										<select type="text" placeholder="Level" class="">
+											<option value="" disabled="" selected="">Level</option>
+											<option>All</option>
+											<option>Level 1</option>
+											<option>Level 2</option>
+											<option>Level 3</option>
+											<option>Level 4</option>
+											<option>Level 5</option>
+										</select>
+
+										<select type="text" placeholder="Form" class="">
+											<option value="" disabled="" selected="">Form</option>
+											<option>All</option>
+											<option>Air</option>
+											<option>Arabesque</option>
+											<option>Aria</option>
+											<option>Bagatelle</option>
+											<option>Ballade</option>
+										</select>
+
+										<select type="text" placeholder="Era" class="">
+											<option value="" disabled="" selected="">Era</option>
+											<option>All</option>
+											<option>Baroque</option>
+											<option>British Folk</option>
+											<option>Classical</option>
+											<option>Impressionism</option>
+										</select>
+
+										<select type="text" placeholder="Genre" class="">
+											<option value="" disabled="" selected="">Genre</option>
+											<option>All</option>
+											<option>Classical</option>
+										</select>
+
+										<select type="text" placeholder="Year" class="">
+											<option value="" disabled="" selected="">Year</option>
+											<option>All</option>
+											<option>1685-1750</option>
+											<option>1685-1757</option>
+										</select>
+
+										<select type="text" placeholder="Nationality" class="">
+											<option value="" disabled="" selected="">Nationality</option>
+											<option>All</option>
+											<option>African American</option>
+											<option>American</option>
+											<option>Australian</option>
+											<option>Austrian</option>
+											<option>English</option>
+											<option>Finnish</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="userProfileDiv">
+									<svg width="15.5" height="15.5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M9.50033 9.49967C11.6865 9.49967 13.4587 7.72747 13.4587 5.54134C13.4587 3.35521 11.6865 1.58301 9.50033 1.58301C7.3142 1.58301 5.54199 3.35521 5.54199 5.54134C5.54199 7.72747 7.3142 9.49967 9.50033 9.49967Z" fill="#A2A2A2" />
+										<path d="M9.49996 11.4795C5.53371 11.4795 2.30371 14.1395 2.30371 17.417C2.30371 17.6387 2.47788 17.8128 2.69954 17.8128H16.3004C16.522 17.8128 16.6962 17.6387 16.6962 17.417C16.6962 14.1395 13.4662 11.4795 9.49996 11.4795Z" fill="#A2A2A2" />
+									</svg>
+									<p>Rod</p>
+								</div>
+							</div>
+
+							<div class="app_headerTextDiv">
+								<h4 class="fontFamilyOptimus">Rustles of Spring</h4>
+								<p class="materialParagraph materialThemeGoldDark">Introduction: The Ultimate Collection of Piano Music -</p>
+								<p class="materialParagraph materialThemeGoldDark">The Piano Encyclopedia</p>
+
+								<div class="app_headerButtonContainer">
+									<button class="materialButtonFill materialThemeGoldDark">Resume Learning</button>
+									<p class="materialParagraph materialThemeGoldDark">54% Completed</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+
+				<section class="app_ratingsSection">
+					<div class="app_ratingsSectionCard ratingsContent">
+						<div class="pianoLevelDiv">
+						
+						</div>
+						<button class="materialButtonOutline materialThemeGoldDark">Complete</button>
+					</div>
+				</div>
+			</main>
+
+
+			<main class="pianoLessonsHome" style="margin-top: 30rem">
 				<header class="materialHeroScreenContainer">
 					<div>
 						<div class="materialHeroScreenBody">
 
 							<div class='materialHeaderBar'>
 								<div>
-									<img src="images/logo.png" width="75" alt="logo" class="logo">
+									<img src="images/logo.png" width="78" alt="logo" class="logo">
 								</div>
 
 								<div class="materialSearchBar filterSearchBar">
@@ -48,14 +210,80 @@ app.templates.pages.newHome = {
 									</div>
 
 									<div class="filterFormDiv">
-										<input type="text" placeholder="Composer" class="" />
-										<input type="text" placeholder="Duration" class="" />
-										<input type="text" placeholder="Level" class="" />
-										<input type="text" placeholder="Form" class="" />
-										<input type="text" placeholder="Era" class="" />
-										<input type="text" placeholder="Genre" class="" />
-										<input type="text" placeholder="Year" class="" />
-										<input type="text" placeholder="Nationality" class="" />
+										<select type="text" placeholder="Composer" class="">
+											<option value="" disabled="" selected="">Composer</option>
+											<option>All</option>
+											<option>Albeniz, Isaac</option>
+											<option>Bach, J.S</option>
+											<option>Beethoven, Ludwig Van</option>
+											<option>Boccherini, Luigi</option>
+											<option>Brahms, Johannes</option>
+											<option>Chaminade, Cecil</option>
+											<option>Chopin, Frédéric</option>
+										</select>
+
+										<select type="text" placeholder="Duration" class="">
+											<option value="" disabled="" selected="">Duration</option>
+											<option>All</option>
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+
+										<select type="text" placeholder="Level" class="">
+											<option value="" disabled="" selected="">Level</option>
+											<option>All</option>
+											<option>Level 1</option>
+											<option>Level 2</option>
+											<option>Level 3</option>
+											<option>Level 4</option>
+											<option>Level 5</option>
+										</select>
+
+										<select type="text" placeholder="Form" class="">
+											<option value="" disabled="" selected="">Form</option>
+											<option>All</option>
+											<option>Air</option>
+											<option>Arabesque</option>
+											<option>Aria</option>
+											<option>Bagatelle</option>
+											<option>Ballade</option>
+										</select>
+
+										<select type="text" placeholder="Era" class="">
+											<option value="" disabled="" selected="">Era</option>
+											<option>All</option>
+											<option>Baroque</option>
+											<option>British Folk</option>
+											<option>Classical</option>
+											<option>Impressionism</option>
+										</select>
+
+										<select type="text" placeholder="Genre" class="">
+											<option value="" disabled="" selected="">Genre</option>
+											<option>All</option>
+											<option>Classical</option>
+										</select>
+
+										<select type="text" placeholder="Year" class="">
+											<option value="" disabled="" selected="">Year</option>
+											<option>All</option>
+											<option>1685-1750</option>
+											<option>1685-1757</option>
+										</select>
+
+										<select type="text" placeholder="Nationality" class="">
+											<option value="" disabled="" selected="">Nationality</option>
+											<option>All</option>
+											<option>African American</option>
+											<option>American</option>
+											<option>Australian</option>
+											<option>Austrian</option>
+											<option>English</option>
+											<option>Finnish</option>
+										</select>
 									</div>
 								</div>
 
@@ -68,12 +296,12 @@ app.templates.pages.newHome = {
 								</div>
 							</div>
 
-							<div class="marginTop30">
-								<h4 class="fontFamilyOptimus">Three Gymnopedics</h4>
+							<div class="heroTextBody">
+								<h4 class="materialHeader fontFamilyOptimus">Rustles of Spring</h4>
 								<p class="">Introduction: The Ultimate Collection of Piano Music -.<br><span style="color: #ffebb4;">The Piano Encyclopedia</span></p>
-								<div class="flex itemsCenter gap-x-8 marginTop10">
+								<div class="flex itemsCenter gap-x-8 marginTop15">
 									<button class="materialButtonFill materialThemeGoldDark">Resume Learning</button>
-									<p>54% completed</p>
+									<h6>54% completed</h6>
 								</div>
 							</div>
 						</div>
@@ -81,7 +309,7 @@ app.templates.pages.newHome = {
 				</header>
 
 				<section class="ratingsSection">
-					<div class="materialBarContainer flex justifyBetween itemsCenter marginTop4">
+					<div class="materialBarContainer marginTop7">
 						<div class='flex itemsCenter gap-x-6'>
 							<div class="percentageDiv">
 								<h4>5%</h4>
@@ -97,7 +325,7 @@ app.templates.pages.newHome = {
 						</div>
 					</div>
 
-					<div class="flex gap-x-8 marginTop5">
+					<div class="materialBarContainerGrid">
 						<div class="materialBarContainer pianoUnfinishedLessonsDiv flex justifyBetween">
 							<div class="pianoUnfinishedLessonsDiv">
 								<h4>You have 427 unfinished lessons</h4>
@@ -108,6 +336,7 @@ app.templates.pages.newHome = {
 								<p style="color:#FFBB00;">Learn how to use Rewards Points >></p>
 							</div>
 						</div>
+
 						<div class="materialBarContainer rewardLevelDiv">
 							<p>70 points needed to reach Reward Level 3</p>
 							<div class="flex justifyBetween marginTop3">
@@ -162,263 +391,100 @@ app.templates.pages.newHome = {
 						</div>
 					</div>
 
-					<div class="scrollingCardContainer marginTop16 marginBottom16">
-						<div class="overlay">
-							<svg width="20" height="20" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M9.99121 4.88672L17.9911 12.8866L9.99121 20.8864" stroke="#F9F4DE" stroke-width="1.59997" stroke-linecap="round" stroke-linejoin="round" />
-							</svg>
-						</div>
+					${courseArray.map((course, index) => `
+						<div class="scrollingCardContainer marginTop16 marginBottom16">
+							<p>${course.header}</p>
 
-						<p>Recommended for you</p>
+							<div class="cardsDivContainer">
+								<div class="overlay scrollLeft">
+									<svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M15 4.5L7.5 12L15 19.5" stroke="#F9F4DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
 
-						<div class="cardsDiv">
-							${courseArray.map((course, index) =>
-							`
-							<div class="cardSearchResult">
-								<div class="materialCard materialThemeDarkGold">
-									<div class="materialCardTop" data-button="" data-href="#!/course/1000001">
-										<div class="materialCardImg">
-											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-the-ultimate-collection-of-piano-music/img/thumb/001.mid.jpg); background-color: grey;"></div>
-											<div class="materialCardImgOverlay materialOverlayShallowBlack"></div>
-											<div class="materialCardMediaType materialThemeDarkGold materialThemeFlat">
-												<i class="fa fa-clock-o" title="Course"></i>
+								<div class="overlay scrollRight">
+									<svg width="25" height="25" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M9.99121 4.88672L17.9911 12.8866L9.99121 20.8864" stroke="#F9F4DE" stroke-width="1.59997" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</div>
+
+								<div class="cardsDiv">
+									${course.courses.map((course, index) => `
+										<div class="">
+											<div class="materialCard materialThemeDarkGold">
+												<div class="materialCardTop" data-button="" data-href="#!/course/1000001">
+													<div class="materialCardImg">
+														<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-the-ultimate-collection-of-piano-music/img/thumb/001.mid.jpg); background-color: grey;"></div>
+														<div class="materialCardImgOverlay materialOverlayShallowBlack"></div>
+														<div class="materialCardMediaType materialThemeDarkGold materialThemeFlat">
+															<i class="fa fa-clock-o" title="Course"></i>
+														</div>
+														<div class="materialCardNew materialThemeDarkGold materialThemeFlat">
+															<span data-progress="0">
+																<span data-new="" style="display: inline;"><i>COMING SOON</i></span>
+																<span data-incomplete="" style="display: none;">COMING SOON</span>
+																<span data-complete="" style="display: none;">COMING SOON</span>
+															</span>
+														</div>
+													</div>
+													<div class="materialProgressBar materialThemeDarkGold">
+														<div class="materialProgressBarInside" style="width:0%; ">
+														</div>
+													</div>
+													<div class="materialCardInfo materialThemeDarkGold">
+														<h2 class="materialHeader" style="font-size: 1.9em">Fur Elise</h2>
+														<h6 class="materialHeader"><b>Genre:</b> Classical</h6>
+														<p class="materialParagraph materialThemeDarkGold"></p>
+													</div>
+												</div>
+												<div class="materialCardAction materialThemeDarkGold">
+													<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>
+												</div>
 											</div>
-											<div class="materialCardNew materialThemeDarkGold materialThemeFlat">
-												<span data-progress="0">
-													<span data-new="" style="display: inline;"><i>COMING SOON</i></span>
-													<span data-incomplete="" style="display: none;">COMING SOON</span>
-													<span data-complete="" style="display: none;">COMING SOON</span>
-												</span>
-											</div>
-										</div>
-										<div class="materialProgressBar materialThemeDarkGold">
-											<div class="materialProgressBarInside" style="width:0%; ">
-											</div>
-										</div>
-										<div class="materialCardInfo materialThemeDarkGold">
-											<h2 class="materialHeader" style="font-size: 1.9em">Fur Elise</h2>
-											<h6 class="materialHeader"><b>Genre:</b> Classical</h6>
-											<p class="materialParagraph materialThemeDarkGold"></p>
-										</div>
-									</div>
-									<div class="materialCardAction materialThemeDarkGold">
-										<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>
-									</div>
+										</div> `
+		)}
 								</div>
 							</div>
-							`
-							)}
-						</div>
-					</div>
+						</div> `
+		)}
 				</section>
 			</main>
 
-			<script>
-				console.warn('loaded');
-				console.warn('DOM');
 
-				document.querySelector('.filterSwitchButton').addEventListener('click', () => {
-					console.log('clicked');
+			<script>
+				document.querySelector('.filterSwitchButton').addEventListener('click', function(event) {
+					event.stopPropagation();
 					document.querySelector('.filterSearchBar').classList.toggle('active');
+				});
+			
+				document.querySelector('body').addEventListener('click', function(event) {
+					if (!event.target.closest('.filterSearchBar')) {
+						document.querySelector('.filterSearchBar').classList.remove('active');
+					}
+				});
+
+				document.querySelectorAll(".scrollingCardContainer").forEach(function(parentDiv) {
+					const cardsScrollingDiv = parentDiv.querySelector('.cardsDiv');
+					const scrollAmount = 800;
+
+					parentDiv.querySelector('.scrollLeft').addEventListener('click', function(event) {
+						cardsScrollingDiv.scrollLeft -= scrollAmount;
+					});
+
+					parentDiv.querySelector('.scrollRight').addEventListener('click', function(event) {
+						cardsScrollingDiv.scrollLeft += scrollAmount;
+					});
 				})
 			</script>
-
-
-
-
-
-
-
-
-
-			<div class="container-fluid" style=" padding-top: 0px;">
-				<div class="row">   
-					<h2 class="materialHeaderBox materialThemeGreyLight  materialHeaderBox materialTextCenter materialThemeGreyLight fontFamilyOptimus  materialTextCenter" style="${config.theme.header}">${config.text.header()}</h2> 
-				</div>
-			</div>
-			<div class="container-fluid" style=" padding-top: 0px;">
-				<div class="row">   
-						 <h2 class="materialHeaderBox materialThemeDark   materialTextCenter fontFamilyLato materialColorDarkGrey" style="font-size: 25px;  margin-bottom: 40px;   font-weight: 300;  color: #c8c8c8; background: rgba(52, 52, 51, 0.85)">
-							This is the new page from Master Developer Sam. Welcome back${data.user.profile.firstname ? (", " + data.user.profile.firstname) : ""}!
-						</h2> 
-				</div>
-			</div>
-			<div class="container">
-				<div class="row action-cards-top">  
-					${app.templates.modules.actionCards.content([])} 
-				</div>
-				${htmlRewardsSection1}
-			</div> 
 		`;
 
 
 		html += `
-					
-					 
-					<div class="container"> 
-						<div class="row">
-							<div class="infiniteScrollingSearchDiv container-fluid container-fluid-max-width">
-								<div class="row marginTop15">
-									<div class="col-sm-12">
-										<div class="infiniteScrollingCardsSearchBar" style=""> 
-											<input placeholder="${config.text.searchBarPlaceholder}"  class="materialInputTextArea materialThemeDark" type="text"> 
-										</div>
-										<div class=""> 
-											<button class="materialButtonFill materialThemeDark searchBtn"><i class="fa fa-search"></i> Search</button>
-										</div>
-									</div>
-								</div>
-							</div>	
-						
-							<div class="container-fluid container-fluid-max-width">
-								<div class="row">
-									<div class="col-sm-12 marginTop5 marginBottom3">
-										<button class="materialButtonText materialThemeDark filterSwitch"><i class="fa fa-filter"></i> FILTER</button>
-									</div>
-								</div>
-								
-								<div class="row filterDropdownToggle marginBottom3">
-									 <!-- Created dynamically -->
-								</div>
-								
-								<script>
-									var result = '';
-								
-									//Create filters based on current data.
-									 $(".filterDropdownToggle").html(app.createFiltersHtml()); 
-									  
-									
-									 if($(".filterInput").length == 0){
-										$("button.filterSwitch").hide();								 
-									 }
-								</script> 
-								
-							 </div>
-						
-							<input type="hidden" class="addPaginationValue" value="1">
-							<div class="container-fluid container-fluid-max-width">
-								
-								<div class="row recommendedDiv" style="display: none;">
-									<div class="col-sm-12  ">
-										<div class="materialHeaderBox materialThemeDark">Recommended for You </div>	
-									</div>
-								</div>
-								
-								<div class="row infiniteScrollingContainer">
-									<!-- Infinite Scroll Cards -->  
-								</div>
-								
-								<div class="row">
-									<div class="col-sm-12 noResultsDiv" style="display: none;">
-										<h3 class='marginTop8 marginBottom8' style='color: #ffffff; text-align: center;'>No results found</h3>
-									</div>
-								</div>
-								
-								<div class="row cardLoadingPlaceholder marginTop8" style="display:none;">
-									<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-										<div class="materialCard materialThemeDark">
-											<div class="materialCardTop" data-button="" data-href="product1">
-												<div class="materialCardImg materialPlaceHolder">
-													<div  class="materialCardImgInside "></div> 
-													<div class="materialCardImgOverlay"></div>
-												</div>
-												<div class="materialProgressBar materialThemeDark materialPlaceHolder" style="height: 8px;">
-													<div style="width:100%;"></div>
-												</div>
-												<div class="materialCardInfo materialThemeDark">
-													<h2 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 40px;"> </h2>
-													<h6 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 30px;"></h6>  
-													<p class="materialParagraph materialThemeDark" style="height: 20px;"></p>
-												</div>
-											</div>
-											<div class="materialCardAction materialThemeDark materialPlaceHolder" style="height: 40px;">
-												<span>
-													
-												</span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
-										<div class="materialCard materialThemeDark">
-											<div class="materialCardTop" data-button="" data-href="product1">
-												<div class="materialCardImg materialPlaceHolder">
-													<div  class="materialCardImgInside "></div> 
-													<div class="materialCardImgOverlay"></div>
-												</div>
-												<div class="materialProgressBar materialThemeDark materialPlaceHolder" style="height: 8px;">
-													<div style="width:100%;"></div>
-												</div>
-												<div class="materialCardInfo materialThemeDark">
-													<h2 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 40px;"> </h2>
-													<h6 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 30px;"></h6>  
-													<p class="materialParagraph materialThemeDark" style="height: 20px;"></p>
-												</div>
-											</div>
-											<div class="materialCardAction materialThemeDark materialPlaceHolder" style="height: 40px;">
-												<span>
-													
-												</span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 hidden-xs">
-										<div class="materialCard materialThemeDark">
-											<div class="materialCardTop" data-button="" data-href="product1">
-												<div class="materialCardImg materialPlaceHolder">
-													<div  class="materialCardImgInside "></div> 
-													<div class="materialCardImgOverlay"></div>
-												</div>
-												<div class="materialProgressBar materialThemeDark materialPlaceHolder" style="height: 8px;">
-													<div style="width:100%;"></div>
-												</div>
-												<div class="materialCardInfo materialThemeDark">
-													<h2 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 40px;"> </h2>
-													<h6 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 30px;"></h6>  
-													<p class="materialParagraph materialThemeDark" style="height: 20px;"></p>
-												</div>
-											</div>
-											<div class="materialCardAction materialThemeDark materialPlaceHolder" style="height: 40px;">
-												<span>
-													
-												</span>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 hidden-xs">
-										<div class="materialCard materialThemeDark">
-											<div class="materialCardTop" data-button="" data-href="product1">
-												<div class="materialCardImg materialPlaceHolder">
-													<div  class="materialCardImgInside "></div> 
-													<div class="materialCardImgOverlay"></div>
-												</div>
-												<div class="materialProgressBar materialThemeDark materialPlaceHolder" style="height: 8px;">
-													<div style="width:100%;"></div>
-												</div>
-												<div class="materialCardInfo materialThemeDark">
-													<h2 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 40px;"> </h2>
-													<h6 class="materialHeader materialThemeDark materialPlaceHolder" style="height: 30px;"></h6>  
-													<p class="materialParagraph materialThemeDark" style="height: 20px;"></p>
-												</div>
-											</div>
-											<div class="materialCardAction materialThemeDark materialPlaceHolder" style="height: 40px;">
-												<span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-							</div>	
-						</div>
-					</div>
 					<script>
 						console.log("RUNNING");
 						dashboardInfiniteScrolling.load();   
 					</script>
-					`;
+				`;
 		return html;
 	}
 };
