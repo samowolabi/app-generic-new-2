@@ -6,7 +6,14 @@ var materialFilterPills = (function () {
         var html = '';
         settings.list.forEach(function (item) {
             html += `
-                <span data-value='${item.value}'>${item.name}</span>
+                <span data-ripple data-value='${item.value}'>${item.name}</span>
+                <!--<div class="materialChipFilter">
+                    <input class="materialChipInput" name="size" type="checkbox"> <svg class="materialChipCheckbox" viewbox="-2 -3 30 30">
+                    <path class="materialChipCheckboxPath" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="black"></path></svg>
+                    <div class="materialChipInputText">
+                        ${item.name}
+                    </div>
+                </div>-->
             `;
         })
 
@@ -48,6 +55,7 @@ var materialFilterPills = (function () {
                 // Hide Left Carousel at first
                 parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'none';
 
+                // Left Scrolling
                 parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').addEventListener('click', function (event) {
                     pillsScrollingDiv.scrollLeft -= scrollAmount;
                     if (pillsScrollingDiv.scrollLeft <= 0) {
@@ -55,6 +63,7 @@ var materialFilterPills = (function () {
                     }
                 });
 
+                // Right Scrolling
                 parentDiv.querySelector('.materialFilterPillsContainer .overlay.rightScroll').addEventListener('click', function (event) {
                     pillsScrollingDiv.scrollLeft += scrollAmount;
 
@@ -64,6 +73,17 @@ var materialFilterPills = (function () {
                         // Show Left Carousel
                         parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'flex';
                     }
+                });
+
+                // Set Toggle Pills Active
+                parentDiv.querySelectorAll('.materialFilterPillsDiv span').forEach(function (pill) {
+                    pill.addEventListener('click', function (event) {
+                        if (pill.classList.contains('active')) {
+                            pill.classList.remove('active');
+                        } else {
+                            pill.classList.add('active');
+                        }
+                    });
                 });
             });
         } catch (error) {

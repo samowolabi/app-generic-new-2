@@ -52,6 +52,12 @@
     font-size: 1.35rem;
     white-space: nowrap;
     font-weight: 400;
+    cursor: pointer;
+}
+
+.materialFilterPillsDiv span.active {
+    background-color: #f9f4de;
+    color: #313131;
 }
 
 .materialFilterPillsDiv::-webkit-scrollbar {
