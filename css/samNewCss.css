@@ -1,508 +1,3 @@
-
-.flex {
-    display: flex;
-}
-
-.flexColumn {
-    display: flex;
-    flex-direction: column;
-}
-
-.flexRow {
-    display: flex;
-    flex-direction: row;
-}
-
-.justifyStart {
-    justify-content: flex-start;
-}
-
-.justifyEnd {
-    justify-content: flex-end;
-}
-
-.justifyCenter {
-    justify-content: center;
-}
-
-.justifyBetween {
-    justify-content: space-between;
-}
-
-.itemsCenter {
-    align-items: center;
-}
-
-.itemsStart {
-    align-items: flex-start;
-}
-
-.gap-x-2 {
-    gap: 0.5rem;
-}
-
-.gap-x-3 {
-    gap: 0.75rem;
-}
-
-.gap-x-4 {
-    gap: 1rem;
-}
-
-.gap-x-6 {
-    gap: 1.5rem;
-}
-
-.gap-x-8 {
-    gap: 2rem;
-}
-
-.gap-x-10 {
-    gap: 2.5rem;
-}
-
-.pianoLessonsHome {
-    width: 100%;
-}
-
-.pianoLessonsHome h4, .pianoLessonsHome p, .pianoLessonsHome button {
-    margin: 0;
-}
-
-.materialHeroScreenContainer {
-    width: 100%;
-    height: 90vh;
-    min-height: 90vh;
-    margin: 0 auto;
-    padding: 0 10rem;
-    background-image: url("../images/newImages/heroScreenBG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    font-family: 'Lato', sans-serif;
-}
-
-.materialHeroScreenContainer > div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgb(21,21,21);
-    background: linear-gradient(180deg, rgba(21,21,21,0.2049194677871149) 0%, rgba(0,0,0,0.9556197478991597) 70%);
-    height: 100%;
-    width: 100%;
-    padding: 0 10rem;
-}
-
-/* Media Queries for mobile */
-@media (max-width: 768px) {
-    .materialHeroScreenContainer {
-        padding: 0 2rem;
-        min-height: 0;
-        height: 630px;
-    }
-
-    .materialHeroScreenContainer > div {
-        height: 630px;
-        padding: 10rem 2rem;
-        padding-top: 0;
-    }
-}
-
-.materialHeroScreenBody {
-    padding-top: 4rem;
-    max-width: 128rem;
-    margin: 0 auto;
-}
-
-.materialHeroScreenBody h4 {
-    color: #FFFBDC;
-    font-size: 9rem;
-    font-weight: 300;
-    width: 700px;
-    word-wrap: break-word;
-    font-weight: 400;
-    margin-bottom: 1rem;
-}
-
-.materialHeroScreenBody p {
-    color: #c8c8c8;
-    font-size: 1.78rem;
-    font-weight: 300;
-}
-
-.materialHeroScreenBody .heroTextBody {
-    margin-top: 12.5rem;
-} 
-
-.materialHeroScreenBody .heroTextBody p {
-    font-size: 1.85rem;
-}
-
-.materialHeroScreenBody .heroTextBody h6 {
-    color: #c8c8c8;
-    font-size: 1.425rem;
-}
-
-
-/* Media Queries for mobile */
-@media (max-width: 768px) {
-    .materialHeroScreenBody {
-        padding-top: 0.2rem;
-    }
-
-    .materialHeroScreenBody h4 {
-        font-size: 4.5rem;
-    }
-
-    .materialHeroScreenBody .heroTextBody {
-        margin-top: 13.5rem;
-    }
-
-    .materialHeroScreenBody .heroTextBody p {
-        font-size: 1.5rem;
-    }
-
-    .materialHeroScreenBody .heroTextBody h6 {
-        font-size: 1.25rem;
-    }
-}
-
-
-.materialHeaderBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    position: relative;
-    z-index: 2;
-}
-
-.materialHeaderBar .materialSearchBar {
-    position: relative;
-    background-color: rgba(37, 36, 36, 0.67);
-    border: rgba(37, 36, 36, 0.75);
-    border-radius: 500px;
-    padding: 0.5rem 1.7rem;
-}
-
-.materialHeaderBar .materialSearchBar.active {
-    padding: 0.75rem 1.7rem;
-    border-radius: 12px 12px 0 0;
-    background-color: #232323;
-}
-
-.materialHeaderBar .materialSearchBar.active svg {
-    fill: #DAA736;
-}
-
-.materialHeaderBar .materialSearchBar input {
-    padding: 0.75rem 1rem;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: 300;
-    width: 550px;
-    transition: width 0.5s ease-in-out;
-}
-
-.materialHeaderBar .materialSearchBar .filterFormDiv {
-    display: none;
-    background-color: rgba(37, 36, 36, 0.98);
-    padding: 2.5rem;
-    margin-top: 1rem;
-    position: absolute;
-    top: 37px;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-    border-radius: 0 0 12px 12px;
-}
-
-.materialHeaderBar .materialSearchBar.active .filterFormDiv {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates a two-column grid with equal-width columns */
-    gap: 1.75rem;
-}
-
-.materialHeaderBar .materialSearchBar .filterFormDiv select {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #414141;
-    outline: none;
-    color: #e3e3e3;
-    font-size: 1.4rem;
-    font-weight: 300;
-    width: 100%;
-    padding: 0.7rem 0;
-}
-
-.materialHeaderBar .userProfileDiv {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.materialHeaderBar .userProfileDiv p {
-    color: #A2A2A2;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-
-/* Media Queries for mobile */
-@media (max-width: 768px) {
-    .materialHeaderBar {
-        padding: 1.5rem 1rem;
-    }
-
-    .materialHeaderBar .materialSearchBar {
-        display: none;
-    }
-}
-
-
-.ratingsSection {
-    width: 100%;
-    max-width: 128rem;
-    margin: 0 auto;
-}
-
-.materialBarContainerGrid {
-    display: flex;
-    gap: 1.75rem;
-    margin-top: 2.5rem;
-}
-
-.materialBarContainerGrid > div:nth-child(1) {
-    width: 65%;
-}
-
-.materialBarContainerGrid > div:nth-child(2) {
-    width: 35%;
-}
-
-.materialBarContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: #1B1B1B;
-    font-family: 'Lato', sans-serif;
-}
-
-.materialBarContainer .percentageDiv {
-    border-right: 2px solid #343434;
-    padding-right: 5rem;
-}
-
-.materialBarContainer .percentageDiv h4 {
-    color: #f5b401;
-    text-align: center;
-    font-weight: 400;
-    font-size: 4.5rem;
-    letter-spacing: -2.5px;
-    margin: 0;
-}
-
-.materialBarContainer .percentageDiv p {
-    color: #aeaeae;
-    text-align: center;
-    letter-spacing: 1.5px;
-    font-size: 1.25rem;
-    text-transform: uppercase;
-}
-
-.materialBarContainer .pianoLevelText h4 {
-    color: #ffffff;
-    font-size: 2rem;
-    margin: 0;
-}
-
-.materialBarContainer .pianoLevelText p {
-    font-size: 16.5px;
-    color: #a9a9a9;
-    padding-top: 5px;
-    margin: 0;
-}
-
-.materialBarContainer.pianoUnfinishedLessonsDiv {
-    
-}
-
-.materialBarContainer.pianoUnfinishedLessonsDiv h4 {
-    font-size: 1.835rem;
-    color: #E6D3A1;
-    margin: 0;
-}
-
-.materialBarContainer.pianoUnfinishedLessonsDiv p {
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: #a9a9a9;
-    margin: 0;
-    padding-top: 5px;
-}
-
-.materialBarContainer.rewardLevelDiv {
-    padding: 20px 30px;
-}
-
-.materialBarContainer.rewardLevelDiv p {
-    color: #e6d3a1;
-}
-
-.materialBarContainer.rewardLevelDiv span {
-    color: #ffffff;
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-
-/* Media Queries for mobile */
-@media (max-width: 768px) {
-    .materialBarContainer {
-        flex-wrap: wrap;
-        padding: 20px 20px;
-        row-gap: 2.5rem;
-    }
-
-    .materialBarContainer .percentageDiv {
-        padding-right: 2.5rem;
-    }
-}
-
-
-
-.filterPillsContainer {
-    position: relative;
-}
-
-.filterPillsContainer .overlay {
-    width: 10rem;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    background: rgb(21,21,21);
-    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(14,14,14,0.9556197478991597) 60%);
-}
-
-.coursesCardSection {
-    width: 100%;
-    max-width: 128rem;
-    margin: 0 auto;
-}
-
-.filterPillsDiv {
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.filterPillsDiv span {
-    color: #f9f4de;
-    background-color: #313131;
-    padding: 0.54rem 1.45rem;
-    border-radius: 0.35rem;
-    font-size: 1.35rem;
-    white-space: nowrap;
-    font-weight: 400;
-}
-
-.filterPillsDiv::-webkit-scrollbar {
-    display: none;
-}
-
-.scrollingCardContainer {
-    position: relative;
-    font-family: 'Lato', sans-serif;
-}
-
-.scrollingCardContainer > P {
-    color: #F9F4DE;
-    text-transform: uppercase;
-    font-size: 1.75rem;
-    margin-bottom: 2.5rem;
-}
-
-.scrollingCardContainer .cardsDivContainer {
-    position: relative;
-    width: 100%;
-    max-width: 125rem;
-    margin: 0 auto;
-}
-
-.scrollingCardContainer .cardsDivContainer .overlay {
-    width: 11rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.scrollingCardContainer .cardsDivContainer .overlay.active {
-    display: none;
-}
-
-.scrollingCardContainer .cardsDivContainer .overlay.scrollLeft {
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    background: rgb(21,21,21);
-    background: linear-gradient(90deg, rgba(12, 12, 12, 0.45) 0%, rgba(21,21,21,0) 60%);
-}
-
-.scrollingCardContainer .cardsDivContainer .overlay.scrollRight {
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    background: rgb(21,21,21);
-    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.45) 60%);
-}
-
-.scrollingCardContainer .cardsDiv {
-    display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    width: 100%;
-}
-
-.scrollingCardContainer .cardsDiv::-webkit-scrollbar {
-    display: none;
-}
-
-.scrollingCardContainer .cardsDiv > div {
-    min-width: 350px;
-}
-
-.scrollingCardContainer .cardsDiv .materialCard {
-    margin-bottom: 0 !important;
-}
-
-
-
-
-
-
 .app_mainContainer {
     width: 100%;
     font-family: 'Lato', sans-serif;
@@ -527,7 +22,7 @@
     top: 0;
     left: 0;
     background: rgb(21,21,21);
-    background: linear-gradient(180deg, rgba(21,21,21,0.204) 0%, rgba(0,0,0,0.955) 70%);
+    background: linear-gradient(180deg, rgba(21,21,21,0.204) 0%, rgba(18,13,13,0.955) 70%);
     height: 100%;
     width: 100%;
 }
@@ -545,6 +40,10 @@
     padding: 1.5rem 3rem;
     position: relative;
     z-index: 2;
+}
+
+.app_headerContainer .app_headerBody .app_headerDiv img {
+    width: 74px
 }
 
 .materialSearchBar {
@@ -639,10 +138,61 @@
     padding: 0.7rem 0;
 }
 
+.mobileFilterDivTrigger {
+    display: none;
+}
+
 /* Media Queries for mobile */
 @media (max-width: 768px) {
+    .app_headerContainer .app_headerBody .app_headerDiv img {
+        width: 65px
+    }
+
+    .app_headerContainer .app_headerBody .app_headerTextDiv {
+        margin-top: 0 0.15rem;
+    }
+
     .materialSearchBar {
         display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .materialSearchBar.active {
+        display: block;
+    }
+
+    .materialSearchBar.active .materialSearchInputDiv {
+        background-color: rgba(37, 36, 36, 0.98);
+        padding: 1.5rem;
+    }
+
+    .materialSearchBar .materialSearchInputDiv input {
+        width: 100%;
+    }
+
+    .materialSearchBar.active .filterFormsContainer {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.75rem;
+        margin-top: 0;
+    }
+
+    .mobileNavRightContainer {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .mobileFilterDivTrigger {
+        display: block;
     }
 }
 
@@ -668,7 +218,6 @@
     color: #FFFBDC;
     font-size: 7.65rem;
     font-weight: 300;
-    width: 700px;
     word-wrap: break-word;
     font-weight: 400;
     margin-bottom: 1rem;
@@ -690,10 +239,17 @@
     margin: 0;
 }
 
+/* Media Queries for tablet */
+@media (max-width: 1024px) {
+    .app_headerContainer {
+        height: 600px;
+    }
+}
+
 /* Media Queries for mobile */
 @media (max-width: 768px) {
     .app_headerContainer {
-        height: 580px;
+        height: 530px;
     } 
 
     .app_headerContainer .app_headerBody {
@@ -705,7 +261,7 @@
     }
 
     .app_headerContainer .app_headerBody .app_headerTextDiv h4 {
-        font-size: 4.5rem;
+        font-size: 4.25rem;
     }
 
     .app_headerContainer .app_headerBody .app_headerTextDiv p {
@@ -722,6 +278,7 @@
     width: 100%;
     max-width: 128rem;
     margin: 0 auto;
+    margin-top: 4rem;
     padding: 0 3rem;
 }
 
@@ -738,21 +295,299 @@
     align-items: center;
 }
 
-.app_ratingsSection .app_ratingsSectionCard.ratingsContent .pianoLevelDiv {
+.app_ratingsSectionCard.ratingsContent .pianoLevelDiv {
     display: flex;
     align-items: center;
+    gap: 3.5rem;
+}
+
+.app_ratingsSectionCard.ratingsContent .pianoLevelDiv > div:nth-child(1) {
+    padding-right: 2.5rem;
+    border-right: 1px solid #343434;
+}
+
+.app_ratingsSectionCard.ratingsContent .pianoLevelDiv h2 {
+    color: #f5b401;
+    font-size: 4.35rem;
+    text-align: center;
+    margin: 0;
+}
+
+.app_ratingsSectionCard.ratingsContent .pianoLevelDiv span {
+    color: #aeaeae;
+    font-size: 13.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.app_ratingsSectionCard.ratingsContent .pianoLevelDiv h4 {
+    color: #ffffff;
+    font-size: 21px;
+}
+
+.app_ratingsSectionCard.ratingsContent .pianoLevelDiv p {
+    color: #a9a9a9;
+    font-size: 17px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.app_ratingsSection .rewardPointsContainer {
+    display: flex;
     gap: 1.75rem;
+}
+
+.app_ratingsSection .rewardPointsContainer > div:nth-child(1) {
+    width: 60%;
+}
+
+.app_ratingsSection .rewardPointsContainer > div:nth-child(2) {
+    width: 40%;
+}
+
+.app_ratingsSectionCard.rewardPoints {
+    display: flex;
+    justify-content: space-between;
+    gap: 3.5rem;
+}
+
+.app_ratingsSectionCard.rewardPoints h4 {
+    font-size: 18px;
+    color: #e6d3a1;
+}
+
+.app_ratingsSectionCard.rewardPoints p {
+    color: #a9a9a9;
+    font-size: 15.2px;
+    font-weight: 400;
+    padding-top: 2px;
+}
+
+.app_ratingsSectionCard.rewardPoints div:nth-child(2) p {
+    color: #ffbb00;
+    padding-top: 0.5rem;
+    font-size: 14px;
+}
+
+.app_ratingsSectionCard.rewardLevel h4 {
+    font-size: 18px;
+    color: #e6d3a1;
+}
+
+.app_ratingsSectionCard.rewardLevel div.rewardLevelProgress {
+    width: 100%;
+    height: 7px;
+    background-color: #FFFBDC;
+    margin-top: 10px;
+    border-radius: 100px;
+}
+
+.app_ratingsSectionCard.rewardLevel div.rewardLevelProgress div {
+    height: 7px;
+    background-color: #F5B400;
+    border-radius: 100px;
+}
+
+.app_ratingsSectionCard .rewardLevelStats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.app_ratingsSectionCard .rewardLevelStats > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app_ratingsSectionCard .rewardLevelStats > div p {
+    color: #a9a9a9;
+    font-size: 15.2px;
+    font-weight: 400;
+    padding-top: 2px;
+    text-transform: uppercase;
+}
+
+
+/* Media Queries for tablet */
+@media (max-width: 1024px) {
+    .app_ratingsSection .app_ratingsSectionCard.ratingsContent .pianoLevelDiv {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 2rem;
+    }
+
+    .app_ratingsSection .app_ratingsSectionCard.ratingsContent .pianoLevelDiv > div:nth-child(1) {
+        padding-right: 0;
+        border-right: none;
+    }
+
+    .app_ratingsSection .rewardPointsContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .app_ratingsSection .rewardPointsContainer > div:nth-child(1) {
+        width: 100%;
+    }
+
+    .app_ratingsSection .rewardPointsContainer > div:nth-child(2) {
+        width: 100%;
+    }
+
+    .app_ratingsSectionCard.rewardPoints {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+    .app_ratingsSection {
+        padding: 0 1.5rem;
+    }
+
+    .app_ratingsSection .app_ratingsSectionCard {
+        padding: 25px;
+    }
+
+    .app_ratingsSection .app_ratingsSectionCard.ratingsContent {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .app_ratingsSection .app_ratingsSectionCard.ratingsContent > div {
+        width: 100%;
+    }
+
+    .app_ratingsSectionCard.ratingsContent .pianoLevelDiv {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 2rem;
+    }
+
+    .app_ratingsSectionCard.ratingsContent .pianoLevelDiv > div:nth-child(1) {
+        padding-right: 0;
+        border-right: none;
+    }
+
+    .app_ratingsSection .rewardPointsContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .app_ratingsSection .rewardPointsContainer > div:nth-child(1) {
+        width: 100%;
+    }
+
+    .app_ratingsSection .rewardPointsContainer > div:nth-child(2) {
+        width: 100%;
+    }
+
+    .app_ratingsSectionCard.rewardPoints {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+.app_coursesCardsSection {
+    width: 100%;
+    max-width: 128rem;
+    margin: 0 auto;
+    padding: 0 3rem;
+    margin-top: 10rem;
+}
+
+.app_coursesCardsContainer {
+    margin: 4rem 0;
+}
+
+.app_coursesCardsContainer p {
+    color: #F9F4DE;
+    text-transform: uppercase;
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.materialCardsScrolling {
+    position: relative;
+    width: 100%;
+}
+
+.materialCardsScrolling .overlay {
+    width: 11rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.materialCardsScrolling .overlay.scrollLeft {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: rgb(21,21,21);
+    background: linear-gradient(90deg, rgba(12, 12, 12, 0.45) 0%, rgba(21,21,21,0) 60%);
+}
+
+.materialCardsScrolling .overlay.scrollRight {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: rgb(21,21,21);
+    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.45) 60%);
+}
+
+.materialCardsScrolling .materialCardsDiv {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.materialCardsScrolling .materialCardsDiv::-webkit-scrollbar {
+    display: none;
+}
+
+.materialCardsScrolling .materialCardsDiv > div {
+    min-width: 350px;
 }
 
 
 
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+    .app_coursesCardsSection {
+        padding: 0 1.5rem;
+    }
 
+    .materialFilterPillsContainer .overlay {
+        width: 5rem;
+    }
 
+    .materialCardsScrolling .overlay.scrollLeft {
+        display: flex;
+        justify-content: flex-start;
+    }
 
-
-
-
-
-
-
+    .materialCardsScrolling .overlay.scrollRight {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
 

@@ -1,0 +1,59 @@
+.materialFilterPillsContainer {
+    position: relative;
+}
+
+.materialFilterPillsContainer .overlay {
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.materialFilterPillsContainer .overlay.leftScroll {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: rgb(21,21,21);
+    background: linear-gradient(90deg, rgba(14,14,14,0.9556197478991597) 0%, rgba(21,21,21,0) 60%);
+}
+
+.materialFilterPillsContainer .overlay.rightScroll {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: rgb(21,21,21);
+    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(14,14,14,0.9556197478991597) 60%);
+}
+
+
+.materialFilterPillsDiv {
+    display: flex;
+    gap: 0.65rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.materialFilterPillsDiv span {
+    color: #f9f4de;
+    background-color: #313131;
+    padding: 0.54rem 1.45rem;
+    border-radius: 0.35rem;
+    font-size: 1.35rem;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.materialFilterPillsDiv::-webkit-scrollbar {
+    display: none;
+}
