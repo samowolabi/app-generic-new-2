@@ -106,6 +106,7 @@
     width: 100%;
     z-index: 2;
     border-radius: 0 0 12px 12px;
+    transition: all 0.5s ease-in-out;
 }
 
 .materialSearchBar.active .filterFormsContainer {
@@ -499,7 +500,7 @@
     max-width: 128rem;
     margin: 0 auto;
     padding: 0 3rem;
-    margin-top: 10rem;
+    margin-top: 7rem;
 }
 
 .app_coursesCardsContainer {
@@ -574,6 +575,11 @@
 @media (max-width: 768px) {
     .app_coursesCardsSection {
         padding: 0 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .app_coursesCardsContainer {
+        margin: 1rem 0;
     }
 
     .materialFilterPillsContainer .overlay {
@@ -591,3 +597,325 @@
     }
 }
 
+
+
+/* History */
+
+.app_historySearch {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.app_historySearch .searchInput input {
+    width: 300px;
+    padding: 0.9rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 300;
+    border-radius: 500px;
+}
+
+.app_historySearch .searchInput input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.app_historySearch .clearHistoryDiv {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.75;
+    transition: opacity 0.35s ease-in-out;
+}
+
+.app_historySearch .clearHistoryDiv:hover {
+    opacity: 1;
+}
+
+.app_historySearch p {
+    color: #f9f4de;
+    white-space: nowrap;
+}
+
+.materialCardsContainer .materialCardsDiv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.materialCardsContainer .materialCardsDiv > div {
+    width: 32%;
+}
+
+.materialCardsContainer .materialCard > div {
+    margin-bottom: 0;
+}
+
+/* Media Queries for tablet */
+@media (max-width: 1024px) {
+    .materialCardsContainer .materialCardsDiv > div {
+        width: 48%;
+    }
+}
+
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+    .app_historySearch {
+        column-gap: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .materialCardsContainer .materialCardsDiv > div {
+        width: 100%;
+    }
+
+    .app_historySearch .searchInput {
+        width: 100%;
+    }
+
+    .app_historySearch .searchInput input {
+        width: 100%;
+    }
+}
+
+
+
+
+/* Course */
+.app_heroHeader {
+    width: 100%;
+    position: relative;
+    background-image: url("../images/newImages/courseCover.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+}
+
+.app_heroHeader > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    padding: 0 2rem;
+}
+
+.app_heroHeader .app_heroSection {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding-top: 20rem
+}
+
+.app_heroHeader .app_heroSection h4 {
+    color: #FFFBDC;
+    font-size: 7.65rem;
+    font-weight: 300;
+    word-wrap: break-word;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.app_heroHeader .app_heroSection p {
+    color: #c8c8c8;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.app_heroHeader .app_heroSection  .app_headerButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5rem;
+}
+
+.app_heroHeader .app_heroSection  .app_headerButtonContainer > div {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.app_heroHeader .app_heroSection  .app_headerButtonContainer button {
+    margin: 0;
+}
+
+.app_heroHeader .app_heroSection  .app_headerButtonContainer p {
+    color: rgba(255, 255, 255, 0.73);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem
+}
+
+/* Media Queries for tablet */
+@media (max-width: 1024px) {
+    .app_heroHeader {
+        height: 50vh;
+    }
+    .app_heroHeader .app_heroSection {
+        padding: 4rem;
+        padding-top: 10rem;
+    }
+    .app_heroHeader .app_heroSection h4 {
+        font-size: 7rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .app_heroHeader {
+        height: 65vh;
+    }
+    .app_heroHeader .app_heroSection {
+        padding: 2rem;
+        padding-top: 10rem;
+    }
+    .app_heroHeader .app_heroSection h4 {
+        font-size: 4.25rem;
+    }
+    .app_heroHeader .app_heroSection p {
+        font-size: 1.4rem;
+    }
+    .app_heroHeader .app_heroSection .app_headerButtonContainer {
+        flex-wrap: wrap;
+    }
+}
+
+
+.app_lessonOverviewSection {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    margin-top: 7rem;
+    padding: 0 2rem;
+}
+
+.app_lessonOverviewSection .lessonProgress {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.app_lessonOverviewSection .lessonProgress p {
+    color: rgba(255, 255, 255, 0.73);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem
+}
+
+.app_lessonOverviewSection p.lessonDescription {
+    color: #EFEAE3;
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    font-weight: 300;
+}
+
+.app_lessonOverviewSection .overallRatings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3.5rem;
+}
+
+.app_lessonOverviewSection .overallRatings p {
+    color: #D6A90B;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem
+}
+
+@media (max-width: 768px) {
+    .app_lessonOverviewSection {
+        padding: 0 2rem;
+    }
+
+    .app_lessonOverviewSection .overallRatings {
+        margin-top: 2rem;
+    }
+}
+
+.app_lessonContentSection {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    margin-top: 7rem;
+    padding: 0 2rem;
+}
+
+.materialAccordionHeader {
+    color: #ffffff;
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #313131;
+}
+
+.materialAccordionHeader.active {
+    border-bottom: 0;
+}
+
+.materialAccordionHeader h4 {
+    font-size: 2.25rem;
+    padding-bottom: 0.5rem;
+}
+
+.materialAccordionHeader.active h4 {
+    color: #D6A90B;
+}
+
+.materialAccordionHeader p {
+    color: #a3a3a3;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.materialAccordionContent {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+
+.materialAccordionContent.active {
+    height: auto;
+    padding: 2rem 0;
+    border-bottom: 1px solid #313131;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.materialAccordionContent .materialOutlineLearn li {
+    background: #0b0b0b;
+    border-bottom: 1px solid #111111
+}
+
+.materialAccordionContent .materialOutlineLearn li:hover {
+    background: #222222;
+}
+
+.materialAccordionContent .materialOutlineLearn li h6 {
+    color: #F9F4DE;
+}
+
+.materialAccordionContent .materialOutlineLearn li p {
+    color: #c8c8c8;
+}
+
+.materialAccordionContent .materialOutlineLearn li:before {
+    width: 5px;
+}
+
+.materialAccordionContent .materialOutlineLearn .materialOutlineIcon {
+    width: 23px;
+    height: 23px;
+}

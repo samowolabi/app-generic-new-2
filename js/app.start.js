@@ -120,6 +120,8 @@ router.on({
 		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
+
+
 	'': function (params) {
 		app.html({
 			target: "#content",
@@ -132,6 +134,34 @@ router.on({
 		app.routeId = "/home/";
 		$(".materialBarDashboardBackBtn").hide();
 	},
+	'/history/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.history.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.history.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/history/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+	'/newCourse/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newCourse.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newCourse.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newCourse/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
+
 	'/old-home/': function (params) {
 		app.html({
 			target: "#content",
@@ -144,7 +174,8 @@ router.on({
 
 		app.routeId = "/dashboard-infinite-scrolling/";
 		$(".materialBarDashboardBackBtn").hide();
-	},/*
+	},
+	/*
 	'/lesson/:lessonId/rating/:rating': function (params) { 
 		app.html({
 				target: "#content", 

@@ -49,7 +49,7 @@ app.templates.pages.newHome = {
 		var html = `
 			<style>
 				body {
-					background: #120d0d !important;
+					/* background: #120d0d !important; */
 				}
 				.materialBarDashboardNavigation {
 					display: none !important;
@@ -298,9 +298,9 @@ app.templates.pages.newHome = {
 							{ name: 'Impressionism', value: 'Impressionism' },
 							{ name: 'Romantic', value: 'Romantic' },
 							{ name: 'Intermediate', value: 'Intermediate' }
-						]
-					})
-				}
+							]
+						})
+					}
 
 
 					${courseArray.map((course, index) => `
