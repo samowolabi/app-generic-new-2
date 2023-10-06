@@ -66,6 +66,7 @@ app.templates.pages.newHome = {
 
 								<div class="materialSearchBar">
 									<div class="materialSearchInputDiv">
+										<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9.90039" cy="9.90015" r="9" stroke="white" stroke-width="1.5"/><path d="M16.5 16.5L22.864 22.864" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>	
 										<input type="text" placeholder="Search for your composers or favorite music" class="">
 
 										<div class="filterSwitchBtn">
@@ -88,6 +89,22 @@ app.templates.pages.newHome = {
 											<option>Chaminade, Cecil</option>
 											<option>Chopin, Frédéric</option>
 										</select>
+
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="1">Alabama</option>
+													<option value="2">Houston</option>
+													<option value="3">Ohaio</option>
+													<option value="4">New York</option>
+													<option value="5">Washington</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Composer</label>
+											</div>
+										</div>
 
 										<select type="text" placeholder="Duration" class="">
 											<option value="" disabled="" selected="">Duration</option>
@@ -157,7 +174,7 @@ app.templates.pages.newHome = {
 								
 								<div class="mobileNavRightContainer">
 									<div class="mobileFilterDivTrigger">
-										<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16.7744" cy="17.2744" r="5.25" stroke="#CFCFCF" stroke-width="1.16667"/><path d="M20.625 21.125L24.3373 24.8373" stroke="#CFCFCF" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>
+										<svg width="32" height="32" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16.7744" cy="17.2744" r="5.25" stroke="#CFCFCF" stroke-width="1.16667"/><path d="M20.625 21.125L24.3373 24.8373" stroke="#CFCFCF" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>
 									</div>
 
 									<div class="userProfileDiv">
@@ -247,60 +264,26 @@ app.templates.pages.newHome = {
 				</section>	
 				
 				<section class="app_coursesCardsSection">
-					<!-- <div class="materialFilterPillsContainer marginBottom20">
-						<div class="overlay leftScroll">
-							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M15 4.5L7.5 12L15 19.5" stroke="#F9F4DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</div>
-
-						<div class="overlay rightScroll">
-							<svg width="22" height="22" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M9.99121 4.88672L17.9911 12.8866L9.99121 20.8864" stroke="#F9F4DE" stroke-width="1.59997" stroke-linecap="round" stroke-linejoin="round" />
-							</svg>
-						</div>
-
-						<div class="materialFilterPillsDiv">
-							<span>All</span>
-							<span>Beginner</span>
-							<span>Expert</span>
-							<span>Baroque</span>
-							<span>Romantic</span>
-							<span>Classical</span>
-							<span>Modernism</span>
-							<span>Neo Classicism</span>
-							<span>Impressionism</span>
-							<span>Romantic</span>
-							<span>Intermediate</span>
-							<span>Beethoven</span>
-							<span>Impressionism</span>
-							<span>Neo Classicism</span>
-							<span>Impressionism</span>
-							<span>Romantic</span>
-							<span>Intermediate</span>
-							<span>Beethoven</span>
-							<span>Impressionism</span>
-						</div>
-					</div> -->
-					
-					${
-						materialFilterPills.create({
-						list: [
-							{ name: 'Beethoven', value: 'Beethoven' },
-							{ name: 'Impressionism', value: 'Impressionism' },
-							{ name: 'Neo Classicism', value: 'Neo Classicism' },
-							{ name: 'Impressionism', value: 'Impressionism' },
-							{ name: 'Romantic', value: 'Romantic' },
-							{ name: 'Intermediate', value: 'Intermediate' },
-							{ name: 'Beethoven', value: 'Beethoven' },
-							{ name: 'Impressionism', value: 'Impressionism' },
-							{ name: 'Neo Classicism', value: 'Neo Classicism' },
-							{ name: 'Impressionism', value: 'Impressionism' },
-							{ name: 'Romantic', value: 'Romantic' },
-							{ name: 'Intermediate', value: 'Intermediate' }
-							]
-						})
-					}
+					<div class="app_coursesCardsFilterPills">	
+						${
+							materialFilterPills.create({
+							list: [
+								{ name: 'Beethoven', value: 'Beethoven' },
+								{ name: 'Impressionism', value: 'Impressionism' },
+								{ name: 'Neo Classicism', value: 'Neo Classicism' },
+								{ name: 'Impressionism', value: 'Impressionism' },
+								{ name: 'Romantic', value: 'Romantic' },
+								{ name: 'Intermediate', value: 'Intermediate' },
+								{ name: 'Beethoven', value: 'Beethoven' },
+								{ name: 'Impressionism', value: 'Impressionism' },
+								{ name: 'Neo Classicism', value: 'Neo Classicism' },
+								{ name: 'Impressionism', value: 'Impressionism' },
+								{ name: 'Romantic', value: 'Romantic' },
+								{ name: 'Intermediate', value: 'Intermediate' }
+								]
+							})
+						}
+					</div>
 
 
 					${courseArray.map((course, index) => `

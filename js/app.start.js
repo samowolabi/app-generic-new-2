@@ -147,6 +147,7 @@ router.on({
 		app.routeId = "/history/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
+
 	'/newCourse/': function (params) {
 		app.html({
 			target: "#content",
@@ -161,6 +162,19 @@ router.on({
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
+	'/newLesson/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newLesson.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newLesson.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newLesson/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
 
 	'/old-home/': function (params) {
 		app.html({

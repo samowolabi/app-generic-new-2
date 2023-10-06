@@ -19,7 +19,7 @@ app.templates.pages.newCourse = {
             <main class="app_mainContainer">
                 <header class="app_heroHeader">
                     <div>
-                        <div class="app_heroSection">
+                        <div class="app_heroSection maxWidthContainer">
                             <h4 class="fontFamilyOptimus">The Hidden <br> Patterns of Music</h4>
                             <p class="materialParagraph materialThemeGoldDark">Introduction: The Ultimate Collection of Piano Music -</p>
                             <p class="materialParagraph materialThemeGoldDark">The Piano Encyclopedia</p>
@@ -27,7 +27,7 @@ app.templates.pages.newCourse = {
                             <div class="app_headerButtonContainer">
                                 <div>
                                     <button class="materialButtonFill materialThemeGoldDark">Continue Course</button>
-				                    <a href="#" class="materialButtonIcon" data-button data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o"> <i class="fa fa-bookmark-o"></i> </a>
+                                    <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
                                 </div>
                                 <p>20 of 45 LESSONS</p>
                             </div>
@@ -35,7 +35,7 @@ app.templates.pages.newCourse = {
                     </div>
                 </header>
 
-                <section class="app_lessonOverviewSection">
+                <section class="app_lessonOverviewSection maxWidthContainer">
                     <div class="lessonProgress">
                         <p>54% Completed</p>
                         <p>5 CHAPTERS</p>
@@ -63,9 +63,10 @@ app.templates.pages.newCourse = {
                     </div>
                 </section>
 
-                <section class="app_lessonContentSection">
-                    <div class="materialAccordion">
-                        <div class="materialAccordionHeader">
+                <section class="app_lessonContentSection maxWidthContainer">
+                    <div class="materialAccordion marginTop14">
+
+                        <div class="materialAccordionHeader active">
                             <div>
                                 <h4>Chapter 1: Fur Elise</h4>
                                 <p>0/24  |  1hr 45min Read</p>
@@ -75,37 +76,7 @@ app.templates.pages.newCourse = {
                             </div>
                         </div>
 
-                        <div class="materialAccordionContent">
-                            
-                        </div>
-
-
-                        <div class="materialAccordionHeader">
-                            <div>
-                                <h4>Chapter 2: Fur Elise</h4>
-                                <p>0/24  |  1hr 45min Read</p>
-                            </div>
-                            <div>
-                                <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                        </div>
-
-                        <div class="materialAccordionContent">
-                            Hiii
-                        </div>
-
-
-                        <div class="materialAccordionHeader">
-                            <div>
-                                <h4>Chapter 3: Fur Elise</h4>
-                                <p>0/24  |  1hr 45min Read</p>
-                            </div>
-                            <div>
-                                <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                        </div>
-
-                        <div class="materialAccordionContent">
+                        <div class="materialAccordionContent active">
                             <div class="materialOutlineLearn">
                                 <ul class="materialOutlineList"> 
                                     <li class="materialOutlineView materialOutlineViewComplete"> 
@@ -135,7 +106,7 @@ app.templates.pages.newCourse = {
                                                 <p>How to Play 50 Songs with Just Four Chords</p>
                                             </a>
                                         </div>
-                                        <div class="materialOutlineIcon" style="background: white;"> </div>
+                                        <div class="materialOutlineIcon" style="background: #0b0b0b; border-color: rgba(240, 227, 224, 0.2);"> </div>
                                     </li>
                                     <li class="materialOutlineView"> 
                                         <div class="materialOutlineListBody">
@@ -156,6 +127,35 @@ app.templates.pages.newCourse = {
                         </div>
 
 
+                        <div class="materialAccordionHeader">
+                        <div>
+                            <h4>Chapter 2: Fur Elise</h4>
+                            <p>0/24  |  1hr 45min Read</p>
+                        </div>
+                        <div>
+                            <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="materialAccordionContent">
+                        
+                    </div>
+
+
+                    <div class="materialAccordionHeader">
+                        <div>
+                            <h4>Chapter 3: Fur Elise</h4>
+                            <p>0/24  |  1hr 45min Read</p>
+                        </div>
+                        <div>
+                            <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="materialAccordionContent">
+                        Hiii
+                    </div>
+
 
                     </div>
                 </section>
@@ -175,12 +175,12 @@ app.templates.pages.newCourse = {
                         button.addEventListener('click', () => {
                             const content = button.nextElementSibling;
 
-                            accordionButtons.forEach(otherButton => {
-                                if (otherButton !== button) {
-                                    otherButton.classList.remove('active');
-                                    otherButton.nextElementSibling.classList.remove('active');
-                                }
-                            });
+                            // accordionButtons.forEach(otherButton => {
+                            //     if (otherButton !== button) {
+                            //         otherButton.classList.remove('active');
+                            //         otherButton.nextElementSibling.classList.remove('active');
+                            //     }
+                            // });
 
                             button.classList.toggle('active');
 

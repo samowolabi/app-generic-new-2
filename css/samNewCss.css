@@ -22,7 +22,7 @@
     top: 0;
     left: 0;
     background: rgb(21,21,21);
-    background: linear-gradient(180deg, rgba(21,21,21,0.204) 0%, rgba(18,13,13,0.955) 70%);
+    background: linear-gradient(180deg, rgba(21,21,21,0.204) 0%, rgba(0,0,0,0.955) 70%);
     height: 100%;
     width: 100%;
 }
@@ -193,7 +193,13 @@
     }
 
     .mobileFilterDivTrigger {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #393939;
+        cursor: pointer;
     }
 }
 
@@ -503,6 +509,16 @@
     margin-top: 7rem;
 }
 
+.app_coursesCardsFilterPills .materialChipFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    gap: 0.5rem;
+    padding: 0.5em 1em;
+    margin: 0;
+}
+
 .app_coursesCardsContainer {
     margin: 4rem 0;
 }
@@ -687,6 +703,13 @@
 
 
 /* Course */
+.maxWidthContainer {
+    width: 100%;
+    max-width: 128rem;
+    margin: 0 auto;
+}
+
+
 .app_heroHeader {
     width: 100%;
     position: relative;
@@ -709,10 +732,7 @@
 }
 
 .app_heroHeader .app_heroSection {
-    width: 100%;
-    max-width: 120rem;
-    margin: 0 auto;
-    padding-top: 20rem
+    padding-top: 20rem;
 }
 
 .app_heroHeader .app_heroSection h4 {
@@ -761,7 +781,6 @@
         height: 50vh;
     }
     .app_heroHeader .app_heroSection {
-        padding: 4rem;
         padding-top: 10rem;
     }
     .app_heroHeader .app_heroSection h4 {
@@ -775,8 +794,7 @@
         height: 65vh;
     }
     .app_heroHeader .app_heroSection {
-        padding: 2rem;
-        padding-top: 10rem;
+        padding-top: 16rem;
     }
     .app_heroHeader .app_heroSection h4 {
         font-size: 4.25rem;
@@ -791,11 +809,8 @@
 
 
 .app_lessonOverviewSection {
-    width: 100%;
-    max-width: 120rem;
-    margin: 0 auto;
-    margin-top: 7rem;
-    padding: 0 2rem;
+    /* padding: 0 2rem; */
+    margin-top: 8rem;
 }
 
 .app_lessonOverviewSection .lessonProgress {
@@ -844,22 +859,19 @@
 }
 
 .app_lessonContentSection {
-    width: 100%;
-    max-width: 120rem;
-    margin: 0 auto;
-    margin-top: 7rem;
-    padding: 0 2rem;
+    /* padding: 0 2rem; */
 }
 
 .materialAccordionHeader {
     color: #ffffff;
     width: 100%;
-    padding: 2rem 0;
+    padding: 1.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     border-bottom: 1px solid #313131;
+    background-color: #1C1C1C;
 }
 
 .materialAccordionHeader.active {
@@ -867,8 +879,8 @@
 }
 
 .materialAccordionHeader h4 {
-    font-size: 2.25rem;
-    padding-bottom: 0.5rem;
+    font-size: 1.78rem;
+    padding-bottom: 0.35rem;
 }
 
 .materialAccordionHeader.active h4 {
@@ -912,10 +924,109 @@
 }
 
 .materialAccordionContent .materialOutlineLearn li:before {
-    width: 5px;
+    width: 7.5px;
+    background-color: rgba(240, 227, 224, 0.2)
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon {
-    width: 23px;
-    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F4BE37;
+    border-color: #F4BE37;
+}
+
+.materialAccordionContent .materialOutlineLearn .materialOutlineIcon .fa {
+    color: #000000;
+}
+
+
+
+
+
+/***** Lesson *****/
+.app_LessonContainer {
+    display: flex;
+    gap: 7rem;
+    margin-top: 8rem;
+}
+
+.app_LessonContainer > div:nth-child(1) {
+    width: 67%;
+}
+
+.app_LessonContainer > div:nth-child(2) {
+    width: 33%;
+}
+
+.app_LessonContainer .app_lessonOverviewSection .courseTitle {
+    margin-bottom: 4rem;
+}
+
+.app_LessonContainer .app_lessonOverviewSection .courseTitle h4 {
+    color: #FFFFFF;
+    font-size: 3.5rem;
+    padding-bottom: 0.35rem;
+}
+
+.app_LessonContainer .app_lessonOverviewSection .courseTitle p {
+    color: rgba(255, 255, 255, 0.73)
+}
+
+.app_LessonContainer .app_lessonOverviewSection .lessonProgress {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app_LessonContainer .app_lessonContentSection {
+    /* margin-top: 4rem; */
+}
+
+.app_LessonContainer .app_LessonRatings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+/* Media Queries for tablet */
+@media (max-width: 1024px) {
+    .app_LessonContainer {
+        flex-wrap: wrap;
+    }
+
+    .app_LessonContainer > div:nth-child(1) {
+        width: 100%;
+    }
+
+    .app_LessonContainer > div:nth-child(2) {
+        width: 100%;
+    }
+
+    .app_LessonContainer .app_lessonContentSection {
+        margin-top: 0;
+    }
+}
+
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+    .app_LessonContainer {
+        flex-wrap: wrap;
+    }
+
+    .app_LessonContainer > div:nth-child(1) {
+        width: 100%;
+    }
+
+    .app_LessonContainer > div:nth-child(2) {
+        width: 100%;
+    }
+
+    .app_LessonContainer .app_lessonContentSection {
+        margin-top: 0;
+    }
 }

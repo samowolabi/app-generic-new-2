@@ -6,7 +6,7 @@ var materialFilterPills = (function () {
         var html = '';
         settings.list.forEach(function (item) {
             html += `
-                <span data-ripple data-value='${item.value}'>${item.name}</span>
+                <!-- <span data-ripple data-value='${item.value}'>${item.name}</span> -->
                 <!--<div class="materialChipFilter">
                     <input class="materialChipInput" name="size" type="checkbox"> <svg class="materialChipCheckbox" viewbox="-2 -3 30 30">
                     <path class="materialChipCheckboxPath" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="black"></path></svg>
@@ -14,6 +14,13 @@ var materialFilterPills = (function () {
                         ${item.name}
                     </div>
                 </div>-->
+                <div class="materialChipFilter materialThemeDark">
+                    <input class="materialChipInput materialThemeDark" name="size" type="checkbox"> <svg class="materialChipCheckbox" viewBox="-2 -3 30 30">
+                    <path class="materialChipCheckboxPath" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="black"></path></svg>
+                    <div class="materialChipInputText materialThemeDark">
+                    ${item.name}
+                    </div>
+                </div>
             `;
         })
 
@@ -29,14 +36,14 @@ var materialFilterPills = (function () {
                     </svg>
                 </div>
 
+                <div class="materialFilterPillsDiv">
+                    ${getHtml(settings)}
+                </div>
+
                 <div class="overlay rightScroll">
                     <svg width="22" height="22" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.99121 4.88672L17.9911 12.8866L9.99121 20.8864" stroke="#F9F4DE" stroke-width="1.59997" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                </div>
-
-                <div class="materialFilterPillsDiv">
-                    ${getHtml(settings)}
                 </div>
             </div>
         `;
