@@ -176,6 +176,34 @@ router.on({
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
+	'/newArticle/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newArticle.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newArticle.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newArticle/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
+	'/newEbook/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newEbook.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newEbook.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newEbook/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
 	'/old-home/': function (params) {
 		app.html({
 			target: "#content",

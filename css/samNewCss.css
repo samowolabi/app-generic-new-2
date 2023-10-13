@@ -46,6 +46,10 @@
     width: 74px
 }
 
+.app_headerContainer .app_headerBody .app_headerDiv .materialBarDashboardNavLink {
+    display: block;
+}
+
 .materialSearchBar {
     position: relative;
     background-color: rgba(37, 36, 36, 0.67);
@@ -69,13 +73,14 @@
 .materialSearchBar .materialSearchInputDiv input {
     width: 500px;
     padding: 0.75rem 1rem;
+    margin: 0;
     background-color: transparent;
     border: none;
     outline: none;
     color: #ffffff;
     font-size: 1.7rem;
     font-weight: 300;
-    transition: width 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
 .materialSearchBar .materialSearchInputDiv input::placeholder {
@@ -106,7 +111,7 @@
     width: 100%;
     z-index: 2;
     border-radius: 0 0 12px 12px;
-    transition: all 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
 .materialSearchBar.active .filterFormsContainer {
@@ -115,7 +120,11 @@
     gap: 1.75rem;
 }
 
-.materialSearchBar .filterFormsContainer select {
+.materialSearchBar.active .filterFormsContainer .materialInputContainer {
+    margin: 0
+}
+
+/* .materialSearchBar .filterFormsContainer select {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #414141;
@@ -125,7 +134,7 @@
     font-weight: 300;
     width: 100%;
     padding: 0.7rem 0;
-}
+} */
 
 .materialSearchBar .filterFormsContainer input {
     background-color: transparent;
@@ -366,7 +375,7 @@
 
 .app_ratingsSectionCard.rewardPoints p {
     color: #a9a9a9;
-    font-size: 15.2px;
+    font-size: 17px;
     font-weight: 400;
     padding-top: 2px;
 }
@@ -374,7 +383,7 @@
 .app_ratingsSectionCard.rewardPoints div:nth-child(2) p {
     color: #ffbb00;
     padding-top: 0.5rem;
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .app_ratingsSectionCard.rewardLevel h4 {
@@ -646,7 +655,7 @@
     align-items: center;
     gap: 0.5rem;
     opacity: 0.75;
-    transition: opacity 0.35s ease-in-out;
+    transition: 0.35s ease-in-out;
 }
 
 .app_historySearch .clearHistoryDiv:hover {
@@ -810,7 +819,7 @@
 
 .app_lessonOverviewSection {
     /* padding: 0 2rem; */
-    margin-top: 8rem;
+    margin-top: 5rem;
 }
 
 .app_lessonOverviewSection .lessonProgress {
@@ -862,6 +871,45 @@
     /* padding: 0 2rem; */
 }
 
+.app_lessonContentOverview {
+    border: 0.85px solid #373737;
+    background-color: #111111;
+}
+
+.app_lessonContentOverview > div {
+    padding: 2.2rem 2rem;
+}
+
+.app_lessonContentOverview h6 {
+    color: #FFFFFF;
+    font-size: 2.2rem;
+    padding-bottom: 0.35rem;
+}
+
+.app_lessonContentOverview p {
+    color: rgba(255, 255, 255, 0.73);
+    font-size: 1.6rem;
+}
+
+.app_lessonContentOverview .app_lessonContentOverviewProgress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2D2D2D;
+    padding: 2.2rem 2rem;
+}
+
+.app_lessonContentOverview .app_lessonContentOverviewProgress p {
+    color: #B9B9B9;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.app_lessonContentOverview .app_lessonContentOverviewProgress p:nth-child(2) {
+    color: #FFFFFF;
+}
+
+
 .materialAccordionHeader {
     color: #ffffff;
     width: 100%;
@@ -893,15 +941,22 @@
     font-weight: 300;
 }
 
+.materialAccordionHeader .dropdownIcon {
+    transition: 0.3s ease-in-out;
+}
+
+.materialAccordionHeader.active .dropdownIcon {
+    transform: rotate(180deg);
+}
+
 .materialAccordionContent {
-    height: 0;
+    max-height: 0;
     overflow: hidden;
-    transition: height 0.5s ease-in-out;
+    transition: max-height 0.3s ease;
 }
 
 .materialAccordionContent.active {
-    height: auto;
-    padding: 2rem 0;
+    padding: 0.01rem;
     border-bottom: 1px solid #313131;
     background-color: rgba(0,0,0,0.2);
 }
@@ -942,13 +997,40 @@
 
 
 
-
-
 /***** Lesson *****/
 .app_LessonContainer {
     display: flex;
-    gap: 7rem;
-    margin-top: 8rem;
+    gap: 4rem;
+}
+
+.app_LessonContainer .lessonPreview {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background-color: #333333;
+}
+
+.app_LessonContainer .lessonPreview.lesson {
+    background-image: url("../images/newImages/lessonCover.png");
+}
+
+.app_LessonContainer .lessonPreview.article {
+    background-image: url("../images/newImages/courseCover.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.app_LessonContainer .lessonPreview > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .app_LessonContainer > div:nth-child(1) {
@@ -960,7 +1042,7 @@
 }
 
 .app_LessonContainer .app_lessonOverviewSection .courseTitle {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .app_LessonContainer .app_lessonOverviewSection .courseTitle h4 {
@@ -1028,5 +1110,98 @@
 
     .app_LessonContainer .app_lessonContentSection {
         margin-top: 0;
+    }
+}
+
+
+/***** Article *****/
+.app_articleContentSection {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 2.4rem 2rem;
+}
+
+.app_articleContentSection .app_articleContentHeader {
+    padding-bottom: 0.35rem;
+}
+
+.app_articleContentSection .app_articleContentHeader h4 {
+    color: 4E4535;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+}
+
+.app_articleContentSection .app_articleContentHeader p {
+    color: 4E4535;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.app_articleContentSection .lessonProgress {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
+.app_articleContentSection .lessonProgress p {
+    color: #252423;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem
+}
+
+.app_articleContentSection .overallRatings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app_articleContentSection .overallRatings p {
+    color: #705702;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem
+}
+
+
+
+.materialBreadCrumbs {
+    color: #7E7E7E;
+    display: flex;
+    row-gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    list-style-type: none;
+    font-size: 1.5rem;
+}
+
+.materialBreadCrumbs li {
+    white-space: nowrap;
+}
+
+.materialBreadCrumbs li::after {
+    content: "\00BB";
+    font-size: 1.5rem;
+    color: #7E7E7E;
+    margin: 0 0.75rem;
+    cursor: pointer;
+}
+
+.materialBreadCrumbs li:last-child {
+    color: #EFEAE3;
+}
+
+.materialBreadCrumbs li:last-child::after {
+    content: "";
+    color: #F9ECC8;
+}
+
+@media (max-width: 768px) {
+    .materialBreadCrumbs {
+        padding: 0 2rem;
     }
 }

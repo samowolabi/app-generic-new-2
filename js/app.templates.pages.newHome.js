@@ -66,8 +66,10 @@ app.templates.pages.newHome = {
 
 								<div class="materialSearchBar">
 									<div class="materialSearchInputDiv">
+										<!--	
 										<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9.90039" cy="9.90015" r="9" stroke="white" stroke-width="1.5"/><path d="M16.5 16.5L22.864 22.864" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>	
-										<input type="text" placeholder="Search for your composers or favorite music" class="">
+										-->	
+										<input type="text" class="materialInputTextArea materialThemeDark" placeholder="Search for your composers or favorite music" class="">
 
 										<div class="filterSwitchBtn">
 											<svg width="21" height="21" viewBox="0 0 23 24" fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg">
@@ -78,21 +80,9 @@ app.templates.pages.newHome = {
 									</div>
 
 									<div class="filterFormsContainer">
-										<select type="text" placeholder="Composer" class="">
-											<option value="" disabled="" selected="">Composer</option>
-											<option>All</option>
-											<option>Albeniz, Isaac</option>
-											<option>Bach, J.S</option>
-											<option>Beethoven, Ludwig Van</option>
-											<option>Boccherini, Luigi</option>
-											<option>Brahms, Johannes</option>
-											<option>Chaminade, Cecil</option>
-											<option>Chopin, Frédéric</option>
-										</select>
-
 										<div class="materialInputContainer">
 											<div class="materialInputWrap">
-												<select class="materialInputControl" required="">
+												<select class="materialInputControl materialThemeDark" required="">
 													<option value="" disabled="" selected=""></option>
 													<option value="1">Alabama</option>
 													<option value="2">Houston</option>
@@ -106,68 +96,109 @@ app.templates.pages.newHome = {
 											</div>
 										</div>
 
-										<select type="text" placeholder="Duration" class="">
-											<option value="" disabled="" selected="">Duration</option>
-											<option>All</option>
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Duration</label>
+											</div>
+										</div>
 
-										<select type="text" placeholder="Level" class="">
-											<option value="" disabled="" selected="">Level</option>
-											<option>All</option>
-											<option>Level 1</option>
-											<option>Level 2</option>
-											<option>Level 3</option>
-											<option>Level 4</option>
-											<option>Level 5</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="1">Level 1</option>
+													<option value="2">Level 2</option>
+													<option value="3">Level 3</option>
+													<option value="4">Level 4</option>
+													<option value="5">Level 5</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Level</label>
+											</div>
+										</div>
 
-										<select type="text" placeholder="Form" class="">
-											<option value="" disabled="" selected="">Form</option>
-											<option>All</option>
-											<option>Air</option>
-											<option>Arabesque</option>
-											<option>Aria</option>
-											<option>Bagatelle</option>
-											<option>Ballade</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="All">All</option>
+													<option value="Air">Air</option>
+													<option value="Arabesque">Arabesque</option>
+													<option value="Aria">Aria</option>
+													<option value="Bagatelle">Bagatelle</option>
+													<option value="Ballade">Ballade</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Form</label>
+											</div>
+										</div>
 
-										<select type="text" placeholder="Era" class="">
-											<option value="" disabled="" selected="">Era</option>
-											<option>All</option>
-											<option>Baroque</option>
-											<option>British Folk</option>
-											<option>Classical</option>
-											<option>Impressionism</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="All">All</option>
+													<option value="Baroque">Baroque</option>
+													<option value="British Folk">British Folk</option>
+													<option value="Classical">Classical</option>
+													<option value="Impressionism">Impressionism</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Era</label>
+											</div>
+										</div>
 
-										<select type="text" placeholder="Genre" class="">
-											<option value="" disabled="" selected="">Genre</option>
-											<option>All</option>
-											<option>Classical</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="All">All</option>
+													<option value="Classical">Classical</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Genre</label>
+											</div>
+										</div>
 
-										<select type="text" placeholder="Year" class="">
-											<option value="" disabled="" selected="">Year</option>
-											<option>All</option>
-											<option>1685-1750</option>
-											<option>1685-1757</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="1685-1750">1685-1750</option>
+													<option value="1685-1757">1685-1757</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Year</label>
+											</div>
+										</div>
 
-										<select type="text" placeholder="Nationality" class="">
-											<option value="" disabled="" selected="">Nationality</option>
-											<option>All</option>
-											<option>African American</option>
-											<option>American</option>
-											<option>Australian</option>
-											<option>Austrian</option>
-											<option>English</option>
-											<option>Finnish</option>
-										</select>
+										<div class="materialInputContainer">
+											<div class="materialInputWrap">
+												<select class="materialInputControl materialThemeDark" required="">
+													<option value="" disabled="" selected=""></option>
+													<option value="All">All</option>
+													<option value="African American">African American</option>
+												</select>
+												<span class="materialInputHighlight"></span>
+												<span class="materialInputBar"></span>
+												<label class="materialInputLabel">Select Nationality</label>
+											</div>
+										</div>
 									</div>
 								</div>
 
@@ -177,13 +208,15 @@ app.templates.pages.newHome = {
 										<svg width="32" height="32" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16.7744" cy="17.2744" r="5.25" stroke="#CFCFCF" stroke-width="1.16667"/><path d="M20.625 21.125L24.3373 24.8373" stroke="#CFCFCF" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>
 									</div>
 
-									<div class="userProfileDiv">
-										<svg width="15.5" height="15.5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M9.50033 9.49967C11.6865 9.49967 13.4587 7.72747 13.4587 5.54134C13.4587 3.35521 11.6865 1.58301 9.50033 1.58301C7.3142 1.58301 5.54199 3.35521 5.54199 5.54134C5.54199 7.72747 7.3142 9.49967 9.50033 9.49967Z" fill="#A2A2A2" />
-											<path d="M9.49996 11.4795C5.53371 11.4795 2.30371 14.1395 2.30371 17.417C2.30371 17.6387 2.47788 17.8128 2.69954 17.8128H16.3004C16.522 17.8128 16.6962 17.6387 16.6962 17.417C16.6962 14.1395 13.4662 11.4795 9.49996 11.4795Z" fill="#A2A2A2" />
-										</svg>
-										<p>Rod</p>
-									</div>
+									<a class="materialBarDashboardNavLink" href="#" data-button="" data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
+										<div class="userProfileDiv">
+											<svg width="15.5" height="15.5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M9.50033 9.49967C11.6865 9.49967 13.4587 7.72747 13.4587 5.54134C13.4587 3.35521 11.6865 1.58301 9.50033 1.58301C7.3142 1.58301 5.54199 3.35521 5.54199 5.54134C5.54199 7.72747 7.3142 9.49967 9.50033 9.49967Z" fill="#A2A2A2" />
+												<path d="M9.49996 11.4795C5.53371 11.4795 2.30371 14.1395 2.30371 17.417C2.30371 17.6387 2.47788 17.8128 2.69954 17.8128H16.3004C16.522 17.8128 16.6962 17.6387 16.6962 17.417C16.6962 14.1395 13.4662 11.4795 9.49996 11.4795Z" fill="#A2A2A2" />
+											</svg>
+											<p>Rod</p>
+										</div>
+									</a>
 								</div>
 							</div>
 
@@ -228,7 +261,7 @@ app.templates.pages.newHome = {
 
 							<div>
 								<h4>You have 1930 Reward Points</h4>
-								<p>Learn how to use Rewards Points >></p>
+								<p>Learn how to use Rewards Points &raquo;</p>
 							</div>
 						</div>	
 

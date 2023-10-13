@@ -26,7 +26,6 @@ app.templates.pages.lesson = {
 		var lessonSubtitle 	   = app.data.lesson[lessonId].subtitle; 
 		
 		dataLesson.breadcrumb = [parentCourseTitle, parentChapterTitle, lessonSubtitle];
-
 		
 		var html =`
 					<div class="container"> 

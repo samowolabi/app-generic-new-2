@@ -1,6 +1,6 @@
 app.templates = app.templates || {};
 app.templates.pages = app.templates.pages || {};
-app.templates.pages.newLesson = {
+app.templates.pages.newEbook = {
     loading: function (target) {
         var html = `
                 <div class="container"> 
@@ -17,22 +17,18 @@ app.templates.pages.newLesson = {
 
         var html = `
             <main class="app_mainContainer maxWidthContainer">
-                <ul class="materialBreadCrumbs marginTop24 marginBottom3">
+                <ul class="materialBreadCrumbs marginTop20 marginBottom3">
                     <li>Exclusive Gifts</li>
-                    <li>Lessons</li>
-                    <li>The Hidden Patterns of Music</li>
+                    <li>Books</li>
+                    <li>The Music Chronicles</li>
                 </ul>
                 
                 <div class="app_LessonContainer">
-                    <div>
-                        <div class="lessonPreview lesson">
-                            <div></div>
-                        </div>
-
-                        <section class="app_lessonOverviewSection">
-                            <div class="courseTitle">
-                                <h4 class="fontFamilyOptimus">The Hidden Patterns of Music</h4>
-                                <p class="materialParagraph">QUINTESSIAL ROCK SONGS, MUSIC FUNDAMENTALS</p>
+                    <div>    
+                        <section class="app_articleContentSection">
+                            <div class="app_articleContentHeader">    
+                                <h4 class="fontFamilyOptimus">The Sustain Pedal</h4>
+                                <p class="fontFamilyOptimus">How to use pedal for Legato & Coloring (Part 1/2)</p>
                             </div>
 
                             <div class="lessonProgress">
@@ -40,9 +36,7 @@ app.templates.pages.newLesson = {
                                 <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
                             </div>
 
-                            <p class="lessonDescription">
-                                Beethoven’s Bagatelle in a (Fur Elise)  was composed on April 27, 1810 as a leaf in an album, Ludwig Nohl, who discovered the manuscript and published it in 1867, appears to have misread Beethoven’s writing of the name “Therese” (von Brunswick). She was the woman Beethoven reputedly loves and it was in her papers that the manuscript of Fuer Elise was discovered.
-                            </p>
+                            <div style="width: 100%; height: 500px"></div>
 
                             <div class="app_LessonRatings">
                                 <div class="overallRatings">
@@ -63,7 +57,7 @@ app.templates.pages.newLesson = {
                                 </div>
 
                                 <div style="display:flex; justify-content:space-end">
-                                    <a class="materialButtonOutline materialThemeDark ">Next Lesson</a>
+                                    <a class="materialButtonOutline">Next Lesson</a>
                                 </div>
                             </div>
                         </section>
@@ -71,12 +65,23 @@ app.templates.pages.newLesson = {
 
                     <div>
                         <section class="app_lessonContentSection">
-                            <div class="materialAccordion">
+                            <div class="app_lessonContentOverview">
+                                <div>
+                                    <h6 class="fontFamilyOptimus">The Wisdom from the Great matters</h6>
+                                    <p class="materialParagraph">You are in Lesson 12/25</p>
+                                </div>
 
+                                <div class="app_lessonContentOverviewProgress">
+                                    <p>Course Progress</p>
+                                    <p>54% Completed</p>
+                                </div>
+                            </div>
+
+                            <div class="materialAccordion">
                                 <div class="materialAccordionHeader active">
                                     <div>
                                         <h4>Chapter 1: Fur Elise</h4>
-                                        <p>0/24  |  1hr 45min</p>
+                                        <p>0/24  |  1hr 45min Read</p>
                                     </div>
                                     <div class="dropdownIcon">
                                         <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -137,7 +142,7 @@ app.templates.pages.newLesson = {
                                 <div class="materialAccordionHeader">
                                 <div>
                                     <h4>Chapter 2: Fur Elise</h4>
-                                    <p>0/24  |  1hr 45min</p>
+                                    <p>0/24  |  1hr 45min Read</p>
                                 </div>
                                 <div class="dropdownIcon">
                                     <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -152,7 +157,7 @@ app.templates.pages.newLesson = {
                             <div class="materialAccordionHeader">
                                 <div>
                                     <h4>Chapter 3: Fur Elise</h4>
-                                    <p>0/24  |  1hr 45min</p>
+                                    <p>0/24  |  1hr 45min Read</p>
                                 </div>
                                 <div class="dropdownIcon">
                                     <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>

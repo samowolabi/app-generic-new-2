@@ -1,6 +1,6 @@
 app.templates = app.templates || {};
 app.templates.pages = app.templates.pages || {};
-app.templates.pages.newLesson = {
+app.templates.pages.newArticle = {
     loading: function (target) {
         var html = `
                 <div class="container"> 
@@ -17,21 +17,33 @@ app.templates.pages.newLesson = {
 
         var html = `
             <main class="app_mainContainer maxWidthContainer">
-                <ul class="materialBreadCrumbs marginTop24 marginBottom3">
+                <ul class="materialBreadCrumbs marginTop20 marginBottom3">
                     <li>Exclusive Gifts</li>
-                    <li>Lessons</li>
-                    <li>The Hidden Patterns of Music</li>
+                    <li>Books</li>
+                    <li>The Music Chronicles</li>
                 </ul>
                 
                 <div class="app_LessonContainer">
                     <div>
-                        <div class="lessonPreview lesson">
-                            <div></div>
+                        <div class="lessonPreview article">
+                            <div>
+                                <div>
+                                    <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
+                                    <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="materialLessonVideo materialPlaceHolder">
+                            <div style="background: transparent;  z-index: 2;">
+                                <a href="#!/lesson/5002/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
+                            </div>
+                            <iframe src="https://pianoencyclopedia.com/en/ebook-viewer/?pdfUrl=//pianoencyclopedia.com/en/ebook-viewer/pdfs/The Piano Encyclopedia Music Fundamentals.pdf&amp;progressDetails=&amp;engagementTime=0" frameborder="0" allowfullscreen=""></iframe>
                         </div>
 
                         <section class="app_lessonOverviewSection">
                             <div class="courseTitle">
-                                <h4 class="fontFamilyOptimus">The Hidden Patterns of Music</h4>
+                                <h4 class="fontFamilyOptimus">The Music Chronicles</h4>
                                 <p class="materialParagraph">QUINTESSIAL ROCK SONGS, MUSIC FUNDAMENTALS</p>
                             </div>
 
@@ -76,7 +88,7 @@ app.templates.pages.newLesson = {
                                 <div class="materialAccordionHeader active">
                                     <div>
                                         <h4>Chapter 1: Fur Elise</h4>
-                                        <p>0/24  |  1hr 45min</p>
+                                        <p>0/24  |  1hr 45min Read</p>
                                     </div>
                                     <div class="dropdownIcon">
                                         <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -137,7 +149,7 @@ app.templates.pages.newLesson = {
                                 <div class="materialAccordionHeader">
                                 <div>
                                     <h4>Chapter 2: Fur Elise</h4>
-                                    <p>0/24  |  1hr 45min</p>
+                                    <p>0/24  |  1hr 45min Read</p>
                                 </div>
                                 <div class="dropdownIcon">
                                     <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -152,7 +164,7 @@ app.templates.pages.newLesson = {
                             <div class="materialAccordionHeader">
                                 <div>
                                     <h4>Chapter 3: Fur Elise</h4>
-                                    <p>0/24  |  1hr 45min</p>
+                                    <p>0/24  |  1hr 45min Read</p>
                                 </div>
                                 <div class="dropdownIcon">
                                     <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
