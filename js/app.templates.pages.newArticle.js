@@ -26,20 +26,22 @@ app.templates.pages.newArticle = {
                 <div class="app_LessonContainer">
                     <div>
                         <div class="lessonPreview article">
-                            <div>
+                            <div class="overlay">
                                 <div>
                                     <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
                                     <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
                                 </div>
                             </div>
+
+                            <div class="materialLessonVideo materialPlaceHolder">
+                                <div style="background: transparent;  z-index: 2;">
+                                    <a href="#!/lesson/5002/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
+                                </div>
+                                <iframe src="https://pianoencyclopedia.com/en/ebook-viewer/?pdfUrl=//pianoencyclopedia.com/en/ebook-viewer/pdfs/The Piano Encyclopedia Music Fundamentals.pdf&amp;progressDetails=&amp;engagementTime=0" frameborder="0" allowfullscreen=""></iframe>
+                            </div>
                         </div>
 
-                        <div class="materialLessonVideo materialPlaceHolder">
-                            <div style="background: transparent;  z-index: 2;">
-                                <a href="#!/lesson/5002/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
-                            </div>
-                            <iframe src="https://pianoencyclopedia.com/en/ebook-viewer/?pdfUrl=//pianoencyclopedia.com/en/ebook-viewer/pdfs/The Piano Encyclopedia Music Fundamentals.pdf&amp;progressDetails=&amp;engagementTime=0" frameborder="0" allowfullscreen=""></iframe>
-                        </div>
+
 
                         <section class="app_lessonOverviewSection">
                             <div class="courseTitle">

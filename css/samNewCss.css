@@ -1006,7 +1006,6 @@
 .app_LessonContainer .lessonPreview {
     position: relative;
     width: 100%;
-    height: 450px;
     background-color: #333333;
 }
 
@@ -1015,18 +1014,16 @@
 }
 
 .app_LessonContainer .lessonPreview.article {
-    background-image: url("../images/newImages/courseCover.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
 }
 
-.app_LessonContainer .lessonPreview > div {
+.app_LessonContainer .lessonPreview.article .overlay {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 5;
     background: rgba(0,0,0,0.75);
     display: flex;
     justify-content: center;
