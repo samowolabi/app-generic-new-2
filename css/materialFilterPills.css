@@ -56,3 +56,13 @@
 .materialFilterPillsDiv::-webkit-scrollbar {
     display: none;
 }
+
+.materialFilterPillsDiv .materialChipFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    gap: 0.5rem;
+    padding: 0.5em 1em;
+    margin: 0;
+}
