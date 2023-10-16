@@ -148,7 +148,7 @@ app.templates.pages.newArticle = {
                                 </div>
 
 
-                                <div class="materialAccordionHeader">
+                            <div class="materialAccordionHeader">
                                 <div>
                                     <h4>Chapter 2: Fur Elise</h4>
                                     <p>0/24  |  1hr 45min Read</p>
@@ -189,6 +189,7 @@ app.templates.pages.newArticle = {
                 <script>
                     console.log("RUNNING");
                     dashboardInfiniteScrolling.load();  
+                    materialAccordion.init()
                 </script>
 
                 <script>
@@ -201,14 +202,7 @@ app.templates.pages.newArticle = {
                         button.addEventListener('click', () => {
                             const content = button.nextElementSibling;
 
-                            // accordionButtons.forEach(otherButton => {
-                            //     if (otherButton !== button) {
-                            //         otherButton.classList.remove('active');
-                            //         otherButton.nextElementSibling.classList.remove('active');
-                            //     }
-                            // });
-
-                            button.classList.toggle('active');
+                           button.classList.toggle('active');
                             content.classList.toggle('active');
 
                             if (content.style.maxHeight) {

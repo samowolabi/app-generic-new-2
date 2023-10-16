@@ -1,0 +1,84 @@
+.materialAccordionHeader {
+    color: #ffffff;
+    width: 100%;
+    padding: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #313131;
+    background-color: #1C1C1C;
+}
+
+.materialAccordionHeader.active {
+    border-bottom: 0;
+}
+
+.materialAccordionHeader h4 {
+    font-size: 1.78rem;
+    padding-bottom: 0.35rem;
+}
+
+.materialAccordionHeader.active h4 {
+    color: #D6A90B;
+}
+
+.materialAccordionHeader p {
+    color: #a3a3a3;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.materialAccordionHeader .dropdownIcon {
+    transition: 0.3s ease-in-out;
+}
+
+.materialAccordionHeader.active .dropdownIcon {
+    transform: rotate(180deg);
+}
+
+.materialAccordionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.materialAccordionContent.active {
+    padding: 0.01rem;
+    border-bottom: 1px solid #313131;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.materialAccordionContent .materialOutlineLearn li {
+    background: #0b0b0b;
+    border-bottom: 1px solid #111111
+}
+
+.materialAccordionContent .materialOutlineLearn li:hover {
+    background: #222222;
+}
+
+.materialAccordionContent .materialOutlineLearn li h6 {
+    color: #F9F4DE;
+}
+
+.materialAccordionContent .materialOutlineLearn li p {
+    color: #c8c8c8;
+}
+
+.materialAccordionContent .materialOutlineLearn li:before {
+    width: 7.5px;
+    background-color: rgba(240, 227, 224, 0.2)
+}
+
+.materialAccordionContent .materialOutlineLearn .materialOutlineIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F4BE37;
+    border-color: #F4BE37;
+}
+
+.materialAccordionContent .materialOutlineLearn .materialOutlineIcon .fa {
+    color: #000000;
+}
