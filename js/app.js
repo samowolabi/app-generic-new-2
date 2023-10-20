@@ -966,7 +966,7 @@ app.addRewardPoints = function(snackBarText, rewardPointsToAdd){
 app.fetchRemoteData = function(callback){
 	$.ajax({  
 		dataType: "text", //To avoid parsing of JSON
-		url: "https://3117-102-88-34-25.ngrok-free.app/app-generic-new-2/server.json",  //HARDCODED
+		url: "http://localhost/app-generic-new-2/server.json",  //HARDCODED
 		cache: false, 
 		type: "POST",
 		crossDomain: true,

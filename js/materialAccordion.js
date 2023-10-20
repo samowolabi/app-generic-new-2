@@ -10,7 +10,7 @@ var materialAccordion = (function () {
                 <div class="materialAccordionHeader active">
                     <div>
                         <h4>${item.header}</h4>
-                        <p>0/24  |  1hr 45min Read</p>
+                        <p>${item.subHeader}</p>
                     </div>
                     <div class="dropdownIcon">
                         <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>

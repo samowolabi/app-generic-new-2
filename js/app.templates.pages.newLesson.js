@@ -15,6 +15,11 @@ app.templates.pages.newLesson = {
     content: function () {
         var data = app.data;
 
+        
+        var courseHtml = `
+        `;
+
+
         var html = `
             <main class="app_mainContainer maxWidthContainer">
                 <ul class="materialBreadCrumbs marginTop24 marginBottom3">
@@ -26,7 +31,7 @@ app.templates.pages.newLesson = {
                 <div class="app_LessonContainer">
                     <div>
                         <div class="lessonPreview lesson">
-                            <div></div>
+                            <div style="width: 100%; height: 450px"></div>
                         </div>
 
                         <section class="app_lessonOverviewSection">
@@ -71,100 +76,75 @@ app.templates.pages.newLesson = {
 
                     <div>
                         <section class="app_lessonContentSection">
-                            <div class="materialAccordion">
-
-                                <div class="materialAccordionHeader active">
-                                    <div>
-                                        <h4>Chapter 1: Fur Elise</h4>
-                                        <p>0/24  |  1hr 45min</p>
-                                    </div>
-                                    <div class="dropdownIcon">
-                                        <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    </div>
-                                </div>
-
-                                <div class="materialAccordionContent active">
-                                    <div class="materialOutlineLearn">
-                                        <ul class="materialOutlineList"> 
-                                            <li class="materialOutlineView materialOutlineViewComplete"> 
-                                                <div class="materialOutlineListBody">
-                                                    <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-3/"> 
-                                                        <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?1);">
-                                                            <div class="materialProgressBar">
-                                                                <div class="materialProgressBarInside " style="width:30%;"></div>
+                            ${
+                                materialAccordion.create({
+                                    list: [
+                                        {
+                                            header: 'Chapter 1: Fur Elise',
+                                            subHeader: '0/24  |  1hr 45min',
+                                            content: `
+                                                <div class="materialOutlineLearn">
+                                                    <ul class="materialOutlineList"> 
+                                                        <li class="materialOutlineView materialOutlineViewComplete"> 
+                                                            <div class="materialOutlineListBody">
+                                                                <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-3/"> 
+                                                                    <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?1);">
+                                                                        <div class="materialProgressBar">
+                                                                            <div class="materialProgressBarInside " style="width:30%;"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6>Lesson 1</h6>
+                                                                    <p>How to Play 50 Songs with Just Four Chords</p>
+                                                                    <p class="materialOutlineExpire"><i class="fa fa-clock-o"></i>Expiring in 12:23:02</p>
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                        <h6>Lesson 1</h6>
-                                                        <p>How to Play 50 Songs with Just Four Chords</p>
-                                                        <p class="materialOutlineExpire"><i class="fa fa-clock-o"></i>Expiring in 12:23:02</p>
-                                                    </a>
-                                                </div>
-                                                <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
-                                            </li>
-                                            <li class="materialOutlineView"> 
-                                                <div class="materialOutlineListBody">
-                                                    <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-4/">
-                                                        <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?2);">
-                                                            <div class="materialProgressBar">
-                                                                <div class="materialProgressBarInside " style="width:90%;"></div>
+                                                            <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+                                                        </li>
+                                                        <li class="materialOutlineView"> 
+                                                            <div class="materialOutlineListBody">
+                                                                <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-4/">
+                                                                    <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?2);">
+                                                                        <div class="materialProgressBar">
+                                                                            <div class="materialProgressBarInside " style="width:90%;"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6>Lesson 2</h6>
+                                                                    <p>How to Play 50 Songs with Just Four Chords</p>
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                        <h6>Lesson 2</h6>
-                                                        <p>How to Play 50 Songs with Just Four Chords</p>
-                                                    </a>
-                                                </div>
-                                                <div class="materialOutlineIcon" style="background: #0b0b0b; border-color: rgba(240, 227, 224, 0.2);"> </div>
-                                            </li>
-                                            <li class="materialOutlineView"> 
-                                                <div class="materialOutlineListBody">
-                                                    <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-5/">
-                                                        <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?3);">
-                                                            <div class="materialProgressBar">
-                                                                <div class="materialProgressBarInside " style="width:90%;"></div>
+                                                            <div class="materialOutlineIcon" style="background: #0b0b0b; border-color: rgba(240, 227, 224, 0.2);"> </div>
+                                                        </li>
+                                                        <li class="materialOutlineView"> 
+                                                            <div class="materialOutlineListBody">
+                                                                <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-5/">
+                                                                    <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?3);">
+                                                                        <div class="materialProgressBar">
+                                                                            <div class="materialProgressBarInside " style="width:90%;"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6>Lesson 3</h6>
+                                                                    <p>Adding a Fancy Bass Line</p>
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                        <h6>Lesson 3</h6>
-                                                        <p>Adding a Fancy Bass Line</p>
-                                                    </a>
+                                                            <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                                <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="materialAccordionHeader">
-                                <div>
-                                    <h4>Chapter 2: Fur Elise</h4>
-                                    <p>0/24  |  1hr 45min</p>
-                                </div>
-                                <div class="dropdownIcon">
-                                    <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                </div>
-                            </div>
-
-                            <div class="materialAccordionContent">
-                                
-                            </div>
-
-
-                            <div class="materialAccordionHeader">
-                                <div>
-                                    <h4>Chapter 3: Fur Elise</h4>
-                                    <p>0/24  |  1hr 45min</p>
-                                </div>
-                                <div class="dropdownIcon">
-                                    <svg width="24" height="24" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.27539 13.0817L16.7345 23.5408L27.1937 13.0817" stroke="#C8C8C8" stroke-width="2.09183" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                </div>
-                            </div>
-
-                            <div class="materialAccordionContent">
-                                Hiii
-                            </div>
-
-
-                            </div>
+                                            `
+                                        },
+                                        {
+                                            header: 'Chapter 2: Fur Elise',
+                                            subHeader: '0/24  |  1hr 45min',
+                                            content: `Hi`
+                                        },
+                                        {
+                                            header: 'Chapter 3: Fur Elise',
+                                            subHeader: '0/24  |  1hr 45min',
+                                            content: `Hi`
+                                        }
+                                    ]
+                                })
+                            }
                         </section>
                     </div>
                 </div>
@@ -175,35 +155,7 @@ app.templates.pages.newLesson = {
                 <script>
                     console.log("RUNNING");
                     dashboardInfiniteScrolling.load();  
-                </script>
-
-                <script>
-                    const accordionButtons = document.querySelectorAll('.materialAccordionHeader');
-
-                    // Set Default Accordion
-                    accordionButtons[0].nextElementSibling.style.maxHeight = accordionButtons[0].nextElementSibling.scrollHeight + 'px';
-
-                    accordionButtons.forEach(button => {
-                        button.addEventListener('click', () => {
-                            const content = button.nextElementSibling;
-
-                            // accordionButtons.forEach(otherButton => {
-                            //     if (otherButton !== button) {
-                            //         otherButton.classList.remove('active');
-                            //         otherButton.nextElementSibling.classList.remove('active');
-                            //     }
-                            // });
-
-                            button.classList.toggle('active');
-                            content.classList.toggle('active');
-
-                            if (content.style.maxHeight) {
-                                content.style.maxHeight = null;
-                            } else {
-                                content.style.maxHeight = content.scrollHeight + 'px';
-                            }
-                        });
-                    });
+                    materialAccordion.init();
                 </script>
 			`;
 
