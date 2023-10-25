@@ -7,7 +7,7 @@ var materialAccordion = (function () {
 
         settings.list.forEach(function (item) {
             html += `
-                <div class="materialAccordionHeader active">
+                <div class="materialAccordionHeader" data-active=${item.onInitOpenAccordion ? 'active' : ''}>
                     <div>
                         <h4>${item.header}</h4>
                         <p>${item.subHeader}</p>
@@ -54,10 +54,12 @@ var materialAccordion = (function () {
                 }
             }
 
-            // Set Default Accordion
-            toggleAccordion(accordionButtons[0], accordionButtons[0].nextElementSibling);
-
             accordionButtons.forEach(button => {
+                // Set Default Accordion
+                if(button.dataset.active === 'active') {
+                    toggleAccordion(button, button.nextElementSibling);
+                }
+                
                 button.addEventListener('click', () => {
                     const content = button.nextElementSibling;
                     toggleAccordion(button, content);

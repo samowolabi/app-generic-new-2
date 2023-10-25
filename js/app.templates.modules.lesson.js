@@ -419,7 +419,7 @@ app.templates.modules.lesson = {
 											}).catch(function(error) {
 												switch (error.name) {
 													case 'RangeError':
-															console.log("Video Resume failed: The time was less than 0 or greater than the video’s duration");
+															console.log("Video Resume failed: The time was less than 0 or greater than the videoï¿½s duration");
 														break;
 
 													default:
@@ -654,7 +654,7 @@ app.templates.modules.lesson = {
 												}).catch(function(error) {
 													switch (error.name) {
 														case 'RangeError':
-																console.log("Video Resume failed: The time was less than 0 or greater than the video’s duration");
+																console.log("Video Resume failed: The time was less than 0 or greater than the videoï¿½s duration");
 															break;
 
 														default:
@@ -739,7 +739,7 @@ app.templates.modules.lesson = {
 												timestamp = Math.floor(timestamp / 1000);
 
 												//Avoid adding progress 0 when user clicks play
-												if(currentPercent >0){
+												if(currentPercent > 0){
 													thisLesson().engagementProgressArrayDetails.push(currentPercent);												
 												}
 												

@@ -244,7 +244,8 @@ app.templates.modules.lessonsOutline = {
 							<div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
 						</li>
 					</ul> 
-				</div>`;		
+				</div>
+				<script>materialAccordion.create({ referenceAVariable your created before})`;		
 									
 								
 		return html;

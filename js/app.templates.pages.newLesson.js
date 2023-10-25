@@ -12,13 +12,11 @@ app.templates.pages.newLesson = {
 
         return html;
     },
-    content: function () {
+    content: function (data, activeCourseId, activeLessonId, overrideTitle) {
         var data = app.data;
 
-        
-        var courseHtml = `
-        `;
-
+        var courseHtml = ``;
+        activeCourseId = 3000;
 
         var html = `
             <main class="app_mainContainer maxWidthContainer">
@@ -36,17 +34,17 @@ app.templates.pages.newLesson = {
 
                         <section class="app_lessonOverviewSection">
                             <div class="courseTitle">
-                                <h4 class="fontFamilyOptimus">The Hidden Patterns of Music</h4>
-                                <p class="materialParagraph">QUINTESSIAL ROCK SONGS, MUSIC FUNDAMENTALS</p>
+                                <h4 class="fontFamilyOptimus">${data.course[activeCourseId].title}</h4>
+                                <p class="materialParagraph">${data.course[activeCourseId].description}</p>
                             </div>
 
                             <div class="lessonProgress">
-                                <p>54% Completed</p>
+                                <p>${data.course[activeCourseId].stats.lessons.totalProgress}% Completed</p>
                                 <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
                             </div>
 
                             <p class="lessonDescription">
-                                Beethoven’s Bagatelle in a (Fur Elise)  was composed on April 27, 1810 as a leaf in an album, Ludwig Nohl, who discovered the manuscript and published it in 1867, appears to have misread Beethoven’s writing of the name “Therese” (von Brunswick). She was the woman Beethoven reputedly loves and it was in her papers that the manuscript of Fuer Elise was discovered.
+                                ${data.course[activeCourseId].description}
                             </p>
 
                             <div class="app_LessonRatings">
@@ -78,71 +76,52 @@ app.templates.pages.newLesson = {
                         <section class="app_lessonContentSection">
                             ${
                                 materialAccordion.create({
-                                    list: [
-                                        {
-                                            header: 'Chapter 1: Fur Elise',
-                                            subHeader: '0/24  |  1hr 45min',
+                                    list: data.course[activeCourseId].chapterIds.map(function(chapterId, index) {
+                                        return {
+                                            header: data.chapter[chapterId].title,
+                                            subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}  |  -hr -min`,
+                                            onInitOpenAccordion: index === 0 ? true : false,
                                             content: `
                                                 <div class="materialOutlineLearn">
                                                     <ul class="materialOutlineList"> 
-                                                        <li class="materialOutlineView materialOutlineViewComplete"> 
-                                                            <div class="materialOutlineListBody">
-                                                                <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-3/"> 
-                                                                    <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?1);">
-                                                                        <div class="materialProgressBar">
-                                                                            <div class="materialProgressBarInside " style="width:30%;"></div>
+                                                        ${
+                                                            data.chapter[chapterId].lessonIds.map(function(lessonId){
+                                                                return `
+                                                                    <li class="materialOutlineView materialOutlineViewComplete"> 
+                                                                        <div class="materialOutlineListBody">
+                                                                            <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-3/"> 
+                                                                                <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?1);">
+                                                                                    <div class="materialProgressBar">
+                                                                                        <div class="materialProgressBarInside " style="width:30%;"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <h6>${data.lesson[lessonId].title}</h6>
+                                                                                <p>${data.lesson[lessonId].subtitle}</p>
+                                                                                ${
+                                                                                    data.lesson[lessonId].dateStatus === 'expiredAsap' ? `
+                                                                                        <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring in <span data-countdown="${data.lesson[lessonId].deadlineDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
+                                                                                    ` : data.lesson[lessonId].dateStatus === 'expiringSoon' ? `
+                                                                                        <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring Soon</p>
+                                                                                    ` : data.lesson[lessonId].dateStatus === 'comingAsap' ? `
+                                                                                        <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Available in <span data-countdown="${data.lesson[lessonId].availableDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
+                                                                                    ` : data.lesson[lessonId].dateStatus === 'comingSoon' ? `
+                                                                                        <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Coming Soon</p>
+                                                                                    ` : data.lesson[lessonId].dateStatus === 'expired' ? `
+                                                                                        <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expired</p>
+                                                                                    ` : ``
+                                                                                }
+                                                                            </a>
                                                                         </div>
-                                                                    </div>
-                                                                    <h6>Lesson 1</h6>
-                                                                    <p>How to Play 50 Songs with Just Four Chords</p>
-                                                                    <p class="materialOutlineExpire"><i class="fa fa-clock-o"></i>Expiring in 12:23:02</p>
-                                                                </a>
-                                                            </div>
-                                                            <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
-                                                        </li>
-                                                        <li class="materialOutlineView"> 
-                                                            <div class="materialOutlineListBody">
-                                                                <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-4/">
-                                                                    <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?2);">
-                                                                        <div class="materialProgressBar">
-                                                                            <div class="materialProgressBarInside " style="width:90%;"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h6>Lesson 2</h6>
-                                                                    <p>How to Play 50 Songs with Just Four Chords</p>
-                                                                </a>
-                                                            </div>
-                                                            <div class="materialOutlineIcon" style="background: #0b0b0b; border-color: rgba(240, 227, 224, 0.2);"> </div>
-                                                        </li>
-                                                        <li class="materialOutlineView"> 
-                                                            <div class="materialOutlineListBody">
-                                                                <a href="http://learn.pianoencyclopedia.com/members-only/dashboard/lesson-5/">
-                                                                    <div class="materialOutlineThumbnail" style="background-image: url(https://placeimg.com/960/540/nature?3);">
-                                                                        <div class="materialProgressBar">
-                                                                            <div class="materialProgressBarInside " style="width:90%;"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h6>Lesson 3</h6>
-                                                                    <p>Adding a Fancy Bass Line</p>
-                                                                </a>
-                                                            </div>
-                                                            <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
-                                                        </li>
+                                                                        <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+                                                                    </li>
+                                                                `
+                                                            }).join('')
+                                                        }
                                                     </ul>
                                                 </div>
                                             `
-                                        },
-                                        {
-                                            header: 'Chapter 2: Fur Elise',
-                                            subHeader: '0/24  |  1hr 45min',
-                                            content: `Hi`
-                                        },
-                                        {
-                                            header: 'Chapter 3: Fur Elise',
-                                            subHeader: '0/24  |  1hr 45min',
-                                            content: `Hi`
                                         }
-                                    ]
+                                    })
                                 })
                             }
                         </section>
