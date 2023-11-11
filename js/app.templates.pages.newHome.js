@@ -17,10 +17,9 @@ app.templates.pages.newHome = {
 		var name = data.user.profile.name ? (data.user.profile.name + ",") : "";
 
 		//Create rewards Sections
-		var rewardsSectionResult = app.templates.modules.rewardsLevel.content({ linkToRewardsPage: true });
-
-		var htmlRewardsSection1 = rewardsSectionResult.section1;
-		var htmlRewardsSection2 = rewardsSectionResult.section2; //Not used
+		// var rewardsSectionResult = app.templates.modules.rewardsLevel.content({ linkToRewardsPage: true });
+		var htmlRewardsSection1 = app.templates.modules.rewardsLevel.content('section1');
+		var htmlRewardsSection2 = app.templates.modules.rewardsLevel.content('section2'); //Not used
 
 		var courseArray = [
 			{
@@ -234,11 +233,32 @@ app.templates.pages.newHome = {
 					</div>
 				</header>
 
+				${materialHeroSection.create({
+					data: [
+						{
+							title: 'Discover the Logic <br> Behind the Music',
+							description: 'Simple but powerful secrets finally revealed, through interactive step-by-step lessons',
+							image: 'http://localhost/app-generic-new-2/images/newImages/heroScreenBG.jpg'
+						},
+						{
+							title: 'Piano lessons designed <br> for all levels',
+							description: 'Discover the hidden patterns of music and learn how to improvise, play by ear',
+							image: 'http://localhost/app-generic-new-2/images/newImages/lessonCover.png'
+						},
+						{
+							title: 'Digital Home <br> Study Course',
+							description: 'Featured by Forbes as the interactive course that is revolutionizing the way people learn',
+							image: 'http://localhost/app-generic-new-2/images/newImages/courseCover.png'
+
+						}
+					]
+				})}
+
 				<section class="app_ratingsSection">
 					<div class="app_ratingsSectionCard ratingsContent">
 						<div class="pianoLevelDiv">
 							<div>
-								<h2>5%</h2>
+								<h2>${data.user.stats.profile.complete}%</h2>
 								<span>Complete</span>
 							</div>
 							<div>
@@ -253,18 +273,21 @@ app.templates.pages.newHome = {
 					<div class="rewardPointsContainer marginTop4">
 						<div class="app_ratingsSectionCard rewardPoints">
 							<div>
-								<h4>You have 427 unfinished lessons</h4>
+								<h4>You have ${data.user.stats.lessons.total - data.user.stats.lessons.complete} unfinished lessons</h4>
 
-								<p class="paddingTop7">You completed 401.</p>
+								<p class="paddingTop7">You completed ${data.user.stats.lessons.complete}.</p>
 								<p>Complete more to gain more Reward Points</p>
 							</div>
 
 							<div>
-								<h4>You have 1930 Reward Points</h4>
+								<h4>You have ${data.user.profile.rewardPoints} Reward Points</h4>
 								<p>Learn how to use Rewards Points &raquo;</p>
 							</div>
 						</div>	
 
+						${htmlRewardsSection1}
+						
+						<!--
 						<div class="app_ratingsSectionCard rewardLevel">
 							<h4>70 points needed to reach Reward Level 3</h4>
 							<div class="rewardLevelProgress"><div style="width: 60%"></div></div>
@@ -293,29 +316,35 @@ app.templates.pages.newHome = {
 								</div>
 							</div>
 						</div>
+						-->
 					</div>
 				</section>	
+
+				<div class="container marginTop10">
+					<div class="row action-cards-top">  
+						${app.templates.modules.actionCards.content([])} 
+					</div>
+				</div>
 				
 				<section class="app_coursesCardsSection">
 					<div class="app_coursesCardsFilterPills">	
-						${
-							materialFilterPills.create({
-								list: [
-									{ name: 'Beethoven', value: 'Beethoven' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Neo Classicism', value: 'Neo Classicism' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Romantic', value: 'Romantic' },
-									{ name: 'Intermediate', value: 'Intermediate' },
-									{ name: 'Beethoven', value: 'Beethoven' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Neo Classicism', value: 'Neo Classicism' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Romantic', value: 'Romantic' },
-									{ name: 'Intermediate', value: 'Intermediate' }
-								]
-							})
-						}
+						${materialFilterPills.create({
+				list: [
+					{ name: 'Beethoven', value: 'Beethoven' },
+					{ name: 'Impressionism', value: 'Impressionism' },
+					{ name: 'Neo Classicism', value: 'Neo Classicism' },
+					{ name: 'Impressionism', value: 'Impressionism' },
+					{ name: 'Romantic', value: 'Romantic' },
+					{ name: 'Intermediate', value: 'Intermediate' },
+					{ name: 'Beethoven', value: 'Beethoven' },
+					{ name: 'Impressionism', value: 'Impressionism' },
+					{ name: 'Neo Classicism', value: 'Neo Classicism' },
+					{ name: 'Impressionism', value: 'Impressionism' },
+					{ name: 'Romantic', value: 'Romantic' },
+					{ name: 'Intermediate', value: 'Intermediate' }
+				]
+			})
+			}
 					</div>
 
 
@@ -323,11 +352,10 @@ app.templates.pages.newHome = {
 						<div class="app_coursesCardsContainer">
 							<p>${course.header}</p>
 
-							${
-								materialCardScrolling.create({
-									list: course.courses
-								})
-							}
+							${materialCardScrolling.create({
+				list: course.courses
+			})
+				}
 						</div>
 					`)}
 				</section>
@@ -374,7 +402,8 @@ app.templates.pages.newHome = {
 		html += `
 					<script>
 						console.log("RUNNING");
-						dashboardInfiniteScrolling.load();   
+						dashboardInfiniteScrolling.load();  
+						materialHeroSection.init(); 
 						materialFilterPills.init()
 						materialCardScrolling.init()
 					</script>

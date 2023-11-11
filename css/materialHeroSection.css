@@ -1,0 +1,192 @@
+.materialHeroSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0 auto;
+    font-family: sans-serif;
+}
+
+.materialHeroSection .carouselControl {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    max-width: 128rem;
+    margin: 0 auto;
+}
+
+.materialHeroSection .carouselControl button {
+    cursor: pointer;
+    opacity: 0.65;
+    background: none;
+    border: none;
+    padding: 0.65rem;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 75px;
+}
+
+.materialHeroSection .carouselControl button:nth-child(1) {
+    margin-left: 1rem;
+}
+
+.materialHeroSection .carouselControl button:nth-child(2) {
+    margin-right: 1rem;
+}
+
+.materialHeroSection .carouselControl button:hover {
+    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.materialHeroSection .carouselControl button:active {
+    opacity: 0.9;
+}
+
+.materialHeroSection .heroSectionDiv {
+    width: 100%;
+    height: 100%;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg {
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: animateZoom 8.5s ease-in-out infinite, animateFade 5s ease-out infinite;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg>div {
+    padding: 0 7rem;
+    width: 100%;
+    max-width: 128rem;
+    margin: 0 auto;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg>div .buttonRow {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg>div h1.header {
+    color: #FFFBDC;
+    position: relative;
+    z-index: 3;
+    font-size: 6.75rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    font-family: 'OptimusPrinceps', sans-serif;
+    animation: slideUp 1s ease-in-out;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg>div p.headerSubText {
+    color: #c8c8c8;
+    position: relative;
+    z-index: 3;
+    font-size: 1.75rem;
+    font-weight: 400;
+    font-size: 'Lato', sans-serif;
+    animation: slideUp 1s ease-in-out;
+    animation-delay: 150ms;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg>div .buttonRow {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 3;
+    margin-top: 5rem;
+}
+
+.materialHeroSection .heroSectionDiv .heroBGImg>div .buttonRow p {
+    color: #c8c8c8;   
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .materialHeroSection .heroSectionDiv .heroBGImg {
+        background-size: cover;
+        animation: animateFade 5s ease-out infinite;
+    }
+
+    .materialHeroSection .heroSectionDiv .heroBGImg>div {
+        padding: 2rem;
+    }
+
+    .materialHeroSection .heroSectionDiv .heroBGImg>div h1.header {
+        font-size: 2.25rem;
+    }
+
+    .materialHeroSection .heroSectionDiv .heroBGImg>div p.headerSubText {
+        font-size: 1rem;
+    }
+}
+
+
+@keyframes animateZoom {
+    from {
+        background-size: 100%
+    }
+
+    to {
+        background-size: 105%
+    }
+}
+
+@keyframes animateFade {
+    0% {
+        opacity: 0
+    }
+
+    15% {
+        opacity: 1
+    }
+
+    85% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(1.5rem);
+        opacity: 0
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1
+    }
+}

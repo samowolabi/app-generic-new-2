@@ -1,6 +1,6 @@
 app.templates = app.templates || {};
 app.templates.pages = app.templates.pages || {};
-app.templates.pages.newEbook = {
+app.templates.pages.newInteractivePdf = {
     loading: function (target) {
         var html = `
                 <div class="container"> 

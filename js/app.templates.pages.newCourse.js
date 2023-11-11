@@ -138,6 +138,18 @@ app.templates.pages.newCourse = {
                         </ul> 
                     </div>
 
+                    <div class="container marginTop20">
+                        <div class="row action-cards-top">  
+                            ${app.templates.modules.actionCards.content(app.data.user.cards, false, false)} 
+                        </div>
+                    </div>
+
+                    <div class="container marginTop10">
+                        <div class="row action-cards-top">  
+                            ${app.templates.modules.actionCards.content(app.data.user.cards, true, true)} 
+                        </div>
+                    </div>
+
                 </section>
             </main>
         `;

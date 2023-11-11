@@ -175,6 +175,20 @@ router.on({
 		app.routeId = "/newLesson/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
+	
+	'/newInteractiveVideo/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newInteractiveVideo.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newInteractiveVideo.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newInteractiveVideo/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
 
 	'/newArticle/': function (params) {
 		app.html({
@@ -201,6 +215,20 @@ router.on({
 
 
 		app.routeId = "/newEbook/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
+	'/newInteractivePdf/': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newInteractivePdf.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newInteractivePdf.content(); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newInteractivePdf/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
