@@ -3205,10 +3205,305 @@ app.createFiltersHtml = function(){
 	}
 	
 	return html;
-}	
+}
 
 
 
+
+app.createFiltersHtmlNew = function(){
+	
+	var getCoursesFilters = function(){
+		var filters = {};
+		for (var courseId in app.data.course) {
+			
+			var course = app.data.course[courseId];
+	  
+			if(course.filters){
+				for (var filterKey in course.filters) {
+					//console.log(filters, filters.filterKey);
+					if(!filters[filterKey]){ 
+						filters[filterKey] = {};
+					}
+					
+					var value = course.filters[filterKey]; 
+					
+					if(!filters[filterKey][value]){
+						filters[filterKey][value] = 1;
+					}
+					else{
+						filters[filterKey][value]++;
+					}
+				}
+			}
+		}
+		 
+		return filters;
+	}
+
+	var createFilterField = function(values, label){
+		
+		var options = [];
+		var optionsSorted = [];
+		var optionsHtml = "";
+		for (var value in values) {
+			options.push(value);
+		}
+		
+		var capitalizedLabel = capitalizeFirstLetter(label);	
+		 
+		options.sort();
+		for (var value of options) {
+			optionsHtml += `<option value='${value}'>${value}</option>`;
+		}
+		
+		return `
+			<div class="materialInputContainer">
+				<div class="materialInputWrap">
+					<select class="materialInputControl materialThemeDark filterInput" required="" id="filterInput${label}" data-filter="${label}"> 
+						<option value="" disabled="" selected=""></option>
+						<option value="">All</option>
+						${optionsHtml}
+					</select>
+					<span class="materialInputHighlight"></span>
+					<span class="materialInputBar"></span>
+					<label class="materialInputLabel materialThemeDark">${capitalizedLabel}</label>
+				</div>
+			</div>
+		`;	
+	}	
+
+	var filters = getCoursesFilters();
+
+
+	//if there are no filters, then hide the filter functionality
+
+	var html = ""; 
+	for (var filterKey in filters) {
+		var values = filters[filterKey];
+		 
+		function capitalizeFirstLetter(string) {
+		  return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+		 
+		html += createFilterField(values,  filterKey);
+	}
+	
+	return html;
+}
+
+
+app.resetFilterInputs = function() {
+    $(".filterInput").each(function() {
+        $(this).val('');
+    });
+};
+
+app.createLessonCard(lessonId, lesson) {
+
+	var href = `#!/course/${lessonId}`;
+
+	var countdownHtml = function (date) {
+		return `
+			<span data-countdown="${date}"> 
+				<span data-days>00</span>
+				<span data-days-caption> Days </span>
+				<span data-hours>00</span>:<span data-minutes>00</span>:<span data-seconds>00</span>
+			</span>`;
+	};
+
+	var shareButtonHtml = `
+		<span>
+			<a href="#" class="materialButtonIcon materialThemeDark" data-button data-icon-class-on="fa fa-share-alt pressed" data-icon-class-off="fa fa-share-alt" data-action="materialContextMenu">
+				<i class="fa fa-share-alt" aria-hidden="true"></i>
+				<ul class="materialContextMenu" data-position="bottom left" data-url="https://pianoencyclopedia.com/en/sign-up/?utm_source=share&utm_campaign=members-area&utm_content=${encodeURIComponent(href)}" data-callback="window.open(value.replace('%url%', $(thisContextMenuUl).data('url')), '_blank');">
+					<li data-value="https://www.facebook.com/sharer/sharer.php?u=%url%">
+						<i class="fa fa-facebook-official"></i> Facebook
+					</li>
+					<li data-value="https://twitter.com/intent/tweet?url=%url%&text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music" data-callback="window.open('' + value, '_blank');">
+						<i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+					</li>
+					<li data-value="https://api.whatsapp.com/send?text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
+						<i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
+					</li> 
+					<li data-value="mailto:?subject=This piano course is amazing&amp;body=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
+						<i class="fa fa-envelope" aria-hidden="true"></i>Email
+					</li>
+				</ul> 
+			</a> 
+		</span>`;
+
+
+	switch (lesson.progressStatus) {
+		case "new":
+			var buttonAction = "Start";
+			break;
+		case "inProgress":
+			var buttonAction = `Resume`;
+			break;
+		case "completed":
+			var buttonAction = `Watch Again`;
+		default:
+			var buttonAction = "Start";
+	}
+
+	var icon;
+	switch (lesson.type) {
+		case "add-here-different-course-types":
+			icon = "fa-newspaper-o";
+			break;
+		default:
+			icon = "fa-graduation-cap";
+	}
+
+	switch (lesson.dateStatus) {
+		case "expiringAsap":
+			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring in ${countdownHtml(lesson.deadlineDateString)}</p>`;
+			var theme = "materialThemeLightGold";
+			var themeOverlay = "";
+			var themeButton = "materialButtonFill materialThemeDark";
+			var actionHtml = `<span>
+								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+							  </span>
+							  ${shareButtonHtml}`;
+			var progressChipHtml = `<span data-new><i>NEW</i></span>
+								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
+								<span data-complete><i class="fa fa-check"></i></span>`;
+
+			break;
+		case "expiringSoon":
+			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring Soon</p>`;
+			var theme = "materialThemeLightGold";
+			var themeOverlay = "";
+			var themeButton = "materialButtonFill materialThemeDark";
+			var actionHtml = `<span>
+								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+							  </span>
+							  ${shareButtonHtml}`;
+			var progressChipHtml = `<span data-new><i>NEW</i></span>
+								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
+								<span data-complete><i class="fa fa-check"></i></span>`;
+			break;
+		case "comingAsap":
+			var scarcityHtml = ``;
+			var theme = "materialThemeDarkGold";
+			var themeOverlay = "materialOverlayShallowBlack";
+			var themeButton = "materialButtonText";
+			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available in ${countdownHtml(lesson.availableDateString)}</p>`;
+			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
+								<span data-incomplete>COMING SOON</span>
+								<span data-complete>COMING SOON</span>`;
+			var icon = "fa-clock-o";
+			break;
+		case "comingSoon":
+			var scarcityHtml = ``;
+			var theme = "materialThemeDarkGold";
+			var themeOverlay = "materialOverlayShallowBlack";
+			var themeButton = "materialButtonText";
+			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>`;
+			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
+								<span data-incomplete>COMING SOON</span>
+								<span data-complete>COMING SOON</span>`;
+			var icon = "fa-clock-o";
+			break;
+		case "expired":
+			var scarcityHtml = ``;
+			var theme = "materialThemeDarkGrey";
+			var themeOverlay = "materialOverlayShallowBlack";
+			var themeButton = "materialButtonText materialThemeDarkGrey";
+			var actionHtml = `<span>
+								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
+							  </span>`;
+			var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
+								<span data-incomplete>EXPIRED</span>
+								<span data-complete>EXPIRED</span>`;
+			var icon = "fa-lock";
+
+			break;
+		case "available":
+		default:
+			var scarcityHtml = "";
+			var theme = "materialThemeLightGold";
+			var themeOverlay = "";
+			var themeButton = "materialButtonFill materialThemeDark";
+			var actionHtml = `<span>
+								<a href="${href}" class="${themeButton}" data-button >${buttonAction}</a>
+							  </span>
+							  ${shareButtonHtml}`;
+			var progressChipHtml = `<span data-new><i>NEW</i></span>
+							<span data-incomplete><span data-progress-affects-html>0</span>%</span>
+							<span data-complete><i class="fa fa-check"></i></span>`;
+
+	}
+
+	let parentChapter = lesson.parentChapter;
+
+	var progressBarStyling = `style="width:${app.data.chapter[parentChapter].stats.lessons.totalProgress}%; "`;
+
+	var progressHtml = `<div class="materialProgressBar ${theme}">
+							<div class="materialProgressBarInside" ${progressBarStyling}> 
+							</div>
+						</div>`;
+
+	var defaultImage = 'https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png';
+	var courseImage = lesson.imageThumbnail || lesson.image || defaultImage;
+
+	var courseBackgroundColor = (courseImage === defaultImage) ? "black" : "grey";
+
+	var bottomLeftChip = config.text.searchResultsBottomLeft(lesson) ?
+		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
+							${config.text.searchResultsBottomLeft(lesson)}
+						</div>;` : "";
+
+	var topLeftChip = config.text.searchResultsTopLeft(lesson) ?
+		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
+							${config.text.searchResultsTopLeft(lesson)}
+						</div>;` : "";
+
+	var lineText1 = config.text.searchResultsLineText1(lesson) ? `<h6 class="materialHeader">${config.text.searchResultsLineText1(lesson)}</h6>` : `<h6 class="materialHeader"></h6>`;
+
+	var lineText2 = config.text.searchResultsLineText2(lesson) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(lesson)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
+
+
+	var html = `
+		<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
+		<div class="${columnWidthClass}">
+		<div class="materialCard ${theme}">
+					<div class="materialCardTop" data-button data-href="${href}"> 
+						<div class="materialCardImg">
+							<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
+							<div class="materialCardImgOverlay ${themeOverlay}"></div>
+							
+							<div class="materialCardMediaType ${theme} materialThemeFlat">
+									<i class="fa ${icon}" title="Course"></i>
+							</div> 
+							
+							${bottomLeftChip}
+							
+							${topLeftChip} 
+							
+							<div class="materialCardNew ${theme} materialThemeFlat">
+								<span data-progress="${app.data.chapter[parentChapter].stats.lessons.totalProgress}">
+									${progressChipHtml}
+								</span>
+							</div>
+						</div>
+					${progressHtml}
+						<div class="materialCardInfo ${theme}">
+							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${lesson.title}</h2>
+							${lineText1}
+							${lineText2} 
+							${scarcityHtml} 
+						</div>
+					</div>
+					<div class="materialCardAction ${theme}">
+						${actionHtml}
+					</div>
+				</div>   
+		</div>`;
+
+	return html;
+
+}
 
 /*
 TODO: pasar todo esto a una funcion aqui, de forma tal que pueda hacer refresh el route.

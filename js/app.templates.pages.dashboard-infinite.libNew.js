@@ -1,4 +1,4 @@
-var dashboardInfiniteScrolling = function () {
+var dashboardInfiniteScrollingNew = function () {
 	var that = [];
 
 	that.vars = [];
@@ -24,14 +24,8 @@ var dashboardInfiniteScrolling = function () {
 		}
 	}
 	that.callbacks.filterSwitch = function () {
-		
-		$('.filterDropdown select.level').val('');
-		$('.filterDropdown select.duration').val('');
-		$('.filterDropdown select.era').val('');
-		$('.filterDropdown select.composer').val('');
-		$('.filterDropdown select.workType').val('');
+		app.resetFilterInputs();
 
-		$('.filterDropdownToggle').toggle();
 		if (that.fx.scrollHeightVariableAndClearHTML()) {
 			that.fx.loadInfiniteCards();
 		}
@@ -104,10 +98,6 @@ var dashboardInfiniteScrolling = function () {
 			default:
 				var buttonAction = "Start";
 		}
-
-
-
-
 
 		var icon;
 		switch (course.type) {
@@ -268,7 +258,10 @@ var dashboardInfiniteScrolling = function () {
 		return html;
 	}
 
+	
+
 	that.fx = []
+	
 	that.fx.loadInfiniteCards = function () {
 
 		// Load Infinite cards
@@ -277,12 +270,6 @@ var dashboardInfiniteScrolling = function () {
 		var searchValue = $(".infiniteScrollingCardsSearchBar input").val();
 		searchValue = searchValue ? searchValue.toLowerCase() : "";
 
-		var level = $('.filterDropdown select.level').val();
-		var duration = $('.filterDropdown select.duration').val();
-		var era = $('.filterDropdown select.era').val();
-		var composer = $('.filterDropdown select.composer').val();
-		var workType = $('.filterDropdown select.workType').val();
-
 		//Restore last used search and filters
 		//app.restoreLastSearch();	
 
@@ -290,10 +277,12 @@ var dashboardInfiniteScrolling = function () {
 		var isFiltersEmpty = (Object.keys(filters).length === 0);
 
 		if ((searchValue === '' || searchValue === null) && (isFiltersEmpty)) {
-			$('.recommendedDiv').show();
+			$('.heroSectionContainer').show();
+			$('.homeContentContainer').show();
 		}
 		else {
-			$('.recommendedDiv').hide();
+			$('.heroSectionContainer').hide();
+			$('.homeContentContainer').hide();
 		}
 
 		// start
@@ -306,11 +295,11 @@ var dashboardInfiniteScrolling = function () {
 		var html = "";
 
 
-		matchedCourses.forEach(function (courseId, index) { 
-			var course = app.data.course[courseId]; 
-			html += that.createCard(courseId, course, columnWidthClass); 
+		matchedCourses.forEach(function (courseId, index) {
+			var course = app.data.course[courseId];
+			html += that.createCard(courseId, course, columnWidthClass);
 		});
-		
+
 
 		$('.cardLoadingPlaceholder').hide();
 		if (matchedCourses.length == 0) {
@@ -349,7 +338,7 @@ var dashboardInfiniteScrolling = function () {
 			exposed.loaded = true;
 			that.fx.loadInfiniteCards();
 
-			$('.filterDropdownToggle').hide();
+			document.querySelector('.materialSearchBar').classList.remove('active')
 
 			// On Scroll
 			that.vars.currentscrollHeight = 0;
@@ -359,22 +348,21 @@ var dashboardInfiniteScrolling = function () {
 			console.log("TURN ON SCROLL CALLBACK");
 			$(document).on("scroll", window, that.callbacks.onScroll);
 
-			$('.filterSwitch').on("click", that.callbacks.filterSwitch);
-			$('.searchBtn').on("click", that.callbacks.searchBtn);
+			$('.filterSwitchBtn').on("click", that.callbacks.filterSwitch);
+			$('.materialSearchBar input').on("keyup", that.callbacks.searchBtn);
 			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
-			$('.filterDropdown select').on("change", that.callbacks.filterDropdown);
-
-
+			$('.filterFormsContainer select').on("change", that.callbacks.filterDropdown);
 		}
 	};
 
 	exposed.callbacks = that.callbacks;
+	exposed.createCard = that.createCard;
 	exposed.unload = function () {
 		if (exposed.loaded) {
 			$(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
 			$(document).off("click", '.searchBtn', that.callbacks.searchBtn);
-			$(document).off("change", '.filterDropdown select', that.callbacks.filterDropdown);
-			$(document).off("click", '.filterSwitch', that.callbacks.filterSwitch);
+			$(document).off("change", '.filterFormsContainer select', that.callbacks.filterDropdown);
+			$(document).off("click", '.filterSwitchBtn', that.callbacks.filterSwitch);
 
 			console.log("TURN OFF SCROLL CALLBACK");
 			$(document).off("scroll", window, that.callbacks.onScroll);

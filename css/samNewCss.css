@@ -7,46 +7,24 @@
     margin: 0;
 }
 
-.app_headerContainer {
-    width: 100%;
-    height: 90vh;
-    position: relative;
-    background-image: url("../images/newImages/heroScreenBG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.app_headerContainer div.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgb(21,21,21);
-    background: linear-gradient(180deg, rgba(21,21,21,0.204) 0%, rgba(0,0,0,0.955) 70%);
-    height: 100%;
-    width: 100%;
-}
-
-.app_headerContainer .app_headerBody {
-    padding-top: 3rem;
-    max-width: 128rem;
-    margin: 0 auto;
-}
-
-.app_headerContainer .app_headerBody .app_headerDiv {
+.app_headerDiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
     position: relative;
     z-index: 2;
+    width: 100%;
+    max-width: 128rem;
+    margin: 0 auto;
+    margin-bottom: -9rem;
 }
 
-.app_headerContainer .app_headerBody .app_headerDiv img {
+.app_headerDiv img {
     width: 74px
 }
 
-.app_headerContainer .app_headerBody .app_headerDiv .materialBarDashboardNavLink {
+.app_headerDiv .materialBarDashboardNavLink {
     display: block;
 }
 
@@ -154,12 +132,8 @@
 
 /* Media Queries for mobile */
 @media (max-width: 768px) {
-    .app_headerContainer .app_headerBody .app_headerDiv img {
+    .app_headerDiv img {
         width: 65px
-    }
-
-    .app_headerContainer .app_headerBody .app_headerTextDiv {
-        margin-top: 0 0.15rem;
     }
 
     .materialSearchBar {
@@ -212,25 +186,25 @@
     }
 }
 
-.app_headerContainer .app_headerDiv .userProfileDiv {
+.app_headerDiv .userProfileDiv {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.app_headerContainer .app_headerDiv .userProfileDiv p {
+.app_headerDiv .userProfileDiv p {
     color: #A2A2A2;
     font-size: 1.4rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
-.app_headerContainer .app_headerBody .app_headerTextDiv {
+.app_headerBody .app_headerTextDiv {
     margin-top: 13.5rem;
     padding: 0 3rem;
 }
 
-.app_headerContainer .app_headerBody .app_headerTextDiv h4 {
+.app_headerBody .app_headerTextDiv h4 {
     color: #FFFBDC;
     font-size: 7.65rem;
     font-weight: 300;
@@ -239,54 +213,20 @@
     margin-bottom: 1rem;
 }
 
-.app_headerContainer .app_headerBody .app_headerTextDiv p {
+.app_headerBody .app_headerTextDiv p {
     color: #c8c8c8;
     font-weight: 300;
 }
 
-.app_headerContainer .app_headerBody .app_headerButtonContainer {
+.app_headerBody .app_headerButtonContainer {
     display: flex;
     align-items: center;
     gap: 1.75rem;
     margin-top: 5rem;
 }
 
-.app_headerContainer .app_headerBody .app_headerButtonContainer button {
+.app_headerBody .app_headerButtonContainer button {
     margin: 0;
-}
-
-/* Media Queries for tablet */
-@media (max-width: 1024px) {
-    .app_headerContainer {
-        height: 600px;
-    }
-}
-
-/* Media Queries for mobile */
-@media (max-width: 768px) {
-    .app_headerContainer {
-        height: 530px;
-    } 
-
-    .app_headerContainer .app_headerBody {
-        padding-top: 0.2rem;
-    }
-
-    .app_headerContainer .app_headerBody .app_headerTextDiv {
-        margin-top: 8.5rem;
-    }
-
-    .app_headerContainer .app_headerBody .app_headerTextDiv h4 {
-        font-size: 4.25rem;
-    }
-
-    .app_headerContainer .app_headerBody .app_headerTextDiv p {
-        font-size: 1.5rem;
-    }
-
-    .app_headerContainer .app_headerBody .app_headerButtonContainer {
-        margin-top: 5rem;
-    }
 }
 
 
