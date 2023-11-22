@@ -69,8 +69,10 @@ var materialHeroSection = (function () {
                         <p class="headerSubText">${heroSectionData[imageIndex].description}</p>
 
                         <div class="buttonRow">
-							<button class="materialButtonFill materialThemeGoldDark">Resume Learning</button>
-                            <p>54% Completed</p>
+							<a href="${heroSectionData[imageIndex].buttonLink}"><button class="materialButtonFill materialThemeGoldDark">
+                                ${heroSectionData[imageIndex].percentageComplete < 5 ? 'Start Learning' : 'Resume Learning'}
+                            </button></a>
+                            <p>${heroSectionData[imageIndex].percentageComplete}% Completed</p>
                         </div>
                     </div>
                 `;

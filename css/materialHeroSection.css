@@ -99,10 +99,12 @@
     color: #FFFBDC;
     position: relative;
     z-index: 3;
-    font-size: 6.75rem;
+    font-size: 6rem;
     font-weight: 500;
     margin-bottom: 0.2rem;
     font-family: 'OptimusPrinceps', sans-serif;
+    max-width: 80rem;
+    text-wrap: balance;
     animation: slideUp 1s ease-in-out;
 }
 
@@ -110,9 +112,13 @@
     color: #c8c8c8;
     position: relative;
     z-index: 3;
+    max-width: 60rem;
     font-size: 1.75rem;
     font-weight: 400;
     font-size: 'Lato', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     animation: slideUp 1s ease-in-out;
     animation-delay: 150ms;
 }
@@ -142,11 +148,11 @@
     }
 
     .materialHeroSection .heroSectionDiv .heroBGImg>div h1.header {
-        font-size: 2.25rem;
+        font-size: 4.25rem;
     }
 
     .materialHeroSection .heroSectionDiv .heroBGImg>div p.headerSubText {
-        font-size: 1rem;
+        font-size: 2rem;
     }
 }
 

@@ -3298,9 +3298,10 @@ app.resetFilterInputs = function() {
     });
 };
 
-app.createLessonCard(lessonId, lesson) {
 
-	var href = `#!/course/${lessonId}`;
+app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
+
+	var href = `#!/lesson/${lessonId}`;
 
 	var countdownHtml = function (date) {
 		return `
@@ -3459,7 +3460,7 @@ app.createLessonCard(lessonId, lesson) {
 							${config.text.searchResultsTopLeft(lesson)}
 						</div>;` : "";
 
-	var lineText1 = config.text.searchResultsLineText1(lesson) ? `<h6 class="materialHeader">${config.text.searchResultsLineText1(lesson)}</h6>` : `<h6 class="materialHeader"></h6>`;
+	var lineText1 = config.text.searchResultsLineText1(lesson) ? `<h6 class="materialParagraph">${config.text.searchResultsLineText1(lesson) == '?' ? 'Find out more inside...' : config.text.searchResultsLineText1(lesson)}</h6>` : `<h6 class="materialParagraph"></h6>`;
 
 	var lineText2 = config.text.searchResultsLineText2(lesson) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(lesson)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
 
@@ -3488,7 +3489,7 @@ app.createLessonCard(lessonId, lesson) {
 							</div>
 						</div>
 					${progressHtml}
-						<div class="materialCardInfo ${theme}">
+						<div class="materialCardInfo ${theme}"  style="min-height: 200px; max-height: 200px; overflow: hidden;">
 							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${lesson.title}</h2>
 							${lineText1}
 							${lineText2} 
@@ -3503,6 +3504,230 @@ app.createLessonCard(lessonId, lesson) {
 
 	return html;
 
+}
+
+
+app.createCourseCard = function(courseId, course, columnWidthClass) {
+
+	var href = `#!/course/${courseId}`;
+
+	var countdownHtml = function (date) {
+		return `
+			<span data-countdown="${date}"> 
+				<span data-days>00</span>
+				<span data-days-caption> Days </span>
+				<span data-hours>00</span>:<span data-minutes>00</span>:<span data-seconds>00</span>
+			</span>`;
+	};
+
+	var shareButtonHtml = `
+		<span>
+			<a href="#" class="materialButtonIcon materialThemeDark" data-button data-icon-class-on="fa fa-share-alt pressed" data-icon-class-off="fa fa-share-alt" data-action="materialContextMenu">
+				<i class="fa fa-share-alt" aria-hidden="true"></i>
+				<ul class="materialContextMenu" data-position="bottom left" data-url="https://pianoencyclopedia.com/en/sign-up/?utm_source=share&utm_campaign=members-area&utm_content=${encodeURIComponent(href)}" data-callback="window.open(value.replace('%url%', $(thisContextMenuUl).data('url')), '_blank');">
+					<li data-value="https://www.facebook.com/sharer/sharer.php?u=%url%">
+						<i class="fa fa-facebook-official"></i> Facebook
+					</li>
+					<li data-value="https://twitter.com/intent/tweet?url=%url%&text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music" data-callback="window.open('' + value, '_blank');">
+						<i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+					</li>
+					<li data-value="https://api.whatsapp.com/send?text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
+						<i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
+					</li> 
+					<li data-value="mailto:?subject=This piano course is amazing&amp;body=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
+						<i class="fa fa-envelope" aria-hidden="true"></i>Email
+					</li>
+				</ul> 
+			</a> 
+		</span>`;
+
+
+	switch (course.progressStatus) {
+		case "new":
+			var buttonAction = "Start";
+			break;
+		case "inProgress":
+			var buttonAction = `Resume`;
+			break;
+		case "completed":
+			var buttonAction = `Watch Again`;
+		default:
+			var buttonAction = "Start";
+	}
+
+	var icon;
+
+	// TODO: Get type for this
+	switch (course?.type) {
+		case "add-here-different-course-types":
+			icon = "fa-newspaper-o";
+			break;
+		default:
+			icon = "fa-graduation-cap";
+	}
+
+	switch (course.dateStatus) {
+		case "expiringAsap":
+			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring in ${countdownHtml(course.earliestDeadlineDateTime)}</p>`;
+			var theme = "materialThemeLightGold";
+			var themeOverlay = "";
+			var themeButton = "materialButtonFill materialThemeDark";
+			var actionHtml = `<span>
+								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+							  </span>
+							  ${shareButtonHtml}`;
+			var progressChipHtml = `<span data-new><i>NEW</i></span>
+								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
+								<span data-complete><i class="fa fa-check"></i></span>`;
+
+			break;
+		case "expiringSoon":
+			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring Soon</p>`;
+			var theme = "materialThemeLightGold";
+			var themeOverlay = "";
+			var themeButton = "materialButtonFill materialThemeDark";
+			var actionHtml = `<span>
+								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+							  </span>
+							  ${shareButtonHtml}`;
+			var progressChipHtml = `<span data-new><i>NEW</i></span>
+								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
+								<span data-complete><i class="fa fa-check"></i></span>`;
+			break;
+		case "comingAsap":
+			var scarcityHtml = ``;
+			var theme = "materialThemeDarkGold";
+			var themeOverlay = "materialOverlayShallowBlack";
+			var themeButton = "materialButtonText";
+			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available in ${countdownHtml(course.earliestAvailableDateString)}</p>`;
+			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
+								<span data-incomplete>COMING SOON</span>
+								<span data-complete>COMING SOON</span>`;
+			var icon = "fa-clock-o";
+			break;
+		case "comingSoon":
+			var scarcityHtml = ``;
+			var theme = "materialThemeDarkGold";
+			var themeOverlay = "materialOverlayShallowBlack";
+			var themeButton = "materialButtonText";
+			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>`;
+			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
+								<span data-incomplete>COMING SOON</span>
+								<span data-complete>COMING SOON</span>`;
+			var icon = "fa-clock-o";
+			break;
+		case "expired":
+			var scarcityHtml = ``;
+			var theme = "materialThemeDarkGrey";
+			var themeOverlay = "materialOverlayShallowBlack";
+			var themeButton = "materialButtonText materialThemeDarkGrey";
+			var actionHtml = `<span>
+								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
+							  </span>`;
+			var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
+								<span data-incomplete>EXPIRED</span>
+								<span data-complete>EXPIRED</span>`;
+			var icon = "fa-lock";
+
+			break;
+		case "available":
+		default:
+			var scarcityHtml = "";
+			var theme = "materialThemeLightGold";
+			var themeOverlay = "";
+			var themeButton = "materialButtonFill materialThemeDark";
+			var actionHtml = `<span>
+								<a href="${href}" class="${themeButton}" data-button >${buttonAction}</a>
+							  </span>
+							  ${shareButtonHtml}`;
+			var progressChipHtml = `<span data-new><i>NEW</i></span>
+							<span data-incomplete><span data-progress-affects-html>0</span>%</span>
+							<span data-complete><i class="fa fa-check"></i></span>`;
+
+	}
+
+	var progressBarStyling = `style="width:${course.stats.lessons.totalProgress}%; "`;
+
+	var progressHtml = `<div class="materialProgressBar ${theme}">
+							<div class="materialProgressBarInside" ${progressBarStyling}> 
+							</div>
+						</div>`;
+
+	var defaultImage = 'https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png';
+	var courseImage = course.image || defaultImage;
+
+	var courseBackgroundColor = (courseImage === defaultImage) ? "black" : "grey";
+
+	var bottomLeftChip = config.text.searchResultsBottomLeft(course) ?
+		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
+							${config.text.searchResultsBottomLeft(course)}
+						</div>;` : "";
+
+	var topLeftChip = config.text.searchResultsTopLeft(course) ?
+		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
+							${config.text.searchResultsTopLeft(course)}
+						</div>;` : "";
+
+	var lineText1 = config.text.searchResultsLineText1(course) ? `<h6 class="materialParagraph">${config.text.searchResultsLineText1(course)}</h6>` : `<h6 class="materialParagraph"></h6>`;
+
+	var lineText2 = config.text.searchResultsLineText2(course) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(course)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
+
+
+	var html = `
+		<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
+		<div class="${columnWidthClass}">
+		<div class="materialCard ${theme}">
+					<div class="materialCardTop" data-button data-href="${href}"> 
+						<div class="materialCardImg">
+							<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
+							<div class="materialCardImgOverlay ${themeOverlay}"></div>
+							
+							<div class="materialCardMediaType ${theme} materialThemeFlat">
+									<i class="fa ${icon}" title="Course"></i>
+							</div> 
+							
+							${bottomLeftChip}
+							
+							${topLeftChip} 
+							
+							<div class="materialCardNew ${theme} materialThemeFlat">
+								<span data-progress="${course.stats.lessons.totalProgress}">
+									${progressChipHtml}
+								</span>
+							</div>
+						</div>
+					${progressHtml}
+						<div class="materialCardInfo ${theme}" style="min-height: 200px; max-height: 200px; overflow: hidden;">
+							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${course.title}</h2>
+							${lineText1}
+							${lineText2} 
+							${scarcityHtml} 
+						</div>
+					</div>
+					<div class="materialCardAction ${theme}">
+						${actionHtml}
+					</div>
+				</div>   
+		</div>`;
+
+	return html;
+
+}
+
+
+
+app.highlightLesson = function() {
+	let dataId = "3204";
+
+	let lessonItemSelector = $(`.materialAccordionContent li[data-id="${dataId}"]`);
+	lessonItemSelector.css('background-color', '#222222');
+
+	// Center Position
+	let centerPosition = lessonItemSelector.offset().top - ($(window).height() - lessonItemSelector.outerHeight()) / 2;
+
+	$('html, body').animate({
+		scrollTop: centerPosition
+	}, 600);
 }
 
 /*

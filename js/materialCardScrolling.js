@@ -6,48 +6,30 @@ var materialCardScrolling = (function () {
         var html = '';
 
         const { data, list } = settings
+        var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
 
         console.error('data', data)
         console.error('list', list)
 
-        list.forEach(function (item) {
-            if(data.lesson.hasOwnProperty(item)) {
-                html += `
-                    <div style="width: 430px" class="">
-                        <div style="width: 100%" class="materialCard materialThemeDarkGold">
-                            <div class="materialCardTop" data-button="" data-href="#!/course/1000001">
-                                <div class="materialCardImg">
-                                    <div class="materialCardImgInside" style="background-image: url(${data.lesson[item]?.image}); background-color: grey;"></div>
-                                    <div class="materialCardImgOverlay materialOverlayShallowBlack"></div>
-                                    <div class="materialCardMediaType materialThemeDarkGold materialThemeFlat">
-                                        <i class="fa fa-clock-o" title="Course"></i>
-                                    </div>
-                                    <div class="materialCardNew materialThemeDarkGold materialThemeFlat">
-                                        <span data-progress="0">
-                                            <span data-new="" style="display: inline;"><i>COMING SOON</i></span>
-                                            <span data-incomplete="" style="display: none;">COMING SOON</span>
-                                            <span data-complete="" style="display: none;">COMING SOON</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="materialProgressBar materialThemeDarkGold">
-                                    <div class="materialProgressBarInside" style="width:0%; ">
-                                    </div>
-                                </div>
-                                <div class="materialCardInfo materialThemeDarkGold">
-                                    <h2 class="materialHeader" style="font-size: 1.9em">${data.lesson[item]?.title}</h2>
-                                    <h6 class="materialHeader"><b>Genre:</b> Classical</h6>
-                                    <p class="materialParagraph materialThemeDarkGold"></p>
-                                </div>
-                            </div>
-                            <div class="materialCardAction materialThemeDarkGold">
-                                <p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        });
+        if (list.type === 'lesson') {
+            list.ids.forEach(function (item) {
+                if(data.lesson.hasOwnProperty(item)) {
+                    var lessonId = data.lesson[item]?.id;
+                    var lesson = data.lesson[item];
+                    html += app.createLessonCard(lessonId, lesson, columnWidthClass);
+                }  
+            })
+        }
+
+        if (list.type === 'course') {
+            list.ids.forEach(function (item) {
+                if(data.course.hasOwnProperty(item)) {
+                    var courseId = item;
+                    var course = data.course[item];
+                    html += app.createCourseCard(courseId, course, columnWidthClass);
+                }
+            })
+        }
 
         return html;
     }

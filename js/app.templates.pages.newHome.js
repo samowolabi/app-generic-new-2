@@ -26,7 +26,7 @@ app.templates.pages.newHome = {
 
 			const combinedArray = []
 			data.forEach(item => {
-				if (Array.isArray(item.lesson) && item.lesson.length > 0) {
+				if (Array.isArray(item.lesson.ids) && item.lesson.ids.length > 0) {
 					combinedArray.push({
 						header: item.header,
 						lesson: item.lesson
@@ -38,26 +38,109 @@ app.templates.pages.newHome = {
 
 		var lessonArray = [
 			{
-				header: 'CONTINUE LEARNING',
-				lesson: app.data.user.recommendations.data.toResume
+				header: 'NEW LESSONS',
+				lesson: { 
+					ids: app.data.user.recommendations.data.newest.lessonsIds,
+					type: 'lesson'
+				}
 			},
 			{
-				header: 'RECOMMENDED FOR YOU',
-				lesson: app.data.user.recommendations.data.thisWeekTopRecommendations
+				header: 'NEW COURSES',
+				lesson: { 
+					ids: app.data.user.recommendations.data.newest.coursesIds,
+					type: 'course'
+				},
 			},
 			{
-				header: 'NEW ON THE PIANO ENCYCLOPEDIA',
-				lesson: app.data.user.recommendations.data.newest
+				header: 'Lessons about to Expire',
+				lesson: { 
+					ids: app.data.user.recommendations.data.expiring.lessonsIds,
+					type: 'lesson'
+				},
 			},
 			{
-				header: 'MOST POPULAR COURSES',
-				lesson: app.data.user.recommendations.data.toDiversifyType
+				header: 'Courses about to Expire',
+				lesson: { 
+					ids: app.data.user.recommendations.data.expiring.coursesIds,
+					type: 'course'
+				},
 			},
 			{
-				header: 'EXPIRING',
-				lesson: app.data.user.recommendations.data.expiring
+				header: 'Resume Your Lessons',
+				lesson: { 
+					ids: app.data.user.recommendations.data.toResume.lessonsIds,
+					type: 'lesson'
+				}
 			},
+			{
+				header: 'Resume Your Courses',
+				lesson: { 
+					ids: app.data.user.recommendations.data.toResume.coursesIds,
+					type: 'course'
+				},
+			},
+			{
+				header: 'Diversify your learning with these Lessons',
+				lesson: { 
+					ids: app.data.user.recommendations.data.toDiversifyType.lessonsIds,
+					type: 'lesson'
+				},
+			},
+			{
+				header: 'Diversify your learning with these Courses',
+				lesson: { 
+					ids: app.data.user.recommendations.data.toDiversifyType.coursesIds,
+					type: 'course'
+				},
+			}
 		]
+
+		// Lesson Type
+		let typeArray = Object.keys(app.data.user.recommendations.data.types).map((type, index) => {
+			let data = app.data.user.recommendations.data.types[type]
+			
+			return {
+				header: `Recommended ${data.displayName} for You`,
+				lesson: {
+					ids: data.lessonsIds,
+					type: 'lesson'
+				},
+			}
+		})
+
+		// Merge both arrays (lessonArray and typeArray)
+		var mergedArrays = [...lessonArray, ...typeArray]
+
+
+		let heroSectionArrayCourseIds = app.data.user.recommendations.data.thisWeekTopRecommendations.coursesIds.map((courseId, index) => {
+			var course = app.data.course[courseId];
+			if (course) {
+				return {
+					title: course.title,
+					description: course.description,
+					image: course.image,
+					buttonLink: `/#!/newCourse/${courseId}`,
+					percentageComplete: course.stats.lessons.totalProgress
+				}
+			}
+		})
+
+
+		let heroSectionArrayLessonIds = app.data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds.map((lessonId, index) => {
+			var lesson = app.data.lesson[lessonId];
+			if (lesson) {
+				return {
+					title: lesson.title,
+					description: lesson.description,
+					image: lesson.image,
+					buttonLink: `/#!/newLesson/${lessonId}`,
+					percentageComplete: lesson.progress
+				}
+			}
+		})
+
+		// Merge both arrays (heroSectionArrayCourseIds and heroSectionArrayLessonIds)
+		var heroSectionArray = [...heroSectionArrayCourseIds, ...heroSectionArrayLessonIds]
 
 		var html = `
 			<style>
@@ -116,29 +199,12 @@ app.templates.pages.newHome = {
 
 				<section class="heroSectionContainer">
 					${materialHeroSection.create({
-			data: [
-				{
-					title: 'Discover the Logic <br> Behind the Music',
-					description: 'Simple but powerful secrets finally revealed, through interactive step-by-step lessons',
-					image: 'http://localhost/app-generic-new-2/images/newImages/heroScreenBG.jpg'
-				},
-				{
-					title: 'Piano lessons designed <br> for all levels',
-					description: 'Discover the hidden patterns of music and learn how to improvise, play by ear',
-					image: 'http://localhost/app-generic-new-2/images/newImages/lessonCover.png'
-				},
-				{
-					title: 'Digital Home <br> Study Course',
-					description: 'Featured by Forbes as the interactive course that is revolutionizing the way people learn',
-					image: 'http://localhost/app-generic-new-2/images/newImages/courseCover.png'
-
-				}
-			]
-		})}
+						data: heroSectionArray
+					})}
 				</section>
 
 				<input type="hidden" class="addPaginationValue" value="1">
-				<section class="container marginTop30">
+				<section class="container marginTop20">
 					<div class="row infiniteScrollingContainer">
 						<!-- Infinite Scroll Cards -->  
 					</div>
@@ -226,27 +292,7 @@ app.templates.pages.newHome = {
 					</div>
 				
 					<section class="app_coursesCardsSection">
-						<div class="app_coursesCardsFilterPills">	
-							${materialFilterPills.create({
-								list: [
-									{ name: 'Beethoven', value: 'Beethoven' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Neo Classicism', value: 'Neo Classicism' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Romantic', value: 'Romantic' },
-									{ name: 'Intermediate', value: 'Intermediate' },
-									{ name: 'Beethoven', value: 'Beethoven' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Neo Classicism', value: 'Neo Classicism' },
-									{ name: 'Impressionism', value: 'Impressionism' },
-									{ name: 'Romantic', value: 'Romantic' },
-									{ name: 'Intermediate', value: 'Intermediate' }
-								]
-							})}
-						</div>
-
-
-						${formatAndValidateData(lessonArray).map((item, index) => `
+						${formatAndValidateData(mergedArrays).map((item, index) => `
 							<div class="app_coursesCardsContainer">
 								<p>${item.header}</p>
 

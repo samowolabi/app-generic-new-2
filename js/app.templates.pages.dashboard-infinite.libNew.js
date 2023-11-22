@@ -258,7 +258,7 @@ var dashboardInfiniteScrollingNew = function () {
 		return html;
 	}
 
-	
+
 
 	that.fx = []
 	
@@ -336,7 +336,7 @@ var dashboardInfiniteScrollingNew = function () {
 	exposed.load = function () {
 		if (!exposed.loaded) {
 			exposed.loaded = true;
-			that.fx.loadInfiniteCards();
+			// that.fx.loadInfiniteCards();
 
 			document.querySelector('.materialSearchBar').classList.remove('active')
 
@@ -356,7 +356,7 @@ var dashboardInfiniteScrollingNew = function () {
 	};
 
 	exposed.callbacks = that.callbacks;
-	exposed.createCard = that.createCard;
+	// exposed.createCard = that.createCard;
 	exposed.unload = function () {
 		if (exposed.loaded) {
 			$(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);

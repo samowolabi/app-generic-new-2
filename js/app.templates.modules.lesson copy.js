@@ -255,7 +255,7 @@ app.templates.modules.lesson = {
 				var contentTopHtml = `<div class="row"> 
 								<div class="col-xs-12">
 									<div class="materialLessonVideo materialPlaceHolder">
-									<iframe src="https://learn.pianoencyclopedia.com/hydra/HydraViewers/interactive-pdf/${lessonData['content']}&name=${app.data.user.profile.name}&email=${app.data.user.profile.email}&d=yes&p=yesprogressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
+		<iframe src="https://learn.pianoencyclopedia.com/hydra/HydraViewers/interactive-pdf/${lessonData['content']}&name=${app.data.user.profile.name}&email=${app.data.user.profile.email}&d=yes&p=yesprogressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
 									</div> 
 								</div>
 							  </div>

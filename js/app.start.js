@@ -78,13 +78,13 @@ router.hooks({
 });
 
 router.on({
-	'/lesson/:lessonId': function (params) {
+	'/oldlesson/:lessonId': function (params) {
 		app.html({
 			target: "#content",
-			loading: function () { return app.templates.pages.lesson.loading(); },
+			loading: function () { return app.templates.pages.oldlesson.loading(); },
 			contentCondition: function () { return (typeof app.data.lesson[params.lessonId] !== "undefined"); },
-			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
-			contentFalse: function () { return app.templates.pages.lesson.notFound(params.lessonId); },
+			contentTrue: function () { return app.templates.pages.oldlesson.content(params.lessonId); },
+			contentFalse: function () { return app.templates.pages.oldlesson.notFound(params.lessonId); },
 			callback: function () { if (app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } }
 		});
 
@@ -92,6 +92,7 @@ router.on({
 		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
+
 	'/lesson/:lessonId/book': function (params) {
 		app.html({
 			target: "#content",
@@ -106,18 +107,62 @@ router.on({
 		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
-	'/course/:courseId': function (params) {
+
+	'/lesson/:lessonId': function (params) { //Change newLesson to just lesson and change "lesson" to "oldLesson". Same for newCourse and anything new
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.lesson.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newLesson/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
+	'/old-course/:courseId': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.oldcourse.loading(); },
+			contentCondition: function () { return (typeof app.data.course[params.courseId] !== "undefined"); },
+			contentTrue: function () { return app.templates.pages.oldcourse.content(params.courseId); },
+			contentFalse: function () { return app.templates.pages.oldcourse.notFound(params.courseId); },
+			callback: function () { }
+		});
+
+		app.routeId = "/course/";
+		window.scrollTo(0, 0);
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
+	'/course/:courseId/lesson/:lessonId': function (params) {
 		app.html({
 			target: "#content",
 			loading: function () { return app.templates.pages.course.loading(); },
 			contentCondition: function () { return (typeof app.data.course[params.courseId] !== "undefined"); },
-			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
+			contentTrue: function () { return app.templates.pages.course.content(params.courseId, params.lessonId); },
 			contentFalse: function () { return app.templates.pages.course.notFound(params.courseId); },
 			callback: function () { }
 		});
 
 		app.routeId = "/course/";
 		window.scrollTo(0, 0);
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
+	'/course/:courseId': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.course.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/course/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -145,34 +190,6 @@ router.on({
 
 
 		app.routeId = "/history/";
-		$(".materialBarDashboardBackBtn").fadeIn();
-	},
-
-	'/newCourse/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.newCourse.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.newCourse.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/newCourse/";
-		$(".materialBarDashboardBackBtn").fadeIn();
-	},
-
-	'/newLesson/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.newLesson.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.newLesson.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/newLesson/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 	
