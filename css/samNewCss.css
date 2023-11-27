@@ -30,26 +30,38 @@
 
 .materialSearchBar {
     position: relative;
-    background-color: rgba(37, 36, 36, 0.67);
-    border: rgba(37, 36, 36, 0.75);
-    border-radius: 500px;
 }
 
 .materialSearchBar .materialSearchInputDiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1.7rem;
+    gap: 1rem;
 }
 
 .materialSearchBar.active .materialSearchInputDiv {
-    padding: 0.75rem 1.7rem;
     border-radius: 12px 12px 0 0;
-    background-color: #232323;
+}
+
+.materialSearchBar .materialSearchInputDiv .materialSearchInputWithBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: rgba(37, 36, 36, 0.67);
+    border: rgba(37, 36, 36, 0.75);
+    border-radius: 8px;
+}
+
+.materialSearchBar .materialSearchInputDiv .materialSearchInputWithBtn > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
 
 .materialSearchBar .materialSearchInputDiv input {
-    width: 500px;
+    width: 400px;
     padding: 0.75rem 1rem;
     margin: 0;
     background-color: transparent;
@@ -68,6 +80,24 @@
 
 .materialSearchBar .materialSearchInputDiv .filterSwitchBtn {
     cursor: pointer;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    background-color: rgba(37, 36, 36, 0.67);
+    border: rgba(37, 36, 36, 0.75);
+    border-radius: 8px;
+}
+
+.materialSearchBar .materialSearchInputDiv .filterSwitchBtn:hover {
+    background-color: rgba(37, 36, 36, 0.9);
+}
+
+.materialSearchBar svg.clearBtn {
+    cursor: pointer;
+    display: none;
 }
 
 .materialSearchBar .materialSearchInputDiv .filterSwitchBtn svg {
@@ -82,13 +112,13 @@
     display: none;
     background-color: rgba(37, 36, 36, 0.98);
     padding: 2.5rem;
-    margin-top: 1rem;
+    margin-top: 2.25rem;
     position: absolute;
     top: 37px;
     left: 0;
     width: 100%;
     z-index: 2;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
     transition: 0.5s ease-in-out;
 }
 
@@ -838,6 +868,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* NOTE: Remember to remove this later */
+.app_LessonContainer .app_lessonOverviewSection .lessonProgress .materialButtonIcon.materialThemeDark {
+    display: none;
 }
 
 .app_LessonContainer .app_lessonContentSection {

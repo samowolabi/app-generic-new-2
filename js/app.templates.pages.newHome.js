@@ -119,7 +119,7 @@ app.templates.pages.newHome = {
 					title: course.title,
 					description: course.description,
 					image: course.image,
-					buttonLink: `/#!/newCourse/${courseId}`,
+					buttonLink: `#!/course/${courseId}`,
 					percentageComplete: course.stats.lessons.totalProgress
 				}
 			}
@@ -133,7 +133,7 @@ app.templates.pages.newHome = {
 					title: lesson.title,
 					description: lesson.description,
 					image: lesson.image,
-					buttonLink: `/#!/newLesson/${lessonId}`,
+					buttonLink: `#!/lesson/${lessonId}`,
 					percentageComplete: lesson.progress
 				}
 			}
@@ -163,7 +163,15 @@ app.templates.pages.newHome = {
 								<!--	
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9.90039" cy="9.90015" r="9" stroke="white" stroke-width="1.5"/><path d="M16.5 16.5L22.864 22.864" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>	
 								-->	
-								<input type="text" class="materialInputTextArea materialThemeDark" placeholder="${config.text.searchBarPlaceholder}" class="">
+								
+								<div class="materialSearchInputWithBtn">
+									<input type="text" class="materialInputTextArea materialThemeDark" placeholder="${config.text.searchBarPlaceholder}" class="">
+									
+									<div>
+										<svg class="clearBtn" width="13" height="13" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 1.5L22.8627 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.8623 1.5L1.49961 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+										<button class="materialButtonFill materialThemeDark searchBtn"><i class="fa fa-search"></i> Search</button>
+									</div>
+								</div>
 
 								<div class="filterSwitchBtn">
 									<svg width="21" height="21" viewBox="0 0 23 24" fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg">

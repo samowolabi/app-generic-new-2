@@ -4,10 +4,21 @@
 }
 
 .materialCardsScrolling .overlay {
-    width: 11rem;
+    width: 8.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.65s ease-in-out;
+}
+
+.materialCardsScrolling .overlay svg {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.materialCardsScrolling .overlay:hover svg {
+    width: 4.5rem;
+    height: 4.5rem;
 }
 
 .materialCardsScrolling .overlay.scrollLeft {
@@ -18,7 +29,12 @@
     bottom: 0;
     z-index: 1;
     background: rgb(21,21,21);
-    background: linear-gradient(90deg, rgba(12, 12, 12, 0.45) 0%, rgba(21,21,21,0) 60%);
+    background: linear-gradient(270deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.45) 70%);
+}
+
+.materialCardsScrolling .overlay.scrollLeft:hover {
+    background: rgb(21,21,21);
+    background: linear-gradient(270deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.65) 70%);
 }
 
 .materialCardsScrolling .overlay.scrollRight {
@@ -29,12 +45,17 @@
     bottom: 0;
     z-index: 1;
     background: rgb(21,21,21);
-    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.45) 60%);
+    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.45) 70%);
+}
+
+.materialCardsScrolling .overlay.scrollRight:hover {
+    background: rgb(21,21,21);
+    background: linear-gradient(90deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.65) 70%);
 }
 
 .materialCardsScrolling .materialCardsDiv {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -51,10 +72,16 @@
 
 .materialCardsScrolling .materialCardsDiv > div {
     min-width: 350px;
+    padding: 0;
+    width: 350px;
 }
 
 /* Media Queries for mobile */
 @media (max-width: 768px) {
+    .materialCardsScrolling .overlay {
+        width: 4.5rem;
+    }
+    
     .materialCardsScrolling .overlay.scrollLeft {
         display: flex;
         justify-content: flex-start;

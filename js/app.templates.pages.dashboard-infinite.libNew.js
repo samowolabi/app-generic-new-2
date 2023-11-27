@@ -349,7 +349,24 @@ var dashboardInfiniteScrollingNew = function () {
 			$(document).on("scroll", window, that.callbacks.onScroll);
 
 			$('.filterSwitchBtn').on("click", that.callbacks.filterSwitch);
-			$('.materialSearchBar input').on("keyup", that.callbacks.searchBtn);
+			
+			$('.materialSearchBar input').on("keyup", (event) => {
+				if (event.target.value === "") {
+					that.callbacks.searchBtn(event);
+					$('.materialSearchBar svg.clearBtn').hide();
+				} else {
+					$('.materialSearchBar svg.clearBtn').show();
+				}
+			});
+
+			$('.materialSearchBar .clearBtn').on("click", (event) => {
+				$('.materialSearchBar input').val("");
+				that.callbacks.searchBtn(event);
+				$('.materialSearchBar svg.clearBtn').hide();
+			});
+
+			$('.materialSearchBar searchBtn').on("click", that.callbacks.searchBtn);
+
 			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
 			$('.filterFormsContainer select').on("change", that.callbacks.filterDropdown);
 		}

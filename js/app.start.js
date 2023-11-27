@@ -108,6 +108,20 @@ router.on({
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
+	'/newlesson/:lessonId': function (params) { //Change newLesson to just lesson and change "lesson" to "oldLesson". Same for newCourse and anything new
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.newlesson.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.newlesson.content(params.lessonId); },
+			callback: function () { }
+		});
+
+
+		app.routeId = "/newLesson/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
 	'/lesson/:lessonId': function (params) { //Change newLesson to just lesson and change "lesson" to "oldLesson". Same for newCourse and anything new
 		app.html({
 			target: "#content",
@@ -118,7 +132,8 @@ router.on({
 		});
 
 
-		app.routeId = "/newLesson/";
+		app.routeId = "/newlesson/";
+		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -163,6 +178,7 @@ router.on({
 
 
 		app.routeId = "/course/";
+		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -271,7 +287,8 @@ router.on({
 				contentTrue:  	  function(){ return app.templates.pages.lesson.content( app.data.lesson[params.lessonId], 	app.data.cards	);},
 				contentFalse: 	  function(){ return app.templates.pages.lesson.notFound( params.lessonId );} 
 			}); 
-    },*/
+    },
+	*/
 	'/old-dashboard/': function (params) {
 		app.html({
 			target: "#content",
