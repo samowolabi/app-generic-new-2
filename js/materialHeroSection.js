@@ -44,6 +44,9 @@ var materialHeroSection = (function () {
             // Change background image
             const changeBGImage = () => {
                 const heroSectionDiv = document.querySelector('.materialHeroSection .heroSectionDiv');
+
+                if (!heroSectionDiv) { return }
+
                 const imageIndex = (i + heroSectionData.length) % heroSectionData.length;
 
                 console.log(imageIndex);
@@ -60,19 +63,19 @@ var materialHeroSection = (function () {
                 heroSectionDiv.insertBefore(heroBGImg, heroSectionDiv.firstChild);
 
                 // Set the background image
-                heroBGImg.style.backgroundImage = `url(${heroSectionData[imageIndex].image})`;
+                heroBGImg.style.backgroundImage = `url(${heroSectionData[imageIndex]?.image})`;
 
                 // Set title and description
                 heroBGImg.innerHTML = `
                     <div>
-                        <h1 class="header">${heroSectionData[imageIndex].title}</h1>
-                        <p class="headerSubText">${heroSectionData[imageIndex].description}</p>
+                        <h1 class="header">${heroSectionData[imageIndex]?.title}</h1>
+                        <p class="headerSubText">${heroSectionData[imageIndex]?.description}</p>
 
                         <div class="buttonRow">
-							<a href="${heroSectionData[imageIndex].buttonLink}"><button class="materialButtonFill materialThemeGoldDark">
-                                ${heroSectionData[imageIndex].percentageComplete < 5 ? 'Start Learning' : 'Resume Learning'}
+							<a href="${heroSectionData[imageIndex]?.buttonLink}"><button class="materialButtonFill materialThemeGoldDark">
+                                ${heroSectionData[imageIndex]?.percentageComplete < 5 ? 'Start Learning' : 'Resume Learning'}
                             </button></a>
-                            <p>${heroSectionData[imageIndex].percentageComplete}% Completed</p>
+                            <p>${heroSectionData[imageIndex]?.percentageComplete}% Completed</p>
                         </div>
                     </div>
                 `;
@@ -92,7 +95,7 @@ var materialHeroSection = (function () {
             // Start the initial interval
             startInterval();
 
-            const changeBGImageControl = (type) => {
+            const changeBGImageControl = function (type) {
                 if (type === 'next') {
                     i++;
                 } else {

@@ -346,7 +346,7 @@ var dashboardInfiniteScrollingNew = function () {
 			that.vars.scrollDiv = true;
 
 			console.log("TURN ON SCROLL CALLBACK");
-			$(document).on("scroll", window, that.callbacks.onScroll);
+			// $(document).on("scroll", window, that.callbacks.onScroll);
 
 			$('.filterSwitchBtn').on("click", that.callbacks.filterSwitch);
 			
@@ -365,6 +365,11 @@ var dashboardInfiniteScrollingNew = function () {
 				$('.materialSearchBar svg.clearBtn').hide();
 			});
 
+			$('.clearFilterButtonDiv button').on("click", (event) => {
+				app.resetFilterInputs();
+				that.callbacks.filterSwitch(event);
+			});
+
 			$('.materialSearchBar searchBtn').on("click", that.callbacks.searchBtn);
 
 			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
@@ -376,7 +381,7 @@ var dashboardInfiniteScrollingNew = function () {
 	// exposed.createCard = that.createCard;
 	exposed.unload = function () {
 		if (exposed.loaded) {
-			$(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
+			// $(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
 			$(document).off("click", '.searchBtn', that.callbacks.searchBtn);
 			$(document).off("change", '.filterFormsContainer select', that.callbacks.filterDropdown);
 			$(document).off("click", '.filterSwitchBtn', that.callbacks.filterSwitch);

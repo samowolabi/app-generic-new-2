@@ -6,10 +6,9 @@ var materialCardScrolling = (function () {
         var html = '';
 
         const { data, list } = settings
-        var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
 
-        console.error('data', data)
-        console.error('list', list)
+        // Column Width
+        var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
 
         if (list.type === 'lesson') {
             list.ids.forEach(function (item) {
@@ -69,6 +68,11 @@ var materialCardScrolling = (function () {
 
                 // Hide Left Carousel at first
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
+
+                // Hide Right Carousel if there is no scroll
+                if (cardsScrollingDiv.scrollWidth <= cardsScrollingDiv.clientWidth) {
+                    parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').style.display = 'none';
+                }
 
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').addEventListener('click', function (event) {
                     cardsScrollingDiv.scrollLeft -= scrollAmount;

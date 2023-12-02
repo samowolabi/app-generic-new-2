@@ -134,7 +134,7 @@ app.templates.modules.lessonsOutline = {
                         list: data.course[activeCourseId].chapterIds.map(function(chapterId, index) {
                             return {
                                 header: data.chapter[chapterId].title,
-                                subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}  |  -hr -min`,
+                                subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}`,
                                 onInitOpenAccordion: true,
                                 content: `
                                     <div class="materialOutlineLearn">
@@ -147,7 +147,7 @@ app.templates.modules.lessonsOutline = {
                                                                 <a href="#!/lesson/${lessonId}"> 
                                                                     <div class="materialOutlineThumbnail" style="background-image: url(${data.lesson[lessonId].image});">
                                                                         <div class="materialProgressBar">
-                                                                            <div class="materialProgressBarInside " style="width:30%;"></div>
+                                                                            <div class="materialProgressBarInside " style="width: ${data.lesson[lessonId].progress}%;"></div>
                                                                         </div>
                                                                     </div>
                                                                     <h6>${data.lesson[lessonId].title}</h6>
@@ -167,7 +167,7 @@ app.templates.modules.lessonsOutline = {
                                                                     }
                                                                 </a>
                                                             </div>
-                                                            <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+                                                            <div class="materialOutlineIcon">${data.lesson[lessonId].progress > 90 ? '<i class="fa fa-check"></i>' : ''}</div>
                                                         </li>
                                                     `
                                                 }).join('')

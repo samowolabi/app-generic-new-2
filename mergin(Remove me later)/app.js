@@ -281,7 +281,80 @@ app.dialogs.exclusiveInvitation = function(url, settings){
 			</div>
 	</div>`;
 	materialDialog.custom(dialogHtml, settings);
-}					
+}
+
+app.dialogs.questionProgress = function( settings){
+	if(typeof settings === "undefined"){ settings = {};	}
+    settings.title = settings.title || "Undefined title";
+    settings.subtitle = settings.subtitle || "Undefined subtitle";
+    settings.progressPercentage = settings.progressPercentage || "95";
+    settings.progressDisplay = settings.progressDisplay || "1000";
+    settings.progressTitle = settings.progressTitle || "Melody Coins";
+    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
+
+     settings.buttonNo  = settings.buttonNo || {};
+     settings.buttonYes = settings.buttonYes || {};
+
+     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
+     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
+
+     settings.buttonNo.value  = settings.buttonNo.value || "no";
+     settings.buttonYes.value = settings.buttonYes.value || "yes";
+
+     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
+     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
+
+     settings.buttonNo.additional  = settings.buttonNo.additional || "";
+     settings.buttonYes.additional = settings.buttonYes.additional || "";
+
+     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
+     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
+
+     settings.hideCallback = settings.hideCallback || function(value){ console.log("Question result: ", value);};
+
+
+	var dialogHtml = `<div class="row">
+		<div class="col-sm-12 col-xs-12">
+				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
+					 <div class="container-fluid">
+						<div class="row">
+
+							<div class="materialCardProgressLeft materialThemeDark materialCardProgressLeftDouble">
+
+								<div class="materialProgressCircle materialThemeDark" data-progress="${settings.progressPercentage}" data-progress-affects-data-percentage="">
+									<span class="materialProgressCircle-left">
+										<span class="materialProgressCircle-bar"></span>
+									</span>
+									<span class="materialProgressCircle-right">
+										<span class="materialProgressCircle-bar"></span>
+									</span>
+									<div class="materialProgressCircle-value">
+										<div>
+											<span>${settings.progressDisplay}</span><br>
+											${settings.progressTitle}<br>${settings.progressSubTitle}
+										</div>
+									</div>
+								</div>
+								<br class="visible-xs visible-sm"><br class="visible-xs visible-sm">
+								<div class="materialImageCircle materialThemeDark hidden-xs" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png); ">
+								</div>
+
+							</div>
+							<div class="materialCardProgressRight materialThemeDark materialCardProgressRightDouble">
+                              <h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;">${settings.title}</h3>
+								<p class="materialParagraph materialThemeDark">${settings.subtitle}</p>
+								<div>
+                                    <a class="${settings.buttonNo.theme}"  data-value='${settings.buttonNo.value}'  ${settings.buttonNo.additional}  href="${settings.buttonNo.href}">${settings.buttonNo.caption}</a>
+                                    <a class="${settings.buttonYes.theme}" data-value='${settings.buttonYes.value}' ${settings.buttonYes.additional} href="${settings.buttonYes.href}">${settings.buttonYes.caption}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>`;
+	materialDialog.custom(dialogHtml, settings);
+}
 					
 app.callback = function(callbackDataAsUrl, trackOnServer = true){
 	//Add mobile data
@@ -968,7 +1041,7 @@ app.addRewardPoints = function(snackBarText, rewardPointsToAdd){
 app.fetchRemoteData = function(callback){
 	$.ajax({  
 		dataType: "text", //To avoid parsing of JSON
-		url: "http://localhost/app-generic-new-2/server.json",  //HARDCODED
+		url: config.serverUrl, 
 		cache: false, 
 		type: "POST",
 		crossDomain: true,
@@ -985,11 +1058,18 @@ app.fetchRemoteData = function(callback){
 		} 
 	 })
 	 .done(function(data) { 
-		//Uncompress the data keys
-		data = JSON.parse(app.uncompressJSON(data));  
-		
+
+		try{
+            //Uncompress the data keys
+            data = JSON.parse(app.uncompressJSON(data));
+        }catch(e){
+            console.error(e);
+            data = {
+                "error": "parsing-json"
+            }
+        }
+
 		if(app.returnedError(data)){return false};		
-  
 
 		var lessonId = false;
 		app.refresh(lessonId, data);
@@ -1014,8 +1094,52 @@ app.saveToServer = function(lessonId){
  	//Compress the data keys
 	var dataToSend = app.compressJSON(JSON.stringify(app.data.user)); 
 		
-	//here you have deleted the post? OR DID i DLEETE?
-	console.log("Save data to server is disabled for local host version");
+	$.ajax({  
+		dataType: "text", //To avoid parsing of JSON
+		url: config.serverUrl, 
+		cache: false, 
+		type: "POST",
+		crossDomain: true,
+		headers: {
+			"accept": "application/json"
+		},
+		data: {
+			"url": window.location.href,
+            "referrer": document.referrer,
+			"action": "set",
+			"data": dataToSend,
+			"hs_uid": (localStorage.getItem('hs_uid') || ""), 
+			"hs_uidh": (localStorage.getItem('hs_uidh') || ""),
+			"appName": config.appName
+		} 
+	 })
+	 .done(function(data) {  
+		//Uncompress the data keys
+		try{
+		    data = JSON.parse(app.uncompressJSON(data));
+		}catch(e){
+		    console.error(e);
+		    data = {
+		        "error": "parsing-json"
+		    }
+		}
+
+		if(app.returnedError(data)){return false};
+  
+		if(!lessonId){
+			app.refresh(null, data);  
+		}else{ 
+			//If we are in a lesson page, ensure that the lesson is 100% finished. Else, loading data will override actual data while user is watching, deleting user progress, and generating a bug.
+			if(app.data.user.learning[lessonId] && app.data.user.learning[lessonId].engagementProgressRealPercent == 100){
+				app.refresh(lessonId, data); 
+			}
+		}
+	 })
+	 .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('Error Getting status for parameters: - Error:' + errorThrown); 
+		//Fail silently.
+	 });  
+	console.log("Save data to server");
 }
 
 app.returnedError = function(data){
@@ -1081,41 +1205,9 @@ app.refresh = function(lessonId, dataFromServer){
 		var parentCourseId = app.data.chapter[chapterId].parentCourse;
 		$("#page-lesson-outline").html(app.templates.modules.lessonsOutline.content(app.data, parentCourseId, lessonId));
 	}
-
-	// Update the back button URL
-	app.refeshBackButtonUrl();
-
-	// app.reorderData();
  
 	material.init();
 }
-
-
-app.refeshBackButtonUrl = function(){
-	var updateBackHref = function (hashHistory) {
-		$(".materialBarDashboardBackBtn").attr("href", `#!${hashHistory[hashHistory.length - 2] || ""}`);
-	}
-
-	if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
-
-		// get the lessonId from the app.currentRoute
-		let lessonId = app.currentRoute.split("/lesson/")[1];
-		let parentChapter = app.data.lesson[lessonId].parentChapter
-		let parentCourse = app.data.chapter[parentChapter].parentCourse
-		app.hashHistory.push("/course/" + parentCourse);
-		app.hashHistory.push(app.currentRoute);
-
-		updateBackHref(app.hashHistory); // Update back button URL
-	} else {
-		if (app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) {
-			app.hashHistory.push(app.currentRoute);
-		} else {
-			app.hashHistory.pop();
-		}
-		updateBackHref(app.hashHistory); // Update back button URL
-	}
-}
-
  
 app.getLessonIdsFromCourse = function(courseId){ 
 	var affectedLessons = [];
@@ -1528,7 +1620,7 @@ app.__buildDataFromDataRaw = function(data){
 				 
 				 
 				 // Si ninguna esta available, usar la PRIMERA fecha de "coming soon"
-				 //IF Chequear todas las lecciones de un curso. Si hay por lo menos una "expiring", el curso esta "expiring" con la fecha m�s proxima.
+				 //IF Chequear todas las lecciones de un curso. Si hay por lo menos una "expiring", el curso esta "expiring" con la fecha mas proxima.
 				 //ELSE IF Chequear todas las lecciones de un curso. Si hay por lo menos una "available", el curso esta "available".
 
  
@@ -2746,7 +2838,8 @@ app.html = function(params){
 			material.init(params.target);
 		});
 			
-		app.updateUI();
+		app.updateUI(); 
+		
 	};
 
 	//TODO: add a last datetime for fetching data, so if X time has passed ew fetch it again
@@ -2903,7 +2996,7 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 	
 	//Do a more complex sort.
 	//TODO: include  order by "new" (available date) and then by "expiring" (expire date)
-	var complexSort = function(matchedCourses) {
+	var complexSort = function(matchedCourses){
 		var matchedCoursesOrdered = [];
 		
 		for (const courseId of matchedCourses) {
@@ -2948,29 +3041,13 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 		
 	};
 	
-	// matchedCourses = complexSort(matchedCourses);
-	matchedCourses = app.reorderData(matchedCourses);
+	matchedCourses = complexSort(matchedCourses);
 	
 	//Save last search. TODO must do a better implementation
 	//app.saveLastSearch(filters, keyword); 
 	
 	return paginate(matchedCourses, pageSize, pageNumber);
 	
-}
-
-app.reorderData = function (data) {
-	const reorderedCourse = [];
-
-	data.sort((a, b) => {
-		const statusOrder = {
-			expiringAsap: 1, expiringSoon: 2, available: 3, comingAsap: 4, comingSoon: 5, expired: 6
-		};
-		return statusOrder[app.data.course[a].dateStatus] - statusOrder[app.data.course[b].dateStatus];
-	}).forEach((key) => {
-		reorderedCourse.push(key);
-	});
-
-	return reorderedCourse;
 }
 
 app.getFilterArray = function(){
@@ -2980,6 +3057,7 @@ app.getFilterArray = function(){
 	  var filterName = $( this ).data("filter");
 	  if(filterValue) {filters[filterName] = filterValue;}	  
 	});
+	
 	
 	return filters;
 }
@@ -3207,530 +3285,10 @@ app.createFiltersHtml = function(){
 	}
 	
 	return html;
-}
+}	
 
 
 
-
-app.createFiltersHtmlNew = function(){
-	
-	var getCoursesFilters = function(){
-		var filters = {};
-		for (var courseId in app.data.course) {
-			
-			var course = app.data.course[courseId];
-	  
-			if(course.filters){
-				for (var filterKey in course.filters) {
-					//console.log(filters, filters.filterKey);
-					if(!filters[filterKey]){ 
-						filters[filterKey] = {};
-					}
-					
-					var value = course.filters[filterKey]; 
-					
-					if(!filters[filterKey][value]){
-						filters[filterKey][value] = 1;
-					}
-					else{
-						filters[filterKey][value]++;
-					}
-				}
-			}
-		}
-		 
-		return filters;
-	}
-
-	var createFilterField = function(values, label){
-		
-		var options = [];
-		var optionsSorted = [];
-		var optionsHtml = "";
-		for (var value in values) {
-			options.push(value);
-		}
-		
-		var capitalizedLabel = capitalizeFirstLetter(label);	
-		 
-		options.sort();
-		for (var value of options) {
-			optionsHtml += `<option value='${value}'>${value}</option>`;
-		}
-		
-		return `
-			<div class="materialInputContainer">
-				<div class="materialInputWrap">
-					<select class="materialInputControl materialThemeDark filterInput" required="" id="filterInput${label}" data-filter="${label}"> 
-						<option value="" disabled="" selected=""></option>
-						<option value="">All</option>
-						${optionsHtml}
-					</select>
-					<span class="materialInputHighlight"></span>
-					<span class="materialInputBar"></span>
-					<label class="materialInputLabel materialThemeDark">${capitalizedLabel}</label>
-				</div>
-			</div>
-		`;	
-	}	
-
-	var filters = getCoursesFilters();
-
-
-	//if there are no filters, then hide the filter functionality
-
-	var html = ""; 
-	for (var filterKey in filters) {
-		var values = filters[filterKey];
-		 
-		function capitalizeFirstLetter(string) {
-		  return string.charAt(0).toUpperCase() + string.slice(1);
-		}
-		 
-		html += createFilterField(values,  filterKey);
-	}
-	
-	return html;
-}
-
-
-app.resetFilterInputs = function() {
-    $(".filterInput").each(function() {
-        $(this).val('');
-    });
-};
-
-
-app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
-
-	var href = `#!/lesson/${lessonId}`;
-
-	var countdownHtml = function (date) {
-		return `
-			<span data-countdown="${date}"> 
-				<span data-days>00</span>
-				<span data-days-caption> Days </span>
-				<span data-hours>00</span>:<span data-minutes>00</span>:<span data-seconds>00</span>
-			</span>`;
-	};
-
-	var shareButtonHtml = `
-		<span>
-			<a href="#" class="materialButtonIcon materialThemeDark" data-button data-icon-class-on="fa fa-share-alt pressed" data-icon-class-off="fa fa-share-alt" data-action="materialContextMenu">
-				<i class="fa fa-share-alt" aria-hidden="true"></i>
-				<ul class="materialContextMenu" data-position="bottom left" data-url="https://pianoencyclopedia.com/en/sign-up/?utm_source=share&utm_campaign=members-area&utm_content=${encodeURIComponent(href)}" data-callback="window.open(value.replace('%url%', $(thisContextMenuUl).data('url')), '_blank');">
-					<li data-value="https://www.facebook.com/sharer/sharer.php?u=%url%">
-						<i class="fa fa-facebook-official"></i> Facebook
-					</li>
-					<li data-value="https://twitter.com/intent/tweet?url=%url%&text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music" data-callback="window.open('' + value, '_blank');">
-						<i class="fa fa-twitter" aria-hidden="true"></i> Twitter
-					</li>
-					<li data-value="https://api.whatsapp.com/send?text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
-						<i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
-					</li> 
-					<li data-value="mailto:?subject=This piano course is amazing&amp;body=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
-						<i class="fa fa-envelope" aria-hidden="true"></i>Email
-					</li>
-				</ul> 
-			</a> 
-		</span>`;
-
-
-	switch (lesson.progressStatus) {
-		case "new":
-			var buttonAction = "Start";
-			break;
-		case "inProgress":
-			var buttonAction = `Resume`;
-			break;
-		case "completed":
-			var buttonAction = `Watch Again`;
-		default:
-			var buttonAction = "Start";
-	}
-
-	var icon;
-	switch (lesson.type) {
-		case "add-here-different-course-types":
-			icon = "fa-newspaper-o";
-			break;
-		default:
-			icon = "fa-graduation-cap";
-	}
-
-	switch (lesson.dateStatus) {
-		case "expiringAsap":
-			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring in ${countdownHtml(lesson.deadlineDateString)}</p>`;
-			var theme = "materialThemeLightGold";
-			var themeOverlay = "";
-			var themeButton = "materialButtonFill materialThemeDark";
-			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
-							  </span>
-							  ${shareButtonHtml}`;
-			var progressChipHtml = `<span data-new><i>NEW</i></span>
-								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-								<span data-complete><i class="fa fa-check"></i></span>`;
-
-			break;
-		case "expiringSoon":
-			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring Soon</p>`;
-			var theme = "materialThemeLightGold";
-			var themeOverlay = "";
-			var themeButton = "materialButtonFill materialThemeDark";
-			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
-							  </span>
-							  ${shareButtonHtml}`;
-			var progressChipHtml = `<span data-new><i>NEW</i></span>
-								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-								<span data-complete><i class="fa fa-check"></i></span>`;
-			break;
-		case "comingAsap":
-			var scarcityHtml = ``;
-			var theme = "materialThemeDarkGold";
-			var themeOverlay = "materialOverlayShallowBlack";
-			var themeButton = "materialButtonText";
-			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available in ${countdownHtml(lesson.availableDateString)}</p>`;
-			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
-								<span data-incomplete>COMING SOON</span>
-								<span data-complete>COMING SOON</span>`;
-			var icon = "fa-clock-o";
-			break;
-		case "comingSoon":
-			var scarcityHtml = ``;
-			var theme = "materialThemeDarkGold";
-			var themeOverlay = "materialOverlayShallowBlack";
-			var themeButton = "materialButtonText";
-			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>`;
-			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
-								<span data-incomplete>COMING SOON</span>
-								<span data-complete>COMING SOON</span>`;
-			var icon = "fa-clock-o";
-			break;
-		case "expired":
-			var scarcityHtml = ``;
-			var theme = "materialThemeDarkGrey";
-			var themeOverlay = "materialOverlayShallowBlack";
-			var themeButton = "materialButtonText materialThemeDarkGrey";
-			var actionHtml = `<span>
-								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
-							  </span>`;
-			var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
-								<span data-incomplete>EXPIRED</span>
-								<span data-complete>EXPIRED</span>`;
-			var icon = "fa-lock";
-
-			break;
-		case "available":
-		default:
-			var scarcityHtml = "";
-			var theme = "materialThemeLightGold";
-			var themeOverlay = "";
-			var themeButton = "materialButtonFill materialThemeDark";
-			var actionHtml = `<span>
-								<a href="${href}" class="${themeButton}" data-button >${buttonAction}</a>
-							  </span>
-							  ${shareButtonHtml}`;
-			var progressChipHtml = `<span data-new><i>NEW</i></span>
-							<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-							<span data-complete><i class="fa fa-check"></i></span>`;
-
-	}
-
-	let parentChapter = lesson.parentChapter;
-
-	var progressBarStyling = `style="width:${app.data.chapter[parentChapter].stats.lessons.totalProgress}%; "`;
-
-	var progressHtml = `<div class="materialProgressBar ${theme}">
-							<div class="materialProgressBarInside" ${progressBarStyling}> 
-							</div>
-						</div>`;
-
-	var defaultImage = 'https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png';
-	var courseImage = lesson.imageThumbnail || lesson.image || defaultImage;
-
-	var courseBackgroundColor = (courseImage === defaultImage) ? "black" : "grey";
-
-	var bottomLeftChip = config.text.searchResultsBottomLeft(lesson) ?
-		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
-							${config.text.searchResultsBottomLeft(lesson)}
-						</div>;` : "";
-
-	var topLeftChip = config.text.searchResultsTopLeft(lesson) ?
-		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
-							${config.text.searchResultsTopLeft(lesson)}
-						</div>;` : "";
-
-	var lineText1 = config.text.searchResultsLineText1(lesson) ? `<h6 class="materialParagraph">${config.text.searchResultsLineText1(lesson) == '?' ? 'Find out more inside...' : config.text.searchResultsLineText1(lesson)}</h6>` : `<h6 class="materialParagraph"></h6>`;
-
-	var lineText2 = config.text.searchResultsLineText2(lesson) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(lesson)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
-
-
-	var html = `
-		<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
-		<div class="${columnWidthClass}">
-		<div class="materialCard ${theme}">
-					<div class="materialCardTop" data-button data-href="${href}"> 
-						<div class="materialCardImg">
-							<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
-							<div class="materialCardImgOverlay ${themeOverlay}"></div>
-							
-							<div class="materialCardMediaType ${theme} materialThemeFlat">
-									<i class="fa ${icon}" title="Course"></i>
-							</div> 
-							
-							${bottomLeftChip}
-							
-							${topLeftChip} 
-							
-							<div class="materialCardNew ${theme} materialThemeFlat">
-								<span data-progress="${app.data.chapter[parentChapter].stats.lessons.totalProgress}">
-									${progressChipHtml}
-								</span>
-							</div>
-						</div>
-					${progressHtml}
-						<div class="materialCardInfo ${theme}"  style="min-height: 200px; max-height: 200px; overflow: hidden;">
-							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${lesson.title}</h2>
-							${lineText1}
-							${lineText2} 
-							${scarcityHtml} 
-						</div>
-					</div>
-					<div class="materialCardAction ${theme}">
-						${actionHtml}
-					</div>
-				</div>   
-		</div>`;
-
-	return html;
-
-}
-
-
-app.createCourseCard = function(courseId, course, columnWidthClass) {
-
-	var href = `#!/course/${courseId}`;
-
-	var countdownHtml = function (date) {
-		return `
-			<span data-countdown="${date}"> 
-				<span data-days>00</span>
-				<span data-days-caption> Days </span>
-				<span data-hours>00</span>:<span data-minutes>00</span>:<span data-seconds>00</span>
-			</span>`;
-	};
-
-	var shareButtonHtml = `
-		<span>
-			<a href="#" class="materialButtonIcon materialThemeDark" data-button data-icon-class-on="fa fa-share-alt pressed" data-icon-class-off="fa fa-share-alt" data-action="materialContextMenu">
-				<i class="fa fa-share-alt" aria-hidden="true"></i>
-				<ul class="materialContextMenu" data-position="bottom left" data-url="https://pianoencyclopedia.com/en/sign-up/?utm_source=share&utm_campaign=members-area&utm_content=${encodeURIComponent(href)}" data-callback="window.open(value.replace('%url%', $(thisContextMenuUl).data('url')), '_blank');">
-					<li data-value="https://www.facebook.com/sharer/sharer.php?u=%url%">
-						<i class="fa fa-facebook-official"></i> Facebook
-					</li>
-					<li data-value="https://twitter.com/intent/tweet?url=%url%&text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music" data-callback="window.open('' + value, '_blank');">
-						<i class="fa fa-twitter" aria-hidden="true"></i> Twitter
-					</li>
-					<li data-value="https://api.whatsapp.com/send?text=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
-						<i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp
-					</li> 
-					<li data-value="mailto:?subject=This piano course is amazing&amp;body=Learn how to improvise, compose, and play the piano by ear by discovering The Logic Behind Music: %url%">
-						<i class="fa fa-envelope" aria-hidden="true"></i>Email
-					</li>
-				</ul> 
-			</a> 
-		</span>`;
-
-
-	switch (course.progressStatus) {
-		case "new":
-			var buttonAction = "Start";
-			break;
-		case "inProgress":
-			var buttonAction = `Resume`;
-			break;
-		case "completed":
-			var buttonAction = `Watch Again`;
-		default:
-			var buttonAction = "Start";
-	}
-
-	var icon;
-
-	// TODO: Get type for this
-	switch (course?.type) {
-		case "add-here-different-course-types":
-			icon = "fa-newspaper-o";
-			break;
-		default:
-			icon = "fa-graduation-cap";
-	}
-
-	switch (course.dateStatus) {
-		case "expiringAsap":
-			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring in ${countdownHtml(course.earliestDeadlineDateTime)}</p>`;
-			var theme = "materialThemeLightGold";
-			var themeOverlay = "";
-			var themeButton = "materialButtonFill materialThemeDark";
-			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
-							  </span>
-							  ${shareButtonHtml}`;
-			var progressChipHtml = `<span data-new><i>NEW</i></span>
-								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-								<span data-complete><i class="fa fa-check"></i></span>`;
-
-			break;
-		case "expiringSoon":
-			var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>Expiring Soon</p>`;
-			var theme = "materialThemeLightGold";
-			var themeOverlay = "";
-			var themeButton = "materialButtonFill materialThemeDark";
-			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
-							  </span>
-							  ${shareButtonHtml}`;
-			var progressChipHtml = `<span data-new><i>NEW</i></span>
-								<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-								<span data-complete><i class="fa fa-check"></i></span>`;
-			break;
-		case "comingAsap":
-			var scarcityHtml = ``;
-			var theme = "materialThemeDarkGold";
-			var themeOverlay = "materialOverlayShallowBlack";
-			var themeButton = "materialButtonText";
-			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available in ${countdownHtml(course.earliestAvailableDateString)}</p>`;
-			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
-								<span data-incomplete>COMING SOON</span>
-								<span data-complete>COMING SOON</span>`;
-			var icon = "fa-clock-o";
-			break;
-		case "comingSoon":
-			var scarcityHtml = ``;
-			var theme = "materialThemeDarkGold";
-			var themeOverlay = "materialOverlayShallowBlack";
-			var themeButton = "materialButtonText";
-			var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>`;
-			var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
-								<span data-incomplete>COMING SOON</span>
-								<span data-complete>COMING SOON</span>`;
-			var icon = "fa-clock-o";
-			break;
-		case "expired":
-			var scarcityHtml = ``;
-			var theme = "materialThemeDarkGrey";
-			var themeOverlay = "materialOverlayShallowBlack";
-			var themeButton = "materialButtonText materialThemeDarkGrey";
-			var actionHtml = `<span>
-								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
-							  </span>`;
-			var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
-								<span data-incomplete>EXPIRED</span>
-								<span data-complete>EXPIRED</span>`;
-			var icon = "fa-lock";
-
-			break;
-		case "available":
-		default:
-			var scarcityHtml = "";
-			var theme = "materialThemeLightGold";
-			var themeOverlay = "";
-			var themeButton = "materialButtonFill materialThemeDark";
-			var actionHtml = `<span>
-								<a href="${href}" class="${themeButton}" data-button >${buttonAction}</a>
-							  </span>
-							  ${shareButtonHtml}`;
-			var progressChipHtml = `<span data-new><i>NEW</i></span>
-							<span data-incomplete><span data-progress-affects-html>0</span>%</span>
-							<span data-complete><i class="fa fa-check"></i></span>`;
-
-	}
-
-	var progressBarStyling = `style="width:${course.stats.lessons.totalProgress}%; "`;
-
-	var progressHtml = `<div class="materialProgressBar ${theme}">
-							<div class="materialProgressBarInside" ${progressBarStyling}> 
-							</div>
-						</div>`;
-
-	var defaultImage = 'https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png';
-	var courseImage = course.image || defaultImage;
-
-	var courseBackgroundColor = (courseImage === defaultImage) ? "black" : "grey";
-
-	var bottomLeftChip = config.text.searchResultsBottomLeft(course) ?
-		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
-							${config.text.searchResultsBottomLeft(course)}
-						</div>;` : "";
-
-	var topLeftChip = config.text.searchResultsTopLeft(course) ?
-		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
-							${config.text.searchResultsTopLeft(course)}
-						</div>;` : "";
-
-	var lineText1 = config.text.searchResultsLineText1(course) ? `<h6 class="materialParagraph">${config.text.searchResultsLineText1(course)}</h6>` : `<h6 class="materialParagraph"></h6>`;
-
-	var lineText2 = config.text.searchResultsLineText2(course) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(course)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
-
-
-	var html = `
-		<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
-		<div class="${columnWidthClass}">
-		<div class="materialCard ${theme}">
-					<div class="materialCardTop" data-button data-href="${href}"> 
-						<div class="materialCardImg">
-							<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
-							<div class="materialCardImgOverlay ${themeOverlay}"></div>
-							
-							<div class="materialCardMediaType ${theme} materialThemeFlat">
-									<i class="fa ${icon}" title="Course"></i>
-							</div> 
-							
-							${bottomLeftChip}
-							
-							${topLeftChip} 
-							
-							<div class="materialCardNew ${theme} materialThemeFlat">
-								<span data-progress="${course.stats.lessons.totalProgress}">
-									${progressChipHtml}
-								</span>
-							</div>
-						</div>
-					${progressHtml}
-						<div class="materialCardInfo ${theme}" style="min-height: 200px; max-height: 200px; overflow: hidden;">
-							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${course.title}</h2>
-							${lineText1}
-							${lineText2} 
-							${scarcityHtml} 
-						</div>
-					</div>
-					<div class="materialCardAction ${theme}">
-						${actionHtml}
-					</div>
-				</div>   
-		</div>`;
-
-	return html;
-
-}
-
-
-
-app.highlightLesson = function() {
-	let dataId = "3204";
-
-	let lessonItemSelector = $(`.materialAccordionContent li[data-id="${dataId}"]`);
-	lessonItemSelector.css('background-color', '#222222');
-
-	// Center Position
-	let centerPosition = lessonItemSelector.offset().top - ($(window).height() - lessonItemSelector.outerHeight()) / 2;
-
-	$('html, body').animate({
-		scrollTop: centerPosition
-	}, 600);
-}
 
 /*
 TODO: pasar todo esto a una funcion aqui, de forma tal que pueda hacer refresh el route.
@@ -3798,11 +3356,6 @@ app.routes["/lesson/:lessonId"] = function(){
 		
 		app.routeId = "/dashboard/newest/";
 		*/
-//app.init();
-//TODO: create wrapper over ajax request, to retry twice?	
-
-
-
 
 app.wallet = function(){
 	var expose = {};
@@ -4105,76 +3658,6 @@ app.getPreviewFromLesson = function(lessonId) {
 };
 
 
-app.dialogs.questionProgress = function( settings){
-	if(typeof settings === "undefined"){ settings = {};	}
-    settings.title = settings.title || "Undefined title";
-    settings.subtitle = settings.subtitle || "Undefined subtitle";
-    settings.progressPercentage = settings.progressPercentage || "95";
-    settings.progressDisplay = settings.progressDisplay || "1000";
-    settings.progressTitle = settings.progressTitle || "Melody Coins";
-    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
 
-     settings.buttonNo  = settings.buttonNo || {};
-     settings.buttonYes = settings.buttonYes || {};
-
-     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
-     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
-
-     settings.buttonNo.value  = settings.buttonNo.value || "no";
-     settings.buttonYes.value = settings.buttonYes.value || "yes";
-
-     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
-     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
-
-     settings.buttonNo.additional  = settings.buttonNo.additional || "";
-     settings.buttonYes.additional = settings.buttonYes.additional || "";
-
-     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
-     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
-
-     settings.hideCallback = settings.hideCallback || function(value){ console.log("Question result: ", value);};
-
-
-	var dialogHtml = `<div class="row">
-		<div class="col-sm-12 col-xs-12">
-				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
-					 <div class="container-fluid">
-						<div class="row">
-
-							<div class="materialCardProgressLeft materialThemeDark materialCardProgressLeftDouble">
-
-								<div class="materialProgressCircle materialThemeDark" data-progress="${settings.progressPercentage}" data-progress-affects-data-percentage="">
-									<span class="materialProgressCircle-left">
-										<span class="materialProgressCircle-bar"></span>
-									</span>
-									<span class="materialProgressCircle-right">
-										<span class="materialProgressCircle-bar"></span>
-									</span>
-									<div class="materialProgressCircle-value">
-										<div>
-											<span>${settings.progressDisplay}</span><br>
-											${settings.progressTitle}<br>${settings.progressSubTitle}
-										</div>
-									</div>
-								</div>
-								<br class="visible-xs visible-sm"><br class="visible-xs visible-sm">
-								<div class="materialImageCircle materialThemeDark hidden-xs" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png); ">
-								</div>
-
-							</div>
-							<div class="materialCardProgressRight materialThemeDark materialCardProgressRightDouble">
-                              <h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;">${settings.title}</h3>
-								<p class="materialParagraph materialThemeDark">${settings.subtitle}</p>
-								<div>
-                                    <a class="${settings.buttonNo.theme}"  data-value='${settings.buttonNo.value}'  ${settings.buttonNo.additional}  href="${settings.buttonNo.href}">${settings.buttonNo.caption}</a>
-                                    <a class="${settings.buttonYes.theme}" data-value='${settings.buttonYes.value}' ${settings.buttonYes.additional} href="${settings.buttonYes.href}">${settings.buttonYes.caption}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	</div>`;
-	materialDialog.custom(dialogHtml, settings);
-}
-
+//app.init();
+//TODO: create wrapper over ajax request, to retry twice?	

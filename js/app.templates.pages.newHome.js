@@ -117,13 +117,15 @@ app.templates.pages.newHome = {
 			if (course) {
 				return {
 					title: course.title,
-					description: course.description,
+					description: course.subtitle || 'The Piano Encyclopedia',
 					image: course.image,
 					buttonLink: `#!/course/${courseId}`,
 					percentageComplete: course.stats.lessons.totalProgress
 				}
+			} else {
+				return null
 			}
-		})
+		}).filter(item => item !== null)
 
 
 		let heroSectionArrayLessonIds = app.data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds.map((lessonId, index) => {
@@ -131,16 +133,19 @@ app.templates.pages.newHome = {
 			if (lesson) {
 				return {
 					title: lesson.title,
-					description: lesson.description,
+					description: lesson.subtitle || 'The Piano Encyclopedia',
 					image: lesson.image,
 					buttonLink: `#!/lesson/${lessonId}`,
 					percentageComplete: lesson.progress
 				}
+			} else {
+				return null
 			}
-		})
+		}).filter(item => item !== null)
 
 		// Merge both arrays (heroSectionArrayCourseIds and heroSectionArrayLessonIds)
 		var heroSectionArray = [...heroSectionArrayCourseIds, ...heroSectionArrayLessonIds]
+		
 
 		var html = `
 			<style>
@@ -169,12 +174,12 @@ app.templates.pages.newHome = {
 									
 									<div>
 										<svg class="clearBtn" width="13" height="13" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 1.5L22.8627 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.8623 1.5L1.49961 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-										<button class="materialButtonFill materialThemeDark searchBtn"><i class="fa fa-search"></i> Search</button>
+										<button class="materialButtonIcon materialThemeDark searchBtn"><i class="fa fa-search"></i></button>
 									</div>
 								</div>
 
 								<div class="filterSwitchBtn">
-									<svg width="21" height="21" viewBox="0 0 23 24" fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg">
+									<svg width="18" height="18" viewBox="0 0 23 24" fill="#B6B6B6" xmlns="http://www.w3.org/2000/svg">
 										<path d="M19.3716 4.63118V6.68328C19.3716 7.4295 18.9052 8.36228 18.4388 8.82866L14.4279 12.3732C13.8682 12.8396 13.4951 13.7724 13.4951 14.5186V18.5295C13.4951 19.0892 13.122 19.8354 12.6556 20.1152L11.3497 20.9547C10.1371 21.701 8.45811 20.8615 8.45811 19.369V14.4253C8.45811 13.7724 8.085 12.9329 7.71189 12.4665L7.27348 12.0094C6.98432 11.7016 6.92835 11.2352 7.16155 10.8714L11.9374 3.20403C12.1053 2.93352 12.4037 2.76562 12.7302 2.76562H17.506C18.5321 2.76562 19.3716 3.60512 19.3716 4.63118Z" />
 										<path d="M9.80994 4.19277L6.49858 9.50026C6.18144 10.0133 5.45388 10.0879 5.03413 9.64951L4.16665 8.73539C3.70026 8.269 3.32715 7.4295 3.32715 6.86984V4.72445C3.32715 3.60512 4.16665 2.76562 5.1927 2.76562H9.01708C9.74464 2.76562 10.1924 3.56781 9.80994 4.19277Z" />
 									</svg>
@@ -182,7 +187,13 @@ app.templates.pages.newHome = {
 							</div>
 
 							<div class="filterFormsContainer">
-								<!-- Created dynamically -->
+								<div class="filterFormsDiv">
+									<!-- Created dynamically -->
+								</div>
+
+								<div class="clearFilterButtonDiv">
+									<button class="materialButtonText materialThemeDark">Clear Filters</button>
+								</div>
 							</div>
 						</div>
 
@@ -317,7 +328,11 @@ app.templates.pages.newHome = {
 
 			<script>
 				// Create filters based on current data.
-				$(".filterFormsContainer").html(app.createFiltersHtmlNew()); 
+				if(app.createFiltersHtmlNew()) {
+					$(".filterFormsContainer .filterFormsDiv").html(app.createFiltersHtmlNew());
+				} else {
+					$(".filterSwitchBtn").hide();
+				}
 			</script>
 
 			<script>
@@ -338,8 +353,11 @@ app.templates.pages.newHome = {
 				function closeMaterialSearchBarOutClick(event) {
 					let materialSearchBar = document.querySelector('.materialSearchBar')
 
-					if (!event.target.closest('.materialSearchBar')) {
+					if (!materialSearchBar.contains(event.target) && event.target !== materialSearchBar) {
+						console.log('Yes')
 						materialSearchBar.classList.remove('active');
+					} else {
+						console.log('No')
 					}
 
 					if(materialSearchBar.classList.contains('active')) {

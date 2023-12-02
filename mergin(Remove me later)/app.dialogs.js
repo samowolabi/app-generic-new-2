@@ -1,51 +1,50 @@
 var dialogPreviewLesson = function(lessonId){
-    var preview = app.getPreviewFromLesson(lessonId);
+     var preview = app.getPreviewFromLesson(lessonId);
 
-   if (preview) {
-       materialDialog.custom('<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="'+preview +'&amp;badge=0&amp;autoplay=1&amp;autopause=0&amp;quality_selector=1&amp;player_id=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
-       {
-           contentClass:"maxWidth1200",
-           hideCallback: function(){
-               app.wallet.unlockCourseFromLesson(lessonId);
-           }
-       })
-   }
-   else{
-       materialDialog.alert("We're sorry, but this lesson is not available for preview. <br><br> <b>Unlock it now to get full to this course!</b>");
-   }
+    if (preview) {
+        materialDialog.custom('<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="'+preview +'&amp;badge=0&amp;autoplay=1&amp;autopause=0&amp;quality_selector=1&amp;player_id=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+        {
+            contentClass:"maxWidth1200",
+            hideCallback: function(){
+                app.wallet.unlockCourseFromLesson(lessonId);
+            }
+        })
+    }
+    else{
+        materialDialog.alert("We're sorry, but this lesson is not available for preview. <br><br> <b>Unlock it now to get full to this course!</b>");
+    }
 
-   app.callback("path=" + app.currentRoute + "&preview=clicked");
+    app.callback("path=" + app.currentRoute + "&preview=clicked");
 };
 var dialogUnlockLesson = function(lessonId){
-   /*
-   var url;
-   if(app.data.offer.isDataAvailable()){
-       url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
-   }
-   else{
-       url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
-   }
+	/*
+	var url;
+	if(app.data.offer.isDataAvailable()){
+		url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
+	}
+	else{
+		url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
+	}
 
-   materialDialog.question("Would you like to unlock this lesson now?", "Get unlimited <i>lifetime</i> access to all lessons from the Members-Area and upgrade to a premium account by ordering  our  world-acclaimed Digital-Home Study Course  'The Logic Behind Music'. <br><br><b>Get  ready to make your musical dreams come true with  The Piano Encyclopedia!</b>",
-   {
-       "buttonNo":{
-           caption: "Not yet",
-           value: "no"
-       },
-       "buttonYes":{
-           caption: "Unlock All",
-           href:  url + "?ref=members-area-unlock",
-           additional: "target='_blank'",
-           value: "yes"
-       }
-   });
-   */
+    materialDialog.question("Would you like to unlock this lesson now?", "Get unlimited <i>lifetime</i> access to all lessons from the Members-Area and upgrade to a premium account by ordering  our  world-acclaimed Digital-Home Study Course  'The Logic Behind Music'. <br><br><b>Get  ready to make your musical dreams come true with  The Piano Encyclopedia!</b>",
+    {
+        "buttonNo":{
+            caption: "Not yet",
+            value: "no"
+        },
+        "buttonYes":{
+            caption: "Unlock All",
+            href:  url + "?ref=members-area-unlock",
+            additional: "target='_blank'",
+            value: "yes"
+        }
+    });
+    */
 
-   app.wallet.unlockCourseFromLesson(lessonId);
-   
-   app.callback("path=" + app.currentRoute + "&unlock=clicked");
+    app.wallet.unlockCourseFromLesson(lessonId);
+	
+	app.callback("path=" + app.currentRoute + "&unlock=clicked");
 };
-
 
 $('<div id="dialogPianoLevel" class="materialDialog" data-on-init-callback="dialogPianoLevel.init(thisComponent)"></div>').appendTo('body');
 var dialogPianoLevel = {};
