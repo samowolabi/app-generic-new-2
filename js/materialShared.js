@@ -104,12 +104,20 @@ material.renderProgress = function(target){
 material.init = function(target){
     /* Ripple */
     $( "[data-button], .materialCardTop, .materialButton, .materialRating label, .materialButtonText, .materialButtonOutline, .materialButtonFill, .materialButtonIcon, .materialChipAction, .materialChipChoice, .materialOutlineView", target).each(function() {
-		 $(this).onMouseDownRipple();
-		 
-		 $(this).click(function(event){
-			/*Prevent propagation of events to parents, which results in double or triple actions */
-			event.stopPropagation();
-		 });
+		$(this).onMouseDownRipple();
+		
+		// IMPORTANT: If you use any custom click actions these actions won't be propagated unless you have data-propagation="yes"
+		// Check if data-propagation="yes" is not set 
+		if($(this).data('propagation') !== "yes") {
+			 $(this).click(function(event){
+				/*Prevent propagation of events to parents, which results in double or triple actions */
+				event.stopPropagation();
+			 });
+		}
+    }); 
+	
+	$( "[data-ripple]", target).each(function() {
+		$(this).onMouseDownRipple();
     }); 
 	
 	 

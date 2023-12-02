@@ -36,6 +36,12 @@ app.templates.modules.lesson = {
 	content : function (lessonId){
         var thisLesson = app.data.user.learning[lessonId];
         var lessonData = app.data.lesson[lessonId]
+
+        if (!lessonData) {
+            console.error("Lesson not found");
+            return;
+        }
+
         let parentChapterId = app.data.lesson[lessonId].parentChapter;
         let parentCourseId = app.data.chapter[parentChapterId].parentCourse;
 

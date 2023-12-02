@@ -1100,8 +1100,16 @@ app.refeshBackButtonUrl = function(){
 
 		// get the lessonId from the app.currentRoute
 		let lessonId = app.currentRoute.split("/lesson/")[1];
-		let parentChapter = app.data.lesson[lessonId].parentChapter
-		let parentCourse = app.data.chapter[parentChapter].parentCourse
+
+		console.log('lessonId', app.data.lesson[lessonId]);
+
+		if (!app.data.lesson[lessonId]) {
+			console.log('lessonId not found');
+			return;
+		}
+
+		let parentChapter = app.data.lesson[lessonId].parentChapter;
+		let parentCourse = app.data.chapter[parentChapter].parentCourse;
 		app.hashHistory.push("/course/" + parentCourse);
 		app.hashHistory.push(app.currentRoute);
 

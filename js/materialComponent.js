@@ -55,10 +55,12 @@ var materialComponent = function(id){
             settings.contentSwipeRightCallback = settings.contentSwipeRightCallback || false;
             settings.contentSwipeUpCallback    = settings.contentSwipeUpCallback || false;
             settings.contentSwipeDownCallback  = settings.contentSwipeDownCallback || false;
-			
+			settings.contentHtml	= settings.contentHtml || false;
 
             settings.hideCallback 	= settings.hideCallback || false;
 			settings.initCallback	= settings.initCallback || false;
+			
+			
 
             return settings;
         }();
@@ -72,9 +74,15 @@ var materialComponent = function(id){
 
         /* Create content by cloning target, remove id, and hide. If id not found, display a warning. */
         item.content = function(){
-				var target  = $('#' + id);
-                if(!target.length){ console.error("ERROR: Target id not found: '" +  id + "'. This will trigger additional errors:"); }
-				return  target.clone().removeAttr('id').addClass(settings.contentClass).appendTo('body');
+                //Check if settings.contentHtml is set, and if so ignore the id
+				if(settings.contentHtml){
+                    return $(settings.contentHtml).addClass(settings.contentClass).appendTo('body'); 
+                }
+                else{
+                    var target  = $('#' + id);
+                    if(!target.length){ console.error("ERROR: Target id not found: '" +  id + "'. This will trigger additional errors:"); }
+                    return  target.clone().removeAttr('id').addClass(settings.contentClass).appendTo('body');
+                } 
         }().hide();
 	 
 		
@@ -119,6 +127,9 @@ var materialComponent = function(id){
             var thisComponent = item.content;
             initFx(thisComponent);
         }
+		
+		/* Init custom callback */
+		if(typeof item.settings.initCallback === "function") { item.settings.initCallback(item.content);}
 
 		/* Check if there is an on submit callback */
         $("[data-on-submit-callback]", item.content).each(function( index ) {
@@ -209,9 +220,7 @@ var materialComponent = function(id){
 		
 		/* Init items */
 		material.init(item.content);
-		
-		/* Init custom callback */
-		if(typeof item.settings.initCallback === "function") { item.settings.initCallback(item.content);}
+		 
 		
 		// $('[data-toggle="tooltip"]', item.content).tooltip();
 		 
@@ -341,15 +350,48 @@ var materialComponent = function(id){
     };
 	
 		
+	 
+	
 	/**
-	 * Hide all components
+	 * Hide all components of a certain type
+	 * @param {String} [componentType] - The type of component to hide. Defaults to hiding everything if undefined
 	 */
-	that.hideAll = function(){
-		materialComponent.__currentOpenComponents = materialComponent.__currentOpenComponents || [];  
-		for(var i = 0; i < materialComponent.__currentOpenComponents.length; i++){
-			that.hide(materialComponent.__currentOpenComponents[i]);
+	that.hideAll = function(componentType){
+		try {
+			  
+			// Ensure the array exists before proceeding
+			materialComponent.__currentOpenComponents = materialComponent.__currentOpenComponents || [];  
+			
+			// Loop through the array of open components
+			for(var i = 0; i < materialComponent.__currentOpenComponents.length; i++){
+				var currentComponent = materialComponent.__currentOpenComponents[i];
+				
+				// Type check and existence check for settings
+				if (currentComponent && typeof currentComponent.settings === 'object' && currentComponent.settings.componentType === componentType) {
+					that.hide(currentComponent);
+				}
+				
+				var shouldHide = false;
+				// Check for the absence of componentType to hide all
+				if (typeof componentType === 'undefined') {
+					shouldHide = true;
+				}  // If a componentType is provided, only hide matching components
+				else if (currentComponent && typeof currentComponent.settings === 'object' && currentComponent.settings.componentType === componentType) {
+					shouldHide = true;
+				}
+				
+				 // Hide the component if needed
+				if (shouldHide) {
+					that.hide(currentComponent);
+				}
+				
+				
+			}
+		} catch (e) {
+			console.error('An error occurred while trying to hide all components of type:', componentType, e);
 		}
 	};
+
 	
 	/**
 	 * Check if any components are open

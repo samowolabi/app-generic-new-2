@@ -126,9 +126,10 @@ router.on({
 		app.html({
 			target: "#content",
 			loading: function () { return app.templates.pages.lesson.loading(); },
-			contentCondition: function () { return true; },
+			contentCondition: function(){ return (typeof app.data.lesson[params.lessonId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
-			callback: function () { }
+			contentFalse: 	  function(){ return app.templates.pages.lesson.notFound( params.lessonId );},
+			callback:  function(){ if(app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } } 
 		});
 
 
@@ -171,8 +172,9 @@ router.on({
 		app.html({
 			target: "#content",
 			loading: function () { return app.templates.pages.course.loading(); },
-			contentCondition: function () { return true; },
+			contentCondition: function(){ return (typeof app.data.course[params.courseId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
+			contentFalse: 	  function(){ return app.templates.pages.course.notFound( params.courseId );},
 			callback: function () { }
 		});
 
