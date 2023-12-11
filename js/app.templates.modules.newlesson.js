@@ -113,7 +113,6 @@ app.templates.modules.newlesson = {
 				classAdditionals += " materialThemeDark";
 			}
 		
-		
 			if(text){
 				return `${extraHtmlBefore}<a href="#" onclick="dialogUnlockLesson(); return false;" class="materialButtonFill ${classAdditionals}" style="${style}" target="_blank"><i class="fa fa-unlock"></i> ${text}</a>`;				
 			}
@@ -574,6 +573,7 @@ app.templates.modules.newlesson = {
 				var contentBottomHtml = '';
 				
 				break;
+				
 			case "video":	
 				
 				var nextLessonId = app.getNextLessonFromCourse(lessonData.id);

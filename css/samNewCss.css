@@ -375,6 +375,10 @@
     font-size: 17px;
 }
 
+.app_ratingsSectionCard.rewardPoints div:nth-child(2) p:hover {
+    color: #f0b300;
+}
+
 .app_ratingsSectionCard.rewardLevel h4 {
     font-size: 18px;
     color: #e6d3a1;
@@ -685,8 +689,15 @@
 
 .app_heroHeader .app_heroSection  .app_headerButtonContainer > div {
     display: flex;
-    align-items: center;
     gap: 2rem;
+}
+
+.app_heroHeader .app_heroSection .buttonLessonTitle {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.35rem;
+    font-weight: 400;
+    padding-top: 2rem;
+
 }
 
 .app_heroHeader .app_heroSection  .app_headerButtonContainer button {
@@ -734,9 +745,9 @@
 
 
 .app_lessonOverviewSection {
-    /* padding: 0 2rem; */
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    padding: 2.75rem;
+    margin-top: 3rem;
+    background-color: white;
 }
 
 .app_lessonOverviewSection .lessonProgress {
@@ -746,28 +757,29 @@
 }
 
 .app_lessonOverviewSection .lessonProgress p {
-    color: rgba(255, 255, 255, 0.73);
+    color: #483131;
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.25rem
 }
 
 .app_lessonOverviewSection p.lessonDescription {
-    color: #EFEAE3;
+    color: #000000;
     font-size: 1.75rem;
-    margin-top: 2.5rem;
+    padding: 2rem 0;
     font-weight: 300;
 }
 
 .overallRatings {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
-    margin-top: 3.5rem;
+    /* margin-top: 3.5rem; */
 }
 
 .overallRatings p {
-    color: #D6A90B;
+    /* color: #D6A90B; */
     font-size: 1.5rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -888,13 +900,16 @@
 }
 
 .app_LessonContainer .app_lessonOverviewSection .courseTitle h4 {
-    color: #FFFFFF;
+    color: #483131;
     font-size: 3.5rem;
     padding-bottom: 0.35rem;
+    text-transform: lowercase;
 }
 
 .app_LessonContainer .app_lessonOverviewSection .courseTitle p {
-    color: rgba(255, 255, 255, 0.73)
+    color: #674646;
+    font-size: 22px;
+    word-break: break-word;
 }
 
 .app_LessonContainer .app_lessonOverviewSection .lessonProgress {
@@ -914,12 +929,17 @@
 }
 
 .app_LessonRatings {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 0 2rem;
+    margin-top: 3rem;
+}
+
+.app_LessonRatings .materialRating {
+    margin: 0 !important;
 }
 
 
@@ -1029,6 +1049,14 @@
 
 .materialBreadCrumbs li {
     white-space: nowrap;
+}
+
+.materialBreadCrumbs li a {
+    color: #7E7E7E;
+}
+
+.materialBreadCrumbs li a:hover {
+    color: #a4a4a4;
 }
 
 .materialBreadCrumbs li::after {

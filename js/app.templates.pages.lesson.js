@@ -12,23 +12,54 @@ app.templates.pages.lesson = {
 
         return html;
     },
-
     content : function (lessonId){
         console.log('app.templates.modules.lessonsOutline', app.templates.modules.lessonsOutline)
-        // var dataLesson = app.data.lesson[lessonId];
+        // var dataLesson = app.data.lesson[lessonId];	
+
+        var parentChapterId    = app.data.lesson[lessonId].parentChapter;
+        var parentChapterTitle = app.data.chapter[parentChapterId].title;
+
+        console.error('app.data.chapter[parentChapterId]', app.data.chapter[parentChapterId])
+
+        var parentCourseId 	   = app.data.chapter[parentChapterId].parentCourse;
+        var parentCourseTitle  = app.data.course[parentCourseId].title;	
+
+        var lessonSubtitle 	   = app.data.lesson[lessonId].subtitle;
+
+        var dataLesson = app.data.lesson[lessonId];
+
+        dataLesson.breadcrumb = [
+            {
+                title: parentCourseTitle,
+                link: '#!/course/' + parentCourseId
+            },
+            {
+                title: parentChapterTitle,
+                link: '#!/chapter/' + parentChapterId
+            },
+            {
+                title: lessonSubtitle,
+                link: '#!/lesson/' + lessonId
+            }
+        ]
+
+        console.error('dataLesson.breadcrumb', dataLesson.breadcrumb);
 
         var html =`
             <main class="app_mainContainer maxWidthContainer">
                 <ul class="materialBreadCrumbs marginTop24 marginBottom3">
-                    <li>Exclusive Gifts</li>
-                    <li>Lessons</li>
-                    <li>The Hidden Patterns of Music</li>
+                    ${dataLesson.breadcrumb.map(function(item){
+                        return `
+                            <li><a style="text-decoration: none;" href="${item.link}">${item.title}</a></li>
+                        `;
+                    }).join("")}
                 </ul>
 
                 <div class="app_LessonContainer">
                     <div>
                         ${app.templates.modules.lesson.content(lessonId)}
                     </div>
+                
 
                     <div>
                          ${app.templates.modules.lessonsOutline.content(lessonId)}

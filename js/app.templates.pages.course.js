@@ -15,7 +15,94 @@ app.templates.pages.course = {
     content: function (courseId) {
         var data = app.data;
         var courseData = app.data.course[courseId]
+        var courseProgress = app.data.course[courseId].stats.lessons.totalProgress || 0;
         let completenessPorcentage = 0;
+		
+        var buttonCaption = (courseProgress > 0)? ((courseProgress > 85)? "Finish Course": "Resume Course"): "Start Course";
+
+        		/*
+		* @purpose: Get all lessons from this course and check which one was the lesson the user last engaged with
+		* @param int courseId: the course id, in question
+		*/
+		var getLastEngagedLessonIdFromCourse = function(courseId){
+	
+			/*
+			* @purpose: internal function to get all lessons ids from a particular course
+			* @param int courseId: the course id, in question
+			*/
+			var getAllLessonsIdsFromCourse = function(courseId) {
+				var allLessonsIdsFromCourse = [];
+				
+				if(app.data.course[courseId]){
+					app.data.course[courseId].chapterIds.forEach(function(chapterId){
+					   if(app.data.chapter[chapterId]){
+							app.data.chapter[chapterId].lessonIds.forEach(function(lessonId){
+							   allLessonsIdsFromCourse.push(lessonId);
+							})
+					   } 
+					})
+				}
+				
+				return allLessonsIdsFromCourse;
+			};
+			
+			var courseEngagementLastestDate = false; 
+			var courseEngagementLastestLessonId = false;
+			getAllLessonsIdsFromCourse(courseId).forEach(function(lessonId){
+				if(app.data.user.learning[lessonId] && app.data.user.learning[lessonId].engagementLastDate){
+					var engagementLastDate = new Date(app.data.user.learning[lessonId].engagementLastDate);
+					
+					if(!courseEngagementLastestDate){
+						courseEngagementLastestDate = engagementLastDate;
+						courseEngagementLastestLessonId = lessonId;
+					}else{
+						if(engagementLastDate.getTime() > courseEngagementLastestDate.getTime()){
+							courseEngagementLastestDate = engagementLastDate;
+							courseEngagementLastestLessonId = lessonId;
+						}
+					}
+				}
+				
+			}); 
+			
+			return courseEngagementLastestLessonId;
+		};
+
+
+        /*
+		* @purpose: get the first lesson of the first chapter of this course
+		* @param int courseId: the course id, in question
+		*/
+		var getFirstLessonIdFromCourse = function(courseId){
+			var firstLessonId = false;
+			if(app.data.course[courseId]){
+				app.data.course[courseId].chapterIds.forEach(function(chapterId){
+				   if(app.data.chapter[chapterId]){
+						app.data.chapter[chapterId].lessonIds.forEach(function(lessonId){
+						   if(!firstLessonId){ firstLessonId =  lessonId};
+						})
+				   } 
+				})
+			}
+			return firstLessonId;
+		};
+
+
+        var lastEngagedLessonIdFromCourse = getLastEngagedLessonIdFromCourse(courseId);
+		var firstLessonIdFromCourse = getFirstLessonIdFromCourse(courseId);
+		
+		var lessonId = lastEngagedLessonIdFromCourse ? lastEngagedLessonIdFromCourse : firstLessonIdFromCourse; 
+		
+		if(lessonId){
+			var resumeLessonTitle =  app.data.lesson[lessonId].title;
+			var buttonLink = "#!/lesson/"+lessonId; 
+		}
+		else{
+			var resumeLessonTitle =  "Browse Your Dashboard";
+			var buttonLink = "#!/"; 
+			buttonCaption = "Go back";
+		}
+
 
         var url;
 
@@ -71,11 +158,13 @@ app.templates.pages.course = {
 
                             <div class="app_headerButtonContainer">
                                 <div>
-                                    <button class="materialButtonFill materialThemeGoldDark">Continue Course</button>
-                                    <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
+                                    <a href="${buttonLink}" class="materialButtonFill materialThemeGoldDark">${buttonCaption}</a>
+                                    <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em; display: none;"> <i class="fa fa-bookmark"></i> </a>
                                 </div>
                                 <p>${courseData.stats.lessons.complete} of ${courseData.stats.lessons.total} LESSONS</p>
                             </div>
+
+                            <div class="buttonLessonTitle">${resumeLessonTitle}</div>
                         </div>
                     </div>
                 </header>
@@ -171,7 +260,7 @@ app.templates.pages.course = {
         html += `
                 <script>
                     console.log("RUNNING");
-                    dashboardInfiniteScrolling.load();  
+                    // dashboardInfiniteScrolling.load();  
                     materialAccordion.init()
                 </script>
 			`;

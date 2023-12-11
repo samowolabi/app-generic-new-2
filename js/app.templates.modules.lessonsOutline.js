@@ -162,7 +162,7 @@ app.templates.modules.lessonsOutline = {
                                                                         ` : data.lesson[lessonId].dateStatus === 'comingSoon' ? `
                                                                             <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Coming Soon</p>
                                                                         ` : data.lesson[lessonId].dateStatus === 'expired' ? `
-                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expired</p>
+                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Locked</p>
                                                                         ` : ``
                                                                     }
                                                                 </a>

@@ -151,7 +151,7 @@ dialogLogin.init = function(thisComponent) {
 								<p><a class="materialLink materialThemeLightGrey" style="margin-bottom:0" href="javascript:" >Did you mean <span class="emailSuggestionText"></span>?</a></p>
 							</div>
 							
-							<input placeholder="Password"   name="password" id="login_password" type="password" autocomplete="current-password"class="materialInputTextArea" required>
+							<input placeholder="Password" name="password" id="login_password" type="password" autocomplete="current-password" class="materialInputTextArea" required>
 							<span id="login_toggle" style="position: absolute; right: 0; padding-top: 25px; padding-right:10px; cursor: pointer;">
 							   <i class="fa fa-eye" id="login_password_icon"></i>
 							</span>
@@ -603,7 +603,7 @@ dialogResetPassword.init = function(thisComponent) {
 				
 				<form action="" data-on-submit-callback="dialogResetPassword.submit(value, thisSelection, thisComponent)">
 					<div class="materialAuthFormInput">
-						<input placeholder="Email" name="email" type="email" autocomplete="email" id="forgot_email"   class="materialInputTextArea" required>
+						<input placeholder="Email" name="email" type="email" autocomplete="email" id="forgot_email" class="materialInputTextArea" required>
 					</div>
 					
 					<div class="materialAuthFormSecondaryText emailError" style="display: none">

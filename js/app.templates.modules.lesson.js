@@ -58,8 +58,11 @@ app.templates.modules.lesson = {
 		thisLesson.accessCount 		= thisLesson.accessCount  || 0;  
 		thisLesson.accessCount++;
 		
-		app.data.user.stats.lessons.lastLessonAccessedId = lessonData.id; 
+		app.data.user.stats.lessons.lastLessonAccessedId = lessonData.id;
 
+        // Progress text
+        var progressText = (thisLesson.engagementProgressRealPercent==100) ? "Completed": "Unfinished";
+		var descriptionOrSubtitleHtml = lessonData["description"] ? `<p>${lessonData["description"]}</p>` : `<h2>${lessonData["subtitle"]}</h2>`;
 
 		//TODO: add more customization and a dialog sequence that will open on click
 		var unlockButtonHtml = function(dateStatus, context){
@@ -183,28 +186,6 @@ app.templates.modules.lesson = {
             }
         };
 
-		var unlockButtonContext = "bottom";
-		switch(lessonData.dateStatus){
-			case "expiringAsap":
-				var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring in ${countdownHtml(thisLesson.deadlineDateString)} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
-				break;
-			case "expiringSoon": 
-				var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring Soon... ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;  
-				break;
-			case "comingAsap":
-				var scarcityHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i>Free Access Coming in ${countdownHtml(thisLesson.availableDateString)} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
-				break;
-			case "comingSoon":
-				var scarcityHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i>Free Access Coming Soon! Stay tuned... ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
-				break;
-			case "expired":
-				var scarcityHtml = `<p class="expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>${expiredText(thisLesson, "bottom")} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
-				break;	
-			case "available": 
-			default: 
-				var scarcityHtml = `${unlockButtonHtml(lessonData.dateStatus)}`;				
-		}
-
         let segmentedProgressBarHtml = function(lessonId){
 			let segmentedProgressBarInsideHtml = "";
 			for(var i=1; i<=100; i++){
@@ -233,7 +214,7 @@ app.templates.modules.lesson = {
         switch(lessonData.type){
             case "video":
 
-            var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
+                var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
                 <div style="position: relative; display: table;">
                     <div style="display: table-cell; vertical-align: middle; color: wheat; text-align: center; position: relative;">
                         <h3 style="margin-top: 0;">
@@ -245,42 +226,38 @@ app.templates.modules.lesson = {
                 </div>
             </div>`;
 
-
             var contentTopHtml = `
-                <div class="row"> 
-                    <div class="col-xs-12">
-                        <div class="materialLessonVideo">
-                            ${overlayVideoAction}    
-                            <iframe id="vimeo" style="display: none;" onload="$(this).fadeIn();" src="${lessonData.content}" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                <div>
+                    <div class="row"> 
+                        <div class="col-xs-12">
+                            <div class="materialLessonVideo">
+                                ${overlayVideoAction}
+                                <iframe id="vimeo" style="display: none;" onload="$(this).fadeIn();" src="https://pianoencyclopedia.com/en/viewers/interactive-video/?vimeoUrl=${lessonData.content}" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
                                 
                             <script>  
-                            var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
-                            var thisLessonId = ${lessonData.id};
-                            var videoStats = {};
-                            
-                            videoStats.initSegmentedProgressBar = function(){
-                                var progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
-                                for(var i=0; i< progressArrayUniques.length; i++){
-                                    $("#segmentedProgressBar${lessonData.id}-"+ progressArrayUniques[i]).addClass("materialProgressBarInside");
-                                }
-                            }();
-
-                            var initVimeoVideo = function(){
-                                var iframe = document.querySelector('#vimeo');
-                                var player = new Vimeo.Player(iframe);
-
+                                var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
+                                var thisLessonId = ${lessonData.id};
+                                var videoStats = {};
+                                
                                 videoStats.duration = null;
                                 videoStats.progressLastUpdate = null;
                                 videoStats.progressLastSent = null;
-
-                                /**
-                                 * @param int duration: duration of video in seconds
-                                 */
-                                player.getDuration().then(function(duration) {
+                                    
+                                
+                                videoStats.initSegmentedProgressBar = function(){
+                                    var progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
+                                    for(var i=0; i< progressArrayUniques.length; i++){
+                                        $("#segmentedProgressBar${lessonData.id}-"+ progressArrayUniques[i]).addClass("materialProgressBarInside");
+                                    }
+                                }();
+                                
+                                window.document.PlyrCallbackDuration = function(duration){
+                                    console.log("Callback Duration received", duration);
+                                    
                                     videoStats.duration = duration;
 
                                     var resumeTime = parseInt(duration * thisLesson().engagementProgressMaxPercent/100);
-                                    
+                                
                                     //If undefined or not set, no need to seek video, we can start from the beginning
                                     if(!resumeTime) return;
 
@@ -292,11 +269,13 @@ app.templates.modules.lesson = {
                                         resumeTime = resumeTime - 6;
                                     }
 
+                                    var vimeoPlayer = $("#vimeo")[0].contentWindow.vimeoPlayer;
+
                                     /**
                                      * @param int seconds: the actual time that the player seeked to in seconds
                                      */
-                                    player.setCurrentTime(resumeTime).then(function(seconds) {
-                                            console.log("Set current time to "+  seconds)
+                                    vimeoPlayer.setCurrentTime(resumeTime).then(function(seconds) {
+                                        console.log("Set current time to "+  seconds)
                                     }).catch(function(error) {
                                         switch (error.name) {
                                             case 'RangeError':
@@ -309,16 +288,14 @@ app.templates.modules.lesson = {
                                         }
                                     });
 
-                                }).catch(function(error) {
-                                    console.log("Video Resume failed: " + error.name);
-                                });
-
+                                };
+                                
                                 videoStats.update = function(saveToServerAlways){
                                     thisLesson().engagementProgressArrayDetails 	= thisLesson().engagementProgressArrayDetails || []; 
                                     thisLesson().engagementProgressMaxPercent 		= thisLesson().engagementProgressMaxPercent   || 0; 
                                     thisLesson().engagementProgressRealPercent 		= thisLesson().engagementProgressRealPercent  || 0; 
                                     thisLesson().engagementTime 					= thisLesson().engagementTime   			  || 0; 
-                                
+
                                     /* Babylon will not transcribe this code as it is executed later, so we must code it compatible for IE 11 and not use default parameters in function declaration*/
                                     if(saveToServerAlways === undefined){saveToServerAlways = false;} 
                                 
@@ -334,7 +311,7 @@ app.templates.modules.lesson = {
                                     if(videoStats.duration){
                                         thisLesson().engagementTime = videoStats.duration * thisLesson().engagementProgressArrayDetails.length/100;
                                     }
-                                        
+                                    
                                     console.log("Updated stats");
                                     
                                     //Only update to server if there has been new progress, or if saveToServerAlways is true
@@ -363,7 +340,7 @@ app.templates.modules.lesson = {
                                             
                                         }
                                     
-                                        videoStats.progressLastSent = videoStats.progressLastUpdate;  
+                                        videoStats.progressLastSent = videoStats.progressLastUpdate;   
                                         $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
                                         if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
                                         
@@ -371,10 +348,9 @@ app.templates.modules.lesson = {
                                     }
                                 };
 
+                                window.document.PlyrCallbackTimeUpdate  = function(vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime){
+                                    console.log("Callback Time Update", vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime);
                                     
-                                //Measures the position of playback
-                                player.on('timeupdate', function(vimeoData) {
-
                                     var currentPercent = Math.ceil(vimeoData.percent * 100);
 
                                     //If we have more than one item, and last element is the same as the one to add, exit
@@ -385,7 +361,7 @@ app.templates.modules.lesson = {
                                     timestamp = Math.floor(timestamp / 1000);
 
                                     //Avoid adding progress 0 when user clicks play
-                                    if(currentPercent > 0){
+                                    if(currentPercent >0){
                                         thisLesson().engagementProgressArrayDetails.push(currentPercent);												
                                     }
                                     
@@ -398,17 +374,17 @@ app.templates.modules.lesson = {
                                     thisLesson().engagementLastDate  = datetimeToEST(new Date());
                                     
                                     app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
-
-                                });
+                                        
+                                }
                                 
-                                //Update stats on play, pause, and ended, and save to server only if progress has changed since last check
-                                player.on('play', function(vimeoData) {
-                                    console.log('play', vimeoData);
+                                window.document.PlyrCallbackPlay = function(vimeoData){
+                                    console.log("Callback Play received", vimeoData); 
                                     videoStats.update(false);
-                                });
+                                };
                                 
-                                //Update stats on play, 
-                                player.on('pause', function(vimeoData) {
+                                window.document.PlyrCallbackPause  = function(vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime){
+                                    console.log("Callback Pause", vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime);
+                                    
                                     console.log('paused', vimeoData);
                                     videoStats.update(false);
 
@@ -422,60 +398,44 @@ app.templates.modules.lesson = {
                                             materialDialog.show('dialogLessonRating');
                                         }
                                     }
-                                    
-                                    
-                                });
+                                }
 
-                                player.on('ended', function(vimeoData) {
-                                    console.log('ended', data);
+                                
+                                window.document.PlyrCallbackEnded = function(vimeoData){
+                                    console.log("Callback Ended received", vimeoData);
                                     videoStats.update(false);
                                     
                                     //Show Action Overlay
                                     $('.materialLessonVideoActionOverlay').fadeIn();
-                                        
+                                    
                                     if(thisLesson().engagementProgressRealPercent>70){
                                         materialDialog.show('dialogLessonRating');
                                     }
-                                });
+                                };
+                                
+                                window.document.PlyrCallbackReady = function(player){
+                                    console.log("Callback Ready received", player);
+                                };
                                 
                                 //Run video stats update as soon as we load the page, and save to server
                                 videoStats.update(true);
                                 
                                 //Call update fx every 15 seconds if no other action taken, and since default parameter saveToServerAlways is false, it will only save to server if there was progress
                                 app.runTimer(videoStats.update, 15000); 
-                                
-                            }(); 
 
-                            </script>
-                                
-                        </div> 
-                    </div>
-                    
-                    <div class="col-xs-12">	
-                        ${segmentedProgressBarHtml(lessonData.id)}
+                                </script> 
+                            </div> 
+                        </div>
+                        
+                        <div class="col-xs-12">	
+                            ${segmentedProgressBarHtml(lessonData.id)}
+                        </div>
                     </div>
                 </div>
-
-                <section class="app_lessonOverviewSection">
-                    <div class="courseTitle">
-                        <h4 class="fontFamilyOptimus">${lessonData.title}</h4>
-                        <p class="materialParagraph">${lessonData.subtitle}</p>
-                    </div>
-
-                    <div class="lessonProgress">
-                        <p>${lessonData.progress}% Completed</p>
-                        <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
-                    </div>
-
-                    <p class="lessonDescription">
-                        ${lessonData.description}
-                    </p>
-                </section>
-            `
-
-            var contentBottomHtml = `
-                
             `;
+
+            var contentBottomHtml = '';
+
             break;
 
             case "article":
@@ -602,398 +562,6 @@ app.templates.modules.lesson = {
 
                 case "ebook":
                     var contentTopHtml = `
-                        <div>
-                            <div class="lessonPreview article">
-                                <div class="overlay">
-                                    <div>
-                                        <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
-                                        <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
-                                    </div>
-                                </div>
-
-                                <div class="row"> 
-                                    <div class="col-xs-12"> 
-                                        <div class="materialLessonVideo materialPlaceHolder">
-                                            <div style="background: transparent;  z-index: 2;">
-                                                <a href="#!/lesson/${lessonData.id}/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
-                                            </div>
-                                            <iframe src="${lessonData.content}" frameborder="0" allowfullscreen></iframe>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <script>  
-                                var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
-                                var thisLessonId = ${lessonData.id};
-                                var ebookStats = {}; 
-                                function ebookStatsCallback(bookProgressArray, pageCount, engagementTime){
-                                    /* 
-                                    //Disabled as now the ebook does an animation, which generates events if this code is not disabled.
-                                    var bookProgressArrayUniques = removeDuplicateAndKeepOrder(bookProgressArray);
-                                    var bookProgressArrayUniquesWithoutLetters = bookProgressArrayUniques.filter(function(item) { return !["d","p","f"].includes(item) });
-                                    var progressReal = Math.round(bookProgressArrayUniquesWithoutLetters.length / pageCount) *100;	
-                                        
-                                    var maxPageNumber = (bookProgressArrayUniquesWithoutLetters && bookProgressArrayUniquesWithoutLetters.length) ? Math.max.apply(null, bookProgressArrayUniquesWithoutLetters) : 1;
-                                    var progressMax = Math.round(maxPageNumber / pageCount) *100;
-                                    
-                                    if((progressReal == 100) && !thisLesson().reached100Once){
-                                        app.callback("path=" + app.currentRoute + "&progress=100");
-                                        app.addRewardPoints("Finished Book", 50); thisLesson().reached100Once = true;
-                                    }
-                                                                                    
-                                    var downloaded = bookProgressArray.includes("d");
-                                    var printed    = bookProgressArray.includes("p");
-                                    var fullscreen = bookProgressArray.includes("f");
-                                    
-                                    if(downloaded ||  printed){
-                                        progressMax = 100; 
-                                        
-                                        if(!thisLesson().reached100Once){
-                                            app.callback("path=" + app.currentRoute + "&progress=100");
-                                            if(downloaded) {app.addRewardPoints("Downloaded Book", 50); }
-                                            if(printed) {app.addRewardPoints("Printed Book", 100); }  
-                                            thisLesson().reached100Once = true;
-                                        }
-                                    }
-                                    else if(fullscreen){
-                                            progressMax = 100; 
-                                    }
-
-                                                                    
-                                    thisLesson().engagementProgressArrayDetails = bookProgressArray;
-                                    thisLesson().engagementTime = engagementTime;
-                                    thisLesson().engagementProgressMaxPercent = progressMax;
-                                    thisLesson().engagementProgressRealPercent = progressReal;
-                                    
-                                    thisLesson().engagementFirstDate = thisLesson().engagementFirstDate || datetimeToEST(new Date());
-                                    thisLesson().engagementLastDate  = datetimeToEST(new Date()); 
-                                                    
-                                    app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
-                                    
-                                    $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
-                                    if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
-                                    
-                                    app.saveToServer(${lessonData.id}); 
-                                    */
-                                }
-                                
-                                function pdfReaderCallback(params){ 
-                                    console.log("Pdf reader callback received", params);
-                                    
-                                    var action = params["action"] || "";
-                                    var engagementProgressArray = params["engagementProgressArray"] || "";
-                                    var progressReal = params["engagementProgressRealPercent"] || "";
-                                    var progressMax = params["engagementProgressMaxPercent"] || "";
-                                    var numberOfPages = params["numberOfPages"] || "";
-                                    var currentPage = params["currentPage"] || ""; 
-                                    var engagementTime = params["engagementTime"] || ""; 
-                                    
-                                    app.callback("path=" + app.currentRoute + "&book=y&action=" + action + "&progressMax=" + progressMax + "&progress=" + progressReal + "&bookCurrentPage=" + currentPage + "&bookTotalPages=" + numberOfPages + "&engagementTime=" + engagementTime, false);
-                                    
-                                    if((progressReal == 100) && !thisLesson().reached100Once){
-                                        app.callback("path=" + app.currentRoute + "&progress=100");
-                                        app.addRewardPoints("Finished Book", 50); thisLesson().reached100Once = true;
-                                    }
-                                    
-                                    var downloaded = engagementProgressArray.includes("d");
-                                    var printed    = engagementProgressArray.includes("p"); 
-                                    
-                                    if(downloaded ||  printed){
-                                        progressMax = 100; 
-                                        
-                                        if(!thisLesson().reached100Once){
-                                            app.callback("path=" + app.currentRoute + "&progress=100");
-                                            if(downloaded) {app.addRewardPoints("Downloaded Book", 50); }
-                                            if(printed) {app.addRewardPoints("Printed Book", 100); }  
-                                            thisLesson().reached100Once = true;
-                                        }
-                                    }
-
-                                    thisLesson().engagementProgressArrayDetails = engagementProgressArray;
-                                    thisLesson().engagementTime = engagementTime;
-                                    thisLesson().engagementProgressMaxPercent = progressMax;
-                                    thisLesson().engagementProgressRealPercent = progressReal;
-                                    
-                                    thisLesson().engagementFirstDate = thisLesson().engagementFirstDate || datetimeToEST(new Date());
-                                    thisLesson().engagementLastDate  = datetimeToEST(new Date()); 
-                                                    
-                                    app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
-                                    
-                                    $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
-                                    if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
-                                    app.saveToServer(${lessonData.id});  
-                                };
-                            </script>
-
-
-                            <section class="app_lessonOverviewSection">
-                                <div class="courseTitle">
-                                    <h4 class="fontFamilyOptimus">${lessonData.title}</h4>
-                                    <p class="materialParagraph">${lessonData.subtitle}</p>
-                                </div>
-
-                                <div class="lessonProgress">
-                                    <p>${lessonData.progress}% Completed</p>
-                                    <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
-                                </div>
-
-                                <p class="lessonDescription" style="color: white">
-                                    ${lessonData.content}
-                                </p>
-                            </section>
-                        </div>
-                    `;
-                    var contentBottomHtml = '';
-                    break;
-
-
-                case "interactive-video":
-
-                    var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
-                        <div style="position: relative; display: table;">
-                            <div style="display: table-cell; vertical-align: middle; color: wheat; text-align: center; position: relative;">
-                                <h3 style="margin-top: 0;">
-                                        <b>${description}</b><br>
-                                </h3>
-                                <button class="materialButtonFill materialThemeGoldDark" onclick="router.navigate('${buttonHref}');" style=" margin: 0; font-size: 17px;">${buttonText}</button><br>
-                                <button class="materialButtonText materialThemeGoldDark" onclick="$('.materialLessonVideoActionOverlay').fadeOut(); var iframe = document.querySelector('#vimeo');	$('#vimeo')[0].contentWindow.vimeoPlayer.play();" style=" margin: 0; margin-top: 10px;"><i class="fa fa-repeat" style="vertical-align: baseline; margin-right: 7px;"></i>Watch Again</button>
-                            </div>
-                        </div>
-                    </div>`;
-
-                    var contentTopHtml = `
-                        <div>
-                            <div class="row"> 
-                                <div class="col-xs-12">
-                                    <div class="materialLessonVideo">
-                                        ${overlayVideoAction}
-                                        <iframe id="vimeo" style="display: none;" onload="$(this).fadeIn();" src="https://pianoencyclopedia.com/en/viewers/interactive-video/?vimeoUrl=${lessonData.content}" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-                                        
-                                    <script>  
-                                        var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
-                                        var thisLessonId = ${lessonData.id};
-                                        var videoStats = {};
-                                        
-                                        videoStats.duration = null;
-                                        videoStats.progressLastUpdate = null;
-                                        videoStats.progressLastSent = null;
-                                            
-                                        
-                                        videoStats.initSegmentedProgressBar = function(){
-                                            var progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
-                                            for(var i=0; i< progressArrayUniques.length; i++){
-                                                $("#segmentedProgressBar${lessonData.id}-"+ progressArrayUniques[i]).addClass("materialProgressBarInside");
-                                            }
-                                        }();
-                                        
-                                        window.document.PlyrCallbackDuration = function(duration){
-                                            console.log("Callback Duration received", duration);
-                                            
-                                            videoStats.duration = duration;
-
-                                            var resumeTime = parseInt(duration * thisLesson().engagementProgressMaxPercent/100);
-                                        
-                                            //If undefined or not set, no need to seek video, we can start from the beginning
-                                            if(!resumeTime) return;
-
-                                            //If video was finished before start from beginning
-                                            if(resumeTime >= duration) {
-                                                resumeTime = 0;
-                                            } //If video was unfinished, start from resume time minus 6 seconds
-                                            else if(resumeTime > 6) {
-                                                resumeTime = resumeTime - 6;
-                                            }
-
-                                            var vimeoPlayer = $("#vimeo")[0].contentWindow.vimeoPlayer;
-
-                                            /**
-                                             * @param int seconds: the actual time that the player seeked to in seconds
-                                             */
-                                            vimeoPlayer.setCurrentTime(resumeTime).then(function(seconds) {
-                                                console.log("Set current time to "+  seconds)
-                                            }).catch(function(error) {
-                                                switch (error.name) {
-                                                    case 'RangeError':
-                                                            console.log("Video Resume failed: The time was less than 0 or greater than the video�s duration");
-                                                        break;
-
-                                                    default:
-                                                        console.log("Video Resume failed: " + error.name);
-                                                        break;
-                                                }
-                                            });
-
-                                        };
-                                        
-                                        videoStats.update = function(saveToServerAlways){
-                                            thisLesson().engagementProgressArrayDetails 	= thisLesson().engagementProgressArrayDetails || []; 
-                                            thisLesson().engagementProgressMaxPercent 		= thisLesson().engagementProgressMaxPercent   || 0; 
-                                            thisLesson().engagementProgressRealPercent 		= thisLesson().engagementProgressRealPercent  || 0; 
-                                            thisLesson().engagementTime 					= thisLesson().engagementTime   			  || 0; 
-
-                                            /* Babylon will not transcribe this code as it is executed later, so we must code it compatible for IE 11 and not use default parameters in function declaration*/
-                                            if(saveToServerAlways === undefined){saveToServerAlways = false;} 
-                                        
-                                            //Security check in case timer is not deleted on time.
-                                            if(thisLessonId != ${lessonData.id}) { console.log("Timer not deleted on time"); return;}
-
-                                            //engagementProgressArrayDetails: Contains all the details about the user progress, how many times he played, resumed, seeked, etc.etails = (videoStats.engagementProgressArrayDetails); 
-                                            //progressArrayUniques: Contains a *summary* of all the times user watched video, eliminating repeated watched parts.
-                                            videoStats.progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
-                                            
-                                            thisLesson().engagementProgressMaxPercent  = (thisLesson().engagementProgressArrayDetails && thisLesson().engagementProgressArrayDetails.length) ? Math.max.apply(null, thisLesson().engagementProgressArrayDetails) : 0; 
-                                            thisLesson().engagementProgressRealPercent = videoStats.progressArrayUniques.length; 
-                                            if(videoStats.duration){
-                                                thisLesson().engagementTime = videoStats.duration * thisLesson().engagementProgressArrayDetails.length/100;
-                                            }
-                                            
-                                            console.log("Updated stats");
-                                            
-                                            //Only update to server if there has been new progress, or if saveToServerAlways is true
-                                            if (saveToServerAlways || (videoStats.progressLastSent != videoStats.progressLastUpdate)) { 
-                                                
-                                                if(videoStats.duration){
-                                                    
-                                                    //1 seconds is worth 1 points, rounded to nearest 10th
-                                                    var rewardPoints = Math.round(videoStats.duration * thisLesson().engagementProgressRealPercent / 100 / 10) * 10;
-                                                    if(thisLesson().engagementProgressRealPercent>=99 && !thisLesson().reached100Once){
-                                                        app.callback("path=" + app.currentRoute + "&progress=100");
-                                                        app.addRewardPoints("Completed 100% of this lesson", rewardPoints); thisLesson().reached100Once = true;
-                                                    }
-                                                    else if(thisLesson().engagementProgressRealPercent>=75 && !thisLesson().reached75Once){
-                                                        app.callback("path=" + app.currentRoute + "&progress=75");
-                                                        app.addRewardPoints("Completed 75% of this lesson", rewardPoints);  thisLesson().reached75Once = true;
-                                                    }
-                                                    else if(thisLesson().engagementProgressRealPercent>=50 && !thisLesson().reached50Once){
-                                                        app.callback("path=" + app.currentRoute + "&progress=50");
-                                                        app.addRewardPoints("Completed 50% of this lesson", rewardPoints);  thisLesson().reached50Once = true;
-                                                    }
-                                                    else if(thisLesson().engagementProgressRealPercent>=25 && !thisLesson().reached25Once){
-                                                        app.callback("path=" + app.currentRoute + "&progress=25");
-                                                        app.addRewardPoints("Completed 25% of this lesson", rewardPoints);  thisLesson().reached25Once = true;
-                                                    }
-                                                    
-                                                }
-                                            
-                                                videoStats.progressLastSent = videoStats.progressLastUpdate;   
-                                                $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
-                                                if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
-                                                
-                                                app.saveToServer(${lessonData.id}); 
-                                            }
-                                        };
-            
-                                        window.document.PlyrCallbackTimeUpdate  = function(vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime){
-                                            console.log("Callback Time Update", vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime);
-                                            
-                                            var currentPercent = Math.ceil(vimeoData.percent * 100);
-
-                                            //If we have more than one item, and last element is the same as the one to add, exit
-                                            var videoengagementProgressArrayDetailsLength = thisLesson().engagementProgressArrayDetails.length;
-                                            if((videoengagementProgressArrayDetailsLength >=1) && (thisLesson().engagementProgressArrayDetails[videoengagementProgressArrayDetailsLength - 1] == currentPercent)) return;
-
-                                            var timestamp = (new Date()).getTime();
-                                            timestamp = Math.floor(timestamp / 1000);
-
-                                            //Avoid adding progress 0 when user clicks play
-                                            if(currentPercent >0){
-                                                thisLesson().engagementProgressArrayDetails.push(currentPercent);												
-                                            }
-                                            
-                                            //Update Segmented Progress Bar
-                                            $("#segmentedProgressBar${lessonData.id}-"+currentPercent).addClass("materialProgressBarInside");
-                                                
-                                            videoStats.progressLastUpdate = timestamp;
-                                            
-                                            thisLesson().engagementFirstDate = thisLesson().engagementFirstDate || datetimeToEST(new Date());
-                                            thisLesson().engagementLastDate  = datetimeToEST(new Date());
-                                            
-                                            app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
-                                                
-                                        }
-                                        
-                                        window.document.PlyrCallbackPlay = function(vimeoData){
-                                            console.log("Callback Play received", vimeoData); 
-                                            videoStats.update(false);
-                                        };
-                                        
-                                        window.document.PlyrCallbackPause  = function(vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime){
-                                            console.log("Callback Pause", vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime);
-                                            
-                                            console.log('paused', vimeoData);
-                                            videoStats.update(false);
-
-                                            //Sometimes 'pause' is triggered instead of ended
-                                            if(vimeoData.percent == 1){
-                                                
-                                                //Show Action Overlay 					
-                                                $('.materialLessonVideoActionOverlay').fadeIn();
-                                                
-                                                if(thisLesson().engagementProgressRealPercent>90){
-                                                    materialDialog.show('dialogLessonRating');
-                                                }
-                                            }
-                                        }
-            
-                                        
-                                        window.document.PlyrCallbackEnded = function(vimeoData){
-                                            console.log("Callback Ended received", vimeoData);
-                                            videoStats.update(false);
-                                            
-                                            //Show Action Overlay
-                                            $('.materialLessonVideoActionOverlay').fadeIn();
-                                            
-                                            if(thisLesson().engagementProgressRealPercent>70){
-                                                materialDialog.show('dialogLessonRating');
-                                            }
-                                        };
-                                        
-                                        window.document.PlyrCallbackReady = function(player){
-                                            console.log("Callback Ready received", player);
-                                        };
-                                        
-                                        //Run video stats update as soon as we load the page, and save to server
-                                        videoStats.update(true);
-                                        
-                                        //Call update fx every 15 seconds if no other action taken, and since default parameter saveToServerAlways is false, it will only save to server if there was progress
-                                        app.runTimer(videoStats.update, 15000); 
-
-                                        </script> 
-                                    </div> 
-                                </div>
-                                
-                                <div class="col-xs-12">	
-                                    ${segmentedProgressBarHtml(lessonData.id)}
-                                </div>
-                            </div>
-
-                            <section class="app_lessonOverviewSection">
-                                <div class="courseTitle">
-                                    <h4 class="fontFamilyOptimus">${lessonData.title}</h4>
-                                    <p class="materialParagraph">${lessonData.subtitle}</p>
-                                </div>
-
-                                <div class="lessonProgress">
-                                    <p>${lessonData.progress}% Completed</p>
-                                    <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
-                                </div>
-
-                                <p class="lessonDescription">
-                                    ${lessonData.description}
-                                </p>
-                            </section>
-                        </div>
-                    `;
-
-                    var contentBottomHtml = '';
-                    break;
-
-
-                case "interactive-pdf":
-
-                var contentTopHtml = `
-                    <div>
                         <div class="lessonPreview article">
                             <div class="overlay">
                                 <div>
@@ -1013,7 +581,7 @@ app.templates.modules.lesson = {
                                 </div>
                             </div>
                         </div>
-                        
+                            
                         <script>  
                             var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
                             var thisLessonId = ${lessonData.id};
@@ -1116,28 +684,450 @@ app.templates.modules.lesson = {
                                 app.saveToServer(${lessonData.id});  
                             };
                         </script>
+                    `;
+                    var contentBottomHtml = '';
+
+                    var attachment 	= `
+                        <div class="materialLessonFile">
+                            <!--
+                            <a href="${lessonData['attachmentUrl']}" target="_blank" id="downloadEbook">
+                                <span class="materialLessonFileIcon">
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                </span>
+                                <span class="materialLessonFileText">
+                                    <span>Download</span><br>
+                                    <span>PDF Version</span>				    
+                                </span> 
+                            </a>
+                            -->
+                            <a href="#!/lesson/${lessonData.id}/book" target="_blank" style="font-size: 18px;"class="materialButtonFill" id="downloadEbook">
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                                Open Book
+                            </a>
+                        </div> 
+                        <script>
+                            $("#downloadEbook").click(function() {
+                                thisLesson().engagementProgressMaxPercent = 100;  
+                                
+                                if(!thisLesson().reached100Once){
+                                        app.callback("path=" + app.currentRoute + "&progress=100");
+                                        app.addRewardPoints("Downloaded Book", 50); thisLesson().reached100Once = true;
+                                }
+                                
+                                $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
+                                if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
+                                
+                                app.saveToServer(${lessonData.id}); 
+                            });
+                        </script>
+                    `;
+
+                    break;
 
 
-                        <section class="app_lessonOverviewSection">
-                            <div class="courseTitle">
-                                <h4 class="fontFamilyOptimus">${lessonData.title}</h4>
-                                <p class="materialParagraph">${lessonData.subtitle}</p>
+                case "interactive-video":
+
+                    var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
+                        <div style="position: relative; display: table;">
+                            <div style="display: table-cell; vertical-align: middle; color: wheat; text-align: center; position: relative;">
+                                <h3 style="margin-top: 0;">
+                                        <b>${description}</b><br>
+                                </h3>
+                                <button class="materialButtonFill materialThemeGoldDark" onclick="router.navigate('${buttonHref}');" style=" margin: 0; font-size: 17px;">${buttonText}</button><br>
+                                <button class="materialButtonText materialThemeGoldDark" onclick="$('.materialLessonVideoActionOverlay').fadeOut(); var iframe = document.querySelector('#vimeo');	$('#vimeo')[0].contentWindow.vimeoPlayer.play();" style=" margin: 0; margin-top: 10px;"><i class="fa fa-repeat" style="vertical-align: baseline; margin-right: 7px;"></i>Watch Again</button>
                             </div>
+                        </div>
+                    </div>`;
 
-                            <div class="lessonProgress">
-                                <p>${lessonData.progress}% Completed</p>
-                                <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
+                    var contentTopHtml = `
+                        <div class="row"> 
+                            <div class="col-xs-12">
+                                <div class="materialLessonVideo">
+                                    ${overlayVideoAction}
+                                    <iframe id="vimeo" style="display: none;" onload="$(this).fadeIn();" src="https://pianoencyclopedia.com/en/viewers/interactive-video/?vimeoUrl=${lessonData.content}" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                                    
+                                <script>  
+                                    var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
+                                    var thisLessonId = ${lessonData.id};
+                                    var videoStats = {};
+                                    
+                                    videoStats.duration = null;
+                                    videoStats.progressLastUpdate = null;
+                                    videoStats.progressLastSent = null;
+                                        
+                                    
+                                    videoStats.initSegmentedProgressBar = function(){
+                                        var progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
+                                        for(var i=0; i< progressArrayUniques.length; i++){
+                                            $("#segmentedProgressBar${lessonData.id}-"+ progressArrayUniques[i]).addClass("materialProgressBarInside");
+                                        }
+                                    }();
+                                    
+                                    window.document.PlyrCallbackDuration = function(duration){
+                                        console.log("Callback Duration received", duration);
+                                        
+                                        videoStats.duration = duration;
+
+                                        var resumeTime = parseInt(duration * thisLesson().engagementProgressMaxPercent/100);
+                                    
+                                        //If undefined or not set, no need to seek video, we can start from the beginning
+                                        if(!resumeTime) return;
+
+                                        //If video was finished before start from beginning
+                                        if(resumeTime >= duration) {
+                                            resumeTime = 0;
+                                        } //If video was unfinished, start from resume time minus 6 seconds
+                                        else if(resumeTime > 6) {
+                                            resumeTime = resumeTime - 6;
+                                        }
+
+                                        var vimeoPlayer = $("#vimeo")[0].contentWindow.vimeoPlayer;
+
+                                        /**
+                                         * @param int seconds: the actual time that the player seeked to in seconds
+                                         */
+                                        vimeoPlayer.setCurrentTime(resumeTime).then(function(seconds) {
+                                            console.log("Set current time to "+  seconds)
+                                        }).catch(function(error) {
+                                            switch (error.name) {
+                                                case 'RangeError':
+                                                        console.log("Video Resume failed: The time was less than 0 or greater than the video�s duration");
+                                                    break;
+
+                                                default:
+                                                    console.log("Video Resume failed: " + error.name);
+                                                    break;
+                                            }
+                                        });
+
+                                    };
+                                    
+                                    videoStats.update = function(saveToServerAlways){
+                                        thisLesson().engagementProgressArrayDetails 	= thisLesson().engagementProgressArrayDetails || []; 
+                                        thisLesson().engagementProgressMaxPercent 		= thisLesson().engagementProgressMaxPercent   || 0; 
+                                        thisLesson().engagementProgressRealPercent 		= thisLesson().engagementProgressRealPercent  || 0; 
+                                        thisLesson().engagementTime 					= thisLesson().engagementTime   			  || 0; 
+
+                                        /* Babylon will not transcribe this code as it is executed later, so we must code it compatible for IE 11 and not use default parameters in function declaration*/
+                                        if(saveToServerAlways === undefined){saveToServerAlways = false;} 
+                                    
+                                        //Security check in case timer is not deleted on time.
+                                        if(thisLessonId != ${lessonData.id}) { console.log("Timer not deleted on time"); return;}
+
+                                        //engagementProgressArrayDetails: Contains all the details about the user progress, how many times he played, resumed, seeked, etc.etails = (videoStats.engagementProgressArrayDetails); 
+                                        //progressArrayUniques: Contains a *summary* of all the times user watched video, eliminating repeated watched parts.
+                                        videoStats.progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
+                                        
+                                        thisLesson().engagementProgressMaxPercent  = (thisLesson().engagementProgressArrayDetails && thisLesson().engagementProgressArrayDetails.length) ? Math.max.apply(null, thisLesson().engagementProgressArrayDetails) : 0; 
+                                        thisLesson().engagementProgressRealPercent = videoStats.progressArrayUniques.length; 
+                                        if(videoStats.duration){
+                                            thisLesson().engagementTime = videoStats.duration * thisLesson().engagementProgressArrayDetails.length/100;
+                                        }
+                                        
+                                        console.log("Updated stats");
+                                        
+                                        //Only update to server if there has been new progress, or if saveToServerAlways is true
+                                        if (saveToServerAlways || (videoStats.progressLastSent != videoStats.progressLastUpdate)) { 
+                                            
+                                            if(videoStats.duration){
+                                                
+                                                //1 seconds is worth 1 points, rounded to nearest 10th
+                                                var rewardPoints = Math.round(videoStats.duration * thisLesson().engagementProgressRealPercent / 100 / 10) * 10;
+                                                if(thisLesson().engagementProgressRealPercent>=99 && !thisLesson().reached100Once){
+                                                    app.callback("path=" + app.currentRoute + "&progress=100");
+                                                    app.addRewardPoints("Completed 100% of this lesson", rewardPoints); thisLesson().reached100Once = true;
+                                                }
+                                                else if(thisLesson().engagementProgressRealPercent>=75 && !thisLesson().reached75Once){
+                                                    app.callback("path=" + app.currentRoute + "&progress=75");
+                                                    app.addRewardPoints("Completed 75% of this lesson", rewardPoints);  thisLesson().reached75Once = true;
+                                                }
+                                                else if(thisLesson().engagementProgressRealPercent>=50 && !thisLesson().reached50Once){
+                                                    app.callback("path=" + app.currentRoute + "&progress=50");
+                                                    app.addRewardPoints("Completed 50% of this lesson", rewardPoints);  thisLesson().reached50Once = true;
+                                                }
+                                                else if(thisLesson().engagementProgressRealPercent>=25 && !thisLesson().reached25Once){
+                                                    app.callback("path=" + app.currentRoute + "&progress=25");
+                                                    app.addRewardPoints("Completed 25% of this lesson", rewardPoints);  thisLesson().reached25Once = true;
+                                                }
+                                                
+                                            }
+                                        
+                                            videoStats.progressLastSent = videoStats.progressLastUpdate;   
+                                            $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
+                                            if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
+                                            
+                                            app.saveToServer(${lessonData.id}); 
+                                        }
+                                    };
+        
+                                    window.document.PlyrCallbackTimeUpdate  = function(vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime){
+                                        console.log("Callback Time Update", vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime);
+                                        
+                                        var currentPercent = Math.ceil(vimeoData.percent * 100);
+
+                                        //If we have more than one item, and last element is the same as the one to add, exit
+                                        var videoengagementProgressArrayDetailsLength = thisLesson().engagementProgressArrayDetails.length;
+                                        if((videoengagementProgressArrayDetailsLength >=1) && (thisLesson().engagementProgressArrayDetails[videoengagementProgressArrayDetailsLength - 1] == currentPercent)) return;
+
+                                        var timestamp = (new Date()).getTime();
+                                        timestamp = Math.floor(timestamp / 1000);
+
+                                        //Avoid adding progress 0 when user clicks play
+                                        if(currentPercent >0){
+                                            thisLesson().engagementProgressArrayDetails.push(currentPercent);												
+                                        }
+                                        
+                                        //Update Segmented Progress Bar
+                                        $("#segmentedProgressBar${lessonData.id}-"+currentPercent).addClass("materialProgressBarInside");
+                                            
+                                        videoStats.progressLastUpdate = timestamp;
+                                        
+                                        thisLesson().engagementFirstDate = thisLesson().engagementFirstDate || datetimeToEST(new Date());
+                                        thisLesson().engagementLastDate  = datetimeToEST(new Date());
+                                        
+                                        app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
+                                            
+                                    }
+                                    
+                                    window.document.PlyrCallbackPlay = function(vimeoData){
+                                        console.log("Callback Play received", vimeoData); 
+                                        videoStats.update(false);
+                                    };
+                                    
+                                    window.document.PlyrCallbackPause  = function(vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime){
+                                        console.log("Callback Pause", vimeoData, videoDuration, videoEngagementProgressArrayDetails, engagementProgressRealPercent, engagementProgressMaxPercent, engagementTime);
+                                        
+                                        console.log('paused', vimeoData);
+                                        videoStats.update(false);
+
+                                        //Sometimes 'pause' is triggered instead of ended
+                                        if(vimeoData.percent == 1){
+                                            
+                                            //Show Action Overlay 					
+                                            $('.materialLessonVideoActionOverlay').fadeIn();
+                                            
+                                            if(thisLesson().engagementProgressRealPercent>90){
+                                                materialDialog.show('dialogLessonRating');
+                                            }
+                                        }
+                                    }
+        
+                                    
+                                    window.document.PlyrCallbackEnded = function(vimeoData){
+                                        console.log("Callback Ended received", vimeoData);
+                                        videoStats.update(false);
+                                        
+                                        //Show Action Overlay
+                                        $('.materialLessonVideoActionOverlay').fadeIn();
+                                        
+                                        if(thisLesson().engagementProgressRealPercent>70){
+                                            materialDialog.show('dialogLessonRating');
+                                        }
+                                    };
+                                    
+                                    window.document.PlyrCallbackReady = function(player){
+                                        console.log("Callback Ready received", player);
+                                    };
+                                    
+                                    //Run video stats update as soon as we load the page, and save to server
+                                    videoStats.update(true);
+                                    
+                                    //Call update fx every 15 seconds if no other action taken, and since default parameter saveToServerAlways is false, it will only save to server if there was progress
+                                    app.runTimer(videoStats.update, 15000); 
+
+                                    </script> 
+                                </div> 
                             </div>
+                            
+                            <div class="col-xs-12">	
+                                ${segmentedProgressBarHtml(lessonData.id)}
+                            </div>
+                        </div>
+                    `;
 
-                            <p class="lessonDescription" style="color: white">
-                                ${lessonData.content}
-                            </p>
-                        </section>
+                    var contentBottomHtml = '';
+                    break;
+
+
+                case "interactive-pdf":
+
+                var contentTopHtml = `
+                <div class="lessonPreview article">
+                        <div class="overlay">
+                            <div>
+                                <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
+                                <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
+                            </div>
+                        </div>
+
+                        <div class="row"> 
+                            <div class="col-xs-12"> 
+                                <div class="materialLessonVideo materialPlaceHolder">
+                                    <div style="background: transparent;  z-index: 2;">
+                                        <a href="#!/lesson/${lessonData.id}/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
+                                    </div>
+                                    <iframe src="${lessonData.content}" frameborder="0" allowfullscreen></iframe>
+                                </div> 
+                            </div>
+                        </div>
                     </div>
+                        
+                    <script>  
+                        var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
+                        var thisLessonId = ${lessonData.id};
+                        var ebookStats = {}; 
+                        function ebookStatsCallback(bookProgressArray, pageCount, engagementTime){
+                            /* 
+                            //Disabled as now the ebook does an animation, which generates events if this code is not disabled.
+                            var bookProgressArrayUniques = removeDuplicateAndKeepOrder(bookProgressArray);
+                            var bookProgressArrayUniquesWithoutLetters = bookProgressArrayUniques.filter(function(item) { return !["d","p","f"].includes(item) });
+                            var progressReal = Math.round(bookProgressArrayUniquesWithoutLetters.length / pageCount) *100;	
+                                
+                            var maxPageNumber = (bookProgressArrayUniquesWithoutLetters && bookProgressArrayUniquesWithoutLetters.length) ? Math.max.apply(null, bookProgressArrayUniquesWithoutLetters) : 1;
+                            var progressMax = Math.round(maxPageNumber / pageCount) *100;
+                            
+                            if((progressReal == 100) && !thisLesson().reached100Once){
+                                app.callback("path=" + app.currentRoute + "&progress=100");
+                                app.addRewardPoints("Finished Book", 50); thisLesson().reached100Once = true;
+                            }
+                                                                            
+                            var downloaded = bookProgressArray.includes("d");
+                            var printed    = bookProgressArray.includes("p");
+                            var fullscreen = bookProgressArray.includes("f");
+                            
+                            if(downloaded ||  printed){
+                                progressMax = 100; 
+                                
+                                if(!thisLesson().reached100Once){
+                                    app.callback("path=" + app.currentRoute + "&progress=100");
+                                    if(downloaded) {app.addRewardPoints("Downloaded Book", 50); }
+                                    if(printed) {app.addRewardPoints("Printed Book", 100); }  
+                                    thisLesson().reached100Once = true;
+                                }
+                            }
+                            else if(fullscreen){
+                                    progressMax = 100; 
+                            }
+
+                                                            
+                            thisLesson().engagementProgressArrayDetails = bookProgressArray;
+                            thisLesson().engagementTime = engagementTime;
+                            thisLesson().engagementProgressMaxPercent = progressMax;
+                            thisLesson().engagementProgressRealPercent = progressReal;
+                            
+                            thisLesson().engagementFirstDate = thisLesson().engagementFirstDate || datetimeToEST(new Date());
+                            thisLesson().engagementLastDate  = datetimeToEST(new Date()); 
+                                            
+                            app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
+                            
+                            $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
+                            if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
+                            
+                            app.saveToServer(${lessonData.id}); 
+                            */
+                        }
+                        
+                        function pdfReaderCallback(params){ 
+                            console.log("Pdf reader callback received", params);
+                            
+                            var action = params["action"] || "";
+                            var engagementProgressArray = params["engagementProgressArray"] || "";
+                            var progressReal = params["engagementProgressRealPercent"] || "";
+                            var progressMax = params["engagementProgressMaxPercent"] || "";
+                            var numberOfPages = params["numberOfPages"] || "";
+                            var currentPage = params["currentPage"] || ""; 
+                            var engagementTime = params["engagementTime"] || ""; 
+                            
+                            app.callback("path=" + app.currentRoute + "&book=y&action=" + action + "&progressMax=" + progressMax + "&progress=" + progressReal + "&bookCurrentPage=" + currentPage + "&bookTotalPages=" + numberOfPages + "&engagementTime=" + engagementTime, false);
+                            
+                            if((progressReal == 100) && !thisLesson().reached100Once){
+                                app.callback("path=" + app.currentRoute + "&progress=100");
+                                app.addRewardPoints("Finished Book", 50); thisLesson().reached100Once = true;
+                            }
+                            
+                            var downloaded = engagementProgressArray.includes("d");
+                            var printed    = engagementProgressArray.includes("p"); 
+                            
+                            if(downloaded ||  printed){
+                                progressMax = 100; 
+                                
+                                if(!thisLesson().reached100Once){
+                                    app.callback("path=" + app.currentRoute + "&progress=100");
+                                    if(downloaded) {app.addRewardPoints("Downloaded Book", 50); }
+                                    if(printed) {app.addRewardPoints("Printed Book", 100); }  
+                                    thisLesson().reached100Once = true;
+                                }
+                            }
+
+                            thisLesson().engagementProgressArrayDetails = engagementProgressArray;
+                            thisLesson().engagementTime = engagementTime;
+                            thisLesson().engagementProgressMaxPercent = progressMax;
+                            thisLesson().engagementProgressRealPercent = progressReal;
+                            
+                            thisLesson().engagementFirstDate = thisLesson().engagementFirstDate || datetimeToEST(new Date());
+                            thisLesson().engagementLastDate  = datetimeToEST(new Date()); 
+                                            
+                            app.data.user.stats.lessons.lastLessonEngagementId	 = "${lessonData.id}";
+                            
+                            $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
+                            if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
+                            app.saveToServer(${lessonData.id});  
+                        };
+                    </script>
                 `;
 
                 var contentBottomHtml = '';
+                var attachment 	=`
+                    <div class="col-xs-12  col-md-6 materialLessonFile">
+                        <a href="${lessonData['attachmentUrl']}" target="_blank" id="downloadEbook">
+                            <span class="materialLessonFileIcon">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                            </span>
+                            <span class="materialLessonFileText">
+                                <span>Download</span><br>
+                                <span>PDF Version</span>				    
+                            </span> 
+                        </a>
+                    </div> 
+                    <script>
+                        $("#downloadEbook").click(function() {
+                            thisLesson().engagementProgressMaxPercent = 100;  
+                            
+                            if(!thisLesson().reached100Once){
+                                    app.callback("path=" + app.currentRoute + "&progress=100");
+                                    app.addRewardPoints("Downloaded Book", 50); thisLesson().reached100Once = true;
+                            }
+                            
+                            $("#lessonProgress${lessonData.id}").html(thisLesson().engagementProgressMaxPercent);
+                            if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
+                            
+                            app.saveToServer(${lessonData.id}); 
+                        });
+                    </script>
+                `; 
         }
+
+
+        // Ebook is a special case coded above
+		if(lessonData.type != "ebook"){
+			if(lessonData['attachmentUrl']){
+				var attachment 	=`<div class="col-xs-12  col-md-6 materialLessonFile">
+									<a href="${lessonData['attachmentUrl']}" target="_blank" >
+										<span class="materialLessonFileIcon">
+											<i class="fa fa-file-${lessonData['attachmentType']}-o" aria-hidden="true"></i>
+										</span>
+										<span class="materialLessonFileText">
+											<span>${lessonData["attachmentTitle"]}</span><br>
+											<span>Download ${lessonData['attachmentType']}</span>				    
+										</span> 
+									</a>
+								</div>
+								`;
+			}else{
+				var attachment 	=`<div class="col-xs-12  col-md-6 materialLessonFile"></div>`;
+			}
+		}
+
 
          /* Mark lesson as complete if rated and real progress is more than 75*/ 
         var rating = `
@@ -1149,7 +1139,7 @@ app.templates.modules.lesson = {
                 </div>
 
                 <div style="display:flex; justify-content:space-end">
-                    <a href="${buttonHref}" class="materialButtonOutline materialThemeDark">${buttonText}</a>
+                    <a href="${buttonHref}" class="materialButtonOutline" style="margin: 0;">${buttonText}</a>
                 </div>
             </div>
         `;
@@ -1167,23 +1157,26 @@ app.templates.modules.lesson = {
         `;
 
         var unlockButtonContext = "top";
-
-        switch(lessonData.dateStatus){
+        switch(lessonData.dateStatus) {
             case "comingAsap":
             case "comingSoon":
                    var comingSoonTracking = '<script>app.callback("path=" + app.currentRoute + "&comingsoon=y");</script>';
-                   contentTopHtml = `<div class="heroDiv" style="background-image: url(${lessonData.image}); background-size: cover; background-position: top center;">
-                               <div class="heroDivImageOverlay"></div>
-                               <div class="heroDivContent">
-                                   <h2 class="marginTop7"><i class="fa fa-clock-o" style="vertical-align: baseline;font-size: 300%;color: hsla(0,0%,100%,1); font-size: 3.5em; text-align: center; z-index: 2; text-shadow: 0 0 19px rgb(0 0 0 / 57%), 0 0 19px rgb(0 0 0 / 48%), 0 0 19px rgb(0 0 0 / 66%); vertical-align: middle;"></i></h2>
-                                   
-                                   <span class="heroDivProgress marginTop8 marginBottom5">${thisLesson.engagementProgressMaxPercent}% Completed</span>
-                                   
-                                   ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
-                                   
-                                   <div class="heroDivProgress marginTop5">Free access is coming soon.</div>
-                               </div>
-                           </div>${defaultScript}${comingSoonTracking}`;		
+                   contentTopHtml = `
+                        <div class="heroDiv" style="background-image: url(${lessonData.image}); background-size: cover; background-position: top center;">
+                            <div class="heroDivImageOverlay"></div>
+                            <div class="heroDivContent">
+                                <h2 class="marginTop7"><i class="fa fa-clock-o" style="vertical-align: baseline;font-size: 300%;color: hsla(0,0%,100%,1); font-size: 3.5em; text-align: center; z-index: 2; text-shadow: 0 0 19px rgb(0 0 0 / 57%), 0 0 19px rgb(0 0 0 / 48%), 0 0 19px rgb(0 0 0 / 66%); vertical-align: middle;"></i></h2>
+                                
+                                <span class="heroDivProgress marginTop8 marginBottom5">${thisLesson.engagementProgressMaxPercent}% Completed</span>
+                                
+                                ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
+                                
+                                <div class="heroDivProgress marginTop5">Free access is coming soon.</div>
+                            </div>
+                        </div>
+
+                        ${defaultScript}${comingSoonTracking}
+                    `;		
                    
                    /* 
                    //OLD VERSION
@@ -1198,24 +1191,26 @@ app.templates.modules.lesson = {
                              </div>${defaultScript}${comingSoonTracking}`;	
                              
                    */
-                   contentBottomHtml = "";		  
-                   attachment = "";
-                   rating = "";
+                   contentBottomHtml = "";	
                break;
            case "expired":
                    var expireTracking = '<script>app.callback("path=" + app.currentRoute + "&expired=y");</script>';
-                   contentTopHtml = `<div class="heroDiv" style="background-image: url(${lessonData.image}); background-size: cover; background-position: top center;">
-                               <div class="heroDivImageOverlay"></div>
-                               <div class="heroDivContent">
-                                   <h2 class="marginTop7"><i class="fa fa-lock" style="vertical-align: baseline;font-size: 300%;color: hsla(0,0%,100%,1); font-size: 3.5em; text-align: center; z-index: 2; text-shadow: 0 0 19px rgb(0 0 0 / 57%), 0 0 19px rgb(0 0 0 / 48%), 0 0 19px rgb(0 0 0 / 66%); vertical-align: middle;"></i></h2>
-                                   
-                                   <span class="heroDivProgress marginTop8 marginBottom5">${thisLesson.engagementProgressMaxPercent}% Completed</span>
-                                   
-                                   ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
-                                   
-                                   <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "top")}</div>
-                               </div>
-                           </div>${defaultScript}${expireTracking}`;		
+                   contentTopHtml = `
+                        <div class="heroDiv" style="background-image: url(${lessonData.image}); background-size: cover; background-position: top center;">
+                            <div class="heroDivImageOverlay"></div>
+                            <div class="heroDivContent">
+                                <h2 class="marginTop7"><i class="fa fa-lock" style="vertical-align: baseline;font-size: 300%;color: hsla(0,0%,100%,1); font-size: 3.5em; text-align: center; z-index: 2; text-shadow: 0 0 19px rgb(0 0 0 / 57%), 0 0 19px rgb(0 0 0 / 48%), 0 0 19px rgb(0 0 0 / 66%); vertical-align: middle;"></i></h2>
+                                
+                                <span class="heroDivProgress marginTop8 marginBottom5">${thisLesson.engagementProgressMaxPercent}% Completed</span>
+                                
+                                ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
+                                
+                                <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "top")}</div>
+                            </div>
+                        </div>
+
+                        ${defaultScript}${expireTracking}
+                    `;		
                    /* 
                    //OLD VERSION
                    contentTopHtml = `<div class="row"> 
@@ -1229,18 +1224,68 @@ app.templates.modules.lesson = {
                              </div>${defaultScript}${expireTracking}`;		
                    
                    */
-                   contentBottomHtml = "";		  
-                   attachment = "";
-                   rating = "";	
+                   contentBottomHtml = "";
                break;	 	
        }
 
 
+        var unlockButtonContext = "bottom";
+        switch(lessonData.dateStatus){
+            case "expiringAsap":
+                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring in ${countdownHtml(thisLesson.deadlineDateString)} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
+                break;
+            case "expiringSoon": 
+                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring Soon... ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;  
+                attachment = "";
+                break;
+            case "comingAsap":
+                var scarcityHtml = `<p class="materialParagraph coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i>Free Access Coming in ${countdownHtml(thisLesson.availableDateString)} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
+                attachment = "";
+                break;
+            case "comingSoon":
+                var scarcityHtml = `<p class="materialParagraph coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i>Free Access Coming Soon! Stay tuned... ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
+                attachment = "";
+                break;
+            case "expired":
+                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>${expiredText(thisLesson, "bottom")} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
+                attachment = "";
+                break;	
+            case "available": 
+            default: 
+                var scarcityHtml = `${unlockButtonHtml(lessonData.dateStatus)}`;				
+        }
+
+
         var html = `
             <div>
-                ${contentTopHtml} 
-                ${contentBottomHtml}
-                ${rating}
+                <div>
+                    ${contentTopHtml}
+
+                    <section class="app_lessonOverviewSection">
+                        <div class="courseTitle">
+                            <h4 class="fontFamilyOptimus">${lessonData.title}</h4>
+                            <p class="materialParagraph">${lessonData.subtitle}</p>
+                        </div>
+
+                        <div class="lessonProgress">
+                            <p>Lesson ${progressText} <span style='display: inline-block;'>(<span id='lessonProgress${lessonData.id}'>${thisLesson.engagementProgressRealPercent}</span>% Completed)</span></p>
+                            <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
+                        </div>
+
+                        <p class="lessonDescription">
+                            ${lessonData.description}
+                        </p>
+
+                        ${contentBottomHtml}
+
+                        <div class="materialLesson">
+                            ${scarcityHtml}
+                        </div>
+
+                        ${attachment}
+                        ${rating}
+                    </section>
+                </div>
             </div>
         `;
 

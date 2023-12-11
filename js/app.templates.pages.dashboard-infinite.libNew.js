@@ -267,7 +267,7 @@ var dashboardInfiniteScrollingNew = function () {
 		// Load Infinite cards
 		var noOfRecordsPerPage = 9;
 		var paginationValue = $('.addPaginationValue').val();
-		var searchValue = $(".infiniteScrollingCardsSearchBar input").val();
+		var searchValue = $("input.searchBarInput").val();
 		searchValue = searchValue ? searchValue.toLowerCase() : "";
 
 		//Restore last used search and filters
@@ -347,14 +347,15 @@ var dashboardInfiniteScrollingNew = function () {
 
 			console.log("TURN ON SCROLL CALLBACK");
 			// $(document).on("scroll", window, that.callbacks.onScroll);
-
-			$('.filterSwitchBtn').on("click", that.callbacks.filterSwitch);
 			
 			$('.materialSearchBar input').on("keyup", (event) => {
 				if (event.target.value === "") {
 					that.callbacks.searchBtn(event);
 					$('.materialSearchBar svg.clearBtn').hide();
 				} else {
+					if (event.key === 'Enter') {
+						that.callbacks.searchBtn(event);
+					}
 					$('.materialSearchBar svg.clearBtn').show();
 				}
 			});
@@ -370,7 +371,14 @@ var dashboardInfiniteScrollingNew = function () {
 				that.callbacks.filterSwitch(event);
 			});
 
-			$('.materialSearchBar searchBtn').on("click", that.callbacks.searchBtn);
+			$('.materialSearchBar .searchBtn').on("click", function() {
+				that.callbacks.searchBtn
+
+				// Close Filter Panel
+				if ($('.materialSearchBar').hasClass('active')) {
+					$('.materialSearchBar').removeClass('active');
+				}
+			});
 
 			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
 			$('.filterFormsContainer select').on("change", that.callbacks.filterDropdown);
@@ -384,7 +392,6 @@ var dashboardInfiniteScrollingNew = function () {
 			// $(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
 			$(document).off("click", '.searchBtn', that.callbacks.searchBtn);
 			$(document).off("change", '.filterFormsContainer select', that.callbacks.filterDropdown);
-			$(document).off("click", '.filterSwitchBtn', that.callbacks.filterSwitch);
 
 			console.log("TURN OFF SCROLL CALLBACK");
 			$(document).off("scroll", window, that.callbacks.onScroll);

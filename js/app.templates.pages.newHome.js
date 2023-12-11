@@ -21,6 +21,34 @@ app.templates.pages.newHome = {
 		var htmlRewardsSection1 = app.templates.modules.rewardsLevel.content('section1');
 		var htmlRewardsSection2 = app.templates.modules.rewardsLevel.content('section2'); //Not used
 
+
+		// Create Profile Card
+		var genresCompleteness 	   = app.data.user.profile.genres 	  ? app.data.user.profile.genres.length    : 0;
+		var interestsCompleteness  = app.data.user.profile.interests  ? app.data.user.profile.interests.length : 0; 
+		var pianoLevelCompleteness = app.data.user.profile.pianoLevel ? 1 : 0; 
+
+		var completenessScore = genresCompleteness + interestsCompleteness + pianoLevelCompleteness;
+		var total 		 	  = 3 + 3 + 1;
+		var completenessPorcentage =  Math.round(completenessScore / total * 100);
+
+		var text, action; 
+
+		if(!pianoLevelCompleteness){
+			text   = "<b>What is your piano level?</b>";
+		}else{ 
+			if(interestsCompleteness<3){
+				text = "<b>What are your learning interests?</b>";
+			}else{
+				if(genresCompleteness<3){
+					text = "<b>What are your favorite music genres?</b>";		
+				} 
+				else{
+					text = "";
+				}
+			}
+		}
+
+
 		const formatAndValidateData = (data) => {
 			if (!Array.isArray(data)) { return [] }
 
@@ -164,13 +192,13 @@ app.templates.pages.newHome = {
 						<div><img src="images/logo.png" alt="logo" class="logo"></div>
 
 						<div class="materialSearchBar">
-							<div class="materialSearchInputDiv infiniteScrollingCardsSearchBar">
+							<div class="materialSearchInputDiv">
 								<!--	
 								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9.90039" cy="9.90015" r="9" stroke="white" stroke-width="1.5"/><path d="M16.5 16.5L22.864 22.864" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>	
 								-->	
 								
 								<div class="materialSearchInputWithBtn">
-									<input type="text" class="materialInputTextArea materialThemeDark" placeholder="${config.text.searchBarPlaceholder}" class="">
+									<input type="text" class="materialInputTextArea materialThemeDark searchBarInput" placeholder="${config.text.searchBarPlaceholder}" class="">
 									
 									<div>
 										<svg class="clearBtn" width="13" height="13" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 1.5L22.8627 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.8623 1.5L1.49961 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -246,7 +274,7 @@ app.templates.pages.newHome = {
 									<span>Complete</span>
 								</div>
 								<div>
-									<h4>What's your piano level?</h4>
+									<h4>${text}</h4>
 									<p>Customize your learning experience</p>
 								</div>
 							</div>
@@ -265,7 +293,7 @@ app.templates.pages.newHome = {
 
 								<div>
 									<h4>You have ${data.user.profile.rewardPoints} Reward Points</h4>
-									<p>Learn how to use Rewards Points &raquo;</p>
+									<a href="javascript: void(0)" onclick="materialDialog.alert('Reward Points', 'You can gain Reward Points by completing lessons, rating them, and using The Piano Encyclopedia. With more Reward Points you can gain free access to additional premium content.', {buttonCaption: 'See Rewards', href:'#!/rewards/'})"><p>Learn how you can use your Reward Points »</p></a>
 								</div>
 							</div>	
 

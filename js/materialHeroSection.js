@@ -87,6 +87,15 @@ var materialHeroSection = (function () {
                     i++;
                     changeBGImage();
                 }, 5000);
+
+
+
+                // interval = app.runTimer(
+                //     () => {
+                //         i++;
+                //         changeBGImage();
+                //     }, 5000
+                // )
             };
 
             // Set the initial background image

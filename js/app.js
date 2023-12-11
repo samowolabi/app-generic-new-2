@@ -832,8 +832,8 @@ app.resetPageVariablesAndBindedEvents = function(){
 	//Stop and reset all timers
 	app.stopTimers(); 
 	
-	//Disable events from infinite scrolling dashboard (will be skipped if not loaded)
-	dashboardInfiniteScrolling.unload();
+	// NOTE: Disable events from infinite scrolling dashboard (will be skipped if not loaded)
+	dashboardInfiniteScrollingNew.unload();
 	
 	material.init();
 }

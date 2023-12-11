@@ -97,7 +97,7 @@ app.templates.modules.actionCards = {
 
 		var completenessScore = genresCompleteness + interestsCompleteness + pianoLevelCompleteness;
 		var total 		 	  = 3 + 3 + 1;
-		var completenessPorcentage =  Math.round(completenessScore / total *100);
+		var completenessPorcentage =  Math.round(completenessScore / total * 100);
 
 		var text, action; 
 		

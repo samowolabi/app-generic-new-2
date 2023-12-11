@@ -39,7 +39,7 @@ app.templates.modules.lesson = {
 
 		//Default values
 		thisLesson.engagementProgressArrayDetails 	= thisLesson.engagementProgressArrayDetails || []; 
-		thisLesson.engagementProgressMaxPercent 	= thisLesson.engagementProgressMaxPercent   || 0; 
+		thisLesson. engagementProgressMaxPercent	= thisLesson.engagementProgressMaxPercent   || 0; 
 		thisLesson.engagementProgressRealPercent 	= thisLesson.engagementProgressRealPercent  || 0; 
 		thisLesson.engagementTime 					= thisLesson.engagementTime   || 0; 
  
@@ -261,7 +261,7 @@ app.templates.modules.lesson = {
 												}).catch(function(error) {
 													switch (error.name) {
 														case 'RangeError':
-																console.log("Video Resume failed: The time was less than 0 or greater than the video’s duration");
+																console.log("Video Resume failed: The time was less than 0 or greater than the videoï¿½s duration");
 															break;
 
 														default:
@@ -411,6 +411,8 @@ app.templates.modules.lesson = {
 				var contentBottomHtml = '';
 				
 				break;
+
+				
 			case "video":	
 				
 				var nextLessonId = app.getNextLessonFromCourse(lessonData.id);
@@ -491,7 +493,7 @@ app.templates.modules.lesson = {
 												}).catch(function(error) {
 													switch (error.name) {
 														case 'RangeError':
-																console.log("Video Resume failed: The time was less than 0 or greater than the video’s duration");
+																console.log("Video Resume failed: The time was less than 0 or greater than the videoï¿½s duration");
 															break;
 
 														default:
