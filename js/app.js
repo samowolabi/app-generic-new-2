@@ -970,7 +970,7 @@ app.fetchRemoteData = function(callback){
 		dataType: "text", //To avoid parsing of JSON
 		url: "https://app-generic-new-2.vercel.app/server.json",  //HARDCODED
 		cache: false, 
-		type: "POST",
+		type: "GET",
 		crossDomain: true,
 		headers: {
 			"accept": "application/json"
