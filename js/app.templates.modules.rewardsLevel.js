@@ -137,7 +137,7 @@ app.templates.modules.rewardsLevel = {
 		   `;
 		}else{
 		   nextRewardsLevelHtml = `
-		   		<h4>${pointsTotalNextRewardsLevel} points needed to reach Reward Level ${nextRewardsLevelDisplay}</h4>
+		   		<h4>Just ${pointsTotalNextRewardsLevel} points needed to reach Reward Level ${nextRewardsLevelDisplay}</h4>
 		   		<div class="rewardLevelProgress"><div style="width: ${progressToNextRewardsLevel}%"></div></div>
 		   `;
 		}

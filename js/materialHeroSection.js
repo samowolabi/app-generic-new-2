@@ -83,19 +83,12 @@ var materialHeroSection = (function () {
 
             // Create a function to start the interval
             const startInterval = () => {
-                interval = setInterval(() => {
-                    i++;
-                    changeBGImage();
-                }, 5000);
-
-
-
-                // interval = app.runTimer(
-                //     () => {
-                //         i++;
-                //         changeBGImage();
-                //     }, 5000
-                // )
+                interval = app.runTimer(
+                    () => {
+                        i++;
+                        changeBGImage();
+                    }, 5000
+                )
             };
 
             // Set the initial background image

@@ -289,7 +289,7 @@
 
 .app_ratingsSection .app_ratingsSectionCard {
     width: 100%;
-    padding: 20px 40px;
+    padding: 20px 30px;
     background: #1B1B1B;
     border-radius: 4px;
 }
@@ -340,47 +340,78 @@
 
 .app_ratingsSection .rewardPointsContainer {
     display: flex;
+    flex-wrap: wrap;
     gap: 1.75rem;
 }
 
 .app_ratingsSection .rewardPointsContainer > div:nth-child(1) {
-    width: 60%;
+    width: 100%;
 }
 
 .app_ratingsSection .rewardPointsContainer > div:nth-child(2) {
-    width: 40%;
+    width: 100%;
 }
 
 .app_ratingsSectionCard.rewardPoints {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     gap: 3.5rem;
 }
 
+.app_ratingsSectionCard.rewardPoints > div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.app_ratingsSectionCard.rewardPoints > div div:nth-child(1) {
+    width: 12%;
+}
+
+.app_ratingsSectionCard.rewardPoints > div div:nth-child(2) {
+    width: 88%;
+}
+
+.app_ratingsSectionCard.rewardPoints > div img {
+    width: 100%;
+}
+
+.app_ratingsSectionCard.rewardPoints > div span.melodyCoins {
+    font-size: 54px;
+    color: #cfb647;
+    display: block;
+    max-width: 35px;
+    text-align: center;
+    line-height: 4rem;
+}
+
 .app_ratingsSectionCard.rewardPoints h4 {
-    font-size: 18px;
+    font-size: 20px;
     color: #e6d3a1;
 }
 
 .app_ratingsSectionCard.rewardPoints p {
     color: #a9a9a9;
-    font-size: 17px;
+    font-size: 1.6rem;
     font-weight: 400;
     padding-top: 2px;
 }
 
-.app_ratingsSectionCard.rewardPoints div:nth-child(2) p {
+.app_ratingsSectionCard.rewardPoints > div a {
     color: #ffbb00;
     padding-top: 0.5rem;
-    font-size: 17px;
+    font-size: 1.6rem;
 }
 
-.app_ratingsSectionCard.rewardPoints div:nth-child(2) p:hover {
+.app_ratingsSectionCard.rewardPoints > div a:hover {
     color: #f0b300;
 }
 
 .app_ratingsSectionCard.rewardLevel h4 {
     font-size: 18px;
+    padding-bottom: 0.5rem;
     color: #e6d3a1;
 }
 
@@ -425,7 +456,7 @@
     .app_ratingsSection .app_ratingsSectionCard.ratingsContent .pianoLevelDiv {
         display: flex;
         flex-wrap: wrap;
-        row-gap: 2rem;
+        gap: 2rem;
     }
 
     .app_ratingsSection .app_ratingsSectionCard.ratingsContent .pianoLevelDiv > div:nth-child(1) {
@@ -447,7 +478,8 @@
     }
 
     .app_ratingsSectionCard.rewardPoints {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
         flex-wrap: wrap;
     }
 }
@@ -475,7 +507,7 @@
     .app_ratingsSectionCard.ratingsContent .pianoLevelDiv {
         display: flex;
         flex-wrap: wrap;
-        row-gap: 2rem;
+        gap: 2rem;
     }
 
     .app_ratingsSectionCard.ratingsContent .pianoLevelDiv > div:nth-child(1) {
@@ -497,7 +529,8 @@
     }
 
     .app_ratingsSectionCard.rewardPoints {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
         flex-wrap: wrap;
     }
 }

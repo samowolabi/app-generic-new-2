@@ -968,7 +968,7 @@ app.addRewardPoints = function(snackBarText, rewardPointsToAdd){
 app.fetchRemoteData = function(callback){
 	$.ajax({  
 		dataType: "text", //To avoid parsing of JSON
-		url: "http://localhost/app-generic-new-2/server.json",  //HARDCODED
+		url: "https://app-generic-new-2.vercel.app/app-generic-new-2/server.json",  //HARDCODED
 		cache: false, 
 		type: "POST",
 		crossDomain: true,

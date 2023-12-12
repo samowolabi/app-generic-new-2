@@ -66,6 +66,20 @@ app.templates.pages.newHome = {
 
 		var lessonArray = [
 			{
+				header: 'Resume Your Lessons',
+				lesson: { 
+					ids: app.data.user.recommendations.data.toResume.lessonsIds,
+					type: 'lesson'
+				}
+			},
+			{
+				header: 'Resume Your Courses',
+				lesson: { 
+					ids: app.data.user.recommendations.data.toResume.coursesIds,
+					type: 'course'
+				},
+			},
+			{
 				header: 'NEW LESSONS',
 				lesson: { 
 					ids: app.data.user.recommendations.data.newest.lessonsIds,
@@ -90,20 +104,6 @@ app.templates.pages.newHome = {
 				header: 'Courses about to Expire',
 				lesson: { 
 					ids: app.data.user.recommendations.data.expiring.coursesIds,
-					type: 'course'
-				},
-			},
-			{
-				header: 'Resume Your Lessons',
-				lesson: { 
-					ids: app.data.user.recommendations.data.toResume.lessonsIds,
-					type: 'lesson'
-				}
-			},
-			{
-				header: 'Resume Your Courses',
-				lesson: { 
-					ids: app.data.user.recommendations.data.toResume.coursesIds,
 					type: 'course'
 				},
 			},
@@ -267,33 +267,62 @@ app.templates.pages.newHome = {
 				<div class="homeContentContainer">
 
 					<section class="app_ratingsSection">
-						<div class="app_ratingsSectionCard ratingsContent">
-							<div class="pianoLevelDiv">
-								<div>
-									<h2>${data.user.stats.profile.complete}%</h2>
-									<span>Complete</span>
+						${data.user.stats.profile.complete < 100 ? `
+							<div class="app_ratingsSectionCard ratingsContent">
+								<div class="pianoLevelDiv">
+									<div>
+										<h2>${data.user.stats.profile.complete}%</h2>
+										<span>Complete</span>
+									</div>
+									<div>
+										${
+											text ? `
+												<h4>${text}</h4>
+												<p>Customize your learning experience</p>
+											` : `
+												<h4>Customize your learning experience</h4>
+											`
+										}
+									</div>
 								</div>
-								<div>
-									<h4>${text}</h4>
-									<p>Customize your learning experience</p>
-								</div>
+								<button class="materialButtonOutline materialThemeGoldDark">Complete</button>
 							</div>
-							<button class="materialButtonOutline materialThemeGoldDark">Complete</button>
-						</div>
+						` : `
+						`}
 					
-
 						<div class="rewardPointsContainer marginTop4">
 							<div class="app_ratingsSectionCard rewardPoints">
 								<div>
-									<h4>You have ${data.user.stats.lessons.total - data.user.stats.lessons.complete} unfinished lessons</h4>
+									<div>
+										<img src="images/newimages/cup.svg">
+									</div>
 
-									<p class="paddingTop7">You completed ${data.user.stats.lessons.complete}.</p>
-									<p>Complete more to gain more Reward Points</p>
+									<div>
+										<h4>Reward Level ${app.getCurrentRewardLevel() + 1}</h4>
+										<p class="paddingTop7">You have ${data.user.stats.lessons.total - data.user.stats.lessons.complete} unfinished lessons.</p>
+									</div>
 								</div>
 
 								<div>
-									<h4>You have ${data.user.profile.rewardPoints} Reward Points</h4>
-									<a href="javascript: void(0)" onclick="materialDialog.alert('Reward Points', 'You can gain Reward Points by completing lessons, rating them, and using The Piano Encyclopedia. With more Reward Points you can gain free access to additional premium content.', {buttonCaption: 'See Rewards', href:'#!/rewards/'})"><p>Learn how you can use your Reward Points »</p></a>
+									<div>
+										<img src="images/newimages/medal.svg">
+									</div>
+
+									<div>
+										<h4>You have ${data.user.profile.rewardPoints} Reward Points</h4>
+										<a href="javascript: void(0)" onclick="materialDialog.alert('Reward Points', 'You can gain Reward Points by completing lessons, rating them, and using The Piano Encyclopedia. With more Reward Points you can gain free access to additional premium content.', {buttonCaption: 'See Rewards', href:'#!/rewards/'})">Learn how you can use your Reward Points</a>
+									</div>
+								</div>
+
+								<div>
+									<div>
+										<img width="200" src="images/newimages/music_note.svg">
+									</div>
+
+									<div>
+										<h4>${app.wallet.getUserBalance()} Coins</h4>
+										<p>Your Melody Coins Balance</p>
+									</div>
 								</div>
 							</div>	
 
