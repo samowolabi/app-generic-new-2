@@ -267,7 +267,7 @@ app.templates.pages.newHome = {
 				<div class="homeContentContainer">
 
 					<section class="app_ratingsSection">
-						${data.user.stats.profile.complete < 100 ? `
+						${text ? `
 							<div class="app_ratingsSectionCard ratingsContent">
 								<div class="pianoLevelDiv">
 									<div>
@@ -275,20 +275,14 @@ app.templates.pages.newHome = {
 										<span>Complete</span>
 									</div>
 									<div>
-										${
-											text ? `
-												<h4>${text}</h4>
-												<p>Customize your learning experience</p>
-											` : `
-												<h4>Customize your learning experience</h4>
-											`
-										}
+										<h4>${text}</h4>
+										<p>Customize your learning experience</p>
 									</div>
 								</div>
-								<button class="materialButtonOutline materialThemeGoldDark">Complete</button>
+								<button onclick="dialogsCompleteProfileFlow();" class="materialButtonOutline materialThemeGoldDark">Complete</button>
 							</div>
-						` : `
-						`}
+						` : ` `
+						}
 					
 						<div class="rewardPointsContainer marginTop4">
 							<div class="app_ratingsSectionCard rewardPoints">
@@ -368,6 +362,29 @@ app.templates.pages.newHome = {
 					</div>
 				
 					<section class="app_coursesCardsSection">
+						<div class="app_coursesCardsFilterPills">	
+							${
+								materialFilterPills.create({
+								list: [
+									{ name: 'All', value: '', active: true },
+									{ name: 'Beethoven', value: 'Beethoven' },
+									{ name: 'Impressionism', value: 'Impressionism' },
+									{ name: 'Neo Classicism', value: 'Neo Classicism' },
+									{ name: 'Impressionism', value: 'Impressionism' },
+									{ name: 'Romantic', value: 'Romantic' },
+									{ name: 'Intermediate', value: 'Intermediate' },
+									{ name: 'Beethoven', value: 'Beethoven' },
+									{ name: 'Impressionism', value: 'Impressionism' },
+									{ name: 'Neo Classicism', value: 'Neo Classicism' },
+									{ name: 'Impressionism', value: 'Impressionism' },
+									{ name: 'Romantic', value: 'Romantic' },
+									{ name: 'Intermediate', value: 'Intermediate' }
+									]
+								})
+							}
+						</div>
+
+
 						${formatAndValidateData(mergedArrays).map((item, index) => `
 							<div class="app_coursesCardsContainer">
 								<p>${item.header}</p>

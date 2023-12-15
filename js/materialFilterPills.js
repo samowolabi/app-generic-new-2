@@ -14,7 +14,8 @@ var materialFilterPills = (function () {
                         ${item.name}
                     </div>
                 </div>-->
-                <div class="materialChipFilter materialThemeDark">
+
+                <div class="materialChipFilter materialThemeDark" data-value="${item.active ? 'defaultChecked' : ''}">
                     <input class="materialChipInput materialThemeDark" name="size" type="checkbox"> <svg class="materialChipCheckbox" viewBox="-2 -3 30 30">
                     <path class="materialChipCheckboxPath" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="black"></path></svg>
                     <div class="materialChipInputText materialThemeDark">
@@ -83,7 +84,7 @@ var materialFilterPills = (function () {
                 });
 
                 // Set Toggle Pills Active
-                parentDiv.querySelectorAll('.materialFilterPillsDiv span').forEach(function (pill) {
+                parentDiv.querySelectorAll('.materialFilterPillsDiv .materialChipFilter').forEach(function (pill) {
                     pill.addEventListener('click', function (event) {
                         if (pill.classList.contains('active')) {
                             pill.classList.remove('active');
@@ -92,6 +93,19 @@ var materialFilterPills = (function () {
                         }
                     });
                 });
+
+                // Get active pills set in data value and check the child input type checkbox programmatically
+                function setActivePillsOnLoad() {
+                    const activePills = parentDiv.querySelectorAll('.materialFilterPillsDiv .materialChipFilter[data-value="defaultChecked"]');
+                    activePills.forEach(function (pill) {
+                        pill.querySelector('input').checked = true;
+
+                        // Add active class to the pill
+                        pill.classList.add('active');
+                    });
+                }
+
+                setActivePillsOnLoad();
             });
         } catch (error) {
             console.error(error); // Print the actual error message

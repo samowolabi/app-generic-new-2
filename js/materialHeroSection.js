@@ -81,21 +81,29 @@ var materialHeroSection = (function () {
                 `;
             };
 
-            // Create a function to start the interval
-            const startInterval = () => {
-                interval = app.runTimer(
-                    () => {
-                        i++;
-                        changeBGImage();
-                    }, 5000
-                )
-            };
+            // // Create a function to start the interval
+            // const startInterval = () => {
+            //     interval = app.runTimer(
+            //         () => {
+            //             i++;
+            //             changeBGImage();
+            //         }, 5000)
+            // };
+
+
 
             // Set the initial background image
             changeBGImage();
 
             // Start the initial interval
-            startInterval();
+            interval = app.runTimer(
+                () => {
+                    i++;
+                    changeBGImage();
+                }, 5000
+            )
+
+            // startInterval();
 
             const changeBGImageControl = function (type) {
                 if (type === 'next') {
@@ -105,14 +113,22 @@ var materialHeroSection = (function () {
                     if (i < 0) { i = heroSectionData.length - 1 } // If the index is less than 0, set it to the last index, so it will loop back
                 }
 
-                clearInterval(interval);
+                app.clearTimer(interval);
+
                 changeBGImage();
-                startInterval(); // Restart the interval
+                
+                // Restart the interval
+                interval = app.runTimer(
+                    () => {
+                        i++;
+                        changeBGImage();
+                    }, 5000
+                )
             }
 
             const carouselControlNext = document.querySelector('.carouselControlNext');
             carouselControlNext.addEventListener('click', () => changeBGImageControl('next')); // Pass a function reference
-    
+
             const carouselControlPrev = document.querySelector('.carouselControlPrev');
             carouselControlPrev.addEventListener('click', () => changeBGImageControl('prev')); // Pass a function reference
         } catch (error) {

@@ -800,6 +800,12 @@ app.runTimer = function(fx, timeInMs){
 
 	//Store interval timer so we can stop it after loading a new page
 	app.intervalTimers.push(intervalTimer);
+
+	return intervalTimer;
+}
+
+app.clearTimer = function(timer) {
+	clearInterval(timer);
 }
 
 /**
@@ -3422,11 +3428,11 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 			var themeOverlay = "materialOverlayShallowBlack";
 			var themeButton = "materialButtonText materialThemeDarkGrey";
 			var actionHtml = `<span>
-								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
+								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
 							  </span>`;
-			var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
-								<span data-incomplete>EXPIRED</span>
-								<span data-complete>EXPIRED</span>`;
+			var progressChipHtml = `<span data-new><i>LOCKED</i></span>
+								<span data-incomplete>LOCKED</span>
+								<span data-complete>LOCKED</span>`;
 			var icon = "fa-lock";
 
 			break;

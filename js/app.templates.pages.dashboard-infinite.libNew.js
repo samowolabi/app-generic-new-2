@@ -371,8 +371,9 @@ var dashboardInfiniteScrollingNew = function () {
 				that.callbacks.filterSwitch(event);
 			});
 
-			$('.materialSearchBar .searchBtn').on("click", function() {
-				that.callbacks.searchBtn
+			$('.materialSearchBar .searchBtn').on("click", function(event) {
+				console.log("CLICKED SEARCH BUTTON");
+				that.callbacks.searchBtn(event);
 
 				// Close Filter Panel
 				if ($('.materialSearchBar').hasClass('active')) {

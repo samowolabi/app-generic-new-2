@@ -363,8 +363,6 @@ var dashboardInfiniteScrolling = function () {
 			$('.searchBtn').on("click", that.callbacks.searchBtn);
 			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
 			$('.filterDropdown select').on("change", that.callbacks.filterDropdown);
-
-
 		}
 	};
 

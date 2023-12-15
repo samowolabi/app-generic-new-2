@@ -184,19 +184,19 @@ router.on({
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
-
 	'': function (params) {
 		app.html({
 			target: "#content",
 			loading: function () { return app.templates.pages.newHome.loading(); },
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.newHome.content(); },
-			callback: function () { }
+			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
 		});
 
 		app.routeId = "/home/";
 		$(".materialBarDashboardBackBtn").hide();
 	},
+
 	'/history/': function (params) {
 		app.html({
 			target: "#content",
