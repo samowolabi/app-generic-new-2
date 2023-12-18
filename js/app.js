@@ -281,7 +281,295 @@ app.dialogs.exclusiveInvitation = function(url, settings){
 			</div>
 	</div>`;
 	materialDialog.custom(dialogHtml, settings);
-}					
+}
+
+app.dialogs.questionProgress = function( settings){
+	if(typeof settings === "undefined"){ settings = {};	}
+    settings.title = settings.title || "Undefined title";
+    settings.subtitle = settings.subtitle || "Undefined subtitle";
+    settings.progressPercentage = settings.progressPercentage || "0";
+    settings.progressDisplay = settings.progressDisplay || "0";
+    settings.progressTitle = settings.progressTitle || "Melody Coins";
+    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
+
+     settings.buttonNo  = settings.buttonNo || {};
+     settings.buttonYes = settings.buttonYes || {};
+
+     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
+     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
+
+     settings.buttonNo.value  = settings.buttonNo.value || "no";
+     settings.buttonYes.value = settings.buttonYes.value || "yes";
+
+     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
+     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
+
+     settings.buttonNo.additional  = settings.buttonNo.additional || "";
+     settings.buttonYes.additional = settings.buttonYes.additional || "";
+
+     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
+     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
+
+     settings.hideCallback = settings.hideCallback || function(value){ console.log("Question result: ", value);};
+
+	 settings.image = settings.image || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png";
+	 
+	
+	var dialogHtml = `<div class="row">
+		<div class="col-sm-12 col-xs-12">
+				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
+					 <div class="container-fluid">
+						<div class="row">
+
+							<div class="materialCardProgressLeft materialThemeDark materialCardProgressLeftDouble">
+
+								<div class="materialProgressCircle materialThemeDark" data-progress="${settings.progressPercentage}" data-progress-affects-data-percentage="">
+									<span class="materialProgressCircle-left">
+										<span class="materialProgressCircle-bar"></span>
+									</span>
+									<span class="materialProgressCircle-right">
+										<span class="materialProgressCircle-bar"></span>
+									</span>
+									<div class="materialProgressCircle-value">
+										<div>
+											<span>${settings.progressDisplay}</span><br>
+											${settings.progressTitle}<br>${settings.progressSubTitle}
+										</div>
+									</div>
+								</div>
+								<br class="visible-xs visible-sm"><br class="visible-xs visible-sm">
+								<div class="materialImageCircle materialThemeDark hidden-xs" style="background-image: url(${settings.image}); ">
+								</div>
+
+							</div>
+							
+							<div class="materialCardProgressRight materialThemeDark materialCardProgressRightDouble">
+                              <h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;">${settings.title}</h3>
+								<p class="materialParagraph materialThemeDark">${settings.subtitle}</p>
+								<div>
+                                    <a class="${settings.buttonNo.theme}"  data-value='${settings.buttonNo.value}'  ${settings.buttonNo.additional}  href="${settings.buttonNo.href}">${settings.buttonNo.caption}</a>
+                                    <a class="${settings.buttonYes.theme}" data-value='${settings.buttonYes.value}' ${settings.buttonYes.additional} href="${settings.buttonYes.href}">${settings.buttonYes.caption}</a>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>`;
+	
+	materialDialog.custom(dialogHtml, settings);
+}
+
+app.dialogs.selectPlan = function( settings){
+	if(typeof settings === "undefined"){ settings = {};	}
+    settings.title = settings.title || "Continue Your Musical Journey";
+    settings.subtitle = settings.subtitle || "GET MORE MELODY COINS<br>WITH OUR SPECIAL LAUNCH OFFER";
+    settings.progressPercentage = settings.progressPercentage || "95";
+    settings.progressDisplay = settings.progressDisplay || "1000";
+    settings.progressTitle = settings.progressTitle || "Melody Coins";
+    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
+
+     settings.buttonNo  = settings.buttonNo || {};
+     settings.buttonYes = settings.buttonYes || {};
+
+     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
+     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
+
+     settings.buttonNo.value  = settings.buttonNo.value || "no";
+     settings.buttonYes.value = settings.buttonYes.value || "yes";
+
+     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
+     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
+
+     settings.buttonNo.additional  = settings.buttonNo.additional || "";
+     settings.buttonYes.additional = settings.buttonYes.additional || "";
+
+     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
+     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
+
+     settings.hideCallback = settings.hideCallback || function(value){ 
+		CountdownTimer.end();
+		console.log("Question result: ", value);
+	 };
+
+	 settings.image = settings.image || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png";
+	
+	settings.countdownText = settings.countdownText || "Special Offer";
+	
+	var expireExtensionHoursToAdd = [2,2,2];
+	var urlPathEnd = "test"; 
+	
+	var countdownDateNow = new Date();
+	var countdownTimezoneNow = "";
+	
+	//Only do an extension with the deadline date (never with the start date)
+	var extension = ""; 
+	/*if(availabilityStatus !== "notStarted"){
+		extension = 'data-extension="["'+ expireExtensionHoursToAdd.toString() +'"]"';  
+	} */
+	//var dialogCountdownText = "Testings";
+	
+	settings.contentClass = "maxWidth1200";
+
+	
+	CountdownTimer.init();
+	var timerHtml = "";
+	var isOfferAvailable = CountdownTimer.getIsOfferAvailable();
+	if(isOfferAvailable){
+		settings.coupon ="SPECIAL-LAUNCH-OFFER";
+		settings.subtitle =  "GET MORE MELODY COINS<br>WITH OUR SPECIAL LAUNCH OFFER";    
+		timerHtml = `
+		<div class="time">
+			<span>
+				<div id="d">00</div>
+				DAYS
+			</span>
+			<span>
+				<div id="h">00</div>
+				HOURS
+			</span>
+			<span>
+				<div id="m">00</div>
+				MINUTES
+			</span>
+			<span>
+				<div id="s">00</div>
+				SECONDS
+			</span>
+		</div>
+								
+		<script type="text/javascript">
+		var isOfferAvailable = CountdownTimer.getIsOfferAvailable();
+		var priceMonthly, priceYearly, priceLifetime;
+		if(isOfferAvailable){
+			CountdownTimer.start({
+				d: document.getElementById("d"),
+				h: document.getElementById("h"),
+				m: document.getElementById("m"),
+				s: document.getElementById("s")
+			});
+		}
+		</script>`;
+		
+		priceMonthly = `<s style="font-size: 0.85em;">$29.90</s> $9.99`;
+		priceYearly = `<s style=" font-size: 0.85em;">$359.00</s> $99.00`;
+		priceLifetime = `<s style=" font-size: 0.85em;">$3999.00</s> $899.00`;
+		
+	}else{
+		timerHtml = "";
+		settings.coupon ="";
+		settings.subtitle =  "GET MORE MELODY COINS";    
+
+		priceMonthly = `$29.90`;
+		priceYearly = `$359.00`;
+		priceLifetime = `$3999.00`;
+
+	}
+
+	
+	var dialogHtml = `<div class="row">
+		<div class="col-sm-12 col-xs-12">
+				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
+					 <div class="container-fluid selectPlan ">
+						<div class="row">
+  
+						<div style="text-align: center;">
+						  <h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;font-size: 2.5em;">${settings.title}</h3>
+							<p class="materialParagraph materialThemeDark" style="font-size: 1.7em;">${settings.subtitle}</p>
+						</div>
+									
+						${timerHtml}
+
+							
+<div class="row">
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+	<div class="materialCard materialThemeLightGold" style="margin-top: 45px;">
+		<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');">
+			<div class="materialCardImg">
+				<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-monthly-plan.png);"></div>
+			</div>
+			<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+				<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Monthly<br>
+				<span style=" font-size: 1.5em;">&#9834; 22,000</span><br>
+				MELODY COINS</h2>
+				<p class="materialParagraph materialThemeDark">Embark on a musical journey with The Ultimate Collection of Piano Music, where every month brings new discoveries. Use Melody Coins to unlock new pieces and continuously enrich your repertoire &#8212; all for just:</p>
+				<h2 class="materialHeader" style="margin-bottom: 20px;">${priceMonthly}</h2>
+				<div>
+					<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Monthly Plan</a>
+				</div>
+			</div>
+		</div>
+		<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+			<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
+		</div>
+	</div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+	<div class="materialCard materialThemeLightGold">
+		<div class="materialCardHeader">
+			<span>Most Popular Choice</span>
+		</div>
+		<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');">
+			<div class="materialCardImg">
+				<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-yearly-plan.png);"></div>
+			</div>
+			<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+				<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Yearly<br>
+				<span style=" font-size: 1.5em;">&#9834; 300,000</span><br>
+				MELODY COINS</h2>
+				<p class="materialParagraph materialThemeDark">With our annual plan you will instantly receive a year's supply of Melody Coins, unlocking a world of piano pieces to master. Perfect for the dedicated student, this plan offers an enriching journey and smart savings compared to the monthly option.</p>
+				<h2 class="materialHeader" style="margin-bottom: 20px;">${priceYearly}</h2>
+				<div>
+					<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Annual Plan</a>
+				</div>
+			</div>
+		</div>
+		<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+			<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
+		</div>
+	</div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+	<div class="materialCard materialThemeLightGold"  style="margin-top: 45px;">
+		<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');">
+			<div class="materialCardImg">
+				<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-lifetime-access.png);"></div>
+			</div>
+			<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+				<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Unlimited<br>
+				<span style=" font-size: 1.3em;">LIFETIME ACCESS</span></h2>
+				<p class="materialParagraph materialThemeDark">Instantly unlock every single piece of The Ultimate Collection of Piano Music with this exclusive offer. This plan grants you unlimited access to all currently available pieces - for life. Only 50 Lifetime Memberships available as part of our special product launch &#8212; secure yours now!</p>
+				<h2 class="materialHeader" style="margin-bottom: 20px;">${priceLifetime}</h2>
+				<div>
+					<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Lifetime Access</a>
+				</div>
+			</div>
+		</div>
+		<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+			<span style=" display: block; margin: 0 auto; color: grey;">One-time Payment</span>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+
+ <!-- As part of your monthly or yearly subscription, you will receive Melody Coins each period. These Melody coins, if not utilized within the current period, can be carried over and used in subsequent periods as long as your subscription remains active. This feature allows you the flexibility to use your Melody coins according to your own schedule and convenience, ensuring that you get the full value of your subscription. Please note, however, that if your subscription is canceled or lapses, any unused Melody coins will expire and will not be redeemable in future periods. If you opt for the lifetime access option, you will not receive Melody Coins. Instead, we will instantly unlock all of the current pieces of The Ultimate Collection of Piano Music for you. This offer provides immediate and permanent access to our extensive collection, ensuring that you have a wealth of piano music at your fingertips.
+-->
+
+<p class="materialParagraph materialThemeDark" style=" font-size: 14px; line-height: 14px; font-style: italic; padding: 20px; background: #3700009e; margin: auto 30px;">
+You may cancel at any time. Your subscription will continue until you cancel. Cancellation takes effect at the end of your current billing period. Taxes may apply. All fees are non-refundable. We reserve the right to modify or discontinue our services (or any part thereof) with or without notice. Offer terms are subject to change.</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>`;
+	materialDialog.custom(dialogHtml, settings);
+}
+
 					
 app.callback = function(callbackDataAsUrl, trackOnServer = true){
 	//Add mobile data
@@ -804,8 +1092,9 @@ app.runTimer = function(fx, timeInMs){
 	return intervalTimer;
 }
 
-app.clearTimer = function(timer) {
-	clearInterval(timer);
+app.clearTimer = function(fx) {
+	fx = clearInterval(fx);
+	return fx;
 }
 
 /**
@@ -838,8 +1127,8 @@ app.resetPageVariablesAndBindedEvents = function(){
 	//Stop and reset all timers
 	app.stopTimers(); 
 	
-	// NOTE: Disable events from infinite scrolling dashboard (will be skipped if not loaded)
-	dashboardInfiniteScrollingNew.unload();
+	//Disable events from infinite scrolling dashboard (will be skipped if not loaded)
+	dashboardInfiniteScrolling.unload();
 	
 	material.init();
 }
@@ -974,9 +1263,9 @@ app.addRewardPoints = function(snackBarText, rewardPointsToAdd){
 app.fetchRemoteData = function(callback){
 	$.ajax({  
 		dataType: "text", //To avoid parsing of JSON
-		url: "https://app-generic-new-2.vercel.app/server.json",  //HARDCODED
+		url: config.serverUrl, 
 		cache: false, 
-		type: "GET",
+		type: "POST",
 		crossDomain: true,
 		headers: {
 			"accept": "application/json"
@@ -991,11 +1280,18 @@ app.fetchRemoteData = function(callback){
 		} 
 	 })
 	 .done(function(data) { 
-		//Uncompress the data keys
-		data = JSON.parse(app.uncompressJSON(data));  
-		
+
+		try{
+            //Uncompress the data keys
+            data = JSON.parse(app.uncompressJSON(data));
+        }catch(e){
+            console.error(e);
+            data = {
+                "error": "parsing-json"
+            }
+        }
+
 		if(app.returnedError(data)){return false};		
-  
 
 		var lessonId = false;
 		app.refresh(lessonId, data);
@@ -1020,8 +1316,52 @@ app.saveToServer = function(lessonId){
  	//Compress the data keys
 	var dataToSend = app.compressJSON(JSON.stringify(app.data.user)); 
 		
-	//here you have deleted the post? OR DID i DLEETE?
-	console.log("Save data to server is disabled for local host version");
+	$.ajax({  
+		dataType: "text", //To avoid parsing of JSON
+		url: config.serverUrl, 
+		cache: false, 
+		type: "POST",
+		crossDomain: true,
+		headers: {
+			"accept": "application/json"
+		},
+		data: {
+			"url": window.location.href,
+            "referrer": document.referrer,
+			"action": "set",
+			"data": dataToSend,
+			"hs_uid": (localStorage.getItem('hs_uid') || ""), 
+			"hs_uidh": (localStorage.getItem('hs_uidh') || ""),
+			"appName": config.appName
+		} 
+	 })
+	 .done(function(data) {  
+		//Uncompress the data keys
+		try{
+		    data = JSON.parse(app.uncompressJSON(data));
+		}catch(e){
+		    console.error(e);
+		    data = {
+		        "error": "parsing-json"
+		    }
+		}
+
+		if(app.returnedError(data)){return false};
+  
+		if(!lessonId){
+			app.refresh(null, data);  
+		}else{ 
+			//If we are in a lesson page, ensure that the lesson is 100% finished. Else, loading data will override actual data while user is watching, deleting user progress, and generating a bug.
+			if(app.data.user.learning[lessonId] && app.data.user.learning[lessonId].engagementProgressRealPercent == 100){
+				app.refresh(lessonId, data); 
+			}
+		}
+	 })
+	 .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log('Error Getting status for parameters: - Error:' + errorThrown); 
+		//Fail silently.
+	 });  
+	console.log("Save data to server");
 }
 
 app.returnedError = function(data){
@@ -1087,11 +1427,6 @@ app.refresh = function(lessonId, dataFromServer){
 		var parentCourseId = app.data.chapter[chapterId].parentCourse;
 		$("#page-lesson-outline").html(app.templates.modules.lessonsOutline.content(app.data, parentCourseId, lessonId));
 	}
-
-	// Update the back button URL
-	app.refeshBackButtonUrl();
-
-	// app.reorderData();
  
 	material.init();
 }
@@ -1542,7 +1877,7 @@ app.__buildDataFromDataRaw = function(data){
 				 
 				 
 				 // Si ninguna esta available, usar la PRIMERA fecha de "coming soon"
-				 //IF Chequear todas las lecciones de un curso. Si hay por lo menos una "expiring", el curso esta "expiring" con la fecha m�s proxima.
+				 //IF Chequear todas las lecciones de un curso. Si hay por lo menos una "expiring", el curso esta "expiring" con la fecha mas proxima.
 				 //ELSE IF Chequear todas las lecciones de un curso. Si hay por lo menos una "available", el curso esta "available".
 
  
@@ -1696,6 +2031,14 @@ app.__buildDataFromDataRaw = function(data){
 		}();
 
  
+		
+		
+		
+		var calculateCourseExplorationByFilters = function(){
+			var courseSorter = new CourseSorter(data);
+			data.explore = courseSorter.sortCoursesByAllFilters();
+		}();
+
 		data.global =  {};  
 		data.global.courses = {}; 
 		
@@ -1826,7 +2169,8 @@ app.__buildDataFromDataRaw = function(data){
 			data.offer.general.availability.nearestDeadlineDate = function(){
 				var expireDate 	= data.offer.general.availability.expireDate;
 				var expireTimezone 	= data.offer.general.availability.expireTimezone;
-				var nearestDeadlineDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone);
+				var nearestDeadlineDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone); 
+				var expireExtensionHoursToAdd = data.offer.general.availability.expireExtensionHoursToAdd;
 				 
 				for (var i = 0; i < expireExtensionHoursToAdd.length; i++) {
 					nearestDeadlineDateObject.add(expireExtensionHoursToAdd[i], 'hours');
@@ -2760,7 +3104,8 @@ app.html = function(params){
 			material.init(params.target);
 		});
 			
-		app.updateUI();
+		app.updateUI(); 
+		
 	};
 
 	//TODO: add a last datetime for fetching data, so if X time has passed ew fetch it again
@@ -2917,7 +3262,7 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 	
 	//Do a more complex sort.
 	//TODO: include  order by "new" (available date) and then by "expiring" (expire date)
-	var complexSort = function(matchedCourses) {
+	var complexSort = function(matchedCourses){
 		var matchedCoursesOrdered = [];
 		
 		for (const courseId of matchedCourses) {
@@ -2962,29 +3307,13 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 		
 	};
 	
-	// matchedCourses = complexSort(matchedCourses);
-	matchedCourses = app.reorderData(matchedCourses);
+	matchedCourses = complexSort(matchedCourses);
 	
 	//Save last search. TODO must do a better implementation
 	//app.saveLastSearch(filters, keyword); 
 	
 	return paginate(matchedCourses, pageSize, pageNumber);
 	
-}
-
-app.reorderData = function (data) {
-	const reorderedCourse = [];
-
-	data.sort((a, b) => {
-		const statusOrder = {
-			expiringAsap: 1, expiringSoon: 2, available: 3, comingAsap: 4, comingSoon: 5, expired: 6
-		};
-		return statusOrder[app.data.course[a].dateStatus] - statusOrder[app.data.course[b].dateStatus];
-	}).forEach((key) => {
-		reorderedCourse.push(key);
-	});
-
-	return reorderedCourse;
 }
 
 app.getFilterArray = function(){
@@ -2994,6 +3323,7 @@ app.getFilterArray = function(){
 	  var filterName = $( this ).data("filter");
 	  if(filterValue) {filters[filterName] = filterValue;}	  
 	});
+	
 	
 	return filters;
 }
@@ -3144,7 +3474,7 @@ app.updateOneTimeSpecialOfferHtml = function(timeout){
 }
 
 					
-app.createFiltersHtml = function(){
+app.createFiltersHtml = function() {
 	
 	var getCoursesFilters = function(){
 		var filters = {};
@@ -3221,9 +3551,7 @@ app.createFiltersHtml = function(){
 	}
 	
 	return html;
-}
-
-
+}	
 
 
 app.createFiltersHtmlNew = function(){
@@ -3316,6 +3644,14 @@ app.resetFilterInputs = function() {
 
 
 app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
+
+	let parentChapterId = app.data.lesson[lessonId].parentChapter;
+	let parentCourseId = app.data.chapter[parentChapterId].parentCourse;
+	let course = app.data.course[parentCourseId]
+
+	// console.log("parentCourseId", parentCourseId);
+	// console.error('lesson', lesson)
+	// console.error('app.data.course[parentCourseId]', app.data.course[parentCourseId])
 
 	var href = `#!/lesson/${lessonId}`;
 
@@ -3466,19 +3802,19 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 
 	var courseBackgroundColor = (courseImage === defaultImage) ? "black" : "grey";
 
-	var bottomLeftChip = config.text.searchResultsBottomLeft(lesson) ?
+	var bottomLeftChip = config.text.searchResultsBottomLeft(course) ?
 		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto">
-							${config.text.searchResultsBottomLeft(lesson)}
+							${config.text.searchResultsBottomLeft(course)}
 						</div>;` : "";
 
-	var topLeftChip = config.text.searchResultsTopLeft(lesson) ?
+	var topLeftChip = config.text.searchResultsTopLeft(course) ?
 		`<div class="materialCardNew materialThemeDark materialThemeFlat" style="left: 20px; right: auto; top: 20px; bottom: auto;">
-							${config.text.searchResultsTopLeft(lesson)}
+							${config.text.searchResultsTopLeft(course)}
 						</div>;` : "";
 
-	var lineText1 = config.text.searchResultsLineText1(lesson) ? `<h6 class="materialParagraph">${config.text.searchResultsLineText1(lesson) == '?' ? 'Find out more inside...' : config.text.searchResultsLineText1(lesson)}</h6>` : `<h6 class="materialParagraph"></h6>`;
+	var lineText1 = config.text.searchResultsLineText1(course) ? `<h6 class="materialParagraph">${config.text.searchResultsLineText1(course) == '?' ? 'Find out more inside...' : config.text.searchResultsLineText1(course)}</h6>` : `<h6 class="materialParagraph"></h6>`;
 
-	var lineText2 = config.text.searchResultsLineText2(lesson) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(lesson)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
+	var lineText2 = config.text.searchResultsLineText2(course) ? `<p class="materialParagraph ${theme}">${config.text.searchResultsLineText2(course)}</p>` : `<p class="materialParagraph ${theme}"></p>`;
 
 
 	var html = `
@@ -3505,7 +3841,7 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 							</div>
 						</div>
 					${progressHtml}
-						<div class="materialCardInfo ${theme}"  style="min-height: 200px; max-height: 200px; overflow: hidden;">
+						<div class="materialCardInfo ${theme}">
 							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${lesson.title}</h2>
 							${lineText1}
 							${lineText2} 
@@ -3713,7 +4049,7 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 							</div>
 						</div>
 					${progressHtml}
-						<div class="materialCardInfo ${theme}" style="min-height: 200px; max-height: 200px; overflow: hidden;">
+						<div class="materialCardInfo ${theme}">
 							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${course.title}</h2>
 							${lineText1}
 							${lineText2} 
@@ -3730,21 +4066,6 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 
 }
 
-
-
-app.highlightLesson = function() {
-	let dataId = "3204";
-
-	let lessonItemSelector = $(`.materialAccordionContent li[data-id="${dataId}"]`);
-	lessonItemSelector.css('background-color', '#222222');
-
-	// Center Position
-	let centerPosition = lessonItemSelector.offset().top - ($(window).height() - lessonItemSelector.outerHeight()) / 2;
-
-	$('html, body').animate({
-		scrollTop: centerPosition
-	}, 600);
-}
 
 /*
 TODO: pasar todo esto a una funcion aqui, de forma tal que pueda hacer refresh el route.
@@ -3812,11 +4133,6 @@ app.routes["/lesson/:lessonId"] = function(){
 		
 		app.routeId = "/dashboard/newest/";
 		*/
-//app.init();
-//TODO: create wrapper over ajax request, to retry twice?	
-
-
-
 
 app.wallet = function(){
 	var expose = {};
@@ -4033,8 +4349,28 @@ app.wallet = function(){
                                url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
                            }
 
-                             var dialogTitle = "You need just &#9834; " + needMoreCoins + " Melody Coins!";
-                             var dialogMessage = "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>";
+							app.dialogs.questionProgress({
+								title: "You need just &#9834; " + needMoreCoins + " Melody Coins!",
+								subtitle: "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>",
+								buttonNo: {
+									caption: "Not yet",
+									value: "no"
+								},
+								buttonYes: {
+								   caption: "Unlock All",
+								   href: url + "?ref=members-area-unlock",
+								   additional: "target='_blank'",
+								   value: "yes"
+								},
+								progressPercentage: "95",
+								progressDisplay: userBalance,
+								progressTitle: "Melody Coins",
+								progressSubTitle: "<b style='color: white'>Your Balance</b>",
+								hideCallback: function(result){}
+							});
+                            
+							/*var dialogTitle = "You need just &#9834; " + needMoreCoins + " Melody Coins!";
+                            var dialogMessage = "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>";
 
                            materialDialog.question(dialogTitle,dialogMessage,
                            {
@@ -4048,7 +4384,7 @@ app.wallet = function(){
                                    additional: "target='_blank'",
                                    value: "yes"
                                }
-                           });
+                           });*/
                    }
 	           }
 	           else{
@@ -4119,76 +4455,369 @@ app.getPreviewFromLesson = function(lessonId) {
 };
 
 
-app.dialogs.questionProgress = function( settings){
-	if(typeof settings === "undefined"){ settings = {};	}
-    settings.title = settings.title || "Undefined title";
-    settings.subtitle = settings.subtitle || "Undefined subtitle";
-    settings.progressPercentage = settings.progressPercentage || "95";
-    settings.progressDisplay = settings.progressDisplay || "1000";
-    settings.progressTitle = settings.progressTitle || "Melody Coins";
-    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
-
-     settings.buttonNo  = settings.buttonNo || {};
-     settings.buttonYes = settings.buttonYes || {};
-
-     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
-     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
-
-     settings.buttonNo.value  = settings.buttonNo.value || "no";
-     settings.buttonYes.value = settings.buttonYes.value || "yes";
-
-     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
-     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
-
-     settings.buttonNo.additional  = settings.buttonNo.additional || "";
-     settings.buttonYes.additional = settings.buttonYes.additional || "";
-
-     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
-     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
-
-     settings.hideCallback = settings.hideCallback || function(value){ console.log("Question result: ", value);};
 
 
-	var dialogHtml = `<div class="row">
-		<div class="col-sm-12 col-xs-12">
-				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
-					 <div class="container-fluid">
-						<div class="row">
+CourseSorter = (function() {
+    // Constructor
+    var CourseSorter = function(data) {
+        this.data = data;
+    };
 
-							<div class="materialCardProgressLeft materialThemeDark materialCardProgressLeftDouble">
+    // Method to sort courseIds by a specified filter
+    CourseSorter.prototype.sortCourses = function(filterName, order) {
+        var courseIds = Object.keys(this.data.course);
 
-								<div class="materialProgressCircle materialThemeDark" data-progress="${settings.progressPercentage}" data-progress-affects-data-percentage="">
-									<span class="materialProgressCircle-left">
-										<span class="materialProgressCircle-bar"></span>
-									</span>
-									<span class="materialProgressCircle-right">
-										<span class="materialProgressCircle-bar"></span>
-									</span>
-									<div class="materialProgressCircle-value">
-										<div>
-											<span>${settings.progressDisplay}</span><br>
-											${settings.progressTitle}<br>${settings.progressSubTitle}
-										</div>
-									</div>
-								</div>
-								<br class="visible-xs visible-sm"><br class="visible-xs visible-sm">
-								<div class="materialImageCircle materialThemeDark hidden-xs" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png); ">
-								</div>
+        return courseIds.sort(function(a, b) {
+            var valueA = this.data.course[a].filters[filterName];
+            var valueB = this.data.course[b].filters[filterName];
 
-							</div>
-							<div class="materialCardProgressRight materialThemeDark materialCardProgressRightDouble">
-                              <h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;">${settings.title}</h3>
-								<p class="materialParagraph materialThemeDark">${settings.subtitle}</p>
-								<div>
-                                    <a class="${settings.buttonNo.theme}"  data-value='${settings.buttonNo.value}'  ${settings.buttonNo.additional}  href="${settings.buttonNo.href}">${settings.buttonNo.caption}</a>
-                                    <a class="${settings.buttonYes.theme}" data-value='${settings.buttonYes.value}' ${settings.buttonYes.additional} href="${settings.buttonYes.href}">${settings.buttonYes.caption}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	</div>`;
-	materialDialog.custom(dialogHtml, settings);
+            if (order === 'ascending') {
+                if (valueA < valueB) return -1;
+                if (valueA > valueB) return 1;
+            } else { // for 'descending'
+                if (valueA > valueB) return -1;
+                if (valueA < valueB) return 1;
+            }
+
+            return 0; // if equal
+        }.bind(this));
+    };
+
+    // Method to retrieve unique filter names from all courses
+    CourseSorter.prototype.getUniqueFilterNames = function() {
+        var filterNames = {};
+        Object.keys(this.data.course).forEach(function(courseId) {
+            var filters = this.data.course[courseId].filters;
+			
+			if(!filters) return null;
+            Object.keys(filters).forEach(function(filterName) {
+                filterNames[filterName] = true;
+            });
+        }.bind(this));
+
+        return Object.keys(filterNames);
+    };
+
+    // Method to sort courseIds for each filter in ascending order
+    CourseSorter.prototype.sortCoursesByAllFilters = function() {
+        var sortedCourses = {};
+        var filters = this.getUniqueFilterNames();
+
+        filters.forEach(function(filterName) {
+            sortedCourses[filterName] = this.sortCourses(filterName, 'ascending');
+        }.bind(this));
+
+        return sortedCourses;
+    };
+
+    return CourseSorter;
+})();
+
+/* Set Active Pills */
+app.setActivePills = function (activeDataset) {
+	document.querySelectorAll(".materialFilterPillsContainer").forEach(function (parentDiv) {
+		const activePills = parentDiv.querySelectorAll(`.materialFilterPillsDiv .materialChip[data-active="${activeDataset}"]`);
+		activePills.forEach(function (pill) {
+			pill.querySelector('input').checked = true;
+
+			// Add active class to the pill
+			pill.classList.add('active');
+		});
+	});
 }
 
+/* Toggle Material Searchbar */
+app.toggleMaterialSearchbar = function (event, status) {
+	event.stopPropagation();
+	let materialSearchBar = document.querySelector('.materialSearchBar')
+
+	if (status === 'open') {
+		materialSearchBar.classList.add('active');
+		document.querySelector('body').style.overflow = 'hidden'
+	} else if (status === 'close') {
+		materialSearchBar.classList.remove('active');
+		document.querySelector('body').style.overflow = 'unset'
+	} else {
+		materialSearchBar.classList.toggle('active');
+
+		if(materialSearchBar.classList.contains('active')) {
+			document.querySelector('body').style.overflow = 'hidden'
+		} else {
+			document.querySelector('body').style.overflow = 'unset'
+		}
+	}
+}
+
+/* Close Material Searchbar on outside click */
+app.closeMaterialSearchBarOutClick = function (event) {
+	let materialSearchBar = document.querySelector('.materialSearchBar')
+
+	if (!materialSearchBar.contains(event.target) && event.target !== materialSearchBar) {
+		materialSearchBar.classList.remove('active');
+	}
+
+	if(materialSearchBar.classList.contains('active')) {
+		document.querySelector('body').style.overflow = 'hidden'
+	} else {
+		document.querySelector('body').style.overflow = 'unset'
+	}
+}
+
+app.checkout = function(pathname, coupon, userInformation) {
+	try{
+		// Valid pathnames
+		var validPathnames = [
+			'the-ultimate-collection-of-piano-music',
+			'the-ultimate-collection-of-piano-music-yearly',
+			'the-ultimate-collection-of-piano-music-lifetime-access'
+		];
+
+		// Check if pathname is valid
+		if (validPathnames.indexOf(pathname) === -1) {
+			console.error('Invalid pathname. Checkout process aborted.');
+			return; // Exit the function if pathname is not valid
+		}
+		
+		var paymentContact = {};
+		 
+		// Name fallback logic
+		var firstNameProvided = userInformation && userInformation.firstName;
+		var lastNameProvided = userInformation &&  userInformation.lastName;
+		var profileNameProvided = app && app.data && app.data.user && app.data.user.profile && app.data.user.profile.name;
+
+		if (firstNameProvided) {
+			paymentContact.firstName = firstNameProvided;
+		}
+		if (lastNameProvided) {
+			paymentContact.lastName = lastNameProvided;
+		}
+
+		try{
+			if ((profileNameProvided && !firstNameProvided) || (profileNameProvided && !lastNameProvided)) {
+				var fullName = app.data.user.profile.name.trim();
+				var nameParts = fullName.split(/\s+/); // Split by one or more spaces
+
+				var prefixes = ['Dr.', 'Mr.', 'Ms.', 'Mrs.']; // Extend this list as needed
+				var suffixes = ['Jr.', 'Sr.', 'III', 'IV']; // Extend this list as needed
+
+				// Remove prefix if present
+				if (prefixes.indexOf(nameParts[0]) > -1) {
+					nameParts.shift();
+				}
+
+				// Remove suffix if present
+				if (suffixes.indexOf(nameParts[nameParts.length - 1]) > -1) {
+					nameParts.pop();
+				}
+
+				// Determine first and last names based on remaining parts
+				if (!firstNameProvided) {
+					paymentContact.firstName = nameParts[0];
+				}
+				if (!lastNameProvided) {
+					paymentContact.lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+				}
+			}
+		}
+		catch(e){
+			console.error('Checkout Error:', e);	
+		}
+
+
+		if (userInformation &&  userInformation.email) {
+			paymentContact.email = userInformation.email;
+		} else if (app && app.data && app.data.user && app.data.user.profile && app.data.user.profile.email) {
+			paymentContact.email = app.data.user.profile.email;
+		}
+	
+		if (userInformation &&  userInformation.company) {
+			paymentContact.company = userInformation.company;
+		}
+		if (userInformation &&  userInformation.phone) {
+			paymentContact.phone = userInformation.phone;
+		}
+		if (userInformation &&  userInformation.addressLine1) {
+			paymentContact.addressLine1 = userInformation.addressLine1;
+		}
+		if (userInformation && userInformation.addressLine2) {
+			paymentContact.addressLine2 = userInformation.addressLine2;
+		}
+		if (userInformation && userInformation.city) {
+			paymentContact.city = userInformation.city;
+		}
+		if (userInformation && userInformation.region) {
+			paymentContact.region = userInformation.region;
+		}
+		if (userInformation && userInformation.country) {
+			paymentContact.country = userInformation.country;
+		}
+		if (userInformation && userInformation.postalCode) {
+			paymentContact.postalCode = userInformation.postalCode;
+		}
+		
+
+		console.log(paymentContact);
+		// Configure the FastSpring Builder
+		var fastSpringConfig = {
+			'reset': true,
+			'products': [
+				{
+					'path': pathname,
+					'quantity': 1
+				}
+			],
+			'paymentContact': paymentContact,
+			'checkout': true
+		};
+
+		// Add coupon if provided
+		if (coupon) {
+			fastSpringConfig.coupon = coupon;
+		}
+
+		fastspring.builder.reset(); //clear the cart
+		fastspring.builder.push(fastSpringConfig);
+	}
+	catch(e){
+		var settings = {
+			hideCallback: function(){
+				location.reload();
+			}
+		};
+		
+		materialDialog.alert(
+		"Oops! We're Really Popular Right Now!",
+		"It seems a lot of piano enthusiasts are heading to checkout at the same moment! Please wait a moment and try again soon. If this message keeps popping up, our friendly team is ready to assist you at <a href='mailto:support@pianoencyclopedia.com'>support@pianoencyclopedia.com</a>. Just shoot us an email with 'CHECKOUT-1' and we'll help you process your order.", settings 
+		);
+		
+	}
+};
+
+var CountdownTimer = (function() {
+    var that = {};
+
+    var displayElements;
+    var interval = null;
+    var isOfferAvailable;
+ 
+	that.init = function() {
+        
+        try {
+            isOfferAvailable = !__isOfferRecentlyShown();
+        } catch (error) {
+            console.error("Error checking offer availability:", error);
+            isOfferAvailable = false;
+        }
+        return true;
+    };
+
+    that.start = function(elements) {
+        displayElements = elements;
+        if (!displayElements.d || !displayElements.h || !displayElements.m || !displayElements.s) {
+            console.error("CountdownTimer initialization failed: Required HTML elements are missing.");
+            return false;
+        }
+		
+		if (!displayElements || !isOfferAvailable) {
+            return;
+        }
+        try {
+            __calculateAndDisplayTime();
+            interval = setInterval(__calculateAndDisplayTime, 1000);
+        } catch (error) {
+            console.error("Error starting the countdown:", error);
+        }
+    };
+
+    that.end = function() {
+        if (!interval) {
+            return;
+        }
+        clearInterval(interval);
+        interval = null;
+        __setDisplayToZero();
+        isOfferAvailable = false;
+    };
+
+    that.getIsOfferAvailable = function() {
+        return isOfferAvailable;
+    };
+
+    function __calculateAndDisplayTime() {
+        try {
+            var remainingTime = __getRemainingTime();
+            if (remainingTime <= 0) {
+                clearInterval(interval);
+                __setDisplayToZero();
+                __updateLastOfferTime();
+                isOfferAvailable = false;
+            } else {
+                __updateDisplay(remainingTime);
+            }
+        } catch (error) {
+            console.error("Error calculating or displaying time:", error);
+            clearInterval(interval);
+            __setDisplayToZero();
+        }
+    }
+
+    function __getRemainingTime() {
+        var now = new Date();
+        var midnight = new Date();
+        midnight.setHours(24, 0, 0, 0);
+        return midnight.getTime() - now.getTime();
+    }
+
+    function __updateDisplay(remainingTime) {
+        displayElements.d.innerHTML = __getTrueNumber(Math.floor(remainingTime / (1000 * 60 * 60 * 24)));
+        displayElements.h.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        displayElements.m.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60)));
+        displayElements.s.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60)) / 1000));
+    }
+
+    function __getTrueNumber(num) {
+        return num < 10 ? "0" + num : num;
+    }
+
+    function __isOfferRecentlyShown() {
+        var lastOfferTime = localStorage.getItem("lastOfferTime");
+        var now = new Date().getTime();
+        return lastOfferTime && now - lastOfferTime < 2 * 24 * 60 * 60 * 1000;
+    }
+
+    function __setDisplayToZero() {
+        displayElements.d.innerHTML = 
+        displayElements.h.innerHTML = 
+        displayElements.m.innerHTML = 
+        displayElements.s.innerHTML = "00";
+    }
+
+    function __updateLastOfferTime() {
+        localStorage.setItem("lastOfferTime", new Date().getTime());
+    }
+
+    return that;
+})();
+
+// Usage
+/* 
+
+CountdownTimer.init();
+
+var isOfferAvailable = CountdownTimer.getIsOfferAvailable();
+if(isOfferAvailable){
+	CountdownTimer.start({
+	d: document.getElementById("d"),
+	h: document.getElementById("h"),
+	m: document.getElementById("m"),
+	s: document.getElementById("s")
+});
+}
+
+*/
+// To end the timer, you can call:
+// CountdownTimer.end();
+ 
+
+//app.init();
+//TODO: create wrapper over ajax request, to retry twice?	

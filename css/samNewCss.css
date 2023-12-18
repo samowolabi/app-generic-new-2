@@ -131,10 +131,11 @@
     transition: 0.5s ease-in-out;
 }
 
-.materialSearchBar .filterFormsContainer .clearFilterButtonDiv {
-    margin-top: 2rem;
+.materialSearchBar .filterFormsContainer .filterBottomButtonDiv {
     display: flex;
     justify-content: flex-end;
+    column-gap: 0.25rem;
+    margin-top: 2rem;
 }
 
 .materialSearchBar.active .filterFormsContainer {
@@ -177,6 +178,14 @@
 
 .mobileFilterDivTrigger {
     display: none;
+}
+
+.app_coursesCardsFilterPills {
+    width: 100%;
+    max-width: 128rem;
+    margin: 3.5rem auto;
+    margin-top: 10rem;
+    padding: 0 3rem;
 }
 
 /* Media Queries for mobile */
@@ -541,22 +550,27 @@
     max-width: 128rem;
     margin: 0 auto;
     padding: 0 3rem;
-    margin-top: 7rem;
+    margin-top: 2rem;
 }
 
 .app_coursesCardsContainer {
     margin: 4rem 0;
 }
 
-.app_coursesCardsContainer p {
+.app_coursesCardsContainer p.sectionHeader {
     color: #F9F4DE;
     text-transform: uppercase;
     font-size: 1.75rem;
     margin-bottom: 2.5rem;
 }
 
-
-
+.app_searchCardsResultContentContainer {
+    width: 100%;
+    max-width: 128rem;
+    margin: 0 auto;
+    margin-top: 8rem;
+    padding: 0 3rem;
+}
 
 
 /* Media Queries for mobile */

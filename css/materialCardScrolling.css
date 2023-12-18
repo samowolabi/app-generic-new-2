@@ -78,6 +78,17 @@
     width: 350px;
 }
 
+.materialCardsScrolling .materialCardsDiv > div .materialHeader, .materialCardsScrolling .materialCardsDiv > div .materialParagraph {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.materialCardsScrolling .materialCardsDiv > div h6.materialParagraph {
+    text-transform: uppercase;
+}
+
 /* Media Queries for mobile */
 @media (max-width: 768px) {
     .materialCardsScrolling .overlay {

@@ -278,11 +278,20 @@ var dashboardInfiniteScrollingNew = function () {
 
 		if ((searchValue === '' || searchValue === null) && (isFiltersEmpty)) {
 			$('.heroSectionContainer').show();
-			$('.homeContentContainer').show();
+			$('.app_coursesCardsSection').show();
+			$('.app_ratingsSection').show();
+			$('.app_actionCardsContainer').show();
+			$('.app_coursesCardsFilterPills').show();
+			$('.app_searchCardsResultContentContainer .infiniteScrollingContainer').hide();
+			app.setActivePills('defaultChecked');
 		}
 		else {
 			$('.heroSectionContainer').hide();
-			$('.homeContentContainer').hide();
+			$('.app_coursesCardsSection').hide();
+			$('.app_ratingsSection').hide();
+			$('.app_actionCardsContainer').hide();
+			$('.app_coursesCardsFilterPills').hide();
+			$('.app_searchCardsResultContentContainer .infiniteScrollingContainer').show();
 		}
 
 		// start
@@ -348,6 +357,7 @@ var dashboardInfiniteScrollingNew = function () {
 			console.log("TURN ON SCROLL CALLBACK");
 			// $(document).on("scroll", window, that.callbacks.onScroll);
 			
+			// On Search when enter is pressed, search the search bar, hide clear button if search bar is empty
 			$('.materialSearchBar input').on("keyup", (event) => {
 				if (event.target.value === "") {
 					that.callbacks.searchBtn(event);
@@ -355,34 +365,44 @@ var dashboardInfiniteScrollingNew = function () {
 				} else {
 					if (event.key === 'Enter') {
 						that.callbacks.searchBtn(event);
+						
+						app.toggleMaterialSearchbar(event, 'close');
 					}
 					$('.materialSearchBar svg.clearBtn').show();
 				}
 			});
 
+			// On Clear when clear button is clicked, clear the search bar
 			$('.materialSearchBar .clearBtn').on("click", (event) => {
 				$('.materialSearchBar input').val("");
 				that.callbacks.searchBtn(event);
 				$('.materialSearchBar svg.clearBtn').hide();
 			});
 
-			$('.clearFilterButtonDiv button').on("click", (event) => {
-				app.resetFilterInputs();
-				that.callbacks.filterSwitch(event);
-			});
-
+			// On Search when search button is clicked, search the search bar
 			$('.materialSearchBar .searchBtn').on("click", function(event) {
 				console.log("CLICKED SEARCH BUTTON");
 				that.callbacks.searchBtn(event);
 
-				// Close Filter Panel
-				if ($('.materialSearchBar').hasClass('active')) {
-					$('.materialSearchBar').removeClass('active');
-				}
+				app.toggleMaterialSearchbar(event, 'close');
 			});
 
-			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
+			// On Search
+			$('.infiniteScrollingCardsSearchBar input').on("change", that.callbacks.infiniteScrollingCardsSearchBar);
+			
+			// When filter forms are changed, filter the cards
 			$('.filterFormsContainer select').on("change", that.callbacks.filterDropdown);
+
+			// When clear filter button is clicked, clear the filter
+			$('.filterBottomButtonDiv button.clearFilter').on("click", (event) => {
+				app.resetFilterInputs();
+				that.callbacks.filterSwitch(event);
+			});
+
+			// When done filter button is clicked, close the filter
+			$('.filterBottomButtonDiv button.doneButton').on("click", (event) => {
+				app.toggleMaterialSearchbar(event, 'close');
+			});
 		}
 	};
 

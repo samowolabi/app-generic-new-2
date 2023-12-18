@@ -6,20 +6,12 @@ var materialFilterPills = (function () {
         var html = '';
         settings.list.forEach(function (item) {
             html += `
-                <!-- <span data-ripple data-value='${item.value}'>${item.name}</span> -->
-                <!--<div class="materialChipFilter">
-                    <input class="materialChipInput" name="size" type="checkbox"> <svg class="materialChipCheckbox" viewbox="-2 -3 30 30">
-                    <path class="materialChipCheckboxPath" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="black"></path></svg>
-                    <div class="materialChipInputText">
-                        ${item.name}
-                    </div>
-                </div>-->
-
-                <div class="materialChipFilter materialThemeDark" data-value="${item.active ? 'defaultChecked' : ''}">
-                    <input class="materialChipInput materialThemeDark" name="size" type="checkbox"> <svg class="materialChipCheckbox" viewBox="-2 -3 30 30">
-                    <path class="materialChipCheckboxPath" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="black"></path></svg>
-                    <div class="materialChipInputText materialThemeDark">
-                    ${item.name}
+                <div class="materialChip materialThemeDark" data-value="${item.value}" data-active="${item.active ? 'defaultChecked' : ''}">
+                    <div class="materialChipChoice materialThemeDark">
+                        <input class="materialChipInput" name="size" type="radio">
+                        <div class="materialChipInputText">
+                            ${item.name}
+                        </div>
                     </div>
                 </div>
             `;
@@ -29,8 +21,9 @@ var materialFilterPills = (function () {
     }
 
     that.create = function (settings) {
+
         var htmlWrapper = `
-            <div class="materialFilterPillsContainer marginBottom20">
+            <div class="materialFilterPillsContainer">
                 <div class="overlay leftScroll">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 4.5L7.5 12L15 19.5" stroke="#F9F4DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,6 +48,23 @@ var materialFilterPills = (function () {
 
     that.init = function () {
         try {
+            var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
+
+            // Filter App Data by Key of the filter pills clicked and return the mapped course cards
+            const filterAppDataByKey = function (key) {
+                const keyData = app.data.explore[key]
+                const mappedCourseCard = keyData.map(function (item) {
+                    var lesson = app.data.course[item];
+                    if (!lesson) { return '' }
+
+                    var lessonId = app.data.course[item]?.id;
+                    return app.createCourseCard(lessonId, lesson, columnWidthClass);
+                })
+
+                return mappedCourseCard.join('');
+            }
+
+
             document.querySelectorAll(".materialFilterPillsContainer").forEach(function (parentDiv) {
                 const pillsScrollingDiv = parentDiv.querySelector('.materialFilterPillsDiv');
                 const containerWidth = pillsScrollingDiv.scrollWidth;
@@ -83,29 +93,52 @@ var materialFilterPills = (function () {
                     }
                 });
 
+                // Hide Right Carousel if there is no scroll
+                if (pillsScrollingDiv.scrollWidth <= pillsScrollingDiv.clientWidth) {
+                    parentDiv.querySelector('.materialFilterPillsContainer .overlay.rightScroll').style.display = 'none';
+                }
+
                 // Set Toggle Pills Active
-                parentDiv.querySelectorAll('.materialFilterPillsDiv .materialChipFilter').forEach(function (pill) {
-                    pill.addEventListener('click', function (event) {
-                        if (pill.classList.contains('active')) {
+                parentDiv.querySelectorAll('.materialFilterPillsDiv .materialChip').forEach(function (pill) {
+
+                    pill.querySelector('div').addEventListener('click', function () {
+                        // Remove active class from all pills
+                        parentDiv.querySelectorAll('.materialFilterPillsDiv .materialChip').forEach(function (pill) {
                             pill.classList.remove('active');
+                        });
+
+                        // Add active class to the pill
+                        pill.classList.add('active');
+
+                        // Show all cards if 'All' is selected
+                        if (!pill.dataset.value) {
+                            $('.heroSectionContainer').show();
+                            $('.app_coursesCardsSection').show();
+                            $('.app_ratingsSection').show();
+                            $('.app_actionCardsContainer').show();
+                            $('.app_searchCardsResultContentContainer .infiniteScrollingContainer').hide();
+
+                            // Clear cards from the DOM
+                            document.querySelector('.app_searchCardsResultContentContainer .infiniteScrollingContainer').innerHTML = '';
+                            return;
                         } else {
-                            pill.classList.add('active');
+                            $('.heroSectionContainer').hide();
+                            $('.app_coursesCardsSection').hide();
+                            $('.app_ratingsSection').hide();
+                            $('.app_actionCardsContainer').hide();
+                            $('.app_searchCardsResultContentContainer .infiniteScrollingContainer').show();
+    
+                            // Filter App Data by Key of the filter pills clicked and return the mapped course cards
+                            const mappedCourseCard = filterAppDataByKey(pill.dataset.value);
+    
+                            // Add cards to the DOM
+                            document.querySelector('.app_searchCardsResultContentContainer .infiniteScrollingContainer').innerHTML = mappedCourseCard
                         }
                     });
                 });
 
                 // Get active pills set in data value and check the child input type checkbox programmatically
-                function setActivePillsOnLoad() {
-                    const activePills = parentDiv.querySelectorAll('.materialFilterPillsDiv .materialChipFilter[data-value="defaultChecked"]');
-                    activePills.forEach(function (pill) {
-                        pill.querySelector('input').checked = true;
-
-                        // Add active class to the pill
-                        pill.classList.add('active');
-                    });
-                }
-
-                setActivePillsOnLoad();
+                app.setActivePills('defaultChecked');
             });
         } catch (error) {
             console.error(error); // Print the actual error message

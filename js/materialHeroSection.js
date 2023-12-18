@@ -38,7 +38,6 @@ var materialHeroSection = (function () {
         try {
             let i = 0;
             let interval = null;
-            console.log('that.data', that.data)
             let heroSectionData = that.data;
 
             // Change background image
@@ -48,8 +47,6 @@ var materialHeroSection = (function () {
                 if (!heroSectionDiv) { return }
 
                 const imageIndex = (i + heroSectionData.length) % heroSectionData.length;
-
-                console.log(imageIndex);
 
                 // Remove heroBGImg div if it exists
                 const heroBGImgExists = document.querySelector('.heroBGImg');
@@ -90,20 +87,21 @@ var materialHeroSection = (function () {
             //         }, 5000)
             // };
 
-
+            // Start the initial interval
+            const startInterval = () => {
+                interval = app.runTimer(
+                    () => {
+                        i++;
+                        changeBGImage();
+                    }, 5000
+                )
+            }
 
             // Set the initial background image
             changeBGImage();
 
             // Start the initial interval
-            interval = app.runTimer(
-                () => {
-                    i++;
-                    changeBGImage();
-                }, 5000
-            )
-
-            // startInterval();
+            startInterval();
 
             const changeBGImageControl = function (type) {
                 if (type === 'next') {
@@ -116,14 +114,9 @@ var materialHeroSection = (function () {
                 app.clearTimer(interval);
 
                 changeBGImage();
-                
+
                 // Restart the interval
-                interval = app.runTimer(
-                    () => {
-                        i++;
-                        changeBGImage();
-                    }, 5000
-                )
+                startInterval();
             }
 
             const carouselControlNext = document.querySelector('.carouselControlNext');

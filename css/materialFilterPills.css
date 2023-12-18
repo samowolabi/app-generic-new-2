@@ -57,12 +57,21 @@
     display: none;
 }
 
-.materialFilterPillsDiv .materialChipFilter {
+.materialFilterPillsDiv .materialChip {
     display: flex;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
     gap: 0.5rem;
-    padding: 0.5em 1em;
+    /* padding: 0.5em 1em; */
     margin: 0;
+}
+
+.materialFilterPillsDiv .materialChipInputText:after, .materialFilterPillsDiv .materialChipInputText:before {
+    color: #000000 !important;
+    background-color: #ffd04d;
+}
+
+.materialFilterPillsDiv .materialChipInput:checked ~ .materialChipInputText {
+    color: #000000;
 }

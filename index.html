@@ -182,29 +182,30 @@
     <div id="q-app"></div>
   
 	<script>   
-		var config = {
-			"appName"	: "Members-Only Lessons Dashboard",
-			"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
-			"root" 		: "https://app-generic-new-2.vercel.app/",
-			"layout": {
-				"searchResults": "col-lg-6 col-md-6 col-sm-6 col-xs-12",
-				"searchResultsMinHeight": "520px",
-				"searchResultsCourseTitleFontSize": "1.9em",
-				"searchResultsSortFx" : function(course){if(course.title){return course.title;}}
-			},
-			"text": {
-				"header"					: function(){ return "Members-Only Area"; },
-				"searchBarPlaceholder"		: "Search for available courses or lessons",
-				"searchResultsTopLeft"		: function(course){ return false; },
-				"searchResultsBottomLeft"	: function(course){ return false; },
-				"searchResultsLineText1"	: function(course){ return (course.description ? course.description : "?"); },
-				"searchResultsLineText2"	: function(course){ return false; }
-			},
-			"theme":{
-				"header": "background: #fffae4; color: #7a0000; padding-top: 90px; padding-bottom: 40px; font-size: 25px; font-weight: 300; margin: 0;"
-			}
-		};
-		/* THIS IS THE CONFIGURATION FOR THE ULTIMATE COLLECTION OF PIANO MUSIC
+		// var config = {
+		// 	"appName"	: "Members-Only Lessons Dashboard",
+		// 	"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
+		// 	"root" 		: "https://app-generic-new-2.vercel.app/",
+		// 	"layout": {
+		// 		"searchResults": "col-lg-6 col-md-6 col-sm-6 col-xs-12",
+		// 		"searchResultsMinHeight": "520px",
+		// 		"searchResultsCourseTitleFontSize": "1.9em",
+		// 		"searchResultsSortFx" : function(course){if(course.title){return course.title;}}
+		// 	},
+		// 	"text": {
+		// 		"header"					: function(){ return "Members-Only Area"; },
+		// 		"searchBarPlaceholder"		: "Search for available courses or lessons",
+		// 		"searchResultsTopLeft"		: function(course){ return false; },
+		// 		"searchResultsBottomLeft"	: function(course){ return false; },
+		// 		"searchResultsLineText1"	: function(course){ return (course.description ? course.description : "?"); },
+		// 		"searchResultsLineText2"	: function(course){ return false; }
+		// 	},
+		// 	"theme":{
+		// 		"header": "background: #fffae4; color: #7a0000; padding-top: 90px; padding-bottom: 40px; font-size: 25px; font-weight: 300; margin: 0;"
+		// 	}
+		// };
+
+		/* THIS IS THE CONFIGURATION FOR THE ULTIMATE COLLECTION OF PIANO MUSIC */
 		var config = {
 			"appName"	: "The Ultimate Collection of Piano Music",
 			"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
@@ -224,9 +225,9 @@
 				"searchResultsLineText2"	: function(course){ return ((course.filters && course.filters.composer) ? course.filters.composer 				: ""); }
 			},
 			"theme":{
-				"header": "background: #fffae4; color: #7a0000; padding-top: 90px; padding-bottom: 40px; font-size: 25px; font-weight: 300; margin: 0;" 
+				"header": "background: #fffae4; color: hsl(44, 93%, 31%); padding-top: 90px; padding-bottom: 40px; font-size: 25px; font-weight: 300; margin: 0;" 
 			}
-		}; */
+		};
 	</script>
 	<script>
 	 var HydraSystem = {}

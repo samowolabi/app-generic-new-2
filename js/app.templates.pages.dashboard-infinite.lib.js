@@ -381,5 +381,4 @@ var dashboardInfiniteScrolling = function () {
 	};
 
 	return exposed;
-
 }();

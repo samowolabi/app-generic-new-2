@@ -13,13 +13,8 @@ app.templates.pages.lesson = {
         return html;
     },
     content : function (lessonId){
-        console.log('app.templates.modules.lessonsOutline', app.templates.modules.lessonsOutline)
-        // var dataLesson = app.data.lesson[lessonId];	
-
         var parentChapterId    = app.data.lesson[lessonId].parentChapter;
         var parentChapterTitle = app.data.chapter[parentChapterId].title;
-
-        console.error('app.data.chapter[parentChapterId]', app.data.chapter[parentChapterId])
 
         var parentCourseId 	   = app.data.chapter[parentChapterId].parentCourse;
         var parentCourseTitle  = app.data.course[parentCourseId].title;	
@@ -30,20 +25,18 @@ app.templates.pages.lesson = {
 
         dataLesson.breadcrumb = [
             {
-                title: parentCourseTitle,
-                link: '#!/course/' + parentCourseId
+                title: lessonSubtitle,
+                link: '#!/lesson/' + lessonId
             },
             {
                 title: parentChapterTitle,
                 link: '#!/chapter/' + parentChapterId
             },
             {
-                title: lessonSubtitle,
-                link: '#!/lesson/' + lessonId
+                title: parentCourseTitle,
+                link: '#!/course/' + parentCourseId
             }
         ]
-
-        console.error('dataLesson.breadcrumb', dataLesson.breadcrumb);
 
         var html =`
             <main class="app_mainContainer maxWidthContainer">
