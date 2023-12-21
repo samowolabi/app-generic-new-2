@@ -1,36 +1,26 @@
-var materialFilterPills = (function () {
+var materialFilterPills3 = (function () {
     var that = {};
     that.created = false;
 
-    that.create = function (settings) {
-
-        // Get Config
-        var defaultValue = settings.hasOwnProperty("defaultValue") ? (settings.defaultValue != '_' ? settings.defaultValue : "") : "";
-        var list = settings.hasOwnProperty("list") ? settings.list : [];
-        var getClickedPillData = settings.hasOwnProperty("getClickedPillData") ? settings.getClickedPillData : function () { return null; };
-
-        that.defaultValue = defaultValue;
-        that.list = list;
-        that.getClickedPillData = getClickedPillData;
-
-        // Create Filter Pills HTML
-        that.createFilterHtml = function (settings) {
-            var html = '';
-
-            that.list.forEach(function (item) {
-                html += `
-                    <div class="materialChip materialThemeDark" data-value="${item.value}" data-active="${item.active ? 'defaultChecked' : ''}">
-                        <div class="materialChipChoice materialThemeDark">
-                            <input class="materialChipInput" name="size" type="radio">
-                            <div class="materialChipInputText">
-                                ${item.name}
-                            </div>
+    var getHtml = function (settings) {
+        var html = '';
+        settings.list.forEach(function (item) {
+            html += `
+                <div class="materialChip materialThemeDark" data-value="${item.value}" data-active="${item.active ? 'defaultChecked' : ''}">
+                    <div class="materialChipChoice materialThemeDark">
+                        <input class="materialChipInput" name="size" type="radio">
+                        <div class="materialChipInputText">
+                            ${item.name}
                         </div>
                     </div>
-                `;
-            })
-            return html;
-        }
+                </div>
+            `;
+        })
+
+        return html;
+    }
+
+    that.create = function (settings) {
 
         var htmlWrapper = `
             <div class="materialFilterPillsContainer">
@@ -41,7 +31,7 @@ var materialFilterPills = (function () {
                 </div>
 
                 <div class="materialFilterPillsDiv">
-                    ${that.createFilterHtml(settings)}
+                    ${getHtml(settings)}
                 </div>
 
                 <div class="overlay rightScroll">
@@ -58,64 +48,20 @@ var materialFilterPills = (function () {
 
     that.init = function () {
         try {
-            // Update the URL with the filter query in this format /filter/:filterQuery
-            function updateFilterQueryUrl(filterQuery) {
-                if (!filterQuery) {
-                    return;
-                }
-
-                let url = `${window.location.origin}${window.location.pathname}`
-                url += `#!/filter/${filterQuery}`;
-
-                window.history.pushState({}, '', url);
-            }
-
+            var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
 
             // Filter App Data by Key of the filter pills clicked and return the mapped course cards
-            function filterAppDataByKey(key) {
-                if (!key) { return null; }
-
-                console.error("key", key)
-
+            const filterAppDataByKey = function (key) {
                 const keyData = app.data.explore[key]
-
-                if (!keyData) { return null; }
-
                 const mappedCourseCard = keyData.map(function (item) {
                     var course = app.data.course[item];
-                    if (!course) { return null; }
-                    return { courseId: item, course: course }
+                    if (!course) { return '' }
+
+                    var courseId = item;
+                    return app.createCourseCard(courseId, course, columnWidthClass);
                 })
 
-                // Remove null values from the array
-                const mappedCourseCardFilter = mappedCourseCard.filter(function (item) {
-                    return item !== null;
-                })
-
-                return mappedCourseCardFilter;
-            }
-
-
-            /* Set Active Pills */
-            function setActivePills(value) {
-                const activePills = document.querySelectorAll(`.materialFilterPillsDiv .materialChip[data-value="${value}"]`);
-                if (!activePills.length) {
-                    return;
-                }
-
-                activePills.forEach(function (pill) {
-                    pill.querySelector('input').checked = true;
-
-                    // Add active class to the pill
-                    pill.classList.add('active');
-
-                    // Update the URL with the filter query
-                    updateFilterQueryUrl(value);
-
-                    const mappedCourseData = filterAppDataByKey(value);
-                    if (!mappedCourseData) { return; }
-                    that.getClickedPillData(mappedCourseData)
-                });
+                return mappedCourseCard.join('');
             }
 
 
@@ -165,23 +111,36 @@ var materialFilterPills = (function () {
 
                         // Show all cards if 'All' is selected
                         if (!pill.dataset.value) {
-                            that.getClickedPillData(null)
+                            $('.heroSectionContainer').show();
+                            $('.app_coursesCardsSection').show();
+                            $('.app_ratingsSection').show();
+                            $('.app_actionCardsContainer').show();
+                            $('.app_searchCardsResultContentContainer .infiniteScrollingContainer').hide();
+
+                            // Clear cards from the DOM
+                            document.querySelector('.app_searchCardsResultContentContainer .infiniteScrollingContainer').innerHTML = '';
+                            return;
                         } else {
-                            // Update the URL with the filter query
-                            updateFilterQueryUrl(pill.dataset.value);
-
-                            const mappedCourseData = filterAppDataByKey(pill.dataset.value);
-                            if (!mappedCourseData) { return; }
-                            that.getClickedPillData(mappedCourseData)
+                            $('.heroSectionContainer').hide();
+                            $('.app_coursesCardsSection').hide();
+                            $('.app_ratingsSection').hide();
+                            $('.app_actionCardsContainer').hide();
+                            $('.app_searchCardsResultContentContainer .infiniteScrollingContainer').show();
+    
+                            // Filter App Data by Key of the filter pills clicked and return the mapped course cards
+                            const mappedCourseCard = filterAppDataByKey(pill.dataset.value);
+    
+                            // Add cards to the DOM
+                            document.querySelector('.app_searchCardsResultContentContainer .infiniteScrollingContainer').innerHTML = mappedCourseCard
                         }
-                    })
-                })
-            });
+                    });
+                });
 
-            // Get active pills set in data value and check the child input type checkbox programmatically
-            setActivePills(that.defaultValue);
+                // Get active pills set in data value and check the child input type checkbox programmatically
+                app.setActivePills('defaultChecked');
+            });
         } catch (error) {
-            console.log(error);
+            console.error(error); // Print the actual error message
         }
     }
 

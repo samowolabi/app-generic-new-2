@@ -152,6 +152,20 @@ router.on({
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
+	'/filter/:filterQuery': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.filter.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.filter.content(params.filterQuery); },
+			contentFalse: function () { return app.templates.pages.filter.notFound(params.filterQuery); },
+			callback: function () { }
+		});
+
+		app.routeId = "/search/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
 	'/old-course/:courseId': function (params) {
 		app.html({
 			target: "#content",

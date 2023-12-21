@@ -205,17 +205,13 @@ app.templates.pages.newHome = {
 		// Filter Pills
 		let filterPillsData = Object.keys(app.data.explore).map((item, index) => {
 			return {
-				name: item,
-				value: item,
-				active: false
+				name: item, value: item, active: false
 			}
 		})
 
 		// Push "All" filter pill to the beginning of the array
 		filterPillsData.unshift({
-			name: 'All',
-			value: '',
-			active: true
+			name: 'All', value: '', active: true
 		})
 
 
@@ -317,7 +313,8 @@ app.templates.pages.newHome = {
 					<section class="app_coursesCardsFilterPills">	
 						${
 							materialFilterPills.create({
-								list: filterPillsData
+								list: filterPillsData,
+								getClickedPillData: (data) => populateCards(data)
 							})
 						}
 					</section>
@@ -348,6 +345,18 @@ app.templates.pages.newHome = {
 					window.location.hash = ''; // Clear the url
 					router.navigate('#!/' + windowLocationHref.split('#!/')[1]);
                 }
+
+				function populateCards(data) {
+					console.error("data", data)
+
+					if (!data) { return; }
+					let windowLocationHref = window.location.href;
+
+					window.location.hash = ''; // Clear the url
+
+					console.error("windowLocationHref", windowLocationHref);
+					router.navigate('#!/filter' + windowLocationHref.split('#!/filter')[1]);
+				}
             </script>
 		`
 

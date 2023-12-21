@@ -4513,19 +4513,6 @@ CourseSorter = (function() {
     return CourseSorter;
 })();
 
-/* Set Active Pills */
-app.setActivePills = function (activeDataset) {
-	document.querySelectorAll(".materialFilterPillsContainer").forEach(function (parentDiv) {
-		const activePills = parentDiv.querySelectorAll(`.materialFilterPillsDiv .materialChip[data-active="${activeDataset}"]`);
-		activePills.forEach(function (pill) {
-			pill.querySelector('input').checked = true;
-
-			// Add active class to the pill
-			pill.classList.add('active');
-		});
-	});
-}
-
 app.checkout = function(pathname, coupon, userInformation) {
 	try{
 		// Valid pathnames
