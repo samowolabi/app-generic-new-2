@@ -17,7 +17,6 @@
     width: 100%;
     max-width: 128rem;
     margin: 0 auto;
-    margin-bottom: -9rem;
 }
 
 .app_headerDiv img {
@@ -26,154 +25,6 @@
 
 .app_headerDiv .materialBarDashboardNavLink {
     display: block;
-}
-
-.materialSearchBar {
-    position: relative;
-}
-
-.materialSearchBar .materialSearchInputDiv {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-}
-
-.materialSearchBar.active .materialSearchInputDiv {
-    border-radius: 12px 12px 0 0;
-}
-
-.materialSearchBar .materialSearchInputDiv .materialSearchInputWithBtn {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
-    background-color: rgba(37, 36, 36, 0.67);
-    border: rgba(37, 36, 36, 0.75);
-    border-radius: 8px;
-}
-
-.materialSearchBar .materialSearchInputDiv .materialSearchInputWithBtn > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.materialSearchBar .materialSearchInputDiv input {
-    width: 450px;
-    padding: 0.75rem 1rem;
-    margin: 0;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 1.7rem;
-    font-weight: 300;
-    transition: 0.5s ease-in-out;
-}
-
-.materialSearchBar .materialSearchInputDiv input::placeholder {
-    color: #a4a4a4;
-    font-weight: 400;
-}
-
-.materialSearchBar .materialSearchInputDiv .filterSwitchBtn {
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.5rem;
-    background-color: rgba(37, 36, 36, 0.67);
-    border: rgba(37, 36, 36, 0.75);
-    border-radius: 8px;
-}
-
-.materialSearchBar .materialSearchInputDiv .filterSwitchBtn:hover {
-    background-color: rgba(37, 36, 36, 0.9);
-}
-
-.materialSearchBar.active .materialSearchInputDiv .filterSwitchBtn {
-    background-color: rgba(240,176,0,0.5);
-}
-
-.materialSearchBar.active .materialSearchInputDiv .filterSwitchBtn:hover {
-    background-color: rgba(240,176,0,0.4);
-}
-
-.materialSearchBar svg.clearBtn {
-    cursor: pointer;
-    display: none;
-}
-
-.materialSearchBar .materialSearchInputDiv .filterSwitchBtn svg {
-    fill: #ffffff;
-}
-
-.materialSearchBar .materialSearchInputDiv.active .filterSwitchBtn svg {
-    fill: #DAA736;
-}
-
-.materialSearchBar .filterFormsContainer {
-    display: none;
-    background-color: rgba(37, 36, 36, 0.98);
-    padding: 2.75rem 1.5rem;
-    margin-top: 2.25rem;
-    position: absolute;
-    top: 37px;
-    left: 0;
-    width: 100%;
-    z-index: 4;
-    border-radius: 6px;
-    transition: 0.5s ease-in-out;
-}
-
-.materialSearchBar .filterFormsContainer .filterBottomButtonDiv {
-    display: flex;
-    justify-content: flex-end;
-    column-gap: 0.25rem;
-    margin-top: 2rem;
-}
-
-.materialSearchBar.active .filterFormsContainer {
-    display: block;
-}
-
-.materialSearchBar.active .filterFormsContainer .filterFormsDiv {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates a two-column grid with equal-width columns */
-    gap: 1.75rem;
-}
-
-.materialSearchBar.active .filterFormsContainer .materialInputContainer {
-    margin: 0
-}
-
-/* .materialSearchBar .filterFormsContainer select {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #414141;
-    outline: none;
-    color: #e3e3e3;
-    font-size: 1.4rem;
-    font-weight: 300;
-    width: 100%;
-    padding: 0.7rem 0;
-} */
-
-.materialSearchBar .filterFormsContainer .filterFormsDiv input {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #414141;
-    outline: none;
-    color: #e3e3e3;
-    font-size: 1.4rem;
-    font-weight: 300;
-    width: 100%;
-    padding: 0.7rem 0;
 }
 
 .mobileFilterDivTrigger {
@@ -192,39 +43,6 @@
 @media (max-width: 768px) {
     .app_headerDiv img {
         width: 55px
-    }
-
-    .materialSearchBar {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 2;
-    }
-
-    .materialSearchBar.active {
-        display: block;
-    }
-
-    .materialSearchBar.active .materialSearchInputDiv {
-        background-color: rgba(37, 36, 36, 0.98);
-        padding: 1.5rem;
-    }
-
-    .materialSearchBar .materialSearchInputDiv input {
-        width: 100%;
-    }
-
-    .materialSearchBar.active .filterFormsContainer {
-        position: relative;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1.75rem;
-        margin-top: 0;
     }
 
     .mobileNavRightContainer {
@@ -371,15 +189,37 @@
 .app_ratingsSectionCard.rewardPoints > div {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.2rem;
 }
 
-.app_ratingsSectionCard.rewardPoints > div div:nth-child(1) {
+.app_ratingsSectionCard.rewardPoints .materialCardProgressLeft {
+    margin: 0;
+    padding: 0;
+}
+
+.app_ratingsSectionCard.rewardPoints .materialProgressCircle {
+    width: 35px; 
+    height: 35px;
+    line-height: 35px;
+    margin: 0;
+}
+
+.app_ratingsSectionCard.rewardPoints .materialProgressCircle .materialProgressCircle-bar {
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f5b403;
+}
+
+.app_ratingsSectionCard.rewardPoints .materialProgressCircle:after {
+	border: 5px solid #fffae4;
+}
+
+.app_ratingsSectionCard.rewardPoints > div div.iconDiv {
     width: 12%;
 }
 
-.app_ratingsSectionCard.rewardPoints > div div:nth-child(2) {
+.app_ratingsSectionCard.rewardPoints > div div.contentDiv {
     width: 88%;
 }
 
@@ -693,7 +533,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 70vh;
+    height: 75vh;
 }
 
 .app_heroHeader > div {
@@ -705,10 +545,10 @@
     height: 100%;
     background-color: rgba(0,0,0,0.85);
     padding: 0 2rem;
-}
-
-.app_heroHeader .app_heroSection {
-    padding-top: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .app_heroHeader .app_heroSection h4 {
@@ -761,7 +601,7 @@
 /* Media Queries for tablet */
 @media (max-width: 1024px) {
     .app_heroHeader {
-        height: 50vh;
+        height: 55vh;
     }
     .app_heroHeader .app_heroSection {
         padding-top: 10rem;
@@ -774,10 +614,7 @@
 
 @media (max-width: 768px) {
     .app_heroHeader {
-        height: 65vh;
-    }
-    .app_heroHeader .app_heroSection {
-        padding-top: 16rem;
+        height: 70vh;
     }
     .app_heroHeader .app_heroSection h4 {
         font-size: 4.25rem;
@@ -1092,6 +929,8 @@
     padding: 0;
     list-style-type: none;
     font-size: 1.5rem;
+    margin-top: 8.5rem;
+    margin-bottom: 1rem;
 }
 
 .materialBreadCrumbs li {
@@ -1126,6 +965,8 @@
 @media (max-width: 768px) {
     .materialBreadCrumbs {
         padding: 0 2rem;
+        margin-top: 7rem;
+        margin-bottom: 1rem;
     }
 }
 

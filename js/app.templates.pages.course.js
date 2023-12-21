@@ -178,26 +178,6 @@ app.templates.pages.course = {
                     <p class="lessonDescription">
                         ${courseData.description}
                     </p>
-
-                    <!--
-                    <div class="overallRatings">
-                        <p>Overall Ratings</p>
-
-                        <div class="materialRating">
-                            <input type="radio" value="1" id="materialRating-16" name="materialRating-4">
-                            <label for="materialRating-16" class="fa fa-heart" data-placement="bottom" data-toggle="tooltip" title="Very Bad"></label>
-                            <input type="radio" value="2" id="materialRating-17" name="materialRating-4">
-                            <label for="materialRating-17" class="fa fa-heart" data-placement="bottom" data-toggle="tooltip" title="Bad"></label>
-                            <input type="radio" value="3" id="materialRating-18" name="materialRating-4" checked>
-                            <label for="materialRating-18" class="fa fa-heart" data-placement="bottom" data-toggle="tooltip" title="Average"></label>
-                            <input type="radio" value="4" id="materialRating-19" name="materialRating-4">
-                            <label for="materialRating-19" class="fa fa-heart" data-placement="bottom" data-toggle="tooltip" title="Great"></label>
-                            <input type="radio" value="5" id="materialRating-20" name="materialRating-4">
-                            <label for="materialRating-20" class="fa fa-heart" data-placement="bottom" data-toggle="tooltip" title="Excellent"></label>
-                        </div>
-                    </div>
-                    -->
-
                 </section>
 
                 <section class="app_lessonContentSection maxWidthContainer">

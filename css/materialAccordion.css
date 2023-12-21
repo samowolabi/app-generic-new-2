@@ -60,6 +60,10 @@
 
 .materialAccordionContent .materialOutlineLearn li h6 {
     color: #F9F4DE;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: auto;
 }
 
 .materialAccordionContent .materialOutlineLearn li p {

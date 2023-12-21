@@ -565,8 +565,8 @@ app.templates.modules.lesson = {
                         <div class="lessonPreview article">
                             <div class="overlay">
                                 <div>
-                                    <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
-                                    <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
+                                    <a href="#!/lesson/${lessonData.id}/book" target="_blank" class="materialButtonFill materialThemeDark marginBottom4">Open Book</a>
+                                    <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">${thisLesson.engagementProgressRealPercent}% Completed</h5>
                                 </div>
                             </div>
 
@@ -576,7 +576,7 @@ app.templates.modules.lesson = {
                                         <div style="background: transparent;  z-index: 2;">
                                             <a href="#!/lesson/${lessonData.id}/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
                                         </div>
-                                        <iframe src="${lessonData.content}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe src="${lessonData['content']}&progressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
                                     </div> 
                                 </div>
                             </div>

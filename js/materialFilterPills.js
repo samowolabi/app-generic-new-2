@@ -54,11 +54,11 @@ var materialFilterPills = (function () {
             const filterAppDataByKey = function (key) {
                 const keyData = app.data.explore[key]
                 const mappedCourseCard = keyData.map(function (item) {
-                    var lesson = app.data.course[item];
-                    if (!lesson) { return '' }
+                    var course = app.data.course[item];
+                    if (!course) { return '' }
 
-                    var lessonId = app.data.course[item]?.id;
-                    return app.createCourseCard(lessonId, lesson, columnWidthClass);
+                    var courseId = item;
+                    return app.createCourseCard(courseId, course, columnWidthClass);
                 })
 
                 return mappedCourseCard.join('');

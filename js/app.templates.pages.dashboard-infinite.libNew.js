@@ -47,7 +47,6 @@ var dashboardInfiniteScrollingNew = function () {
 			that.vars.currentscrollHeight = scrollHeight;
 		}
 		//console.log("Infinite Scrolling C", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "(scrollHeight - 100)", (scrollHeight - 100), "scrollPos", scrollPos,  "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
-
 	}
 
 
@@ -305,6 +304,7 @@ var dashboardInfiniteScrollingNew = function () {
 
 
 		matchedCourses.forEach(function (courseId, index) {
+			// console.error("courseId", courseId);
 			var course = app.data.course[courseId];
 			html += that.createCard(courseId, course, columnWidthClass);
 		});
@@ -398,11 +398,6 @@ var dashboardInfiniteScrollingNew = function () {
 				app.resetFilterInputs();
 				that.callbacks.filterSwitch(event);
 			});
-
-			// When done filter button is clicked, close the filter
-			$('.filterBottomButtonDiv button.doneButton').on("click", (event) => {
-				app.toggleMaterialSearchbar(event, 'close');
-			});
 		}
 	};
 
@@ -421,5 +416,4 @@ var dashboardInfiniteScrollingNew = function () {
 	};
 
 	return exposed;
-
 }();

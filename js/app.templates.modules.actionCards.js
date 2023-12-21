@@ -45,7 +45,7 @@ app.templates.modules.actionCards = {
 		
 		var html = "";
 		
-		//Add default cards
+		// Add default cards
 		if(showDefaultCards){
 			defaultCardsList =  app.templates.modules.actionCards.__createDefaultCards(); 
 			
@@ -56,14 +56,14 @@ app.templates.modules.actionCards = {
 			}
 		}
 
-		//Custom User Cards
+		// Custom User Cards
 		var arrayCardsLength = cardsList.length;
 		for (var i = 0; i < arrayCardsLength; i++) {
 			var settings = cardsList[i];
 			
-			//Remove mega size if not permitted
+			// Remove mega size if not permitted
 			if(!megaSizePermitted && (settings.size === "materialCardSizeMega")){ 
-				//Clone array before modifying it
+				// Clone array before modifying it
 				settings = JSON.parse(JSON.stringify(settings));
 				settings.size ="";
 			}
@@ -77,11 +77,11 @@ app.templates.modules.actionCards = {
 		var cardsList =  [];
 		
 		
-		//These methods add new cards and return a new cardsList with more cards
+		// These methods add new cards and return a new cardsList with more cards
 		cardsList = app.templates.modules.actionCards.__createLearningPreferencesCards(cardsList);
 		cardsList = app.templates.modules.actionCards.__createTotalProgressCard(cardsList);
 		
-		//Only Show this Card if Learning Preferences Card was completed
+		// Only Show this Card if Learning Preferences Card was completed
 		if(cardsList.length<2){
 			cardsList = app.templates.modules.actionCards.__createNextLessonCard(cardsList);
 		}
@@ -90,7 +90,7 @@ app.templates.modules.actionCards = {
 	},
 	__createLearningPreferencesCards : function(cardsList){
 		
-		//Create Profile Card
+		// Create Profile Card
 		var genresCompleteness 	   = app.data.user.profile.genres 	  ? app.data.user.profile.genres.length    : 0;
 		var interestsCompleteness  = app.data.user.profile.interests  ? app.data.user.profile.interests.length : 0; 
 		var pianoLevelCompleteness = app.data.user.profile.pianoLevel ? 1 : 0; 
@@ -178,7 +178,7 @@ app.templates.modules.actionCards = {
 		  currentLessonId = matches[1];
 		}
 		
-		//If we are on lesson page, show the next immediate lesson
+		// If we are on lesson page, show the next immediate lesson
 		if(currentLessonId &&  app.data.lesson[currentLessonId]){
 			// Get the next lesson from current chapter
 			var getNextLessonId = function(currentLessonId){
@@ -306,7 +306,7 @@ app.templates.modules.actionCards = {
 			var  lessonsIdsAvailable = [];
 			var  lessonsIdsAvailableAndUnfinished = [];
 			for (var lessonId in app.data.lesson) {
-				//Not expired, coming soon/asap
+				// Not expired, coming soon/asap
 				if(!["expired", "comingSoon", "comingAsap"].includes(app.data.lesson[lessonId].dateStatus)){
 					lessonsIdsAvailable.push(lessonId);		
 					if(!["completed"].includes(app.data.lesson[lessonId].dateStatus)){
@@ -315,7 +315,7 @@ app.templates.modules.actionCards = {
 				}
 			}
 			
-			//Remove currentLessonId
+			// Remove currentLessonId
 			lessonsIdsAvailable				 = lessonsIdsAvailable.filter(function(item) { return item !== currentLessonId })
 			lessonsIdsAvailableAndUnfinished = lessonsIdsAvailableAndUnfinished.filter(function(item) { return item !== currentLessonId })
 			
@@ -367,7 +367,7 @@ app.templates.modules.actionCards = {
 		return cardsList;			
 	},
 	__createCardHtml : function (settings){
-	 	//Create default values for each settings
+	 	// Create default values for each settings
 		settings.type = settings.type || "circularProgress";
 		settings.theme = settings.theme || "";
 		settings.colClass = settings.colClass || "col-sm-6 col-xs-12";

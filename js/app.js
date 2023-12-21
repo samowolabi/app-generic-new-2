@@ -4526,43 +4526,6 @@ app.setActivePills = function (activeDataset) {
 	});
 }
 
-/* Toggle Material Searchbar */
-app.toggleMaterialSearchbar = function (event, status) {
-	event.stopPropagation();
-	let materialSearchBar = document.querySelector('.materialSearchBar')
-
-	if (status === 'open') {
-		materialSearchBar.classList.add('active');
-		document.querySelector('body').style.overflow = 'hidden'
-	} else if (status === 'close') {
-		materialSearchBar.classList.remove('active');
-		document.querySelector('body').style.overflow = 'unset'
-	} else {
-		materialSearchBar.classList.toggle('active');
-
-		if(materialSearchBar.classList.contains('active')) {
-			document.querySelector('body').style.overflow = 'hidden'
-		} else {
-			document.querySelector('body').style.overflow = 'unset'
-		}
-	}
-}
-
-/* Close Material Searchbar on outside click */
-app.closeMaterialSearchBarOutClick = function (event) {
-	let materialSearchBar = document.querySelector('.materialSearchBar')
-
-	if (!materialSearchBar.contains(event.target) && event.target !== materialSearchBar) {
-		materialSearchBar.classList.remove('active');
-	}
-
-	if(materialSearchBar.classList.contains('active')) {
-		document.querySelector('body').style.overflow = 'hidden'
-	} else {
-		document.querySelector('body').style.overflow = 'unset'
-	}
-}
-
 app.checkout = function(pathname, coupon, userInformation) {
 	try{
 		// Valid pathnames

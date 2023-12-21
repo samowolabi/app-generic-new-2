@@ -138,6 +138,20 @@ router.on({
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
+	'/search/:searchQuery': function (params) {
+		app.html({
+			target: "#content",
+			loading: function () { return app.templates.pages.search.loading(); },
+			contentCondition: function () { return true; },
+			contentTrue: function () { return app.templates.pages.search.content(params.searchQuery); },
+			contentFalse: function () { return app.templates.pages.search.notFound(params.searchQuery); },
+			callback: function () { }
+		});
+
+		app.routeId = "/search/";
+		$(".materialBarDashboardBackBtn").fadeIn();
+	},
+
 	'/old-course/:courseId': function (params) {
 		app.html({
 			target: "#content",
@@ -208,62 +222,6 @@ router.on({
 
 
 		app.routeId = "/history/";
-		$(".materialBarDashboardBackBtn").fadeIn();
-	},
-	
-	'/newInteractiveVideo/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.newInteractiveVideo.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.newInteractiveVideo.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/newInteractiveVideo/";
-		$(".materialBarDashboardBackBtn").fadeIn();
-	},
-
-	'/newArticle/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.newArticle.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.newArticle.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/newArticle/";
-		$(".materialBarDashboardBackBtn").fadeIn();
-	},
-
-	'/newEbook/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.newEbook.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.newEbook.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/newEbook/";
-		$(".materialBarDashboardBackBtn").fadeIn();
-	},
-
-	'/newInteractivePdf/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.newInteractivePdf.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.newInteractivePdf.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/newInteractivePdf/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 

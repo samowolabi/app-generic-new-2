@@ -40,7 +40,7 @@ app.templates.pages.lesson = {
 
         var html =`
             <main class="app_mainContainer maxWidthContainer">
-                <ul class="materialBreadCrumbs marginTop24 marginBottom3">
+                <ul class="materialBreadCrumbs">
                     ${dataLesson.breadcrumb.map(function(item){
                         return `
                             <li><a style="text-decoration: none;" href="${item.link}">${item.title}</a></li>
