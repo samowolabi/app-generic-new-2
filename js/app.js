@@ -2034,10 +2034,83 @@ app.__buildDataFromDataRaw = function(data){
 		
 		
 		
+	
+
+		var getCoursesIdsOrderedByProgress = function(data) {
+			if (!data || !data.user || !data.user.learning || !data.lesson || !data.chapter) {
+				throw new Error("Invalid data structure. Necessary data is missing.");
+			}
+		
+			var learningData = data.user.learning;
+			var lessons = Object.keys(learningData);
+		
+			// Map of courseId to max engagementProgress
+			var courseProgress = {};
+		
+			lessons.forEach(function(lessonId) {
+				var lessonData = learningData[lessonId];
+				var engagementProgress = lessonData.engagementProgressMaxPercent || 0;
+		
+				// Skip if engagementProgress is 0
+				if (engagementProgress === 0) {
+					return;
+				}
+		
+				// Check if the lesson data exists in data.lesson
+				if (!data.lesson[lessonId]) {
+					console.warn("Lesson data for ID " + lessonId + " not found in data.lesson");
+					return; // Skip this lessonId
+				}
+		
+				var parentChapterId = data.lesson[lessonId].parentChapter;
+		
+				// Check if the chapter data exists in data.chapter
+				if (!data.chapter[parentChapterId]) {
+					console.warn("Chapter data for ID " + parentChapterId + " not found in data.chapter");
+					return; // Skip this lessonId
+				}
+		
+				var parentCourseId = data.chapter[parentChapterId].parentCourse;
+		
+				// Update the course progress if this lesson has higher progress
+				if (!courseProgress[parentCourseId] || courseProgress[parentCourseId] < engagementProgress) {
+					courseProgress[parentCourseId] = engagementProgress;
+				}
+			});
+		
+			// Convert the map to an array of [courseId, engagementProgress]
+			var sortable = [];
+			for (var courseId in courseProgress) {
+				sortable.push([courseId, courseProgress[courseId]]);
+			}
+		
+			// Sort by engagementProgress
+			sortable.sort(function(a, b) {
+				return b[1] - a[1]; // Descending order
+			});
+		
+			// Extract and return courseIds
+			return sortable.filter(function(item) {
+				return item[1] > 0; // Filter out courses with 0 progress
+			}).map(function(item) {
+				return item[0];
+			});
+		};
+
 		var calculateCourseExplorationByFilters = function(){
 			var courseSorter = new CourseSorter(data);
-			data.explore = courseSorter.sortCoursesByAllFilters();
+			data.explore = courseSorter.sortCoursesByAllFilters(); 
+
+			var inProgressCourses = getCoursesIdsOrderedByProgress(data);
+
+			// Insert 'In Progress' at the beginning of data.explore
+			var updatedExplore = { 'In Progress': inProgressCourses };
+			for (var key in data.explore) {
+				updatedExplore[key] = data.explore[key];
+			}
+			data.explore = updatedExplore;
 		}();
+		
 
 		data.global =  {};  
 		data.global.courses = {}; 

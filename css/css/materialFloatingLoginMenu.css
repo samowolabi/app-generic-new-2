@@ -1,0 +1,151 @@
+.materialFloatingMenuContainer .menuText{
+     position: absolute;
+     left: 76px;
+     background: #332300;	
+     color: #ffedc4; 
+     font-family: Lato, sans-serif;
+     font-weight: bold;
+     font-size: 17px;
+     letter-spacing: 1px; 
+     padding: 7px 10px;
+     border-radius: 4px; 
+     text-align: center;
+	 text-transform: uppercase;    
+	 width: 160px;
+ }
+
+.materialFloatingMenuContainer .materialFloatingMenuOpener  .menuText{
+ 	left: 80px; 
+	background: #513800;	
+    color: #ffedc4; 
+}
+
+.materialFloatingMenuContainer {
+	position: fixed;
+	top: 107px;
+    left: 62px;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.materialFloatingMenuContainer > div {
+	transition: 0.36s;
+	transition-timing-function: ease-in-out;
+}
+.materialFloatingMenuContainer div.materialFloatingMenuOpener {
+	position: absolute;
+	z-index: 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+	background: #F5BD41;
+	box-shadow: 0 0 10px 8px rgb(164 113 0 / 63%), 0 0 10px 8px rgb(0 0 0 / 63%);
+	transition: 0.35s;
+}
+.materialFloatingMenuContainer div.materialFloatingMenuOpener:hover {
+	background: #e2ab34;
+}
+.materialFloatingMenuContainer div.materialFloatingMenuOpener svg {
+	width: 22px;
+	height: 22px;
+	stroke: #000000;
+	stroke-width: 1.8;
+}
+.materialFloatingMenuContainer [data-action="menu"] > svg:nth-child(1) {
+	display: block;
+}
+.materialFloatingMenuContainer [data-action="menu"] > svg:nth-child(2) {
+	display: none;
+}
+.materialFloatingMenuContainer [data-action="menu"].active > svg:nth-child(1) {
+	display: none;
+}
+.materialFloatingMenuContainer [data-action="menu"].active > svg:nth-child(2) {
+	display: block;
+}
+
+
+.materialFloatingMenuContainer [data-action="log"] > svg:nth-child(1) {
+	display: block;
+}
+.materialFloatingMenuContainer [data-action="log"] > svg:nth-child(2) {
+	display: none;
+} 
+
+
+.materialFloatingMenuContainer.logged [data-action="log"] > svg:nth-child(1) {
+	display: none;
+}
+.materialFloatingMenuContainer.logged [data-action="log"] > svg:nth-child(2) {
+	display: block;
+}
+
+.materialFloatingMenuContainer div{
+	cursor: pointer;
+}
+
+.materialFloatingMenuContainer div.materialFloatingMenuButton {
+	position: absolute;
+	cursor: pointer;
+	z-index: 2;
+	display: block;
+	border-radius: 50%;
+	width: 55px;
+	height: 55px;
+	background: #FFD882;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 15px;
+	transition: 0.35s;
+}
+.materialFloatingMenuContainer div.materialFloatingMenuButton:hover {
+	background: #f5c96c;
+}
+.materialFloatingMenuContainer div.materialFloatingMenuButton svg {
+	width: 22px;
+	height: 22px;
+	stroke: #000000;
+	stroke-width: 1.8;
+}
+.materialFloatingMenuContainer.active > div:nth-child(1) {
+	transform: translateY(150px);
+}
+.materialFloatingMenuContainer.active > div:nth-child(2) {
+	transform: translateY(80px);
+}
+ 
+@media only screen and (max-width: 480px) {
+	.materialFloatingMenuContainer {
+		position: fixed;
+		top: unset;
+		left: unset;
+		/*bottom: 109px;
+		right: calc(50% - -9px);*/ 
+		right: 66px;
+		bottom: 111px;
+	}
+	.materialFloatingMenuContainer div.materialFloatingMenuOpener {
+		width: 50px;
+		height: 50px;
+	}
+	.materialFloatingMenuContainer div.materialFloatingMenuButton {
+		width: 50px;
+		height: 50px;
+	}
+	.materialFloatingMenuContainer.active > div:nth-child(1) {
+		transform: translateY(-150px);
+	}
+	.materialFloatingMenuContainer.active > div:nth-child(2) {
+		transform: translateY(-80px);
+	} 
+ 	.materialFloatingMenuContainer .menuText{
+		 display: none;
+	 }
+}

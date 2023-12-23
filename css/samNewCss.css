@@ -19,8 +19,26 @@
     margin: 0 auto;
 }
 
-.app_headerDiv img {
-    width: 74px
+.app_headerDiv .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.app_headerDiv .logo p {
+    color: rgb(255, 255, 255);
+    font-family: 'OptimusPrinceps', serif;
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    max-width: 25rem;
+    padding-top: 0.5em;
+    margin: 0;
+}
+
+.app_headerDiv .logo img {
+    width: 55px
 }
 
 .app_headerDiv .materialBarDashboardNavLink {
@@ -33,7 +51,6 @@
 
 .app_coursesCardsFilterPills {
     width: 100%;
-    max-width: 128rem;
     margin: 3.5rem auto;
     margin-top: 10rem;
     padding: 0 3rem;
@@ -41,8 +58,17 @@
 
 /* Media Queries for mobile */
 @media (max-width: 768px) {
+    .app_headerDiv {
+        padding: 1.5rem;
+    }
+
+    .app_headerDiv .logo p {
+        font-size: 1.5rem;
+        max-width: 17.5rem;
+    }
+
     .app_headerDiv img {
-        width: 55px
+        width: 45px
     }
 
     .mobileNavRightContainer {
@@ -183,7 +209,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
-    gap: 3.5rem;
+    gap: 3rem;
 }
 
 .app_ratingsSectionCard.rewardPoints > div {
@@ -198,21 +224,8 @@
     padding: 0;
 }
 
-.app_ratingsSectionCard.rewardPoints .materialProgressCircle {
-    width: 35px; 
-    height: 35px;
-    line-height: 35px;
+.app_ratingsSectionCard.rewardPoints .materialProgressCircleMini {
     margin: 0;
-}
-
-.app_ratingsSectionCard.rewardPoints .materialProgressCircle .materialProgressCircle-bar {
-    border-width: 5px;
-    border-style: solid;
-    border-color: #f5b403;
-}
-
-.app_ratingsSectionCard.rewardPoints .materialProgressCircle:after {
-	border: 5px solid #fffae4;
 }
 
 .app_ratingsSectionCard.rewardPoints > div div.iconDiv {
@@ -387,7 +400,6 @@
 
 .app_coursesCardsSection {
     width: 100%;
-    max-width: 128rem;
     margin: 0 auto;
     padding: 0 3rem;
     margin-top: 2rem;
@@ -741,7 +753,7 @@
 /***** Lesson *****/
 .app_LessonContainer {
     display: flex;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 .app_LessonContainer .lessonPreview {
@@ -772,11 +784,11 @@
 }
 
 .app_LessonContainer > div:nth-child(1) {
-    width: 67%;
+    width: 65%;
 }
 
 .app_LessonContainer > div:nth-child(2) {
-    width: 33%;
+    width: 35%;
 }
 
 .app_LessonContainer .app_lessonOverviewSection .courseTitle {

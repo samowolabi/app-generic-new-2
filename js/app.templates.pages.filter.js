@@ -13,8 +13,6 @@ app.templates.pages.filter = {
     content: function (filterQuery) {
         filterQuery = filterQuery || "";
 
-        console.error("filterQuery", filterQuery)
-
         // Filter Pills
         let filterPillsData = Object.keys(app.data.explore).map((item, index) => {
             return {

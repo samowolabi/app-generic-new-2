@@ -22,6 +22,7 @@ app.templates.pages.lesson = {
         var lessonSubtitle 	   = app.data.lesson[lessonId].subtitle;
 
         var dataLesson = app.data.lesson[lessonId];
+    
 
         dataLesson.breadcrumb = [
             {
@@ -55,7 +56,7 @@ app.templates.pages.lesson = {
                 
 
                     <div>
-                         ${app.templates.modules.lessonsOutline.content(lessonId)}
+                        ${app.templates.modules.lessonsOutline.content(parentCourseId)}
                     </div>
                 </div>
 

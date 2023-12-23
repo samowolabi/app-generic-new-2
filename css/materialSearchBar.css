@@ -51,15 +51,12 @@
 
 .materialSearchBar .materialSearchInputDiv .filterSwitchBtn {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 0.5rem;
     background-color: rgba(37, 36, 36, 0.67);
     border: rgba(37, 36, 36, 0.75);
-    border-radius: 8px;
 }
 
 .materialSearchBar .materialSearchInputDiv .filterSwitchBtn:hover {

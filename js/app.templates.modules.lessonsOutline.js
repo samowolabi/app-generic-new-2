@@ -119,19 +119,26 @@ app.templates.modules.lessonsOutline = {
 			return html;
 	},
 
-    content : function (lessonId) {
+    content : function (courseId) {
         var data = app.data;
+		
+		var completenessPorcentage_1 = Math.round(app.data.user.stats.lessons.complete /app.data.user.stats.lessons.total * 100);
+        var completenessPorcentage_2 = 0;
 
-        let activeLessonId = lessonId;
-        let parentChapterId = app.data.lesson[activeLessonId].parentChapter;
-        let parentCourseId = app.data.chapter[parentChapterId].parentCourse;
-        let activeCourseId = parentCourseId;
+		var url;
+
+        if(app.data.offer.isDataAvailable()){
+            url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
+        }
+        else{
+            url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
+        }
 
         var html = `
             <section class="app_lessonContentSection">
                 ${
                     materialAccordion.create({
-                        list: data.course[activeCourseId].chapterIds.map(function(chapterId, index) {
+                        list: data.course[courseId].chapterIds.map(function(chapterId, index) {
                             return {
                                 header: data.chapter[chapterId].title,
                                 subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}`,
@@ -180,6 +187,46 @@ app.templates.modules.lessonsOutline = {
                     })
                 }
             </section>
+
+			<div class="materialOutlineLearn materialThemeDark">
+				<h5 class="materialOutlineTitle">More Lessons</h5>
+				<ul class="materialOutlineList"> 
+					<li data-progress="${completenessPorcentage_1}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
+						<div class="materialOutlineListBody">
+							<a href="#!/">
+								<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
+									<div class="materialProgressBar ">
+										<div class="materialProgressBarInside" data-progress="${completenessPorcentage_1}" data-progress-affects-width style="width:10px;"></div>
+									</div>
+								</div>
+								<h6>Go Back To Your Lessons Dashboard</h6>
+								<p>You have ${app.data.user.stats.lessons.incomplete} unfinished lessons</p> 
+							</a>
+						</div>
+						<div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+					</li>
+				</ul> 
+			</div>
+
+			<div class="materialOutlineLearn materialThemeDark">
+				<h5 class="materialOutlineTitle" style="background: #5f0000;">Upgrade Your Experience</h5>
+				<ul class="materialOutlineList"> 
+					<li data-progress="${completenessPorcentage_2}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
+						<div class="materialOutlineListBody">
+							<a target="_blank" href="${url}?source=nativeAd">
+								<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
+									<div class="materialProgressBar ">
+										<div class="materialProgressBarInside" data-progress="${completenessPorcentage_2}" data-progress-affects-width style="width:10px;"></div>
+									</div>
+								</div>
+								<h6>Discover our Digital Home-Study Course "The Logic Behind Music"</h6>
+								<p>The most comprehensive course in the world, with a 2-year curriculum of multimedia lessons, including  25,000 interactive piano graphics, animated sheet music, and interactive 3D hands that will show exactly what fingers to use. Quickly learn how to play your favorite songs, play by ear, improvise, and even create your own music - by discovering how music truly works.</p> 
+							</a>
+						</div>
+						<div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+					</li>
+				</ul> 
+			</div>
         `;
 
         html += `

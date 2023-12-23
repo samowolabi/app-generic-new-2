@@ -74,9 +74,7 @@ var materialFilterPills = (function () {
             // Filter App Data by Key of the filter pills clicked and return the mapped course cards
             function filterAppDataByKey(key) {
                 if (!key) { return null; }
-
-                console.error("key", key)
-
+                
                 const keyData = app.data.explore[key]
 
                 if (!keyData) { return null; }

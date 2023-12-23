@@ -36,7 +36,12 @@ app.templates.modules.appHeader = {
     content : function (props){
         var html = `
             <div class="app_headerDiv">
-                <a href='#!/'><div><img src="images/logo.png" alt="logo" class="logo"></div></a>
+                <a href='#!/' style="text-decoration: none;">    
+                    <div class="logo">
+                        <div><img src="images/logo.png" alt="logo" class="logo"></div>
+                        <p><strong>${config.appName}</strong></p>
+                    </div>   
+                </a> 
 
                 ${
                     materialSearchBar.create({

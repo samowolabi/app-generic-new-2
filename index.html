@@ -14,6 +14,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:media_bluetooth_on:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=music" rel="">
 	<!-- Not loading due to CORS error: <link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/font-awesome.min.css"> -->
 	
 	<!-- Hydra Start CSS Minify -->  
@@ -38,6 +39,7 @@
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInputChoice.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInputTextArea.css"> 
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressCircle.css">
+		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressCircleMini.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDeadlineCircle.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDeadlineCircleMega.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialText.css">
@@ -61,6 +63,8 @@
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/sync-audio-text.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialFilterPills.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSearchBar.css">
+		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/iGuider.css">
+		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/iGuider-theme-material.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCardScrolling.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialAccordion.css">
 		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialHeroSection.css">
@@ -130,14 +134,33 @@
     <!--  End Navigation Bar -->
 	
 	 <!--  Start Bottom Navigation Bar -->
-	 <div class="materialBarDashboardNavigation materialBarDashboard" style="bottom: 0; top: initial;box-shadow: 0px -1px 3px 0px #0000008c, 0px -1px 10px 0px #ffde008c">
+	 <div class="materialBarDashboardNavigation materialBarDashboard bottomNavigationContainer" style="bottom: 0; top: initial; box-shadow: 0px -1px 3px 0px #0000008c, 0px -1px 10px 0px #ffde008c; transition: bottom 0.3s ease-out;">
 		<div class="container">
 			<div class="row">
 				<nav class="navbar navbar-expand-lg navbar-inverse materialBarDashboardNavBar materialBarDashboardNavWidth">
 					<div class="navbar-header" style="display: flex; flex-direction: row; flex-basis: 0; float: none !important">
-						<button title="Home" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="router.navigate('#!/newest/'); setTimeout(function(){$('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top-85},500,'linear');}, 600)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Home</span> <i class="material-icons" style="color: white;">home</i></button> 
-						<button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/profile/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Profile</span><i class="material-icons" style=" color: white;">face</i></button> 
-						<button title="Messages" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="app.showAnnoucementDialog(true)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Unread Messages</span> <span class="material-icons" style="color: white;position: relative;">mail <span class="num animated headShake fast infinite announcementNotificationsCounter" style="display: none; position: absolute;right: -10px;top: -4px;color: #fff;background: red;padding: 2px 5px;font-family: 'Lato', sans-serif;font-size: 13px;border-radius: 18px;font-weight: bold;">1</span></span></button>
+						<button title="Home" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="router.navigate('/'); setTimeout(function(){$('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top-85},500,'linear');}, 600)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Home</span> <i class="material-icons" style="color: white;">home</i>
+						<span class="iconText">Home</span>
+						</button> 
+
+						<button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/search/_');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Search</span><i class="material-icons" style=" color: white;">search</i>
+						<span class="iconText">Search</span>
+						</button> 
+
+						<button title="My Courses" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/filter/In%20Progress/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">My Courses</span><i class="material-icons" style=" color: white;">star</i><span class="iconText">My Courses</span>
+						</button> 
+						
+						<!-- <button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/profile/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Profile</span><i class="material-icons" style=" color: white;">face</i>
+						<span class="iconText">Profile</span>
+						</button>  -->
+
+						<button title="Messages" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="app.showAnnoucementDialog(true)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Unread Messages</span> <span class="material-icons" style="color: white;position: relative;">mail <span class="num animated headShake fast infinite announcementNotificationsCounter" style="display: none; position: absolute;right: -10px;top: -4px;color: #fff;background: red;padding: 2px 5px;font-family: 'Lato', sans-serif;font-size: 13px;border-radius: 18px;font-weight: bold;">1</span></span>
+						<span class="iconText">Inbox</span>
+						</button>
+
+						<button title="Help" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="alert('Help')" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">help</span><i class="material-icons" style=" color: white;">help</i>
+						<span class="iconText">Help</span>
+						</button> 
 					</div>
 				</nav>
 			</div>
@@ -212,7 +235,7 @@
 			"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
 			"root" 		: "https://app-generic-new-2.vercel.app/",
 			"layout": {
-				"searchResults": "col-lg-6 col-md-6 col-sm-6 col-xs-12",
+				"searchResults": "col-lg-4 col-md-4 col-sm-6 col-xs-12",
 				"searchResultsMinHeight": "445px",
 				"searchResultsCourseTitleFontSize": "1.9em",
 				"searchResultsSortFx" : function(course){if(course.filters){if(course.filters.level){return course.filters.level;}}}
@@ -226,7 +249,7 @@
 				"searchResultsLineText2"	: function(course){ return ((course.filters && course.filters.composer) ? course.filters.composer 				: ""); }
 			},
 			"theme":{
-				"header": "background: #fffae4; color: hsl(44, 93%, 31%); padding-top: 90px; padding-bottom: 40px; font-size: 25px; font-weight: 300; margin: 0;" 
+				"background": "linear-gradient(180deg, #fffae4 0%, #fffae4 100%)"
 			}
 		};
 	</script>
@@ -256,6 +279,7 @@
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialSearchBar.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialCardScrolling.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialAccordion.js"></script>
+		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialMiniCircleProgress.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialHeroSection.js"></script>
 
 		
@@ -275,8 +299,9 @@
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.oldlesson.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.oldcourse.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.profile.js"></script>
-		<!-- <script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsSection.js"></script> -->
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsLevel.js"></script>
+		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsSection.js"></script>
+		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsIndicator.js"></script>
+		<!-- <script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsLevel.js"></script> -->
 
 		<script src="https://player.vimeo.com/api/player.js"></script>
 		
@@ -287,7 +312,6 @@
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.history.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.course.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.lesson.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.newlesson.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.newHome.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.search.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.filter.js"></script>
@@ -298,15 +322,41 @@
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/navigo.min.js"></script> 		
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery.countdown.min.js"></script> 
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/countdown.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/trackReadProgress.js"></script> 
+		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/trackReadProgress.js"></script>
+		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery.iGuider.js"></script>
+		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/iGuider-theme-material.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/mailcheck.min.js"></script>
-		
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.start.js"></script>
-
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/sync-audio-text.babel.js"></script>
 		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialAttentionButton.js"></script>
 
-		 
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const bottomNavContainer = document.querySelector('.bottomNavigationContainer');
+				let lastScrollTop = 0;
+				let isScrolling = false;
+
+				if (!bottomNavContainer) { return; }
+
+				window.addEventListener('scroll', function() {
+					const st = window.pageYOffset || document.documentElement.scrollTop;
+
+					if (st > lastScrollTop) {
+						bottomNavContainer.style.bottom = '-60px'; // Scrolling down
+					} else {
+						bottomNavContainer.style.bottom = '0'; // Scrolling up
+					}
+
+					lastScrollTop = st <= 0 ? 0 : st;
+
+					clearTimeout(isScrolling);
+					isScrolling = setTimeout(function() {
+						bottomNavContainer.style.bottom = '0';
+					}, 200); // Adjust the delay as needed
+				});
+			});
+		</script>
+		
 	 <!-- Hydra End JS Minify -->	 
 
  
@@ -318,20 +368,21 @@
 			<h6 class="valueMembershipType">Your Membership</h6></div>
 		<ul>
 			<li data-value="dashboard" class="active" data-on-click-callback="router.navigate('#!/');"><i class="material-icons">inbox</i><span>Dashboard</span></li>  
-			<li data-value="profile" data-on-click-callback="router.navigate('#!/profile/');"><i class="material-icons">face</i><span>Profile</span></li> 
+			<li data-value="profile" data-on-click-callback="router.navigate('#!/profile/');"><i class="material-icons">face</i><span>Profile</span></li>
+			<li data-value="profile" data-on-click-callback="app.showAnnoucementDialog(true)"><i class="material-icons">mail</i><span>Inbox</span></li>
 		</ul>
 	
 		<div class="materialDrawerHead"><h6>Bookmarks</h6></div>
 		<ul> 
 			<li data-value="courses" data-on-click-callback="router.navigate('#!/'); "><i class="material-icons">bookmark</i><span>All Courses</span></li>
-			<li data-value="newest" data-on-click-callback="router.navigate('#!/newest/'); "><i class="material-icons">bookmark</i><span>Newest Lessons</span></li>
-			<li data-value="expiring" data-on-click-callback="router.navigate('#!/expiring/');"><i class="material-icons">bookmark</i><span>Expiring Lessons</span></li>
+			<li data-value="newest" data-on-click-callback="router.navigate('#!/filter/In%20Progress/');"><i class="material-icons">bookmark</i><span>My Courses</span></li>
+			<li data-value="newest" data-on-click-callback="router.navigate('#!/rewards/'); "><i class="material-icons">bookmark</i><span>My Rewards</span></li>
 		</ul>
 		 
 		<div class="materialDrawerHead">
 			<h6>Go Premium</h6></div>
 		<ul> 
-			<li data-value="premium" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Interactive Courses</span></li> 
+			<li data-value="premium" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Upgrade your Experience</span></li> 
 		</ul>
 		<ul> 
 			<li data-value="logout"  data-on-click-callback="materialDialog.show('dialogLogout', {});"><i class="material-icons">power_settings_new</i><span>Log Out</span></li>

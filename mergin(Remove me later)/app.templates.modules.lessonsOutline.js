@@ -203,7 +203,8 @@ app.templates.modules.lessonsOutline = {
 
 		//Add an additional navigation to the Dashboard
 		var completenessPorcentage =  Math.round(app.data.user.stats.lessons.complete /app.data.user.stats.lessons.total *100); 
-		html += `<div class="materialOutlineLearn">
+		html += `
+			<div class="materialOutlineLearn">
 					<h5 class="materialOutlineTitle">More Lessons</h5>
 					<ul class="materialOutlineList"> 
 						<li data-progress="${completenessPorcentage}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
@@ -221,7 +222,8 @@ app.templates.modules.lessonsOutline = {
 							<div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
 						</li>
 					</ul> 
-				</div>`;		
+				</div>
+			`;
 
 
 		var url;
@@ -236,7 +238,7 @@ app.templates.modules.lessonsOutline = {
 		//Add an additional navigation with a Native ad 
 		var completenessPorcentage = 0;
 		html += `<div class="materialOutlineLearn">
-					<h5 class="materialOutlineTitle" style="background: #5f0000;">Upgrade Your Experience</h5>
+					<h5 class="materialOutlineTitle" style="background: #5f0000;">Upgrade Your Experiences</h5>
 					<ul class="materialOutlineList"> 
 						<li data-progress="${completenessPorcentage}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
 							<div class="materialOutlineListBody">

@@ -16,7 +16,6 @@ app.templates.pages.course = {
         var data = app.data;
         var courseData = app.data.course[courseId]
         var courseProgress = app.data.course[courseId].stats.lessons.totalProgress || 0;
-        let completenessPorcentage = 0;
 		
         var buttonCaption = (courseProgress > 0)? ((courseProgress > 85)? "Finish Course": "Resume Course"): "Start Course";
 
@@ -113,7 +112,31 @@ app.templates.pages.course = {
             url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
         }
 
+		var completenessPorcentage = Math.round(app.data.user.stats.lessons.complete /app.data.user.stats.lessons.total *100); 
         var outLineLearnHtml = `
+            <div class="materialOutlineLearn">
+                <h5 class="materialOutlineTitle">More Lessons</h5>
+                <ul class="materialOutlineList"> 
+                    <li data-progress="${completenessPorcentage}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
+                        <div class="materialOutlineListBody">
+                            <a href="#!/">
+                                <div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
+                                    <div class="materialProgressBar ">
+                                        <div class="materialProgressBarInside" data-progress="${completenessPorcentage}" data-progress-affects-width style="width:10px;"></div>
+                                    </div>
+                                </div>
+                                <h6>Go Back To Your Lessons Dashboard</h6>
+                                <p>You have ${app.data.user.stats.lessons.incomplete} unfinished lessons</p> 
+                            </a>
+                        </div>
+                        <div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
+                    </li>
+                </ul> 
+            </div>
+        `;
+        
+        var completenessPorcentage = 0;
+        outLineLearnHtml += `
             <div class="materialOutlineLearn">
                 <h5 class="materialOutlineTitle" style="background: #5f0000;">Upgrade Your Experience</h5>
                 <ul class="materialOutlineList"> 
@@ -133,7 +156,9 @@ app.templates.pages.course = {
                     </li>
                 </ul> 
             </div>
+        `;
 
+        outLineLearnHtml += `
             <div class="container marginTop20">
                 <div class="row action-cards-top">  
                     ${app.templates.modules.actionCards.content(app.data.user.cards, false, false)} 
@@ -180,60 +205,7 @@ app.templates.pages.course = {
                     </p>
                 </section>
 
-                <section class="app_lessonContentSection maxWidthContainer">
-                    ${
-                        materialAccordion.create({
-                            list: courseData.chapterIds.map(function(chapterId) {
-                                return {
-                                    header: data.chapter[chapterId].title,
-                                    subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}`,
-                                    onInitOpenAccordion: true,
-                                    content: `
-                                        <div class="materialOutlineLearn">
-                                            <ul class="materialOutlineList"> 
-                                            ${
-                                                data.chapter[chapterId].lessonIds.map((lessonId) => (
-                                                    `
-                                                        <li data-id="${data.lesson[lessonId].id}" class="materialOutlineView materialOutlineViewComplete"> 
-                                                            <div class="materialOutlineListBody">
-                                                                <a href="#!/lesson/${data.lesson[lessonId].id}"> 
-                                                                    <div class="materialOutlineThumbnail" style="background-image: url(${data.lesson[lessonId].image});">
-                                                                        <div class="materialProgressBar">
-                                                                            <div class="materialProgressBarInside " style="width: ${data.lesson[lessonId].progress}%;"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h6>${data.lesson[lessonId].title}</h6>
-                                                                    <p>${data.lesson[lessonId].subtitle}</p>
-                                                                    ${
-                                                                        data.lesson[lessonId].dateStatus === 'expiredAsap' ? `
-                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring in <span data-countdown="${data.lesson[lessonId].deadlineDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
-                                                                        ` : data.lesson[lessonId].dateStatus === 'expiringSoon' ? `
-                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring Soon</p>
-                                                                        ` : data.lesson[lessonId].dateStatus === 'comingAsap' ? `
-                                                                            <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Available in <span data-countdown="${data.lesson[lessonId].availableDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
-                                                                        ` : data.lesson[lessonId].dateStatus === 'comingSoon' ? `
-                                                                            <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Coming Soon</p>
-                                                                        ` : data.lesson[lessonId].dateStatus === 'expired' ? `
-                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expired</p>
-                                                                        ` : ``
-                                                                    }
-                                                                </a>
-                                                            </div>
-                                                            <div class="materialOutlineIcon">${data.lesson[lessonId].progress > 90 ? '<i class="fa fa-check"></i>' : ''}</div>
-                                                        </li>
-                                                    `
-                                                )).join('')
-                                            }
-                                     </ul>
-                                 </div>
-                                `
-                                }
-                            })
-                        })
-                    }
-
-                    ${outLineLearnHtml}
-                </section>
+                ${app.templates.modules.lessonsOutline.content(courseId)}
             </main>
         `;
 

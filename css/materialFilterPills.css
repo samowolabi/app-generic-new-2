@@ -26,6 +26,7 @@
 
 .materialFilterPillsDiv {
     display: flex;
+    justify-content: center;
     gap: 0.65rem;
     overflow-x: auto;
     overflow-y: hidden;

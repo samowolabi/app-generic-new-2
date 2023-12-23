@@ -138,8 +138,3 @@ s {
     text-shadow: 0 0 4px #937C00, 0 0 0px #937C00, 0 0 4px #ffdd23, 0 0 4px #f3d21c;
 }
 */
-
-.row.infiniteScrollingContainer {
-	display: flex;
-	flex-wrap: wrap
-}
