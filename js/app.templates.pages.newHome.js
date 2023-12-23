@@ -215,36 +215,27 @@ app.templates.pages.newHome = {
 			name: 'All', value: '', active: true
 		})
 
-		/* Round to the nearest 0, 5 or 10. If < 100 and >95, use 95. If = 0, use 5: for visual purposes*/
-		function specialRound(x){
-			if(x>95 && x <100) {
-			   return 95;
-		   }
-		   if(x==0) {
-			   return 5;
-		   }
-		   return Math.ceil(x/5)*5;
-	   }
-
 		var html = `
 			<style>
 				body {
 					/* background: #120d0d !important; */
 				}
-				.materialBarDashboardNavigation {
+				.materialBarDashboardNavigation.materialBarDashboard:nth-child(1) {
 					display: none !important;
 				}
 			</style>
 
 
 			<main class="app_mainContainer">
-				<header class="app_headerContainer">
-					${ app.templates.modules.appHeader.content({ 
-						getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
-					})}
-				</header>
 
-				<section class="heroSectionContainer">
+
+				<section class="heroSectionContainer" style="position: relative;">
+					<header class="app_headerContainer" style="position: absolute; top: 10px; width: 100%;">
+						${ app.templates.modules.appHeader.content({ 
+							getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
+						})}
+					</header>
+
 					${materialHeroSection.create({
 						data: heroSectionArray
 					})}
@@ -276,7 +267,7 @@ app.templates.pages.newHome = {
 									<div class="iconDiv">
 										${
 											materialMiniCircleProgress.create({
-												percentage: specialRound((Number(data.user.stats.lessons.complete) * 100) / Number(data.user.stats.lessons.total))
+												percentage: (Number(data.user.stats.lessons.complete) * 100) / Number(data.user.stats.lessons.total)
 											})
 										}
 									</div>

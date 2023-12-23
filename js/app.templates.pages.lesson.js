@@ -39,8 +39,10 @@ app.templates.pages.lesson = {
             }
         ]
 
+        var getLessonIDModuleData = app.templates.modules.lesson.content(lessonId)
+
         var html =`
-            <main class="app_mainContainer maxWidthContainer">
+            <main class="app_mainContainer maxWidthContainer marginBottom20">
                 <ul class="materialBreadCrumbs">
                     ${dataLesson.breadcrumb.map(function(item){
                         return `
@@ -51,12 +53,12 @@ app.templates.pages.lesson = {
 
                 <div class="app_LessonContainer">
                     <div>
-                        ${app.templates.modules.lesson.content(lessonId)}
+                        ${getLessonIDModuleData.html}
                     </div>
                 
 
                     <div>
-                        ${app.templates.modules.lessonsOutline.content(parentCourseId)}
+                        ${app.templates.modules.lessonsOutline.content(parentCourseId, getLessonIDModuleData.progressPercent)}
                     </div>
                 </div>
 

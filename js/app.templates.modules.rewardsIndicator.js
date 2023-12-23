@@ -137,7 +137,7 @@ app.templates.modules.rewardsIndicator = {
 		   `;
 		}else{
 		   nextRewardsLevelHtml = `
-		   		<h4>${pointsTotalNextRewardsLevel} more reward points needed to reach Reward Level ${nextRewardsLevelDisplay}</h4>
+		   		<h4>${pointsTotalNextRewardsLevel} more Rewards Points needed to reach Reward Level ${nextRewardsLevelDisplay}</h4>
 		   		<div class="rewardLevelProgress"><div style="width: ${progressToNextRewardsLevel}%"></div></div>
 		   `;
 		}

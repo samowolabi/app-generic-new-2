@@ -145,7 +145,7 @@ router.on({
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.search.content(params.searchQuery); },
 			contentFalse: function () { return app.templates.pages.search.notFound(params.searchQuery); },
-			callback: function () { }
+			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
 		});
 
 		app.routeId = "/search/";
@@ -159,7 +159,7 @@ router.on({
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.filter.content(params.filterQuery); },
 			contentFalse: function () { return app.templates.pages.filter.notFound(params.filterQuery); },
-			callback: function () { }
+			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
 		});
 
 		app.routeId = "/search/";
@@ -203,7 +203,7 @@ router.on({
 			contentCondition: function(){ return (typeof app.data.course[params.courseId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
 			contentFalse: 	  function(){ return app.templates.pages.course.notFound( params.courseId );},
-			callback: function () { }
+			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
 		});
 
 
@@ -335,7 +335,7 @@ router.on({
 			loading: function () { return app.templates.pages.profile.loading(); },
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.profile.content(); },
-			callback: function () { }
+			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
 		});
 
 		window.scrollTo(0, 0);

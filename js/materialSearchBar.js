@@ -205,6 +205,12 @@ var materialSearchBar = (function () {
                 toggleMaterialSearchbar();
             });
 
+            // Open the filter dropdown if the search query is not empty and the current route is search
+            if(!that.searchQuery) {
+                if(app.currentRoute.includes('search'))
+                toggleMaterialSearchbar('open');
+            }
+
             // When Clear Filter button is clicked, clear all filters
             $('.materialSearchBar button.clearFilter').on("click", (event) => {
                 that.resetFiltersFunc(); // Clear all filters
@@ -271,7 +277,6 @@ var materialSearchBar = (function () {
 
                 // Callback function
                 let searchValue = $('.materialSearchBar input').val();
-                console.error(searchValue);
                 that.getSearchandFilterValueCallback({
                     searchValue: searchValue,
                     filterValue: getURLParams()

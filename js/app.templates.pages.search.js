@@ -10,7 +10,7 @@ app.templates.pages.search = {
 
         return html;
     },
-    content : function (searchQuery){
+    content: function (searchQuery) {
         searchQuery = searchQuery || "";
 
         var html = `
@@ -18,15 +18,15 @@ app.templates.pages.search = {
                 body {
                     /* background: #120d0d !important; */
                 }
-                .materialBarDashboardNavigation {
-                    display: none !important;
-                }
+				.materialBarDashboardNavigation.materialBarDashboard:nth-child(1), h2.materialHeaderBox {
+					display: none !important;
+				}
             </style>
 
-            ${ app.templates.modules.appHeader.content({ 
-                searchQuery: searchQuery , 
+            ${app.templates.modules.appHeader.content({
+                searchQuery: searchQuery,
                 getSearchandFilterValueCallback: (data) => redirectToHomeIfValueIsEmpty(data)
-            }) }
+            })}
 
             <input type="hidden" class="addPaginationValue" value="1">
             <section class="app_searchCardsResultContentContainer">
@@ -55,17 +55,17 @@ app.templates.pages.search = {
 
         return html;
     },
-    notFound : function (searchQuery){
-	
-		materialDialog.alert("Oops!", 
-			`There is no search query added ${searchQuery}. Press 'OK' to be taken to the dashboard where you will be able to access more lessons.`,
-			{
-				hideCallback: function(){
-					// router.navigate('/');
-				}
-			}
-		);	 
-				
-		return app.templates.pages.search.loading();
-	}
+    notFound: function (searchQuery) {
+
+        materialDialog.alert("Oops!",
+            `There is no search query added ${searchQuery}. Press 'OK' to be taken to the dashboard where you will be able to access more lessons.`,
+            {
+                hideCallback: function () {
+                    // router.navigate('/');
+                }
+            }
+        );
+
+        return app.templates.pages.search.loading();
+    }
 }

@@ -71,16 +71,29 @@
 }
 
 .materialAccordionContent .materialOutlineLearn li:before {
-    width: 7.5px;
-    background-color: rgba(240, 227, 224, 0.2)
+    width: 5px;
+    background-color: #222121
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon {
+    width: 23px;
+    height: 23px;
+    left: 21px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #F4BE37;
-    border-color: #F4BE37;
+    background: #0b0b0b !important;
+    border-color: #222121 !important;
+}
+
+.materialAccordionContent .materialOutlineLearn .materialOutlineIcon.active {
+    background: #F4BE37 !important;
+    border-color: #F4BE37 !important;
+}
+
+.materialAccordionContent .materialOutlineLearn .materialOutlineIcon.default {
+    background: #222121 !important;
+    border-color: #222121 !important;
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon .fa {

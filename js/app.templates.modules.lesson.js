@@ -1289,6 +1289,6 @@ app.templates.modules.lesson = {
             </div>
         `;
 
-        return html;
+        return {html: html, progressPercent: thisLesson.engagementProgressRealPercent};
     }
 }

@@ -174,7 +174,7 @@ app.templates.pages.course = {
 
 
         var html = `
-            <main class="app_mainContainer">
+            <main class="app_mainContainer marginBottom20">
                 <header class="app_heroHeader">
                     <div>
                         <div class="app_heroSection maxWidthContainer">
@@ -205,15 +205,14 @@ app.templates.pages.course = {
                     </p>
                 </section>
 
-                ${app.templates.modules.lessonsOutline.content(courseId)}
+                ${app.templates.modules.lessonsOutline.content(courseId, courseData.stats.lessons.totalProgress)}
             </main>
         `;
 
         html += `
                 <script>
                     console.log("RUNNING");
-                    // dashboardInfiniteScrolling.load();  
-                    materialAccordion.init()
+                    // dashboardInfiniteScrolling.load();
                 </script>
 			`;
         return html;

@@ -1,3 +1,4 @@
+
 /*
 http.open('GET', request_field, true);
 http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -1430,8 +1431,6 @@ app.refresh = function(lessonId, dataFromServer){
  
 	material.init();
 }
- 
-
 app.refeshBackButtonUrl = function(){
 	var updateBackHref = function (hashHistory) {
 		$(".materialBarDashboardBackBtn").attr("href", `#!${hashHistory[hashHistory.length - 2] || ""}`);
@@ -2033,8 +2032,6 @@ app.__buildDataFromDataRaw = function(data){
  
 		
 		
-	
-
 		var getCoursesIdsOrderedByProgress = function(data) {
 			if (!data || !data.user || !data.user.learning || !data.lesson || !data.chapter) {
 				throw new Error("Invalid data structure. Necessary data is missing.");
@@ -2098,7 +2095,8 @@ app.__buildDataFromDataRaw = function(data){
 
 		var calculateCourseExplorationByFilters = function(){
 			var courseSorter = new CourseSorter(data);
-			data.explore = courseSorter.sortCoursesByAllFilters();
+			data.explore = courseSorter.sortCoursesByAllFilters(); 
+
 			var inProgressCourses = getCoursesIdsOrderedByProgress(data);
 
 			// Insert 'In Progress' at the beginning of data.explore
@@ -2108,6 +2106,7 @@ app.__buildDataFromDataRaw = function(data){
 			}
 			data.explore = updatedExplore;
 		}();
+
 
 		data.global =  {};  
 		data.global.courses = {}; 
@@ -3623,6 +3622,7 @@ app.createFiltersHtml = function(){
 	return html;
 }	
 
+
 app.createFiltersHtmlNew = function(){
 	
 	var getCoursesFilters = function(){
@@ -4043,11 +4043,11 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 			var themeOverlay = "materialOverlayShallowBlack";
 			var themeButton = "materialButtonText materialThemeDarkGrey";
 			var actionHtml = `<span>
-								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
+								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
 							  </span>`;
-			var progressChipHtml = `<span data-new><i>LOCKED</i></span>
-								<span data-incomplete>LOCKED</span>
-								<span data-complete>LOCKED</span>`;
+			var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
+								<span data-incomplete>EXPIRED</span>
+								<span data-complete>EXPIRED</span>`;
 			var icon = "fa-lock";
 
 			break;
@@ -4134,6 +4134,7 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 	return html;
 
 }
+
 
 
 /*
@@ -4411,35 +4412,32 @@ app.wallet = function(){
                            var needMoreCoins = coursePrice - userBalance;
                            var settings = {};
 
-                          /* if(app.data.offer.isDataAvailable()){
+                           if(app.data.offer.isDataAvailable()){
                                url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
                            }
                            else{
                                url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
-                           }*/
+                           }
 
 							app.dialogs.questionProgress({
 								title: "You need just &#9834; " + needMoreCoins + " Melody Coins!",
-								subtitle: "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by purchasing Melody Coins in our shop. <br><br> <b>Would you like get more Melody Coins  to unlock this course now?</b>",
+								subtitle: "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>",
 								buttonNo: {
 									caption: "Not yet",
 									value: "no"
 								},
 								buttonYes: {
-								   caption: "Yes!", 
+								   caption: "Unlock All",
+								   href: url + "?ref=members-area-unlock",
+								   additional: "target='_blank'",
 								   value: "yes"
 								},
 								progressPercentage: "95",
 								progressDisplay: userBalance,
 								progressTitle: "Melody Coins",
 								progressSubTitle: "<b style='color: white'>Your Balance</b>",
-								hideCallback: function(result){
-									 if(result.lastValue === "yes"){
-										app.dialogs.selectPlan();
-									 }
-								}
+								hideCallback: function(result){}
 							});
-							 
                             
 							/*var dialogTitle = "You need just &#9834; " + needMoreCoins + " Melody Coins!";
                             var dialogMessage = "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>";
@@ -4560,6 +4558,7 @@ CourseSorter = (function() {
         var filterNames = {};
         Object.keys(this.data.course).forEach(function(courseId) {
             var filters = this.data.course[courseId].filters;
+			
 			if(!filters) return null;
             Object.keys(filters).forEach(function(filterName) {
                 filterNames[filterName] = true;

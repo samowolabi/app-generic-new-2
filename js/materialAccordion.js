@@ -22,7 +22,6 @@ var materialAccordion = (function () {
                 </div>
             `;
         })
-
         return html;
     }
 
@@ -34,7 +33,6 @@ var materialAccordion = (function () {
         `;
 
         that.created = true;
-
         return htmlWrapper;
     }
 

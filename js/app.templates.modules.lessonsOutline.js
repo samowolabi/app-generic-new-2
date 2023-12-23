@@ -119,7 +119,7 @@ app.templates.modules.lessonsOutline = {
 			return html;
 	},
 
-    content : function (courseId) {
+    content : function (courseId, progressPercent) {
         var data = app.data;
 		
 		var completenessPorcentage_1 = Math.round(app.data.user.stats.lessons.complete /app.data.user.stats.lessons.total * 100);
@@ -136,6 +136,19 @@ app.templates.modules.lessonsOutline = {
 
         var html = `
             <section class="app_lessonContentSection">
+				<div class="courseProgress">
+					<h4>Course Progress</h4>
+
+					<div class="circleChatProgress">
+						${
+							materialMiniCircleProgress.create({
+								percentage: Number(progressPercent)
+							})
+						}
+						<p>${Number(progressPercent)}% Completed</p>
+					</div>
+				</div>
+
                 ${
                     materialAccordion.create({
                         list: data.course[courseId].chapterIds.map(function(chapterId, index) {
@@ -174,7 +187,7 @@ app.templates.modules.lessonsOutline = {
                                                                     }
                                                                 </a>
                                                             </div>
-                                                            <div class="materialOutlineIcon">${data.lesson[lessonId].progress > 90 ? '<i class="fa fa-check"></i>' : ''}</div>
+                                                            <div class="materialOutlineIcon ${data.lesson[lessonId].progress > 90 ? ' active ' : ' '}">${data.lesson[lessonId].progress > 90 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-circle"></i>'}</div>
                                                         </li>
                                                     `
                                                 }).join('')
@@ -186,47 +199,52 @@ app.templates.modules.lessonsOutline = {
                         })
                     })
                 }
+
+				<div class="materialAccordionContent active" style="max-height: unset;">
+					<div class="materialOutlineLearn materialThemeDark">
+						<h5 class="materialOutlineTitle" style="color: #ffffff; font-size: 1.78rem; text-transform: capitalize; background-color: #1C1C1C; letter-spacing: 0px; font-weight: normal;">More Lessons</h5>
+						<ul class="materialOutlineList"> 
+							<li data-progress="${completenessPorcentage_1}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
+								<div class="materialOutlineListBody">
+									<a href="#!/">
+										<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
+											<div class="materialProgressBar ">
+												<div class="materialProgressBarInside" data-progress="${completenessPorcentage_1}" data-progress-affects-width style="width:10px;"></div>
+											</div>
+										</div>
+										<h6>Go Back To Your Lessons Dashboard</h6>
+										<p>You have ${app.data.user.stats.lessons.incomplete} unfinished lessons</p> 
+									</a>
+								</div>
+								<div class="materialOutlineIcon default"><i class="fa fa-check"></i></div>
+							</li>
+						</ul> 
+					</div>
+				</div>
+
+
+				<div class="materialAccordionContent active" style="max-height: unset;">
+					<div class="materialOutlineLearn materialThemeDark">
+						<h5 class="materialOutlineTitle" style="color: #ffffff; font-size: 1.78rem; text-transform: capitalize; background-color: #1C1C1C; letter-spacing: 0px; font-weight: normal;">Upgrade Your Experience</h5>
+						<ul class="materialOutlineList"> 
+							<li data-progress="${completenessPorcentage_2}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
+								<div class="materialOutlineListBody">
+									<a target="_blank" href="${url}?source=nativeAd">
+										<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
+											<div class="materialProgressBar ">
+												<div class="materialProgressBarInside" data-progress="${completenessPorcentage_2}" data-progress-affects-width style="width:10px;"></div>
+											</div>
+										</div>
+										<h6>Discover our Digital Home-Study Course "The Logic Behind Music"</h6>
+										<p>The most comprehensive course in the world, with a 2-year curriculum of multimedia lessons, including  25,000 interactive piano graphics, animated sheet music, and interactive 3D hands that will show exactly what fingers to use. Quickly learn how to play your favorite songs, play by ear, improvise, and even create your own music - by discovering how music truly works.</p> 
+									</a>
+								</div>
+								<div class="materialOutlineIcon default"><i class="fa fa-check"></i></div>
+							</li>
+						</ul> 
+					</div>
+				</div>
             </section>
-
-			<div class="materialOutlineLearn materialThemeDark">
-				<h5 class="materialOutlineTitle">More Lessons</h5>
-				<ul class="materialOutlineList"> 
-					<li data-progress="${completenessPorcentage_1}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
-						<div class="materialOutlineListBody">
-							<a href="#!/">
-								<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
-									<div class="materialProgressBar ">
-										<div class="materialProgressBarInside" data-progress="${completenessPorcentage_1}" data-progress-affects-width style="width:10px;"></div>
-									</div>
-								</div>
-								<h6>Go Back To Your Lessons Dashboard</h6>
-								<p>You have ${app.data.user.stats.lessons.incomplete} unfinished lessons</p> 
-							</a>
-						</div>
-						<div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
-					</li>
-				</ul> 
-			</div>
-
-			<div class="materialOutlineLearn materialThemeDark">
-				<h5 class="materialOutlineTitle" style="background: #5f0000;">Upgrade Your Experience</h5>
-				<ul class="materialOutlineList"> 
-					<li data-progress="${completenessPorcentage_2}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
-						<div class="materialOutlineListBody">
-							<a target="_blank" href="${url}?source=nativeAd">
-								<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
-									<div class="materialProgressBar ">
-										<div class="materialProgressBarInside" data-progress="${completenessPorcentage_2}" data-progress-affects-width style="width:10px;"></div>
-									</div>
-								</div>
-								<h6>Discover our Digital Home-Study Course "The Logic Behind Music"</h6>
-								<p>The most comprehensive course in the world, with a 2-year curriculum of multimedia lessons, including  25,000 interactive piano graphics, animated sheet music, and interactive 3D hands that will show exactly what fingers to use. Quickly learn how to play your favorite songs, play by ear, improvise, and even create your own music - by discovering how music truly works.</p> 
-							</a>
-						</div>
-						<div class="materialOutlineIcon"><i class="fa fa-check"></i></div>
-					</li>
-				</ul> 
-			</div>
         `;
 
         html += `

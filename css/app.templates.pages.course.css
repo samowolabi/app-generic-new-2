@@ -56,7 +56,7 @@ a.resumeLessonBtn{
 }
 @media only screen and (max-width:600px){
     .heroDiv{
-        height:100vh;
+        height:50vh;
         max-height:100vh
     }
     .heroDivContent{

@@ -145,6 +145,15 @@ var materialFilterPills = (function () {
                     }
                 });
 
+                // show Left Carousel if there is scroll
+                pillsScrollingDiv.addEventListener('scroll', function (event) {
+                    if (pillsScrollingDiv.scrollLeft > 0) {
+                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'flex';
+                    } else {
+                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'none';
+                    }
+                });
+
                 // Hide Right Carousel if there is no scroll
                 if (pillsScrollingDiv.scrollWidth <= pillsScrollingDiv.clientWidth) {
                     parentDiv.querySelector('.materialFilterPillsContainer .overlay.rightScroll').style.display = 'none';
