@@ -174,7 +174,7 @@ app.templates.pages.course = {
 
 
         var html = `
-            <main class="app_mainContainer marginBottom20">
+            <main class="app_mainContainer maxWidthContainer marginBottom20">
                 <header class="app_heroHeader">
                     <div>
                         <div class="app_heroSection maxWidthContainer">
