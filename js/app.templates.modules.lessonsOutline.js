@@ -136,7 +136,7 @@ app.templates.modules.lessonsOutline = {
 
         var html = `
             <section class="app_lessonContentSection">
-				<div class="courseProgress">
+				<div class="courseProgress help-course-progress">
 					<h4>Course Progress</h4>
 
 					<div class="circleChatProgress">
@@ -157,7 +157,7 @@ app.templates.modules.lessonsOutline = {
                                 subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}`,
                                 onInitOpenAccordion: true,
                                 content: `
-                                    <div class="materialOutlineLearn">
+                                    <div class="materialOutlineLearn help-lessons-accordion-content">
                                         <ul class="materialOutlineList"> 
                                             ${
                                                 data.chapter[chapterId].lessonIds.map(function(lessonId){

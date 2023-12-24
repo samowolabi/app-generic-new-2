@@ -367,25 +367,25 @@
 			<h3>%appName%</h3>
 			<h6 class="valueMembershipType">Your Membership</h6></div>
 		<ul>
-			<li data-value="dashboard" class="active" data-on-click-callback="router.navigate('#!/');"><i class="material-icons">inbox</i><span>Dashboard</span></li>  
-			<li data-value="profile" data-on-click-callback="router.navigate('#!/profile/');"><i class="material-icons">face</i><span>Profile</span></li>
-			<li data-value="profile" data-on-click-callback="app.showAnnoucementDialog(true)"><i class="material-icons">mail</i><span>Inbox</span></li>
+			<li data-value="dashboard" class="active help-sidebar-menu-dashboard" data-on-click-callback="router.navigate('#!/');"><i class="material-icons">inbox</i><span>Dashboard</span></li>  
+			<li data-value="profile" class="help-sidebar-menu-profile" data-on-click-callback="router.navigate('#!/profile/');"><i class="material-icons">face</i><span>Profile</span></li>
+			<li data-value="profile" class="help-sidebar-menu-index" data-on-click-callback="app.showAnnoucementDialog(true)"><i class="material-icons">mail</i><span>Inbox</span></li>
 		</ul>
 	
 		<div class="materialDrawerHead"><h6>Bookmarks</h6></div>
 		<ul> 
-			<li data-value="courses" data-on-click-callback="router.navigate('#!/'); "><i class="material-icons">bookmark</i><span>All Courses</span></li>
-			<li data-value="newest" data-on-click-callback="router.navigate('#!/filter/In%20Progress/');"><i class="material-icons">bookmark</i><span>My Courses</span></li>
-			<li data-value="newest" data-on-click-callback="router.navigate('#!/rewards/'); "><i class="material-icons">bookmark</i><span>My Rewards</span></li>
+			<li data-value="courses" class="help-sidebar-menu-all-courses" data-on-click-callback="router.navigate('#!/'); "><i class="material-icons">bookmark</i><span>All Courses</span></li>
+			<li data-value="newest" class="help-sidebar-menu-my-courses" data-on-click-callback="router.navigate('#!/filter/In%20Progress/');"><i class="material-icons">bookmark</i><span>My Courses</span></li>
+			<li data-value="newest" class="help-sidebar-menu-my-rewards" data-on-click-callback="router.navigate('#!/rewards/'); "><i class="material-icons">bookmark</i><span>My Rewards</span></li>
 		</ul>
 		 
 		<div class="materialDrawerHead">
 			<h6>Go Premium</h6></div>
 		<ul> 
-			<li data-value="premium" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Upgrade your Experience</span></li> 
+			<li data-value="premium" class="help-sidebar-menu-upgrade-your-experience" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Upgrade your Experience</span></li> 
 		</ul>
 		<ul> 
-			<li data-value="logout"  data-on-click-callback="materialDialog.show('dialogLogout', {});"><i class="material-icons">power_settings_new</i><span>Log Out</span></li>
+			<li data-value="logout" class="help-sidebar-menu-logout" data-on-click-callback="materialDialog.show('dialogLogout', {});"><i class="material-icons">power_settings_new</i><span>Log Out</span></li>
 		</ul>
 	</div>
 	

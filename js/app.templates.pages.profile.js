@@ -65,12 +65,12 @@ app.templates.pages.profile = {
 				<br><br>
 				<a style="font-size: 0.45em;" class=" materialButtonFill " data-button="" href="javascript: materialDialog.show('dialogChangePassword', {});">Change Password</a>
 			</h2>
-			<h3 class="rewardsHeader materialHeaderBox materialTextCenter materialThemeGreyLight fontFamilyOptimus">Your Rewards</h2>
+			<h3 class="rewardsHeader materialHeaderBox materialTextCenter materialThemeGreyLight help-rewards-level-profile fontFamilyOptimus">Your Rewards</h2>
 			${htmlRewardsSection1}
 			${htmlRewardsSection2}
 			<h3 class="materialHeaderBox materialTextCenter materialThemeGreyLight fontFamilyOptimus">Your Learning Preferences</h2>
 			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 help-rewards-piano-level-profile">
 					<div class="materialCard materialThemeLightGold">
 						<div class="materialCardTop" data-button="" data-href="javascript: showDialogPianoLevelOnProfilePage();">
 							<div class="materialCardImg">
@@ -88,7 +88,7 @@ app.templates.pages.profile = {
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 help-rewards-interests-profile">
 					<div class="materialCard materialThemeLightGold">
 						<div class="materialCardTop" data-button="" data-href="javascript: showDialogInterestsOnProfilePage();">
 							<div class="materialCardImg">
@@ -106,7 +106,7 @@ app.templates.pages.profile = {
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 help-rewards-favorite-genres-profile">
 					<div class="materialCard materialThemeLightGold">
 						<div class="materialCardTop" data-button="" data-href="javascript: showDialogGenresOnProfilePage();">
 							<div class="materialCardImg">

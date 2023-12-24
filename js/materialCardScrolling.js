@@ -36,7 +36,7 @@ var materialCardScrolling = (function () {
 
     that.create = function (settings) {
         var htmlWrapper = `
-            <div class="materialCardsScrolling">
+            <div class="materialCardsScrolling help-scrolling-course-cards">
                 <div class="overlay scrollLeft">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 4.5L7.5 12L15 19.5" stroke="#F9F4DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

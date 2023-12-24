@@ -1,0 +1,61 @@
+Piano Encyclopedia
+
+Home Page
+
+-  help-logo-for-header
+- help-search-bar
+- help-search-button
+- help-filter-dropdown-button
+- help-profile-trigger-dashboard-nav-link
+- help-animated-hero-section
+- help-lesson-completed-container
+- help-view-reward-points-container
+- help-view-melody-coins-container
+- help-reward-level-progress-indicator
+- help-filter-pills-container 
+- help-scrolling-course-cards
+- help-home-bottom-nav-button
+- help-search-bottom-nav-button
+- help-my-courses-bottom-nav-button
+- help-inbox-bottom-nav-button
+- help-help-bottom-nav-button
+
+
+Lessons
+
+- help-lesson-breadcrumbs
+- help-course-progress
+- help-lessons-accordion-content
+- help-lesson-progress-text
+- help-lesson-description-text
+- help-lessons-ratings
+- help-next-lesson-button
+
+
+Course
+
+- help-course-hero-section
+- help-resume-lesson-button
+- help-course-progress
+- help-course-description-text
+
+
+Sidebar Menu
+
+- help-sidebar-menu-dashboard
+- help-sidebar-menu-profile
+- help-sidebar-menu-index
+- help-sidebar-menu-all-courses
+- help-sidebar-menu-my-courses
+- help-sidebar-menu-my-rewards
+- help-sidebar-menu-upgrade-your-experience
+- help-sidebar-menu-logout
+
+
+Profile
+
+- help-rewards-level-profile
+- help-rewards-piano-level-profile
+- help-rewards-interests-profile
+- help-rewards-favorite-genres-profile
+

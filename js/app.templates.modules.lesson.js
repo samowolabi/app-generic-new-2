@@ -1130,15 +1130,15 @@ app.templates.modules.lesson = {
 
 
          /* Mark lesson as complete if rated and real progress is more than 75*/ 
-        var rating = `
+        var lessonRatingsAndNextLessonButton = `
             <div class="app_LessonRatings">
-                <div class="overallRatings">
+                <div class="overallRatings help-lessons-ratings">
                     <p>Rate this Lesson</p>
 
                     ${materialRating.create({icon: "fa fa-heart", name:"ratingOnLesson", rating: thisLesson.rating, onChangeCallback: "if(!thisLesson().rating) {app.addRewardPoints('Rated Lesson', 40); }; if(thisLesson().engagementProgressRealPercent > 75){ thisLesson().engagementProgressMaxPercent = 100; }; thisLesson().rating = value; app.callback('path=' + app.currentRoute + '&rating='+value); thisLesson().ratingDate = datetimeToEST(new Date()); material.history.clear();	material.history.save('dialogLessonRating', materialDialog.defaultSettings({modal: false, hideCallback: function(){ app.saveToServer("+ lessonId +"); }})); dialogLessonRating.flow();"})}
                 </div>
 
-                <div style="display:flex; justify-content:space-end">
+                <div class="help-next-lesson-button" style="display:flex; justify-content:space-end">
                     <a href="${buttonHref}" class="materialButtonOutline" style="margin: 0;">${buttonText}</a>
                 </div>
             </div>
@@ -1267,12 +1267,12 @@ app.templates.modules.lesson = {
                             <p class="materialParagraph">${lessonData.subtitle}</p>
                         </div>
 
-                        <div class="lessonProgress">
+                        <div class="lessonProgress help-lesson-progress-text">
                             <p>Lesson ${progressText} <span style='display: inline-block;'>(<span id='lessonProgress${lessonData.id}'>${thisLesson.engagementProgressRealPercent}</span>% Completed)</span></p>
                             <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
                         </div>
 
-                        <p class="lessonDescription">
+                        <p class="lessonDescription help-lesson-description-text">
                             ${lessonData.description}
                         </p>
 
@@ -1283,7 +1283,7 @@ app.templates.modules.lesson = {
                         </div>
 
                         ${attachment}
-                        ${rating}
+                        ${lessonRatingsAndNextLessonButton}
                     </section>
                 </div>
             </div>

@@ -175,7 +175,7 @@ app.templates.pages.course = {
 
         var html = `
             <main class="app_mainContainer maxWidthContainer marginBottom20">
-                <header class="app_heroHeader">
+                <header class="app_heroHeader help-course-hero-section">
                     <div>
                         <div class="app_heroSection maxWidthContainer">
                             <h4 class="fontFamilyOptimus">${courseData.title}</h4>
@@ -189,18 +189,18 @@ app.templates.pages.course = {
                                 <p>${courseData.stats.lessons.complete} of ${courseData.stats.lessons.total} LESSONS</p>
                             </div>
 
-                            <div class="buttonLessonTitle">${resumeLessonTitle}</div>
+                            <div class="buttonLessonTitle help-resume-lesson-button">${resumeLessonTitle}</div>
                         </div>
                     </div>
                 </header>
 
                 <section class="app_lessonOverviewSection maxWidthContainer">
-                    <div class="lessonProgress">
+                    <div class="lessonProgress help-course-progress">
                         <p>${courseData.stats.lessons.totalProgress}% Completed</p>
                         <p>${courseData.chapterIds.length} CHAPTERS</p>
                     </div>
 
-                    <p class="lessonDescription">
+                    <p class="lessonDescription help-course-description-text">
                         ${courseData.description}
                     </p>
                 </section>
