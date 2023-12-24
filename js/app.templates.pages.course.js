@@ -205,7 +205,9 @@ app.templates.pages.course = {
                     </p>
                 </section>
 
-                ${app.templates.modules.lessonsOutline.content(courseId, courseData.stats.lessons.totalProgress)}
+                <div class="app_LessonContainer">
+                    ${app.templates.modules.lessonsOutline.content(courseId, courseData.stats.lessons.totalProgress)}
+                </div>
             </main>
         `;
 
