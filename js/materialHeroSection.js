@@ -8,7 +8,7 @@ var materialHeroSection = (function () {
         console.log('that.data', that.data)
 
         var htmlWrapper = `
-            <div class="materialHeroSection">
+            <div class="materialHeroSection help-animated-hero-section">
                 <div class="carouselControl">
                     <button class="carouselControlPrev">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -37,7 +37,7 @@ app.templates.modules.appHeader = {
         var html = `
             <div class="app_headerDiv">
                 <a href='#!/' style="text-decoration: none;">    
-                    <div class="logo">
+                    <div class="logo help-logo-for-header">
                         <div><img src="images/logo.png" alt="logo" class="logo"></div>
                         <p><strong>${config.appName}</strong></p>
                     </div>   
@@ -64,7 +64,7 @@ app.templates.modules.appHeader = {
                     </div>
 
                     <a class="materialBarDashboardNavLink" href="#" data-button="" data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
-                        <div class="userProfileDiv">
+                        <div class="userProfileDiv help-profile-trigger-dashboard-nav-link">
                             <svg width="15.5" height="15.5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.50033 9.49967C11.6865 9.49967 13.4587 7.72747 13.4587 5.54134C13.4587 3.35521 11.6865 1.58301 9.50033 1.58301C7.3142 1.58301 5.54199 3.35521 5.54199 5.54134C5.54199 7.72747 7.3142 9.49967 9.50033 9.49967Z" fill="#A2A2A2" />
                                 <path d="M9.49996 11.4795C5.53371 11.4795 2.30371 14.1395 2.30371 17.417C2.30371 17.6387 2.47788 17.8128 2.69954 17.8128H16.3004C16.522 17.8128 16.6962 17.6387 16.6962 17.417C16.6962 14.1395 13.4662 11.4795 9.49996 11.4795Z" fill="#A2A2A2" />

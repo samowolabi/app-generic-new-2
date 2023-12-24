@@ -143,7 +143,7 @@ app.templates.modules.rewardsIndicator = {
 		}
 			
 		var htmlRewardsSection1 = `
-		<div class="app_ratingsSectionCard rewardLevel">
+		<div class="app_ratingsSectionCard rewardLevel help-reward-level-progress-indicator">
 			${nextRewardsLevelHtml}
 
 			<div class="rewardLevelStats">

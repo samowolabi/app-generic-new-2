@@ -33,7 +33,7 @@ var materialFilterPills = (function () {
         }
 
         var htmlWrapper = `
-            <div class="materialFilterPillsContainer">
+            <div class="materialFilterPillsContainer help-filter-pills-container">
                 <div class="overlay leftScroll">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 4.5L7.5 12L15 19.5" stroke="#F9F4DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

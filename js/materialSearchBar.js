@@ -36,16 +36,16 @@ var materialSearchBar = (function () {
             <div class="materialSearchBar">
                 <div class="materialSearchInputDiv">
                     <div class="materialSearchInputWithBtn">
-                        <input type="text" class="materialInputTextArea materialThemeDark searchBarInput" placeholder="${placeholder}" class="">
+                        <input type="text" class="materialInputTextArea materialThemeDark searchBarInput help-search-bar" placeholder="${placeholder}" class="">
                         
                         <div>
                             <svg class="clearBtn" width="13" height="13" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 1.5L22.8627 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M22.8623 1.5L1.49961 22.5627" stroke="#d4d4e3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            <button class="materialButtonIcon materialThemeDark searchBtn"><i class="fa fa-search"></i></button>
+                            <button class="materialButtonIcon materialThemeDark searchBtn help-search-button"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
 
-                    <button class="materialButtonIcon materialThemeDark filterSwitchBtn">
-                    <i class="fa fa-filter"></i>
+                    <button class="materialButtonIcon materialThemeDark filterSwitchBtn help-filter-dropdown-button">
+                        <i class="fa fa-filter"></i>
                     </button>
                 </div>
 
