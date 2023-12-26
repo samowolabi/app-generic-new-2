@@ -44,7 +44,7 @@ Sidebar Menu
 
 - help-sidebar-menu-dashboard
 - help-sidebar-menu-profile
-- help-sidebar-menu-index
+- help-sidebar-menu-inbox
 - help-sidebar-menu-all-courses
 - help-sidebar-menu-my-courses
 - help-sidebar-menu-my-rewards

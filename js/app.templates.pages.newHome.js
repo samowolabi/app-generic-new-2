@@ -162,42 +162,54 @@ app.templates.pages.newHome = {
 		}
 
 		// Hero Section Array
-		let heroSectionArrayCourseIds = app.data.user.recommendations.data.thisWeekTopRecommendations.coursesIds.map((courseId, index) => {
-			var course = app.data.course[courseId];
-			if (course) {
-				return {
-					title: course.title,
-					description: course.subtitle || 'The Piano Encyclopedia',
-					image: course.image,
-					buttonLink: `#!/course/${courseId}`,
-					percentageComplete: course.stats.lessons.totalProgress
+		let heroSectionArrayCourseIds = function () {
+			let courseIds = app.data.user.recommendations.data.thisWeekTopRecommendations.coursesIds
+			if (!courseIds || !Array.isArray(courseIds)) { return [] }
+
+			let courseIdsData = courseIds.map((courseId, index) => {
+				var course = app.data.course[courseId];
+				if (course) {
+					return {
+						title: course.title,
+						description: course.subtitle || 'The Piano Encyclopedia',
+						image: course.image,
+						buttonLink: `#!/course/${courseId}`,
+						percentageComplete: course.stats.lessons.totalProgress
+					}
+				} else {
+					return null
 				}
-			} else {
-				return null
-			}
-		}).filter(item => item !== null)
+			}).filter(item => item !== null)
+
+			return courseIdsData
+		}
 
 
 		// Hero Section Array Lesson Ids
-		let heroSectionArrayLessonIds = app.data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds.map((lessonId, index) => {
-			var lesson = app.data.lesson[lessonId];
-			if (lesson) {
-				return {
-					title: lesson.title,
-					description: lesson.subtitle || 'The Piano Encyclopedia',
-					image: lesson.image,
-					buttonLink: `#!/lesson/${lessonId}`,
-					percentageComplete: lesson.progress
-				}
-			} else {
-				return null
-			}
-		}).filter(item => item !== null)
+		let heroSectionArrayLessonIds = function () {
+			let lessonIds = app.data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds
+			if (!lessonIds || !Array.isArray(lessonIds)) { return [] }
 
+			let lessonIdsData = lessonIds.map((lessonId, index) => {
+				var lesson = app.data.lesson[lessonId];
+				if (lesson) {
+					return {
+						title: lesson.title,
+						description: lesson.subtitle || 'The Piano Encyclopedia',
+						image: lesson.image,
+						buttonLink: `#!/lesson/${lessonId}`,
+						percentageComplete: lesson.progress
+					}
+				} else {
+					return null
+				}
+			}).filter(item => item !== null)
+
+			return lessonIdsData
+		}
 
 		// Merge both arrays (heroSectionArrayCourseIds and heroSectionArrayLessonIds)
-		var heroSectionArray = [...heroSectionArrayCourseIds, ...heroSectionArrayLessonIds]
-
+		var heroSectionArray = [...heroSectionArrayCourseIds(), ...heroSectionArrayLessonIds()]
 
 		// Filter Pills
 		let filterPillsData = Object.keys(app.data.explore).map((item, index) => {

@@ -82,8 +82,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0b0b0b !important;
-    border-color: #222121 !important;
+    background: #F4BE37 !important;
+    border-color: #F4BE37 !important;
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon.active {
@@ -92,8 +92,8 @@
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon.default {
-    background: #222121 !important;
-    border-color: #222121 !important;
+    background: #F4BE37 !important;
+    border-color: #F4BE37 !important;
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon .fa {

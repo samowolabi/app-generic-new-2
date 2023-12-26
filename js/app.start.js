@@ -145,7 +145,10 @@ router.on({
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.search.content(params.searchQuery); },
 			contentFalse: function () { return app.templates.pages.search.notFound(params.searchQuery); },
-			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
+			callback: function () { 
+				app.setCurrentRouteBottomNavActive();
+				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+			}
 		});
 
 		app.routeId = "/search/";
@@ -159,7 +162,10 @@ router.on({
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.filter.content(params.filterQuery); },
 			contentFalse: function () { return app.templates.pages.filter.notFound(params.filterQuery); },
-			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
+			callback: function () {
+				app.setCurrentRouteBottomNavActive(); 
+				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+			}
 		});
 
 		app.routeId = "/search/";
@@ -218,7 +224,10 @@ router.on({
 			loading: function () { return app.templates.pages.newHome.loading(); },
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.newHome.content(); },
-			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
+			callback: function () { 
+				app.setCurrentRouteBottomNavActive();
+				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+			}
 		});
 
 		app.routeId = "/home/";

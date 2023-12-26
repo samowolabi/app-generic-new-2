@@ -1,3 +1,27 @@
-<button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/profile/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Profile</span><i class="material-icons" style=" color: white;">face</i>
-						<span class="iconText">Profile</span>
-						</button> 
+var helpTour = (function () {
+    var that = {};
+
+    that.init = function () {
+        var currentRoute = app.currentRoute;
+
+        switch (true) {
+            case currentRoute === '':
+                config.help.home();
+                break;
+            case currentRoute.includes('course'):
+                config.help.course();
+                break;
+            case currentRoute.includes('lesson'):
+                config.help.lesson();
+                break;
+            case currentRoute.includes('profile'):
+                config.help.profile();
+                break;
+            default:
+                // Handle the default case if needed
+                break;
+        }
+    };
+
+    return that;
+}());

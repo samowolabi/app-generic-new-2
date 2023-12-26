@@ -69,6 +69,15 @@ var materialCardScrolling = (function () {
                 // Hide Left Carousel at first
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
 
+                // Show left Carousel if there is scroll
+                cardsScrollingDiv.addEventListener('scroll', function (event) {
+                    if (cardsScrollingDiv.scrollLeft > 0) {
+                        parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
+                    } else {
+                        parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
+                    }
+                });
+                
                 // Hide Right Carousel if there is no scroll
                 if (cardsScrollingDiv.scrollWidth <= cardsScrollingDiv.clientWidth) {
                     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').style.display = 'none';

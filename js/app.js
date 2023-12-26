@@ -4527,6 +4527,26 @@ app.getPreviewFromLesson = function(lessonId) {
 };
 
 
+app.setCurrentRouteBottomNavActive = function() {
+	// Add active class to bottom navigation
+	const bottomNavLinks = document.querySelectorAll('.bottomNavigationContainer button');
+	const currentPath = app.currentRoute;
+
+	bottomNavLinks.forEach(function(link) {
+		link.classList.remove('active');
+
+		if (currentPath == '') {
+			// For home page, add active class to home link
+			let homeLink = document.querySelector('.bottomNavigationContainer button[data-linktarget="home"]');
+			homeLink.classList.add('active');
+		} else {
+			// For other pages, add active class to corresponding link
+			if (currentPath.includes(link.dataset.linktarget)) {
+				link.classList.add('active');
+			}
+		}
+	});
+}
 
 
 CourseSorter = (function() {

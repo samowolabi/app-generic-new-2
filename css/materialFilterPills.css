@@ -38,6 +38,10 @@
     width: 100%;
 }
 
+.materialFilterPillsDiv .materialChipChoice {
+    width: 100%;
+}
+
 .materialFilterPillsDiv span {
     color: #f9f4de;
     background-color: #313131;
