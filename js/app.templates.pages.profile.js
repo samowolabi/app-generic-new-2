@@ -63,7 +63,7 @@ app.templates.pages.profile = {
 				<br>
 				<span style="font-size: 0.75em;">${app.data.user.profile.email}</span>
 				<br><br>
-				<a style="font-size: 0.45em;" class=" materialButtonFill " data-button="" href="javascript: materialDialog.show('dialogChangePassword', {});">Change Password</a>
+				<a style="font-size: 0.45em;" class=" materialButtonFill help-change-password" data-button="" href="javascript: materialDialog.show('dialogChangePassword', {});">Change Password</a>
 			</h2>
 			<h3 class="rewardsHeader materialHeaderBox materialTextCenter materialThemeGreyLight help-rewards-level-profile fontFamilyOptimus">Your Rewards</h2>
 			${htmlRewardsSection1}
