@@ -200,7 +200,7 @@ app.templates.modules.lessonsOutline = {
                     })
                 }
 
-				<div class="materialAccordionContent active" style="max-height: unset;">
+				<div class="materialAccordionContent" style="max-height: unset;">
 					<div class="materialOutlineLearn materialThemeDark">
 						<h5 class="materialOutlineTitle" style="color: #ffffff; font-size: 1.78rem; text-transform: capitalize; background-color: #1C1C1C; letter-spacing: 0px; font-weight: normal;">More Lessons</h5>
 						<ul class="materialOutlineList"> 
@@ -216,14 +216,14 @@ app.templates.modules.lessonsOutline = {
 										<p>You have ${app.data.user.stats.lessons.incomplete} unfinished lessons</p> 
 									</a>
 								</div>
-								<div class="materialOutlineIcon default"><i class="fa fa-check"></i></div>
+								<div class="materialOutlineIcon default"><i class="fa fa-circle"></i></div>
 							</li>
 						</ul> 
 					</div>
 				</div>
 
 
-				<div class="materialAccordionContent active" style="max-height: unset;">
+				<div class="materialAccordionContent" style="max-height: unset;">
 					<div class="materialOutlineLearn materialThemeDark">
 						<h5 class="materialOutlineTitle" style="color: #ffffff; font-size: 1.78rem; text-transform: capitalize; background-color: #1C1C1C; letter-spacing: 0px; font-weight: normal;">Upgrade Your Experience</h5>
 						<ul class="materialOutlineList"> 
@@ -239,7 +239,7 @@ app.templates.modules.lessonsOutline = {
 										<p>The most comprehensive course in the world, with a 2-year curriculum of multimedia lessons, including  25,000 interactive piano graphics, animated sheet music, and interactive 3D hands that will show exactly what fingers to use. Quickly learn how to play your favorite songs, play by ear, improvise, and even create your own music - by discovering how music truly works.</p> 
 									</a>
 								</div>
-								<div class="materialOutlineIcon default"><i class="fa fa-check"></i></div>
+								<div class="materialOutlineIcon default"><i class="fa fa-circle"></i></div>
 							</li>
 						</ul> 
 					</div>

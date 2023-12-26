@@ -194,7 +194,7 @@
 							<span class="iconText">Inbox</span>
 						</button>
 
-						<button title="Help" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-help-bottom-nav-button" data-button=""  data-script="helpTour.init()" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">help</span>
+						<button title="Help" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-help-bottom-nav-button" data-button=""  data-script="helpTour.helpButtonClicked()" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">help</span>
 							<i class="material-icons" style=" color: white;">help</i>
 							<span class="iconText">Help</span>
 						</button> 
@@ -1214,11 +1214,7 @@
 						"shape": 1,
 						"timer": 15000
 					}
-
-
-
-
-						],
+				],
 					
 						lang: {										//Default language settings
 							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
@@ -1690,7 +1686,7 @@
 			<li data-value="premium" class="help-sidebar-menu-upgrade-your-experience" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Upgrade your Experience</span></li> 
 		</ul>
 		<ul> 
-			<li data-value="help" class="" data-button data-href-target="_blank" data-script="config.help.sideBarMenu()"><i class="material-icons">help</i><span>Help</span></li> 
+			<li data-value="help" class="" data-button data-href-target="_blank" data-script="helpTour.helpButtonClicked('sideBarMenu')"><i class="material-icons">help</i><span>Help</span></li> 
 		</ul>
 		<ul> 
 			<li data-value="logout" class="help-sidebar-menu-logout" data-on-click-callback="materialDialog.show('dialogLogout', {});"><i class="material-icons">power_settings_new</i><span>Log Out</span></li>

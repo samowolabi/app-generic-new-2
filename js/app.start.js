@@ -100,7 +100,10 @@ router.on({
 			contentCondition: function () { return (typeof app.data.lesson[params.lessonId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
 			contentFalse: function () { return app.templates.pages.lesson.notFound(params.lessonId); },
-			callback: function () { materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + "#auto", {}) }
+			callback: function () { 
+				helpTour.pageLoad('lesson');
+				materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + "#auto", {}) 
+			}
 		});
 
 		app.routeId = "/lesson/book/";
@@ -129,7 +132,10 @@ router.on({
 			contentCondition: function(){ return (typeof app.data.lesson[params.lessonId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
 			contentFalse: 	  function(){ return app.templates.pages.lesson.notFound( params.lessonId );},
-			callback:  function(){ if(app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } } 
+			callback:  function() {
+				helpTour.pageLoad('lesson'); 
+				if(app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } 
+			} 
 		});
 
 
@@ -163,7 +169,7 @@ router.on({
 			contentTrue: function () { return app.templates.pages.filter.content(params.filterQuery); },
 			contentFalse: function () { return app.templates.pages.filter.notFound(params.filterQuery); },
 			callback: function () {
-				app.setCurrentRouteBottomNavActive(); 
+				app.setCurrentRouteBottomNavActive();
 				$(document).scrollTop(app.dashboardScrollPosition || 0); 
 			}
 		});
@@ -209,7 +215,10 @@ router.on({
 			contentCondition: function(){ return (typeof app.data.course[params.courseId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
 			contentFalse: 	  function(){ return app.templates.pages.course.notFound( params.courseId );},
-			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
+			callback: function () { 
+				helpTour.pageLoad('course');
+				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+			}
 		});
 
 
@@ -226,6 +235,7 @@ router.on({
 			contentTrue: function () { return app.templates.pages.newHome.content(); },
 			callback: function () { 
 				app.setCurrentRouteBottomNavActive();
+				helpTour.pageLoad('home');
 				$(document).scrollTop(app.dashboardScrollPosition || 0); 
 			}
 		});
@@ -344,7 +354,10 @@ router.on({
 			loading: function () { return app.templates.pages.profile.loading(); },
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.profile.content(); },
-			callback: function () { $(document).scrollTop(app.dashboardScrollPosition || 0); }
+			callback: function () { 
+				helpTour.pageLoad('profile');
+				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+			}
 		});
 
 		window.scrollTo(0, 0);
