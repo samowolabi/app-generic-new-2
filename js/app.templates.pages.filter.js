@@ -36,7 +36,7 @@ app.templates.pages.filter = {
                 }
             </section>
 
-            <section class="app_searchCardsResultContentContainer">
+            <section class="app_searchCardsResultContentContainer help-filter-result-container">
                 <div class="row infiniteScrollingContainer">
                     <!-- Infinite Scroll Cards -->  
                 </div>

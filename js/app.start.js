@@ -153,6 +153,7 @@ router.on({
 			contentFalse: function () { return app.templates.pages.search.notFound(params.searchQuery); },
 			callback: function () { 
 				app.setCurrentRouteBottomNavActive();
+				helpTour.pageLoad('search'); 
 				$(document).scrollTop(app.dashboardScrollPosition || 0); 
 			}
 		});
@@ -170,6 +171,7 @@ router.on({
 			contentFalse: function () { return app.templates.pages.filter.notFound(params.filterQuery); },
 			callback: function () {
 				app.setCurrentRouteBottomNavActive();
+				helpTour.pageLoad('filter'); 
 				$(document).scrollTop(app.dashboardScrollPosition || 0); 
 			}
 		});

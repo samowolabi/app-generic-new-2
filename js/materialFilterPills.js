@@ -40,7 +40,7 @@ var materialFilterPills = (function () {
                     </svg>
                 </div>
 
-                <div class="materialFilterPillsDiv">
+                <div class="materialFilterPillsDiv help-filter-pills">
                     ${that.createFilterHtml(settings)}
                 </div>
 

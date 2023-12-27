@@ -38,6 +38,12 @@ var helpTour = (function () {
             if (currentRoute.includes('sideBarMenu')) {
                 currentRoute = 'sideBarMenu';
             }
+            if (currentRoute.includes('search')) {
+                currentRoute = 'search';
+            }
+            if (currentRoute.includes('filter')) {
+                currentRoute = 'filter';
+            }
         }
 
         // Save the current date for the current route
@@ -58,6 +64,12 @@ var helpTour = (function () {
                 config.help.profile();
             case 'sideBarMenu':
                 config.help.sideBarMenu();
+                break;
+            case 'search':
+                config.help.search();
+                break;
+            case 'filter':
+                config.help.filter();
                 break;
             default:
                 // Handle the default case if needed

@@ -1,120 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head> 
+
+<head>
 	<meta name="viewport" content="width=device-width, user-scalable=no" />
 	<meta charset="utf-8" />
 	<title>%appName%</title>
-	
+
 	<!-- App Version %version% -->
-	
+
 	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 	<!-- TODO: Re generate bootstrap custom with navbar -->
 	<!--link rel="stylesheet" href="https://app-generic-new-2.vercel.app/css/bootstrap-custom.min.css" >-->
-	
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:media_bluetooth_on:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=music" rel="">
+	<link
+		href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:media_bluetooth_on:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=music"
+		rel="">
 	<!-- Not loading due to CORS error: <link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/font-awesome.min.css"> -->
-	
-	<!-- Hydra Start CSS Minify -->  
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/bootstrap.min.css" >
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/fonts.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/fontface.css"> 
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/style.css">
-		
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/owl.carousel.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/owl.theme.default.css">
-	
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialButtonIcon.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialContextMenu.css"> 
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDrawer.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialShared.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCard.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialChip.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialButton.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSnackBar.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDialogBox.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialRating.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInputChoice.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInputTextArea.css"> 
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressCircle.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressCircleMini.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDeadlineCircle.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDeadlineCircleMega.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialText.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialLink.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCardProgress.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialLesson.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressBar.css">  
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialBarDashboard.css"> 
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/animate.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSwitch.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialOutline.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialPlaceHolder.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInput.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialForm.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/margin-helpers-compiled.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/app.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/app.templates.pages.dashboard-infinite.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/app.templates.pages.course.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/app.templates.modules.rewardsSection.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/backgrounds.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/sync-audio-text.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialFilterPills.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSearchBar.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/iGuider.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/iGuider-theme-material.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCardScrolling.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialAccordion.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialHeroSection.css">
-		<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/samNewCss.css">
 
-		<script
-			id="fsc-api"
-			src="https://sbl.onfastspring.com/sbl/0.9.5/fastspring-builder.min.js"
-			type="text/javascript"
-			data-storefront="thepianoencyclopedia.onfastspring.com/popup-default-template"
-			data-popup-closed="fastSpringCallbackPopupClosed"
-			data-continuous=true>
+	<!-- Hydra Start CSS Minify -->
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/fontface.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/style.css">
+
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/owl.theme.default.css">
+
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialButtonIcon.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialContextMenu.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDrawer.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialShared.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCard.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialChip.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialButton.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSnackBar.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDialogBox.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialRating.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInputChoice.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInputTextArea.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressCircle.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressCircleMini.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDeadlineCircle.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialDeadlineCircleMega.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialText.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialLink.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCardProgress.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialLesson.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialProgressBar.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialBarDashboard.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSwitch.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialOutline.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialPlaceHolder.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialInput.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialForm.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/margin-helpers-compiled.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/app.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://app-generic-new-2.vercel.app/css/app.templates.pages.dashboard-infinite.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/app.templates.pages.course.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://app-generic-new-2.vercel.app/css/app.templates.modules.rewardsSection.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/backgrounds.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/sync-audio-text.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialFilterPills.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialSearchBar.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/iGuider.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/iGuider-theme-material.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialCardScrolling.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialAccordion.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/materialHeroSection.css">
+	<link rel="stylesheet" type="text/css" href="https://app-generic-new-2.vercel.app/css/samNewCss.css">
+
+	<script id="fsc-api" src="https://sbl.onfastspring.com/sbl/0.9.5/fastspring-builder.min.js" type="text/javascript"
+		data-storefront="thepianoencyclopedia.onfastspring.com/popup-default-template"
+		data-popup-closed="fastSpringCallbackPopupClosed" data-continuous=true>
 		</script>
 
-		<script>
-			function fastSpringCallbackPopupClosed(data) {
-				console.log(data);
-				if(data && data.reference){
-					console.log("Order Success");
+	<script>
+		function fastSpringCallbackPopupClosed(data) {
+			console.log(data);
+			if (data && data.reference) {
+				console.log("Order Success");
 
-					if(materialDialog){
-						var settings = {
-							hideCallback: function(){
-								location.reload();
-							}
-						};
+				if (materialDialog) {
+					var settings = {
+						hideCallback: function () {
+							location.reload();
+						}
+					};
 
-						materialDialog.alert(
+					materialDialog.alert(
 						"Order Succesful!",
-						"Congratulations for investing in your piano education. The app will now refresh shortly after you click on the 'OK' button.", settings 
-						);
-					}
-					
+						"Congratulations for investing in your piano education. The app will now refresh shortly after you click on the 'OK' button.", settings
+					);
 				}
+
 			}
-		</script>
-		
+		}
+	</script>
+
 	<!-- Hydra End CSS Minify -->
 
- 
-	 
+
+
 </head>
+
 <body style="%themeBody%">
- 
+
 	<!-- Navigation Bar -->
-    <div class="materialBarDashboardNavigation materialBarDashboard">
-        <div class="container">
-            <div class="row">
-                <nav class="navbar navbar-expand-lg navbar-inverse materialBarDashboardNavBar materialBarDashboardNavWidth">
-                    <div class="navbar-header">
+	<div class="materialBarDashboardNavigation materialBarDashboard">
+		<div class="container">
+			<div class="row">
+				<nav
+					class="navbar navbar-expand-lg navbar-inverse materialBarDashboardNavBar materialBarDashboardNavWidth">
+					<div class="navbar-header">
 						<!-- 
 						<button type="button" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button="" data-script="app.showAnnoucementDialog(true)" style="float: left; margin: 5px 5px 3px; position: relative; display: block">
 							 <span class="sr-only">Notifications</span>
@@ -123,28 +127,32 @@
 							 </span>
 						</button>
 						-->
-						<button type="button" class="navbar-toggle materialBarDashboardNavbarToggle" data-button data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
-							 <span class="sr-only">Toggle navigation</span> 
-							 <span class="icon-bar"></span> 
-							 <span class="icon-bar"></span> 
-							 <span class="icon-bar"></span> 
+						<button type="button" class="navbar-toggle materialBarDashboardNavbarToggle" data-button
+							data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
 						</button>
-                        <div class="materialBarDashboardStandardImage">
-                            <img src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-text.min.svg">
-                        </div>
-                        <a class="materialBarDashboardSearch"></a>
-                        <a class="navbar-brand materialBarDashboardBackBtn materialBarDashboardNavLink" href="#!/">
-                            <i class="fa fa-angle-left"></i>&nbsp;<span>Go Back</span>
-                        </a>
+						<div class="materialBarDashboardStandardImage">
+							<img
+								src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-text.min.svg">
+						</div>
+						<a class="materialBarDashboardSearch"></a>
+						<a class="navbar-brand materialBarDashboardBackBtn materialBarDashboardNavLink" href="#!/">
+							<i class="fa fa-angle-left"></i>&nbsp;<span>Go Back</span>
+						</a>
 
-                    </div>
-                    <div class="collapse navbar-collapse materialBarDashboardNavbarCollapse" id="example-navbar-collapse">
-                        <div class="materialBarDashboardDiv">
-                            <img class="materialBarDashboardImage" src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-text.min.svg">
-                        </div>
-                        <ul class="nav navbar-nav navbar-right">
-                            <!-- <li><a class="materialBarDashboardNavLink" href="#" data-button>My Classes</a></li> -->
-                            
+					</div>
+					<div class="collapse navbar-collapse materialBarDashboardNavbarCollapse"
+						id="example-navbar-collapse">
+						<div class="materialBarDashboardDiv">
+							<img class="materialBarDashboardImage"
+								src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-text.min.svg">
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<!-- <li><a class="materialBarDashboardNavLink" href="#" data-button>My Classes</a></li> -->
+
 							<!-- 
 							<li>
 								<a class="materialBarDashboardNavLink" href="#" data-button data-button data-script="app.showAnnoucementDialog(true)">
@@ -153,58 +161,88 @@
 							</li>
 							-->
 							<li>
-                                <a class="materialBarDashboardNavLink" href="#" data-button data-button data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> <span class="valueFirstName">YOU</span>
-                                </a>
-                            </li> 
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!--  End Navigation Bar -->
-	
-	 <!--  Start Bottom Navigation Bar -->
-	 <div class="materialBarDashboardNavigation materialBarDashboard" style="bottom: 0; top: initial; box-shadow: 0px -1px 3px 0px #0000008c, 0px -1px 10px 0px #ffde008c; transition: bottom 0.3s ease-out;">
-		<div class="container">
-			<div class="row">
-				<nav class="navbar navbar-expand-lg navbar-inverse bottomNavigationContainer materialBarDashboardNavBar materialBarDashboardNavWidth">
-					<div class="navbar-header" style="display: flex; flex-direction: row; flex-basis: 0; float: none !important">
-						<button title="Home" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-home-bottom-nav-button" data-button="" data-linktarget="home" data-script="router.navigate('/'); setTimeout(function(){$('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top-85},500,'linear');}, 600)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Home</span> 
-							<i class="material-icons">home</i>
-							<span class="iconText">Home</span>
-						</button> 
-
-						<button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-search-bottom-nav-button" data-button="" data-linktarget="search"  data-script="router.navigate('#!/search/_');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Search</span>
-							<i class="material-icons">search</i>
-							<span class="iconText">Search</span>
-						</button> 
-
-						<button title="My Courses" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-my-courses-bottom-nav-button" data-button="" data-linktarget="filter"  data-script="router.navigate('#!/filter/In%20Progress/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">My Courses</span>
-							<i class="material-icons">star</i>
-							<span class="iconText">My Courses</span>
-						</button> 
-						
-						<!-- <button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/profile/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Profile</span><i class="material-icons" style=" color: white;">face</i>
-						<span class="iconText">Profile</span>
-						</button>  -->
-
-						<button title="Messages" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-inbox-bottom-nav-button" data-button="" data-script="app.showAnnoucementDialog(true)" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Unread Messages</span> <span class="material-icons" style="color: white;position: relative;">mail <span class="num animated headShake fast infinite announcementNotificationsCounter" style="display: none; position: absolute;right: -10px;top: -4px;color: #fff;background: red;padding: 2px 5px;font-family: 'Lato', sans-serif;font-size: 13px;border-radius: 18px;font-weight: bold;">1</span></span>
-							<span class="iconText">Inbox</span>
-						</button>
-
-						<button title="Help" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-help-bottom-nav-button" data-button=""  data-script="helpTour.helpButtonClicked()" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">help</span>
-							<i class="material-icons" style=" color: white;">help</i>
-							<span class="iconText">Help</span>
-						</button> 
+								<a class="materialBarDashboardNavLink" href="#" data-button data-button
+									data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}">
+									<i class="fa fa-user" aria-hidden="true"></i> <span
+										class="valueFirstName">YOU</span>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</nav>
 			</div>
 		</div>
 	</div>
-    <!--  End Navigation Bar -->
-	
+	<!--  End Navigation Bar -->
+
+	<!--  Start Bottom Navigation Bar -->
+	<div class="materialBarDashboardNavigation materialBarDashboard"
+		style="bottom: 0; top: initial; box-shadow: 0px -1px 3px 0px #0000008c, 0px -1px 10px 0px #ffde008c; transition: bottom 0.3s ease-out;">
+		<div class="container">
+			<div class="row">
+				<nav
+					class="navbar navbar-expand-lg navbar-inverse bottomNavigationContainer materialBarDashboardNavBar materialBarDashboardNavWidth">
+					<div class="navbar-header"
+						style="display: flex; flex-direction: row; flex-basis: 0; float: none !important">
+						<button title="Home"
+							class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-home-bottom-nav-button"
+							data-button="" data-linktarget="home"
+							data-script="router.navigate('/'); setTimeout(function(){$('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top-85},500,'linear');}, 600)"
+							style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span
+								class="sr-only">Home</span>
+							<i class="material-icons">home</i>
+							<span class="iconText">Home</span>
+						</button>
+
+						<button title="Profile"
+							class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-search-bottom-nav-button"
+							data-button="" data-linktarget="search" data-script="router.navigate('#!/search/_');"
+							style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span
+								class="sr-only">Search</span>
+							<i class="material-icons">search</i>
+							<span class="iconText">Search</span>
+						</button>
+
+						<button title="My Courses"
+							class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-my-courses-bottom-nav-button"
+							data-button="" data-linktarget="filter"
+							data-script="router.navigate('#!/filter/In%20Progress/');"
+							style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span
+								class="sr-only">My Courses</span>
+							<i class="material-icons">star</i>
+							<span class="iconText">My Courses</span>
+						</button>
+
+						<!-- <button title="Profile" class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications" data-button=""  data-script="router.navigate('#!/profile/');" style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span class="sr-only">Profile</span><i class="material-icons" style=" color: white;">face</i>
+						<span class="iconText">Profile</span>
+						</button>  -->
+
+						<button title="Messages"
+							class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-inbox-bottom-nav-button"
+							data-button="" data-script="app.showAnnoucementDialog(true)"
+							style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span
+								class="sr-only">Unread Messages</span> <span class="material-icons"
+								style="color: white;position: relative;">mail <span
+									class="num animated headShake fast infinite announcementNotificationsCounter"
+									style="display: none; position: absolute;right: -10px;top: -4px;color: #fff;background: red;padding: 2px 5px;font-family: 'Lato', sans-serif;font-size: 13px;border-radius: 18px;font-weight: bold;">1</span></span>
+							<span class="iconText">Inbox</span>
+						</button>
+
+						<button title="Help"
+							class="navbar-toggle materialBarDashboardNavbarToggle announcementNotifications help-help-bottom-nav-button"
+							data-button="" data-script="helpTour.helpButtonClicked()"
+							style="flex-grow: 1;margin: 5px 5px 5px 4px;display: block" type="button"><span
+								class="sr-only">help</span>
+							<i class="material-icons" style=" color: white;">help</i>
+							<span class="iconText">Help</span>
+						</button>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!--  End Navigation Bar -->
+
 	<div id="content" style="margin-bottom: 56px">
 		<!-- Placeholder Start -->
 		<div class="container" style="margin-top: 90px;">
@@ -239,10 +277,10 @@
 		</div>
 		<!-- Placeholder End -->
 	</div>
-    
-    <div id="q-app"></div>
-  
-	<script>   
+
+	<div id="q-app"></div>
+
+	<script>
 		// var config = {
 		// 	"appName"	: "Members-Only Lessons Dashboard",
 		// 	"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
@@ -268,24 +306,24 @@
 
 		/* THIS IS THE CONFIGURATION FOR THE ULTIMATE COLLECTION OF PIANO MUSIC */
 		var config = {
-			"appName"	: "The Ultimate Collection of Piano Music",
-			"serverUrl"	: "https://pianoencyclopedia.com/en/app-generic/server/",
-			"root" 		: "https://app-generic-new-2.vercel.app/",
+			"appName": "The Ultimate Collection of Piano Music",
+			"serverUrl": "https://pianoencyclopedia.com/en/app-generic/server/",
+			"root": "https://app-generic-new-2.vercel.app/",
 			"layout": {
 				"searchResults": "col-lg-4 col-md-4 col-sm-6 col-xs-12",
 				"searchResultsMinHeight": "445px",
 				"searchResultsCourseTitleFontSize": "1.9em",
-				"searchResultsSortFx" : function(course){if(course.filters){if(course.filters.level){return course.filters.level;}}}
+				"searchResultsSortFx": function (course) { if (course.filters) { if (course.filters.level) { return course.filters.level; } } }
 			},
 			"text": {
-				"header"					: function(){ return config.appName; },
-				"searchBarPlaceholder"		: "Search for composers or your favorite music",
-				"searchResultsTopLeft"		: function(course){ return ((course.filters && course.filters.era) 		? course.filters.era 					: ""); },
-				"searchResultsBottomLeft"	: function(course){ return ((course.filters && course.filters.duration) ? course.filters.duration + " minutes"  : ""); },
-				"searchResultsLineText1"	: function(course){ return ((course.filters && course.filters.level) 	? course.filters.level 					: ""); },			
-				"searchResultsLineText2"	: function(course){ return ((course.filters && course.filters.composer) ? course.filters.composer 				: ""); }
+				"header": function () { return config.appName; },
+				"searchBarPlaceholder": "Search for composers or your favorite music",
+				"searchResultsTopLeft": function (course) { return ((course.filters && course.filters.era) ? course.filters.era : ""); },
+				"searchResultsBottomLeft": function (course) { return ((course.filters && course.filters.duration) ? course.filters.duration + " minutes" : ""); },
+				"searchResultsLineText1": function (course) { return ((course.filters && course.filters.level) ? course.filters.level : ""); },
+				"searchResultsLineText2": function (course) { return ((course.filters && course.filters.composer) ? course.filters.composer : ""); }
 			},
-			"theme":{
+			"theme": {
 				"background": "linear-gradient(180deg, #fffae4 0%, #fffae4 100%)"
 			},
 			"help": {
@@ -603,116 +641,116 @@
 						debug: true								//Display of messages in the console
 					});
 				},
-				
+
 				"lesson": function () {
 					return iGuider({
-						tourID:'UltimateCollectionLesson',							//This string allows you to save data with a unique name about tour progress. 
-																	//It can be used to save information on the progress of the tour for several users. 
-																	//Or save the progress of each tour separately
-						tourTitle:'The Ultimate Collection of Piano Music',				//Tour title
-						tourSubtitle:'Lesson Page Navigation',
-						startStep:1,								//Step from which the tour begins
-						
-						overlayClickable:true,						//This parameter enables or disables the click event for overlying layer
-						overlayColor:'#000',						//Global color values of the overlay layer.
-						overlayOpacity:0.5,							//Global opacity values of the overlay layer.
-						
-						pagination:true,							//Shows the total number of steps and the current step number
-						registerMissingElements:true,				//Shows an absent element in tour map and find this element in DOM.
-						textDirection:'ltr',						//Global text direction. (ltr, rtl)
-						
-						shape:0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
-						shapeBorderRadius:5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
-						
-						width:320,									//Global width of the message block
-						
-						bgColor:false,								//Global background color of the message block
-						titleColor:false,							//Global title color of the message block
-						
-						modalContentColor:false,					//Global content color of the message block
-						modalTypeColor:false,						//Global modal type color of the message block
-						
-						paginationColor:false,						//Global pagination color of the message block
-						timerColor:false,							//Global timer color of the message block
-						
-						btnColor:false,								//Global buttons color
-						btnHoverColor:false,						//Global buttons hover color
+						tourID: 'UltimateCollectionLesson',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Lesson Page Navigation',
+						startStep: 1,								//Step from which the tour begins
 
-						spacing:10,									//Global indent highlighting around the element
-						baseurl:false,								//The initial portion of the URL that is common to all steps.
-																	//Required if you specify a relative URL in the LOC parameter value.
-						loc:false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
-																	//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
-						timer:15000,								//Global time after which an automatic switching to the next step
-						timerType:'line',							//Global timer shape type: 'line' or 'circle'
-						keyboard:true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
-						keyboardEvent:false,						//This parameter sets the permission to trigger custom events.
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
 
-						intro:{										//Default intro settings
-							enable:false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
-							
-							title:'Welcome to the interactive tour',												//Title of introduction dialog
-							content:'This tour will tell you about the main site functionalities',					//Content of introduction dialog
-							
-							cover:'',								//Path to the cover of intro
-							overlayColor:false,						//For intro, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For intro, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the intro message block
-							
-							bgColor:false,							//Background color of the intro message block
-							titleColor:false,						//Title color of the intro message block
-							
-							modalContentColor:false,				//Content color of the intro message block
-							modalTypeColor:false,					//Modal type color of the intro message block
-							
-							btnColor:false,							//Buttons color of the intro message block
-							btnHoverColor:false						//Buttons Hover color of the intro message block
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
 						},
-						
-						continue:{									//Default the continue message settings
-							enable:true,							//This parameter add the ability to continue the unfinished tour.    
-							
-							title:'Continue the unfinished tour?',											//Title of continue dialog
-							content:'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
-							
-							cover:'',								//Path to the cover of continue message    
-							overlayColor:false,						//For continue message, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For continue message, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the continue message block
-							
-							bgColor:false,							//Background color of the continue message block
-							titleColor:false,						//Title color of the continue message block
-							
-							modalContentColor:false,				//Content color of the continue message block
-							modalTypeColor:false,					//Modal type color of the continue message block
-							
-							btnColor:false,							//Buttons color of the continue message block
-							btnHoverColor:false						//Buttons Hover color of the continue message block
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
 						},
 
 						tourMap: {									//Default Tour Checklist settings
-							enable:true,							//This parameter add the ability view list of steps.
-							position:'right',						//Checklist Position 
-							clickable:true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
-							open:true,								//Specifies to show or hide the Checklist at the start of the tour 
-							
-							bgColor:false,							//Background color of the Checklist
-							titleColor:false,						//Title color of the Checklist
-							
-							btnColor:false,							//Buttons color of the checklist block
-							btnHoverColor:false,					//Buttons hover color of the checklist block
-							
-							itemColor:false,						//Item color of the Checklist
-							itemHoverColor:false,					//Item hover color of the Checklist
-							itemActiveColor:false,					//Item Active color of the Checklist
-							itemActiveBg:false,						//Item Active BG color of the Checklist
-							itemNumColor:false,						//Item Number color of the Checklist
-							
-							checkColor:false,						//Check color of the Checklist
-							checkReadyColor:false					//Check Ready color of the Checklist
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: true,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
 						},
-						
-						steps:[ 
+
+						steps: [
 							{
 								"title": "Course Overview at Your Fingertips!",
 								"content": "This breadcrumb shows your current lesson and the course it belongs to. Click to easily navigate back to the course overview or to switch lessons.",
@@ -768,193 +806,193 @@
 								"overlayColor": "#000055",
 								"shape": 1,
 								"timer": 15000
-							} 
+							}
 						],
-					
+
 						lang: {										//Default language settings
 							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
 							cancelText: '×',						//The text in the cancel tour button
 							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
-							tourMapText:'=',						//The text in the show tour button
+							tourMapText: '=',						//The text in the show tour button
 							tourMapTitle: 'Tour Map',				//Title of Tour map button
-							nextTextDefault:'Next',					//The text in the Next Button
-							prevTextDefault:'Prev',					//The text in the Prev Button
-							endText:'End Tour',						//The text in the End Tour Button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
 
-							contDialogBtnBegin:'Start over',		//Text in the start button of continue dialog 
-							contDialogBtnContinue:'Continue',		//Text in the continue button of continue dialog 
-							
-							introDialogBtnStart:'Start',			//Text in the start button of introduction dialog
-							introDialogBtnCancel:'Cancel',			//Text in the cancel button of introduction dialog
-						
-							modalIntroType:'Tour Intro',			//Type Name of intro dialog
-							modalContinueType:'Unfinished Tour'		//Type Name of continue dialog
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
 						},
-						
-						create: function(){},						//Triggered when the iGuider is created
-						start: function(){},						//Triggered before first showing the step
-						progress: function(data){},					//Triggered together with start any step
-						end: function(){},							//Triggered when the tour ended, or was interrupted
-						abort: function(){},						//Triggered when the tour aborted
-						finish: function(){},						//Triggered when step sequence is over
-						play: function(){},							//Triggered when the timer state switches to "play"
-						pause: function(){},						//Triggered when the timer state switches to "pause"
-						
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
 						modalTemplate:								//Modal window template
-						'<div class="gWidget">'+
-							'<div class="gCover">[modal-cover]</div>'+
-							'<div class="gAction">'+
-								'<span class="gType">[modal-type]</span>'+
-								'<span class="gBtn">[modal-map]</span>'+
-								'<span class="gBtn">[modal-close]</span>'+
-								'<div class="gTimer">[modal-timer]</div>'+
-							'</div>'+
-							'<div class="gScroll">'+
-								'<div class="gHeader">[modal-header]</div>'+
-								'<div class="gContent">[modal-body]</div>'+
-							'</div>'+
-							'<div class="gFooter">'+
-								'<span class="gPage">'+
-									'<span class="gPageVal">[step-value]</span>'+
-									'<span class="gPageTotal">[step-total]</span>'+
-								'</span>'+
-								'<span class="gBtn">[modal-prev]</span>'+
-								'<span class="gBtn">[modal-next]</span>'+
-								'<span class="gBtn">[modal-cancel]</span>'+
-								'<span class="gBtn">[modal-start]</span>'+
-								'<span class="gBtn">[modal-begin-first]</span>'+
-								'<span class="gBtn">[modal-begin-continue]</span>'+
-							'</div>'+
-						'</div>',
-						
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
 						mapTemplate:								//Tour Map template
-						'<div class="g-map-pos">'+
-							'<div class="gMapAction">'+
-								'<span class="gBtn">[map-toggle]</span>'+
-								'<span class="gBtn">[map-hide]</span>'+
-							'</div>'+
-							'<div class="gMapHeader">[map-header]</div>'+
-							'<span class="gPage">'+
-								'<span class="gPageVal">[step-value]</span>'+
-								'<span class="gPageTotal">[step-total]</span>'+
-							'</span>'+
-							'<div class="gMapContent">[map-content]</div>'+
-							'<div class="gMapBufer"></div>'+
-						'</div>',
-						
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
 						debug: true								//Display of messages in the console
 					});
 				},
 
 				"course": function () {
 					return iGuider({
-						tourID:'UltimateCollectionCourse',							//This string allows you to save data with a unique name about tour progress. 
-																	//It can be used to save information on the progress of the tour for several users. 
-																	//Or save the progress of each tour separately
-						tourTitle:'The Ultimate Collection of Piano Music',				//Tour title
-						tourSubtitle:'Course Page Navigation',
-						startStep:1,								//Step from which the tour begins
-						
-						overlayClickable:true,						//This parameter enables or disables the click event for overlying layer
-						overlayColor:'#000',						//Global color values of the overlay layer.
-						overlayOpacity:0.5,							//Global opacity values of the overlay layer.
-						
-						pagination:true,							//Shows the total number of steps and the current step number
-						registerMissingElements:true,				//Shows an absent element in tour map and find this element in DOM.
-						textDirection:'ltr',						//Global text direction. (ltr, rtl)
-						
-						shape:0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
-						shapeBorderRadius:5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
-						
-						width:320,									//Global width of the message block
-						
-						bgColor:false,								//Global background color of the message block
-						titleColor:false,							//Global title color of the message block
-						
-						modalContentColor:false,					//Global content color of the message block
-						modalTypeColor:false,						//Global modal type color of the message block
-						
-						paginationColor:false,						//Global pagination color of the message block
-						timerColor:false,							//Global timer color of the message block
-						
-						btnColor:false,								//Global buttons color
-						btnHoverColor:false,						//Global buttons hover color
+						tourID: 'UltimateCollectionCourse',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Course Page Navigation',
+						startStep: 1,								//Step from which the tour begins
 
-						spacing:10,									//Global indent highlighting around the element
-						baseurl:false,								//The initial portion of the URL that is common to all steps.
-																	//Required if you specify a relative URL in the LOC parameter value.
-						loc:false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
-																	//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
-						timer:15000,								//Global time after which an automatic switching to the next step
-						timerType:'line',							//Global timer shape type: 'line' or 'circle'
-						keyboard:true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
-						keyboardEvent:false,						//This parameter sets the permission to trigger custom events.
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
 
-						intro:{										//Default intro settings
-							enable:false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
-							
-							title:'Welcome to the interactive tour',												//Title of introduction dialog
-							content:'This tour will tell you about the main site functionalities',					//Content of introduction dialog
-							
-							cover:'',								//Path to the cover of intro
-							overlayColor:false,						//For intro, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For intro, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the intro message block
-							
-							bgColor:false,							//Background color of the intro message block
-							titleColor:false,						//Title color of the intro message block
-							
-							modalContentColor:false,				//Content color of the intro message block
-							modalTypeColor:false,					//Modal type color of the intro message block
-							
-							btnColor:false,							//Buttons color of the intro message block
-							btnHoverColor:false						//Buttons Hover color of the intro message block
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
 						},
-						
-						continue:{									//Default the continue message settings
-							enable:true,							//This parameter add the ability to continue the unfinished tour.    
-							
-							title:'Continue the unfinished tour?',											//Title of continue dialog
-							content:'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
-							
-							cover:'',								//Path to the cover of continue message    
-							overlayColor:false,						//For continue message, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For continue message, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the continue message block
-							
-							bgColor:false,							//Background color of the continue message block
-							titleColor:false,						//Title color of the continue message block
-							
-							modalContentColor:false,				//Content color of the continue message block
-							modalTypeColor:false,					//Modal type color of the continue message block
-							
-							btnColor:false,							//Buttons color of the continue message block
-							btnHoverColor:false						//Buttons Hover color of the continue message block
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
 						},
 
 						tourMap: {									//Default Tour Checklist settings
-							enable:true,							//This parameter add the ability view list of steps.
-							position:'right',						//Checklist Position 
-							clickable:true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
-							open:true,								//Specifies to show or hide the Checklist at the start of the tour 
-							
-							bgColor:false,							//Background color of the Checklist
-							titleColor:false,						//Title color of the Checklist
-							
-							btnColor:false,							//Buttons color of the checklist block
-							btnHoverColor:false,					//Buttons hover color of the checklist block
-							
-							itemColor:false,						//Item color of the Checklist
-							itemHoverColor:false,					//Item hover color of the Checklist
-							itemActiveColor:false,					//Item Active color of the Checklist
-							itemActiveBg:false,						//Item Active BG color of the Checklist
-							itemNumColor:false,						//Item Number color of the Checklist
-							
-							checkColor:false,						//Check color of the Checklist
-							checkReadyColor:false					//Check Ready color of the Checklist
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: true,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
 						},
-						
-						steps:[ 
+
+						steps: [
 							{
 								"title": "Course Overview",
 								"content": "This section provides an overview of the course you're viewing. Discover what this course offers and begin your learning journey from here.",
@@ -988,418 +1026,418 @@
 								"timer": 15000
 							}
 						],
-					
+
 						lang: {										//Default language settings
 							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
 							cancelText: '×',						//The text in the cancel tour button
 							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
-							tourMapText:'=',						//The text in the show tour button
+							tourMapText: '=',						//The text in the show tour button
 							tourMapTitle: 'Tour Map',				//Title of Tour map button
-							nextTextDefault:'Next',					//The text in the Next Button
-							prevTextDefault:'Prev',					//The text in the Prev Button
-							endText:'End Tour',						//The text in the End Tour Button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
 
-							contDialogBtnBegin:'Start over',		//Text in the start button of continue dialog 
-							contDialogBtnContinue:'Continue',		//Text in the continue button of continue dialog 
-							
-							introDialogBtnStart:'Start',			//Text in the start button of introduction dialog
-							introDialogBtnCancel:'Cancel',			//Text in the cancel button of introduction dialog
-						
-							modalIntroType:'Tour Intro',			//Type Name of intro dialog
-							modalContinueType:'Unfinished Tour'		//Type Name of continue dialog
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
 						},
-						
-						create: function(){},						//Triggered when the iGuider is created
-						start: function(){},						//Triggered before first showing the step
-						progress: function(data){},					//Triggered together with start any step
-						end: function(){},							//Triggered when the tour ended, or was interrupted
-						abort: function(){},						//Triggered when the tour aborted
-						finish: function(){},						//Triggered when step sequence is over
-						play: function(){},							//Triggered when the timer state switches to "play"
-						pause: function(){},						//Triggered when the timer state switches to "pause"
-						
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
 						modalTemplate:								//Modal window template
-						'<div class="gWidget">'+
-							'<div class="gCover">[modal-cover]</div>'+
-							'<div class="gAction">'+
-								'<span class="gType">[modal-type]</span>'+
-								'<span class="gBtn">[modal-map]</span>'+
-								'<span class="gBtn">[modal-close]</span>'+
-								'<div class="gTimer">[modal-timer]</div>'+
-							'</div>'+
-							'<div class="gScroll">'+
-								'<div class="gHeader">[modal-header]</div>'+
-								'<div class="gContent">[modal-body]</div>'+
-							'</div>'+
-							'<div class="gFooter">'+
-								'<span class="gPage">'+
-									'<span class="gPageVal">[step-value]</span>'+
-									'<span class="gPageTotal">[step-total]</span>'+
-								'</span>'+
-								'<span class="gBtn">[modal-prev]</span>'+
-								'<span class="gBtn">[modal-next]</span>'+
-								'<span class="gBtn">[modal-cancel]</span>'+
-								'<span class="gBtn">[modal-start]</span>'+
-								'<span class="gBtn">[modal-begin-first]</span>'+
-								'<span class="gBtn">[modal-begin-continue]</span>'+
-							'</div>'+
-						'</div>',
-						
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
 						mapTemplate:								//Tour Map template
-						'<div class="g-map-pos">'+
-							'<div class="gMapAction">'+
-								'<span class="gBtn">[map-toggle]</span>'+
-								'<span class="gBtn">[map-hide]</span>'+
-							'</div>'+
-							'<div class="gMapHeader">[map-header]</div>'+
-							'<span class="gPage">'+
-								'<span class="gPageVal">[step-value]</span>'+
-								'<span class="gPageTotal">[step-total]</span>'+
-							'</span>'+
-							'<div class="gMapContent">[map-content]</div>'+
-							'<div class="gMapBufer"></div>'+
-						'</div>',
-						
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
 						debug: true								//Display of messages in the console
 					});
 				},
 
 				"profile": function () {
 					return iGuider({
-						tourID:'UltimateCollectionProfile',							//This string allows you to save data with a unique name about tour progress. 
-																	//It can be used to save information on the progress of the tour for several users. 
-																	//Or save the progress of each tour separately
-						tourTitle:'The Ultimate Collection of Piano Music',				//Tour title
-						tourSubtitle:'Profile Page Navigation',
-						startStep:1,								//Step from which the tour begins
-						
-						overlayClickable:true,						//This parameter enables or disables the click event for overlying layer
-						overlayColor:'#000',						//Global color values of the overlay layer.
-						overlayOpacity:0.5,							//Global opacity values of the overlay layer.
-						
-						pagination:true,							//Shows the total number of steps and the current step number
-						registerMissingElements:true,				//Shows an absent element in tour map and find this element in DOM.
-						textDirection:'ltr',						//Global text direction. (ltr, rtl)
-						
-						shape:0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
-						shapeBorderRadius:5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
-						
-						width:320,									//Global width of the message block
-						
-						bgColor:false,								//Global background color of the message block
-						titleColor:false,							//Global title color of the message block
-						
-						modalContentColor:false,					//Global content color of the message block
-						modalTypeColor:false,						//Global modal type color of the message block
-						
-						paginationColor:false,						//Global pagination color of the message block
-						timerColor:false,							//Global timer color of the message block
-						
-						btnColor:false,								//Global buttons color
-						btnHoverColor:false,						//Global buttons hover color
+						tourID: 'UltimateCollectionProfile',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Profile Page Navigation',
+						startStep: 1,								//Step from which the tour begins
 
-						spacing:10,									//Global indent highlighting around the element
-						baseurl:false,								//The initial portion of the URL that is common to all steps.
-																	//Required if you specify a relative URL in the LOC parameter value.
-						loc:false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
-																	//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
-						timer:15000,								//Global time after which an automatic switching to the next step
-						timerType:'line',							//Global timer shape type: 'line' or 'circle'
-						keyboard:true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
-						keyboardEvent:false,						//This parameter sets the permission to trigger custom events.
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
 
-						intro:{										//Default intro settings
-							enable:false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
-							
-							title:'Welcome to the interactive tour',												//Title of introduction dialog
-							content:'This tour will tell you about the main site functionalities',					//Content of introduction dialog
-							
-							cover:'',								//Path to the cover of intro
-							overlayColor:false,						//For intro, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For intro, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the intro message block
-							
-							bgColor:false,							//Background color of the intro message block
-							titleColor:false,						//Title color of the intro message block
-							
-							modalContentColor:false,				//Content color of the intro message block
-							modalTypeColor:false,					//Modal type color of the intro message block
-							
-							btnColor:false,							//Buttons color of the intro message block
-							btnHoverColor:false						//Buttons Hover color of the intro message block
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
 						},
-						
-						continue:{									//Default the continue message settings
-							enable:true,							//This parameter add the ability to continue the unfinished tour.    
-							
-							title:'Continue the unfinished tour?',											//Title of continue dialog
-							content:'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
-							
-							cover:'',								//Path to the cover of continue message    
-							overlayColor:false,						//For continue message, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For continue message, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the continue message block
-							
-							bgColor:false,							//Background color of the continue message block
-							titleColor:false,						//Title color of the continue message block
-							
-							modalContentColor:false,				//Content color of the continue message block
-							modalTypeColor:false,					//Modal type color of the continue message block
-							
-							btnColor:false,							//Buttons color of the continue message block
-							btnHoverColor:false						//Buttons Hover color of the continue message block
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
 						},
 
 						tourMap: {									//Default Tour Checklist settings
-							enable:true,							//This parameter add the ability view list of steps.
-							position:'right',						//Checklist Position 
-							clickable:true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
-							open:true,								//Specifies to show or hide the Checklist at the start of the tour 
-							
-							bgColor:false,							//Background color of the Checklist
-							titleColor:false,						//Title color of the Checklist
-							
-							btnColor:false,							//Buttons color of the checklist block
-							btnHoverColor:false,					//Buttons hover color of the checklist block
-							
-							itemColor:false,						//Item color of the Checklist
-							itemHoverColor:false,					//Item hover color of the Checklist
-							itemActiveColor:false,					//Item Active color of the Checklist
-							itemActiveBg:false,						//Item Active BG color of the Checklist
-							itemNumColor:false,						//Item Number color of the Checklist
-							
-							checkColor:false,						//Check color of the Checklist
-							checkReadyColor:false					//Check Ready color of the Checklist
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: true,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
 						},
-						
-						steps:[ 
-							
-					{
-						"title": "Update Your Password",
-						"content": "This section displays your account's associated email and name. Use this button to change your password and keep your account secure.",
-						"target": ".help-change-password",
-						"overlayColor": "#000",
-						"shape": 1,
-						"timer": 15000
-					},
-					{
-						"title": "Your Rewards Level",
-						"content": "Reward Points are earned by completing lessons, rating them, and progressing. Accumulating points elevates your Rewards Level, unlocking new premium content at no extra cost.",
-						"target": ".help-rewards-level-profile",
-						"overlayColor": "#000055",
-						"shape": 1,
-						"timer": 15000
-					},
-					{
-						"title": "Set Your Piano Level",
-						"content": "Adjust your piano level here to receive a learning experience customized to your skill level. This ensures the lessons you receive are just right for where you are in your piano journey.",
-						"target": ".help-rewards-piano-level-profile",
-						"overlayColor": "#000",
-						"shape": 1,
-						"timer": 15000
-					},
-					{
-						"title": "Define Your Interests",
-						"content": "Specify your interests, like improvisation, composition, or playing by ear. This customization allows us to tailor the lessons and content to match what excites you most in piano learning.",
-						"target": ".help-rewards-interests-profile",
-						"overlayColor": "#000",
-						"shape": 1,
-						"timer": 15000
-					},
-					{
-						"title": "Choose Your Favorite Genres",
-						"content": "Select your favorite genres, from blues to classical to jazz, and more. This personalization helps us provide lessons and content that align with your musical tastes.",
-						"target": ".help-rewards-favorite-genres-profile",
-						"overlayColor": "#000",
-						"shape": 1,
-						"timer": 15000
-					}
-				],
-					
+
+						steps: [
+
+							{
+								"title": "Update Your Password",
+								"content": "This section displays your account's associated email and name. Use this button to change your password and keep your account secure.",
+								"target": ".help-change-password",
+								"overlayColor": "#000",
+								"shape": 1,
+								"timer": 15000
+							},
+							{
+								"title": "Your Rewards Level",
+								"content": "Reward Points are earned by completing lessons, rating them, and progressing. Accumulating points elevates your Rewards Level, unlocking new premium content at no extra cost.",
+								"target": ".help-rewards-level-profile",
+								"overlayColor": "#000055",
+								"shape": 1,
+								"timer": 15000
+							},
+							{
+								"title": "Set Your Piano Level",
+								"content": "Adjust your piano level here to receive a learning experience customized to your skill level. This ensures the lessons you receive are just right for where you are in your piano journey.",
+								"target": ".help-rewards-piano-level-profile",
+								"overlayColor": "#000",
+								"shape": 1,
+								"timer": 15000
+							},
+							{
+								"title": "Define Your Interests",
+								"content": "Specify your interests, like improvisation, composition, or playing by ear. This customization allows us to tailor the lessons and content to match what excites you most in piano learning.",
+								"target": ".help-rewards-interests-profile",
+								"overlayColor": "#000",
+								"shape": 1,
+								"timer": 15000
+							},
+							{
+								"title": "Choose Your Favorite Genres",
+								"content": "Select your favorite genres, from blues to classical to jazz, and more. This personalization helps us provide lessons and content that align with your musical tastes.",
+								"target": ".help-rewards-favorite-genres-profile",
+								"overlayColor": "#000",
+								"shape": 1,
+								"timer": 15000
+							}
+						],
+
 						lang: {										//Default language settings
 							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
 							cancelText: '×',						//The text in the cancel tour button
 							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
-							tourMapText:'=',						//The text in the show tour button
+							tourMapText: '=',						//The text in the show tour button
 							tourMapTitle: 'Tour Map',				//Title of Tour map button
-							nextTextDefault:'Next',					//The text in the Next Button
-							prevTextDefault:'Prev',					//The text in the Prev Button
-							endText:'End Tour',						//The text in the End Tour Button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
 
-							contDialogBtnBegin:'Start over',		//Text in the start button of continue dialog 
-							contDialogBtnContinue:'Continue',		//Text in the continue button of continue dialog 
-							
-							introDialogBtnStart:'Start',			//Text in the start button of introduction dialog
-							introDialogBtnCancel:'Cancel',			//Text in the cancel button of introduction dialog
-						
-							modalIntroType:'Tour Intro',			//Type Name of intro dialog
-							modalContinueType:'Unfinished Tour'		//Type Name of continue dialog
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
 						},
-						
-						create: function(){},						//Triggered when the iGuider is created
-						start: function(){},						//Triggered before first showing the step
-						progress: function(data){},					//Triggered together with start any step
-						end: function(){},							//Triggered when the tour ended, or was interrupted
-						abort: function(){},						//Triggered when the tour aborted
-						finish: function(){},						//Triggered when step sequence is over
-						play: function(){},							//Triggered when the timer state switches to "play"
-						pause: function(){},						//Triggered when the timer state switches to "pause"
-						
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
 						modalTemplate:								//Modal window template
-						'<div class="gWidget">'+
-							'<div class="gCover">[modal-cover]</div>'+
-							'<div class="gAction">'+
-								'<span class="gType">[modal-type]</span>'+
-								'<span class="gBtn">[modal-map]</span>'+
-								'<span class="gBtn">[modal-close]</span>'+
-								'<div class="gTimer">[modal-timer]</div>'+
-							'</div>'+
-							'<div class="gScroll">'+
-								'<div class="gHeader">[modal-header]</div>'+
-								'<div class="gContent">[modal-body]</div>'+
-							'</div>'+
-							'<div class="gFooter">'+
-								'<span class="gPage">'+
-									'<span class="gPageVal">[step-value]</span>'+
-									'<span class="gPageTotal">[step-total]</span>'+
-								'</span>'+
-								'<span class="gBtn">[modal-prev]</span>'+
-								'<span class="gBtn">[modal-next]</span>'+
-								'<span class="gBtn">[modal-cancel]</span>'+
-								'<span class="gBtn">[modal-start]</span>'+
-								'<span class="gBtn">[modal-begin-first]</span>'+
-								'<span class="gBtn">[modal-begin-continue]</span>'+
-							'</div>'+
-						'</div>',
-						
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
 						mapTemplate:								//Tour Map template
-						'<div class="g-map-pos">'+
-							'<div class="gMapAction">'+
-								'<span class="gBtn">[map-toggle]</span>'+
-								'<span class="gBtn">[map-hide]</span>'+
-							'</div>'+
-							'<div class="gMapHeader">[map-header]</div>'+
-							'<span class="gPage">'+
-								'<span class="gPageVal">[step-value]</span>'+
-								'<span class="gPageTotal">[step-total]</span>'+
-							'</span>'+
-							'<div class="gMapContent">[map-content]</div>'+
-							'<div class="gMapBufer"></div>'+
-						'</div>',
-						
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
 						debug: true								//Display of messages in the console
 					});
 				},
 
 				"sideBarMenu": function () {
 					return iGuider({
-						tourID:'UltimateCollectionSidebar',			//This string allows you to save data with a unique name about tour progress. 
-																	//It can be used to save information on the progress of the tour for several users. 
-																	//Or save the progress of each tour separately
-						tourTitle:'The Ultimate Collection of Piano Music',				//Tour title
-						tourSubtitle:'Sidebar Navigation',
-						startStep:1,								//Step from which the tour begins
-						
-						overlayClickable:true,						//This parameter enables or disables the click event for overlying layer
-						overlayColor:'#000',						//Global color values of the overlay layer.
-						overlayOpacity:0.5,							//Global opacity values of the overlay layer.
-						
-						pagination:true,							//Shows the total number of steps and the current step number
-						registerMissingElements:true,				//Shows an absent element in tour map and find this element in DOM.
-						textDirection:'ltr',						//Global text direction. (ltr, rtl)
-						
-						shape:0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
-						shapeBorderRadius:5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
-						
-						width:320,									//Global width of the message block
-						
-						bgColor:false,								//Global background color of the message block
-						titleColor:false,							//Global title color of the message block
-						
-						modalContentColor:false,					//Global content color of the message block
-						modalTypeColor:false,						//Global modal type color of the message block
-						
-						paginationColor:false,						//Global pagination color of the message block
-						timerColor:false,							//Global timer color of the message block
-						
-						btnColor:false,								//Global buttons color
-						btnHoverColor:false,						//Global buttons hover color
+						tourID: 'UltimateCollectionSidebar',			//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Sidebar Navigation',
+						startStep: 1,								//Step from which the tour begins
 
-						spacing:10,									//Global indent highlighting around the element
-						baseurl:false,								//The initial portion of the URL that is common to all steps.
-																	//Required if you specify a relative URL in the LOC parameter value.
-						loc:false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
-																	//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
-						timer:15000,								//Global time after which an automatic switching to the next step
-						timerType:'line',							//Global timer shape type: 'line' or 'circle'
-						keyboard:true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
-						keyboardEvent:false,						//This parameter sets the permission to trigger custom events.
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
 
-						intro:{										//Default intro settings
-							enable:false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
-							
-							title:'Welcome to the interactive tour',												//Title of introduction dialog
-							content:'This tour will tell you about the main site functionalities',					//Content of introduction dialog
-							
-							cover:'',								//Path to the cover of intro
-							overlayColor:false,						//For intro, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For intro, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the intro message block
-							
-							bgColor:false,							//Background color of the intro message block
-							titleColor:false,						//Title color of the intro message block
-							
-							modalContentColor:false,				//Content color of the intro message block
-							modalTypeColor:false,					//Modal type color of the intro message block
-							
-							btnColor:false,							//Buttons color of the intro message block
-							btnHoverColor:false						//Buttons Hover color of the intro message block
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
 						},
-						
-						continue:{									//Default the continue message settings
-							enable:true,							//This parameter add the ability to continue the unfinished tour.    
-							
-							title:'Continue the unfinished tour?',											//Title of continue dialog
-							content:'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
-							
-							cover:'',								//Path to the cover of continue message    
-							overlayColor:false,						//For continue message, you can specify the different color values of the overlay layer.
-							overlayOpacity:false,					//For continue message, you can specify the different opacity values of the overlay layer.
-							width:false,							//Width of the continue message block
-							
-							bgColor:false,							//Background color of the continue message block
-							titleColor:false,						//Title color of the continue message block
-							
-							modalContentColor:false,				//Content color of the continue message block
-							modalTypeColor:false,					//Modal type color of the continue message block
-							
-							btnColor:false,							//Buttons color of the continue message block
-							btnHoverColor:false						//Buttons Hover color of the continue message block
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
 						},
 
 						tourMap: {									//Default Tour Checklist settings
-							enable:true,							//This parameter add the ability view list of steps.
-							position:'right',						//Checklist Position 
-							clickable:true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
-							open:true,								//Specifies to show or hide the Checklist at the start of the tour 
-							
-							bgColor:false,							//Background color of the Checklist
-							titleColor:false,						//Title color of the Checklist
-							
-							btnColor:false,							//Buttons color of the checklist block
-							btnHoverColor:false,					//Buttons hover color of the checklist block
-							
-							itemColor:false,						//Item color of the Checklist
-							itemHoverColor:false,					//Item hover color of the Checklist
-							itemActiveColor:false,					//Item Active color of the Checklist
-							itemActiveBg:false,						//Item Active BG color of the Checklist
-							itemNumColor:false,						//Item Number color of the Checklist
-							
-							checkColor:false,						//Check color of the Checklist
-							checkReadyColor:false					//Check Ready color of the Checklist
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: true,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
 						},
-						
-						steps:[ 
+
+						steps: [
 							{
 								"title": "Home Dashboard",
 								"content": "Click here to return to the home dashboard. Find your recommended lessons and explore available courses tailored to your interests.",
@@ -1473,78 +1511,505 @@
 								"timer": 15000
 							}
 						],
-					
+
 						lang: {										//Default language settings
 							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
 							cancelText: '×',						//The text in the cancel tour button
 							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
-							tourMapText:'=',						//The text in the show tour button
+							tourMapText: '=',						//The text in the show tour button
 							tourMapTitle: 'Tour Map',				//Title of Tour map button
-							nextTextDefault:'Next',					//The text in the Next Button
-							prevTextDefault:'Prev',					//The text in the Prev Button
-							endText:'End Tour',						//The text in the End Tour Button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
 
-							contDialogBtnBegin:'Start over',		//Text in the start button of continue dialog 
-							contDialogBtnContinue:'Continue',		//Text in the continue button of continue dialog 
-							
-							introDialogBtnStart:'Start',			//Text in the start button of introduction dialog
-							introDialogBtnCancel:'Cancel',			//Text in the cancel button of introduction dialog
-						
-							modalIntroType:'Tour Intro',			//Type Name of intro dialog
-							modalContinueType:'Unfinished Tour'		//Type Name of continue dialog
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
 						},
-						
-						create: function(){},						//Triggered when the iGuider is created
-						start: function(){},						//Triggered before first showing the step
-						progress: function(data){},					//Triggered together with start any step
-						end: function(){},							//Triggered when the tour ended, or was interrupted
-						abort: function(){},						//Triggered when the tour aborted
-						finish: function(){},						//Triggered when step sequence is over
-						play: function(){},							//Triggered when the timer state switches to "play"
-						pause: function(){},						//Triggered when the timer state switches to "pause"
-						
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
 						modalTemplate:								//Modal window template
-						'<div class="gWidget">'+
-							'<div class="gCover">[modal-cover]</div>'+
-							'<div class="gAction">'+
-								'<span class="gType">[modal-type]</span>'+
-								'<span class="gBtn">[modal-map]</span>'+
-								'<span class="gBtn">[modal-close]</span>'+
-								'<div class="gTimer">[modal-timer]</div>'+
-							'</div>'+
-							'<div class="gScroll">'+
-								'<div class="gHeader">[modal-header]</div>'+
-								'<div class="gContent">[modal-body]</div>'+
-							'</div>'+
-							'<div class="gFooter">'+
-								'<span class="gPage">'+
-									'<span class="gPageVal">[step-value]</span>'+
-									'<span class="gPageTotal">[step-total]</span>'+
-								'</span>'+
-								'<span class="gBtn">[modal-prev]</span>'+
-								'<span class="gBtn">[modal-next]</span>'+
-								'<span class="gBtn">[modal-cancel]</span>'+
-								'<span class="gBtn">[modal-start]</span>'+
-								'<span class="gBtn">[modal-begin-first]</span>'+
-								'<span class="gBtn">[modal-begin-continue]</span>'+
-							'</div>'+
-						'</div>',
-						
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
 						mapTemplate:								//Tour Map template
-						'<div class="g-map-pos">'+
-							'<div class="gMapAction">'+
-								'<span class="gBtn">[map-toggle]</span>'+
-								'<span class="gBtn">[map-hide]</span>'+
-							'</div>'+
-							'<div class="gMapHeader">[map-header]</div>'+
-							'<span class="gPage">'+
-								'<span class="gPageVal">[step-value]</span>'+
-								'<span class="gPageTotal">[step-total]</span>'+
-							'</span>'+
-							'<div class="gMapContent">[map-content]</div>'+
-							'<div class="gMapBufer"></div>'+
-						'</div>',
-						
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
+						debug: true								//Display of messages in the console
+					});
+				},
+
+				"search": function () {
+					return iGuider({
+						tourID: 'UltimateCollectionSearch',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Search Navigation',
+						startStep: 1,								//Step from which the tour begins
+
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
+
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
+						},
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
+						},
+
+						tourMap: {									//Default Tour Checklist settings
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: true,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
+						},
+
+						steps: [
+
+							{
+								"title": "Find What You're Looking For",
+								"content": "Type in the name of your favorite composer, piece, or any keyword in this search bar to start your search for the perfect lesson or course.",
+								"target": ".help-search-bar",
+								"overlayColor": "#000",
+								"shape": 0,  // Rectangular for a search bar
+								"timer": 15000
+							},
+							{
+								"title": "Discover Your Results",
+								"content": "Once you've entered your search terms, click this button to display the results. Explore the world of piano lessons and courses that match your query.",
+								"target": ".help-search-button",
+								"overlayColor": "#000",
+								"shape": 1,  // Circular for a button
+								"timer": 15000
+							},
+							{
+								"title": "Refine Your Search",
+								"content": "Use this filter to narrow down your search results. Choose options like piano level, composer, era, year, and more to find exactly what you need.",
+								"target": ".help-filter-dropdown-button",
+								"overlayColor": "#000055",
+								"shape": 1,  // Circular for a button
+								"timer": 15000
+							},
+							{
+								"title": "Explore Search Results",
+								"content": "This area displays your search results. Browse through the courses and lessons listed here, and click on any to start learning or for more details.",
+								"target": ".help-search-result-container",
+								"overlayColor": "#000",
+								"shape": 0,  // Rectangular for a container
+								"timer": 15000
+							}
+
+
+
+						],
+
+						lang: {										//Default language settings
+							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
+							cancelText: '×',						//The text in the cancel tour button
+							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
+							tourMapText: '=',						//The text in the show tour button
+							tourMapTitle: 'Tour Map',				//Title of Tour map button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
+
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
+						},
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
+						modalTemplate:								//Modal window template
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
+						mapTemplate:								//Tour Map template
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
+						debug: true								//Display of messages in the console
+					});
+				},
+
+				"filter": function () {
+					return iGuider({
+						tourID: 'UltimateCollectionPills',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Filter Navigation',
+						startStep: 1,								//Step from which the tour begins
+
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
+
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
+						},
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
+						},
+
+						tourMap: {									//Default Tour Checklist settings
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: true,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
+						},
+
+						steps: [
+
+							{
+								"title": "Filter Courses to Your Liking",
+								"content": "Click on these filter pills to organize and refine the courses displayed. Choose from options like level, composer, or year to find courses that align with your specific interests.",
+								"target": ".help-filter-pills",
+								"overlayColor": "#000",
+								"shape": 1,  // Circular for button-like pills
+								"timer": 15000
+							},
+							{
+								"title": "See Your Filtered Course Selection",
+								"content": "After applying filters, the results will appear here. Explore the array of courses tailored to your chosen criteria, and dive into learning what interests you most.",
+								"target": ".help-filter-result-container",
+								"overlayColor": "#000",
+								"shape": 0,  // Rectangular for a container
+								"timer": 15000
+							}
+
+
+						],
+
+						lang: {										//Default language settings
+							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
+							cancelText: '×',						//The text in the cancel tour button
+							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
+							tourMapText: '=',						//The text in the show tour button
+							tourMapTitle: 'Tour Map',				//Title of Tour map button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
+
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
+						},
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
+						modalTemplate:								//Modal window template
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
+						mapTemplate:								//Tour Map template
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
 						debug: true								//Display of messages in the console
 					});
 				}
@@ -1552,158 +2017,199 @@
 		};
 	</script>
 	<script>
-	 var HydraSystem = {}
-	 HydraSystem.track = function(){} //dummy function
+		var HydraSystem = {}
+		HydraSystem.track = function () { } //dummy function
 	</script>
 	<!-- Hydra Start JS Minify -->
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery-latest.min.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/polyfills.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/ripplet.js@0.1.13.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/hammer.min.js"></script>
-		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/owl.carousel.js"></script>
-		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialShared.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialHistory.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialComponent.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialButton.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialSnackBar.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialDrawer.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialRating.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialDialog.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialInputChoice.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialFilterPills.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialSearchBar.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialCardScrolling.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialAccordion.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialMiniCircleProgress.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialHeroSection.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/polyfills.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/ripplet.js@0.1.13.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/hammer.min.js"></script>
 
-		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/moment.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/moment-timezone.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/owl.carousel.js"></script>
 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.functions.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.js"></script>
-		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.lessonCards.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.lesson.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.newlesson.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.actionCards.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.lessonsOutline.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.newlessonsOutline.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.appHeader.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.oldlesson.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.oldcourse.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.profile.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsSection.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsIndicator.js"></script>
-		<!-- <script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsLevel.js"></script> -->
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialShared.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialHistory.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialComponent.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialButton.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialSnackBar.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialDrawer.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialRating.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialDialog.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialInputChoice.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialFilterPills.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialSearchBar.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialCardScrolling.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialAccordion.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialMiniCircleProgress.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialHeroSection.js"></script>
 
-		<script src="https://player.vimeo.com/api/player.js"></script>
-		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.dialogs.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.dialogs.user-authentication.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.history.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.course.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.lesson.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.newHome.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.search.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.filter.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.lib.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.lib2.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.libNew.js"></script>
-		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/navigo.min.js"></script> 		
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery.countdown.min.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/countdown.js"></script> 
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/trackReadProgress.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery.iGuider.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/iGuider-theme-material.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/helpTour.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/mailcheck.min.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.start.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/sync-audio-text.babel.js"></script>
-		<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialAttentionButton.js"></script>
 
-		<script>
-			document.addEventListener("DOMContentLoaded", function() {
-				
-				// Hide bottom navigation on scroll down, show on scroll up
-				const bottomNavContainer = document.querySelector('.bottomNavigationContainer');
-				let lastScrollTop = 0;
-				let isScrolling = false;
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/moment.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/moment-timezone.js"></script>
 
-				if (!bottomNavContainer) { return; }
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.functions.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.js"></script>
 
-				window.addEventListener('scroll', function() {
-					const st = window.pageYOffset || document.documentElement.scrollTop;
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.lessonCards.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.lesson.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.newlesson.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.actionCards.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.lessonsOutline.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.newlessonsOutline.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.appHeader.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.oldlesson.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.oldcourse.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.profile.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsSection.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsIndicator.js"></script>
+	<!-- <script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.modules.rewardsLevel.js"></script> -->
 
-					if (st > lastScrollTop) {
-						bottomNavContainer.style.bottom = '-60px'; // Scrolling down
-					} else {
-						bottomNavContainer.style.bottom = '0'; // Scrolling up
-					}
+	<script src="https://player.vimeo.com/api/player.js"></script>
 
-					lastScrollTop = st <= 0 ? 0 : st;
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.dialogs.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.dialogs.user-authentication.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.history.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.course.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.lesson.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.newHome.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.search.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.templates.pages.filter.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.lib.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.lib2.js"></script>
+	<script type="text/javascript"
+		src="https://app-generic-new-2.vercel.app/js/app.templates.pages.dashboard-infinite.libNew.js"></script>
 
-					clearTimeout(isScrolling);
-					isScrolling = setTimeout(function() {
-						bottomNavContainer.style.bottom = '0';
-					}, 200); // Adjust the delay as needed
-				});
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/navigo.min.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery.countdown.min.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/countdown.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/trackReadProgress.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/jquery.iGuider.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/iGuider-theme-material.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/helpTour.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/mailcheck.min.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/app.start.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/sync-audio-text.babel.js"></script>
+	<script type="text/javascript" src="https://app-generic-new-2.vercel.app/js/materialAttentionButton.js"></script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+
+			// Hide bottom navigation on scroll down, show on scroll up
+			const bottomNavContainer = document.querySelector('.bottomNavigationContainer');
+			let lastScrollTop = 0;
+			let isScrolling = false;
+
+			if (!bottomNavContainer) { return; }
+
+			window.addEventListener('scroll', function () {
+				const st = window.pageYOffset || document.documentElement.scrollTop;
+
+				if (st > lastScrollTop) {
+					bottomNavContainer.style.bottom = '-60px'; // Scrolling down
+				} else {
+					bottomNavContainer.style.bottom = '0'; // Scrolling up
+				}
+
+				lastScrollTop = st <= 0 ? 0 : st;
+
+				clearTimeout(isScrolling);
+				isScrolling = setTimeout(function () {
+					bottomNavContainer.style.bottom = '0';
+				}, 200); // Adjust the delay as needed
 			});
-		</script>
-		
-	 <!-- Hydra End JS Minify -->	 
+		});
+	</script>
 
- 
- 
-	 
+	<!-- Hydra End JS Minify -->
+
+
+
+
 	<div id="appSidebarMenu" class="materialDrawer materialThemeDark">
 		<div class="materialDrawerHead">
 			<h3>%appName%</h3>
-			<h6 class="valueMembershipType">Your Membership</h6></div>
+			<h6 class="valueMembershipType">Your Membership</h6>
+		</div>
 		<ul>
-			<li data-value="dashboard" class="active help-sidebar-menu-dashboard" data-on-click-callback="router.navigate('#!/');"><i class="material-icons">inbox</i><span>Dashboard</span></li>  
-			<li data-value="profile" class="help-sidebar-menu-profile" data-on-click-callback="router.navigate('#!/profile/');"><i class="material-icons">face</i><span>Profile</span></li>
-			<li data-value="profile" class="help-sidebar-menu-inbox" data-on-click-callback="app.showAnnoucementDialog(true)"><i class="material-icons">mail</i><span>Inbox</span></li>
+			<li data-value="dashboard" class="active help-sidebar-menu-dashboard"
+				data-on-click-callback="router.navigate('#!/');"><i
+					class="material-icons">inbox</i><span>Dashboard</span></li>
+			<li data-value="profile" class="help-sidebar-menu-profile"
+				data-on-click-callback="router.navigate('#!/profile/');"><i
+					class="material-icons">face</i><span>Profile</span></li>
+			<li data-value="profile" class="help-sidebar-menu-inbox"
+				data-on-click-callback="app.showAnnoucementDialog(true)"><i
+					class="material-icons">mail</i><span>Inbox</span></li>
 		</ul>
-	
-		<div class="materialDrawerHead"><h6>Bookmarks</h6></div>
-		<ul> 
-			<li data-value="courses" class="help-sidebar-menu-all-courses" data-on-click-callback="router.navigate('#!/'); "><i class="material-icons">bookmark</i><span>All Courses</span></li>
-			<li data-value="newest" class="help-sidebar-menu-my-courses" data-on-click-callback="router.navigate('#!/filter/In%20Progress/');"><i class="material-icons">bookmark</i><span>My Courses</span></li>
-			<li data-value="newest" class="help-sidebar-menu-my-rewards" data-on-click-callback="router.navigate('#!/rewards/'); "><i class="material-icons">bookmark</i><span>My Rewards</span></li>
-		</ul>
-		 
+
 		<div class="materialDrawerHead">
-			<h6>Go Premium</h6></div>
-		<ul> 
-			<li data-value="premium" class="help-sidebar-menu-upgrade-your-experience" data-button data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i class="material-icons">star</i><span>Upgrade your Experience</span></li> 
+			<h6>Bookmarks</h6>
+		</div>
+		<ul>
+			<li data-value="courses" class="help-sidebar-menu-all-courses"
+				data-on-click-callback="router.navigate('#!/'); "><i class="material-icons">bookmark</i><span>All
+					Courses</span></li>
+			<li data-value="newest" class="help-sidebar-menu-my-courses"
+				data-on-click-callback="router.navigate('#!/filter/In%20Progress/');"><i
+					class="material-icons">bookmark</i><span>My Courses</span></li>
+			<li data-value="newest" class="help-sidebar-menu-my-rewards"
+				data-on-click-callback="router.navigate('#!/rewards/'); "><i class="material-icons">bookmark</i><span>My
+					Rewards</span></li>
 		</ul>
-		<ul> 
-			<li data-value="help" class="" data-button data-href-target="_blank" data-script="helpTour.helpButtonClicked('sideBarMenu')"><i class="material-icons">help</i><span>Help</span></li> 
+
+		<div class="materialDrawerHead">
+			<h6>Go Premium</h6>
+		</div>
+		<ul>
+			<li data-value="premium" class="help-sidebar-menu-upgrade-your-experience" data-button
+				data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/piano-courses/"><i
+					class="material-icons">star</i><span>Upgrade your Experience</span></li>
 		</ul>
-		<ul> 
-			<li data-value="logout" class="help-sidebar-menu-logout" data-on-click-callback="materialDialog.show('dialogLogout', {});"><i class="material-icons">power_settings_new</i><span>Log Out</span></li>
+		<ul>
+			<li data-value="help" class="" data-button data-href-target="_blank"
+				data-script="helpTour.helpButtonClicked('sideBarMenu')"><i
+					class="material-icons">help</i><span>Help</span></li>
+		</ul>
+		<ul>
+			<li data-value="logout" class="help-sidebar-menu-logout"
+				data-on-click-callback="materialDialog.show('dialogLogout', {});"><i
+					class="material-icons">power_settings_new</i><span>Log Out</span></li>
 		</ul>
 	</div>
-	
+
 	<div class="container-fluid hidden-xs hidden-sm">
-		<div class="row">   
+		<div class="row">
 			<div class="col-md-12">
-				<h2 class="materialHeaderBox materialThemeGlassDark materialTextCenter fontFamilyLato materialColorDarkGrey" style="margin-bottom: 0;  color: #c8c8c8;">
-					<a href="https://pianoencyclopedia.com/en/home/" target="_blank"><img src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-for-black-background.min.png"></a>
-				</h2> 
-			</div>	 
+				<h2 class="materialHeaderBox materialThemeGlassDark materialTextCenter fontFamilyLato materialColorDarkGrey"
+					style="margin-bottom: 0;  color: #c8c8c8;">
+					<a href="https://pianoencyclopedia.com/en/home/" target="_blank"><img
+							src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/logo-for-black-background.min.png"></a>
+				</h2>
+			</div>
 		</div>
-	</div>	
+	</div>
 	<!-- Debug for mobile 
-	<script src="//cdn.jsdelivr.net/npm/eruda"></script><script>eruda.init();</script>--> 
+	<script src="//cdn.jsdelivr.net/npm/eruda"></script><script>eruda.init();</script>-->
 
 </body>
+
 </html>
