@@ -49,7 +49,7 @@ var materialSearchBar = (function () {
                     </button>
                 </div>
 
-                <div class="filterFormsContainer">
+                <div class="filterFormsContainer help-search-result-container">
                     <div class="filterFormsDiv">
                         <!-- Created dynamically -->
                     </div>

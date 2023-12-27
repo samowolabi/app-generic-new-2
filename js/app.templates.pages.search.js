@@ -29,7 +29,7 @@ app.templates.pages.search = {
             })}
 
             <input type="hidden" class="addPaginationValue" value="1">
-            <section class="app_searchCardsResultContentContainer help-search-result-container">
+            <section class="app_searchCardsResultContentContainer">
                 <div class="row infiniteScrollingContainer">
                     <!-- Infinite Scroll Cards -->  
                 </div>
