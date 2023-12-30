@@ -586,6 +586,8 @@
     color: #c8c8c8;
     font-weight: 300;
     font-size: 18px;
+    max-width: 85%;
+
 }
 
 .app_heroHeader .app_heroSection  .app_headerButtonContainer {

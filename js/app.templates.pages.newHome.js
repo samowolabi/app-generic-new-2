@@ -45,80 +45,96 @@ app.templates.pages.newHome = {
 		}
 
 		// Lesson Array
-		var lessonArray = [
-			{
-				header: 'Resume Your Lessons',
-				lesson: {
-					ids: app.data.user.recommendations.data.toResume.lessonsIds,
-					type: 'lesson'
+		function lessonArray() {
+			return [
+				{
+					header: 'Resume Your Lessons',
+					lesson: {
+						ids: app.data.user.recommendations.data.toResume.lessonsIds,
+						type: 'lesson'
+					}
+				},
+				{
+					header: 'Resume Your Courses',
+					lesson: {
+						ids: app.data.user.recommendations.data.toResume.coursesIds,
+						type: 'course'
+					},
+				},
+				{
+					header: 'Featured Lessons',
+					lesson: {
+						ids: [],
+						type: 'lesson'
+					}
+				},
+				{
+					header: 'NEW LESSONS',
+					lesson: {
+						ids: app.data.user.recommendations.data.newest.lessonsIds,
+						type: 'lesson'
+					}
+				},
+				{
+					header: 'NEW COURSES',
+					lesson: {
+						ids: app.data.user.recommendations.data.newest.coursesIds,
+						type: 'course'
+					},
+				},
+				{
+					header: 'Lessons about to Expire',
+					lesson: {
+						ids: app.data.user.recommendations.data.expiring.lessonsIds,
+						type: 'lesson'
+					},
+				},
+				{
+					header: 'Courses about to Expire',
+					lesson: {
+						ids: app.data.user.recommendations.data.expiring.coursesIds,
+						type: 'course'
+					},
+				},
+				{
+					header: 'Diversify your learning with these Lessons',
+					lesson: {
+						ids: app.data.user.recommendations.data.toDiversifyType.lessonsIds,
+						type: 'lesson'
+					},
+				},
+				{
+					header: 'Diversify your learning with these Courses',
+					lesson: {
+						ids: app.data.user.recommendations.data.toDiversifyType.coursesIds,
+						type: 'course'
+					},
 				}
-			},
-			{
-				header: 'Resume Your Courses',
-				lesson: {
-					ids: app.data.user.recommendations.data.toResume.coursesIds,
-					type: 'course'
-				},
-			},
-			{
-				header: 'NEW LESSONS',
-				lesson: {
-					ids: app.data.user.recommendations.data.newest.lessonsIds,
-					type: 'lesson'
-				}
-			},
-			{
-				header: 'NEW COURSES',
-				lesson: {
-					ids: app.data.user.recommendations.data.newest.coursesIds,
-					type: 'course'
-				},
-			},
-			{
-				header: 'Lessons about to Expire',
-				lesson: {
-					ids: app.data.user.recommendations.data.expiring.lessonsIds,
-					type: 'lesson'
-				},
-			},
-			{
-				header: 'Courses about to Expire',
-				lesson: {
-					ids: app.data.user.recommendations.data.expiring.coursesIds,
-					type: 'course'
-				},
-			},
-			{
-				header: 'Diversify your learning with these Lessons',
-				lesson: {
-					ids: app.data.user.recommendations.data.toDiversifyType.lessonsIds,
-					type: 'lesson'
-				},
-			},
-			{
-				header: 'Diversify your learning with these Courses',
-				lesson: {
-					ids: app.data.user.recommendations.data.toDiversifyType.coursesIds,
-					type: 'course'
-				},
-			}
-		]
+			]
+		}
 
 		// Lesson Type
-		let typeArray = Object.keys(app.data.user.recommendations.data.types).map((type, index) => {
-			let data = app.data.user.recommendations.data.types[type]
+		function typeArray() {
+			let returnedData = Object.keys(app.data.user.recommendations.data.types).map((type, index) => {
+				let data = app.data.user.recommendations.data.types[type]
 
-			return {
-				header: `Recommended ${data.displayName} for You`,
-				lesson: {
-					ids: data.lessonsIds,
-					type: 'lesson'
-				},
-			}
-		})
+				return {
+					header: `Recommended ${data.displayName} for You`,
+					lesson: {
+						ids: data.lessonsIds,
+						type: 'lesson'
+					},
+				}
+			})
+
+			return returnedData;
+		}
 
 		// Merge both arrays (lessonArray and typeArray)
-		var mergedArrays = [...lessonArray, ...typeArray]
+		var mergedArrays = []
+		if (app.data.user.recommendations.data && Object.keys(app.data.user.recommendations.data).length > 0) {
+			mergedArrays = [...lessonArray(), ...typeArray()]
+		}
 
 		const formatAndValidateData = (data) => {
 			if (!Array.isArray(data)) { return [] }
@@ -163,6 +179,8 @@ app.templates.pages.newHome = {
 
 		// Hero Section Array
 		let heroSectionArrayCourseIds = function () {
+			if (!app.data.user.recommendations.data || Object.keys(app.data.user.recommendations.data).length <= 0) { return [] }
+
 			let courseIds = app.data.user.recommendations.data.thisWeekTopRecommendations.coursesIds
 			if (!courseIds || !Array.isArray(courseIds)) { return [] }
 
@@ -187,6 +205,8 @@ app.templates.pages.newHome = {
 
 		// Hero Section Array Lesson Ids
 		let heroSectionArrayLessonIds = function () {
+			if (!app.data.user.recommendations.data || Object.keys(app.data.user.recommendations.data).length <= 0) { return [] }
+
 			let lessonIds = app.data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds
 			if (!lessonIds || !Array.isArray(lessonIds)) { return [] }
 
@@ -239,14 +259,14 @@ app.templates.pages.newHome = {
 
 				<section class="heroSectionContainer" style="position: relative;">
 					<header class="app_headerContainer" style="position: absolute; top: 10px; width: 100%;">
-						${ app.templates.modules.appHeader.content({ 
-							getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
-						})}
+						${app.templates.modules.appHeader.content({
+			getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
+		})}
 					</header>
 
 					${materialHeroSection.create({
-						data: heroSectionArray
-					})}
+			data: heroSectionArray
+		})}
 				</section>
 
 				<div class="homeContentContainer">
@@ -273,11 +293,10 @@ app.templates.pages.newHome = {
 							<div class="app_ratingsSectionCard rewardPoints">
 								<div class="help-lesson-completed-container">
 									<div class="iconDiv">
-										${
-											materialMiniCircleProgress.create({
-												percentage: (Number(data.user.stats.lessons.complete) * 100) / Number(data.user.stats.lessons.total)
-											})
-										}
+										${materialMiniCircleProgress.create({
+				percentage: (Number(data.user.stats.lessons.complete) * 100) / Number(data.user.stats.lessons.total)
+			})
+			}
 									</div>
 
 									<div class="contentDiv">
@@ -315,12 +334,11 @@ app.templates.pages.newHome = {
 					</section>
 
 					<section class="app_coursesCardsFilterPills">	
-						${
-							materialFilterPills.create({
-								list: filterPillsData,
-								getClickedPillData: (data) => populateCards(data)
-							})
-						}
+						${materialFilterPills.create({
+				list: filterPillsData,
+				getClickedPillData: (data) => populateCards(data)
+			})
+			}
 					</section>
 				
 					<section class="app_coursesCardsSection">
@@ -329,9 +347,9 @@ app.templates.pages.newHome = {
 								<p class="sectionHeader">${item.header}</p>
 
 								${materialCardScrolling.create({
-									data: app.data,
-									list: item.lesson
-								})}
+				data: app.data,
+				list: item.lesson
+			})}
 							</div>
 						`)}
 					</section>

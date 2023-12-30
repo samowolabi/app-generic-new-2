@@ -803,6 +803,7 @@
 								"title": "Move on to the Next Lesson",
 								"content": "Finished with this lesson? Click here to advance to the next one. Keep the momentum going in your piano learning journey!",
 								"target": ".help-next-lesson-button",
+								"event": "click",
 								"overlayColor": "#000055",
 								"shape": 1,
 								"timer": 15000
@@ -2012,6 +2013,336 @@
 
 						debug: true								//Display of messages in the console
 					});
+				},
+
+				"demo_course": function () {
+					return iGuider({
+						tourID: 'UltimateCollectionDemoCourse',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Melody Coin Navigation',
+						startStep: 1,								//Step from which the tour begins
+
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
+
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+
+							title: 'Welcome to the interactive tour',												//Title of introduction dialog
+							content: 'This tour will tell you about the main site functionalities',					//Content of introduction dialog
+
+							cover: '',								//Path to the cover of intro
+							overlayColor: false,						//For intro, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For intro, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the intro message block
+
+							bgColor: false,							//Background color of the intro message block
+							titleColor: false,						//Title color of the intro message block
+
+							modalContentColor: false,				//Content color of the intro message block
+							modalTypeColor: false,					//Modal type color of the intro message block
+
+							btnColor: false,							//Buttons color of the intro message block
+							btnHoverColor: false						//Buttons Hover color of the intro message block
+						},
+
+						continue: {									//Default the continue message settings
+							enable: true,							//This parameter add the ability to continue the unfinished tour.    
+
+							title: 'Continue the unfinished tour?',											//Title of continue dialog
+							content: 'Click "Continue" to start with step on which finished last time.',		//Content of continue dialog
+
+							cover: '',								//Path to the cover of continue message    
+							overlayColor: false,						//For continue message, you can specify the different color values of the overlay layer.
+							overlayOpacity: false,					//For continue message, you can specify the different opacity values of the overlay layer.
+							width: false,							//Width of the continue message block
+
+							bgColor: false,							//Background color of the continue message block
+							titleColor: false,						//Title color of the continue message block
+
+							modalContentColor: false,				//Content color of the continue message block
+							modalTypeColor: false,					//Modal type color of the continue message block
+
+							btnColor: false,							//Buttons color of the continue message block
+							btnHoverColor: false						//Buttons Hover color of the continue message block
+						},
+
+						tourMap: {									//Default Tour Checklist settings
+							enable: true,							//This parameter add the ability view list of steps.
+							position: 'right',						//Checklist Position 
+							clickable: true,							//Specifies the clickability of links in the checklist of steps: true - clickable, false - disabled, or 'ready' - clickable only completed steps and current
+							open: false,								//Specifies to show or hide the Checklist at the start of the tour 
+
+							bgColor: false,							//Background color of the Checklist
+							titleColor: false,						//Title color of the Checklist
+
+							btnColor: false,							//Buttons color of the checklist block
+							btnHoverColor: false,					//Buttons hover color of the checklist block
+
+							itemColor: false,						//Item color of the Checklist
+							itemHoverColor: false,					//Item hover color of the Checklist
+							itemActiveColor: false,					//Item Active color of the Checklist
+							itemActiveBg: false,						//Item Active BG color of the Checklist
+							itemNumColor: false,						//Item Number color of the Checklist
+
+							checkColor: false,						//Check color of the Checklist
+							checkReadyColor: false					//Check Ready color of the Checklist
+						},
+
+						steps: [
+							{
+								"title": "Course Overview",
+								"content": "This section provides an overview of the course you're viewing. Discover what this course offers and begin your learning journey from here.",
+								"target": ".help-course-button-link",
+								"event": "click",
+								"overlayColor": "#000055",
+								"shape": 0,
+								"timer": 15000
+							}
+						],
+
+						lang: {										//Default language settings
+							cancelTitle: 'Cancel Tour',				//The title in the cancel tour button
+							cancelText: '×',						//The text in the cancel tour button
+							hideText: 'Hide Tour Map',				//The text in the hidden tour map button 
+							tourMapText: '=',						//The text in the show tour button
+							tourMapTitle: 'Tour Map',				//Title of Tour map button
+							nextTextDefault: 'Next',					//The text in the Next Button
+							prevTextDefault: 'Prev',					//The text in the Prev Button
+							endText: 'End Tour',						//The text in the End Tour Button
+
+							contDialogBtnBegin: 'Start over',		//Text in the start button of continue dialog 
+							contDialogBtnContinue: 'Continue',		//Text in the continue button of continue dialog 
+
+							introDialogBtnStart: 'Start',			//Text in the start button of introduction dialog
+							introDialogBtnCancel: 'Cancel',			//Text in the cancel button of introduction dialog
+
+							modalIntroType: 'Tour Intro',			//Type Name of intro dialog
+							modalContinueType: 'Unfinished Tour'		//Type Name of continue dialog
+						},
+
+						create: function () { },						//Triggered when the iGuider is created
+						start: function () { },						//Triggered before first showing the step
+						progress: function (data) { },					//Triggered together with start any step
+						end: function () { },							//Triggered when the tour ended, or was interrupted
+						abort: function () { },						//Triggered when the tour aborted
+						finish: function () { },						//Triggered when step sequence is over
+						play: function () { },							//Triggered when the timer state switches to "play"
+						pause: function () { },						//Triggered when the timer state switches to "pause"
+
+						modalTemplate:								//Modal window template
+							'<div class="gWidget">' +
+							'<div class="gCover">[modal-cover]</div>' +
+							'<div class="gAction">' +
+							'<span class="gType">[modal-type]</span>' +
+							'<span class="gBtn">[modal-map]</span>' +
+							'<span class="gBtn">[modal-close]</span>' +
+							'<div class="gTimer">[modal-timer]</div>' +
+							'</div>' +
+							'<div class="gScroll">' +
+							'<div class="gHeader">[modal-header]</div>' +
+							'<div class="gContent">[modal-body]</div>' +
+							'</div>' +
+							'<div class="gFooter">' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<span class="gBtn">[modal-prev]</span>' +
+							'<span class="gBtn">[modal-next]</span>' +
+							'<span class="gBtn">[modal-cancel]</span>' +
+							'<span class="gBtn">[modal-start]</span>' +
+							'<span class="gBtn">[modal-begin-first]</span>' +
+							'<span class="gBtn">[modal-begin-continue]</span>' +
+							'</div>' +
+							'</div>',
+
+						mapTemplate:								//Tour Map template
+							'<div class="g-map-pos">' +
+							'<div class="gMapAction">' +
+							'<span class="gBtn">[map-toggle]</span>' +
+							'<span class="gBtn">[map-hide]</span>' +
+							'</div>' +
+							'<div class="gMapHeader">[map-header]</div>' +
+							'<span class="gPage">' +
+							'<span class="gPageVal">[step-value]</span>' +
+							'<span class="gPageTotal">[step-total]</span>' +
+							'</span>' +
+							'<div class="gMapContent">[map-content]</div>' +
+							'<div class="gMapBufer"></div>' +
+							'</div>',
+
+						debug: true								//Display of messages in the console
+					});
+				},
+
+				"demo_lesson": function () {
+					return iGuider({
+						tourID: 'UltimateCollectionDemoLesson',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Melody Coin Navigation',
+						startStep: 1,								//Step from which the tour begins
+
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
+
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {
+							enable: false
+						},
+
+						steps: [
+							{
+								"title": "Course Overview",
+								"content": "This section provides an overview of the course you're viewing. Discover what this course offers and begin your learning journey from here.",
+								"target": ".help-lesson-unlock-button",
+								"event": "click",
+								"overlayColor": "#000055",
+								"shape": 0,
+								"timer": 15000
+							}
+						],
+
+						debug: true								//Display of messages in the console
+					});
+				},
+
+				"demo_buy_melody": function () {
+					return iGuider({
+						tourID: 'UltimateCollectionDemoBuyMelody',							//This string allows you to save data with a unique name about tour progress. 
+						//It can be used to save information on the progress of the tour for several users. 
+						//Or save the progress of each tour separately
+						tourTitle: 'The Ultimate Collection of Piano Music',				//Tour title
+						tourSubtitle: 'Melody Coin Navigation',
+						startStep: 1,								//Step from which the tour begins
+
+						overlayClickable: true,						//This parameter enables or disables the click event for overlying layer
+						overlayColor: '#000',						//Global color values of the overlay layer.
+						overlayOpacity: 0.5,							//Global opacity values of the overlay layer.
+
+						pagination: true,							//Shows the total number of steps and the current step number
+						registerMissingElements: true,				//Shows an absent element in tour map and find this element in DOM.
+						textDirection: 'ltr',						//Global text direction. (ltr, rtl)
+
+						shape: 0,									//Global shape of highlighting. 0 - rectangle (default), 1 - circle, 2 - rounded rectangle
+						shapeBorderRadius: 5,						//Global corner radius of rounded rectangle shape. Only when "shape" value is "2"
+
+						width: 320,									//Global width of the message block
+
+						bgColor: false,								//Global background color of the message block
+						titleColor: false,							//Global title color of the message block
+
+						modalContentColor: false,					//Global content color of the message block
+						modalTypeColor: false,						//Global modal type color of the message block
+
+						paginationColor: false,						//Global pagination color of the message block
+						timerColor: false,							//Global timer color of the message block
+
+						btnColor: false,								//Global buttons color
+						btnHoverColor: false,						//Global buttons hover color
+
+						spacing: 10,									//Global indent highlighting around the element
+						baseurl: false,								//The initial portion of the URL that is common to all steps.
+						//Required if you specify a relative URL in the LOC parameter value.
+						loc: false,									//Global relative/absolute path to the page for steps for which the LOC parameter is not specified.
+						//If the path is relative, then you must specify the "baseurl" parameter in the group of general parameters.
+						timer: 15000,								//Global time after which an automatic switching to the next step
+						timerType: 'line',							//Global timer shape type: 'line' or 'circle'
+						keyboard: true,								//Tour control by keyboard buttons. Left - the previous step, right - the next step, Esc - close tour.
+						keyboardEvent: false,						//This parameter sets the permission to trigger custom events.
+
+						intro: {										//Default intro settings
+							enable: false,							//If set to true, before the tour you will see the introductory slide, which will offer to see a tour. 
+						},
+
+						steps: [
+							{
+								"title": "Course Overview",
+								"content": "This section provides an overview of the course you're viewing. Discover what this course offers and begin your learning journey from here.",
+								"target": ".help-buy-lesson-with-melody",
+								"event": "click",
+								"overlayColor": "#000055",
+								"shape": 0
+							}
+						],
+
+						debug: true								//Display of messages in the console
+					});
+				},
+
+				"checkIfTourKeyIsInUrl": function () { // Check if module url has tour
+					if (window.location.href.includes('tour')) {
+						return true;
+					} else {
+						return false;
+					}
 				}
 			}
 		};

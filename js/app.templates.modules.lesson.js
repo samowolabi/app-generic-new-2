@@ -122,8 +122,10 @@ app.templates.modules.lesson = {
 				classAdditionals += " materialThemeDark";
 			}
 
+            classAdditionals += " help-lesson-unlock-button";
+
 			if(text){
-				return `${extraHtmlBefore}<a href="#" onclick="dialogUnlockLesson(${lessonData.id}); return false;" class="materialButtonFill ${classAdditionals}" style="${style}"><i class="fa fa-unlock"></i> ${text}</a> ${previewButtonHtml}`;
+				return `${extraHtmlBefore}<button data-propagation="yes" class="materialButtonFill ${classAdditionals}" onclick="dialogUnlockLesson(${lessonData.id}); setTimeout(() => { if(config.help.checkIfTourKeyIsInUrl()){ config.help.demo_buy_melody() } }, 2000); return false;" style="${style}"><i class="fa fa-unlock"></i> ${text}</button> ${previewButtonHtml}`;
 			}
 			else{
 				return ``;

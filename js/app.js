@@ -348,7 +348,7 @@ app.dialogs.questionProgress = function( settings){
 								<p class="materialParagraph materialThemeDark">${settings.subtitle}</p>
 								<div>
                                     <a class="${settings.buttonNo.theme}"  data-value='${settings.buttonNo.value}'  ${settings.buttonNo.additional}  href="${settings.buttonNo.href}">${settings.buttonNo.caption}</a>
-                                    <a class="${settings.buttonYes.theme}" data-value='${settings.buttonYes.value}' ${settings.buttonYes.additional} href="${settings.buttonYes.href}">${settings.buttonYes.caption}</a>
+                                    <a class="${settings.buttonYes.theme} help-buy-lesson-with-melody" data-propagation="yes" data-value='${settings.buttonYes.value}' ${settings.buttonYes.additional} href="${settings.buttonYes.href}">${settings.buttonYes.caption}</a>
 								</div>
 							</div>
 							
@@ -4482,8 +4482,7 @@ app.wallet = function(){
                			}
                		});
 	           }
-
-	      }
+			}
 	      catch (error) {
 	              console.error('Error unlocking course:', error);
 	      }

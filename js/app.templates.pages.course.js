@@ -16,10 +16,23 @@ app.templates.pages.course = {
         var data = app.data;
         var courseData = app.data.course[courseId]
         var courseProgress = app.data.course[courseId].stats.lessons.totalProgress || 0;
-		
-        var buttonCaption = (courseProgress > 0)? ((courseProgress > 85)? "Finish Course": "Resume Course"): "Start Course";
 
-        		/*
+        
+        var buttonCaption = '';
+
+        if (courseProgress > 0) {
+            if (courseProgress > 85) {
+                buttonCaption = 'Watch Again';
+            } else if (courseProgress >= 60 && courseProgress <= 97) {
+                buttonCaption = 'Finish';
+            } else {
+                buttonCaption = 'Resume Course';
+            }
+        } else {
+            buttonCaption = 'Start Course';
+        }
+		
+        /*
 		* @purpose: Get all lessons from this course and check which one was the lesson the user last engaged with
 		* @param int courseId: the course id, in question
 		*/
@@ -172,7 +185,6 @@ app.templates.pages.course = {
             </div>
         `;
 
-
         var html = `
             <main class="app_mainContainer maxWidthContainer marginBottom20">
                 <header class="app_heroHeader help-course-hero-section">
@@ -183,7 +195,7 @@ app.templates.pages.course = {
 
                             <div class="app_headerButtonContainer">
                                 <div>
-                                    <a href="${buttonLink}" class="materialButtonFill materialThemeGoldDark">${buttonCaption}</a>
+                                    <a href="${config.help.checkIfTourKeyIsInUrl() ? `${buttonLink}?tour` : buttonLink}" data-propagation="yes" class="materialButtonFill materialThemeGoldDark help-course-button-link">${buttonCaption}</a>
                                     <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em; display: none;"> <i class="fa fa-bookmark"></i> </a>
                                 </div>
                                 <p>${courseData.stats.lessons.complete} of ${courseData.stats.lessons.total} LESSONS</p>
