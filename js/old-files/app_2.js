@@ -1,4 +1,3 @@
-
 /*
 http.open('GET', request_field, true);
 http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -4552,19 +4551,9 @@ CourseSorter = (function () {
 		var finalSort = { "lessonsIds": {}, "coursesIds": {} };
 
 		//Add filter by progress
-		var inProgress = this.filterInProgressOrderedByLastAccessDate();
-		finalSort["lessonsIds"]["In Progress"] = inProgress.lessonsIds;
-		finalSort["coursesIds"]["In Progress"] = inProgress.coursesIds;
-		
-		//Add filter by expiring
-		var inExpiring = this.filterExpiring();
-		finalSort["lessonsIds"]["Expiring"] = inExpiring.lessonsIds;
-		finalSort["coursesIds"]["Expiring"] = inExpiring.coursesIds;
-		
-		//Add filter by new
-		var inNew = this.filterNew();
-		finalSort["lessonsIds"]["New"] = inNew.lessonsIds;
-		finalSort["coursesIds"]["New"] = inNew.coursesIds;
+		finalSort["coursesIds"]["In Progress"] = this.getCoursesIdsOrderedByProgress();
+		finalSort["lessonsIds"]["In Progress"] = this.getLessonsFromCourses(finalSort["coursesIds"]["In Progress"]);
+
 		 
 		var filters = this.getUniqueFilterNames();
 
@@ -4596,157 +4585,62 @@ CourseSorter = (function () {
 		return orderedLessons;
 	};
 
-	//getCoursesIdsOrderedByExpiringDate 
-    CourseSorter.prototype.filterInProgressOrderedByLastAccessDate = function() {
-		var lessonsWithProgress = [];
-		for (var lessonId in this.data.user.learning) {
-			if (this.data.user.learning.hasOwnProperty(lessonId)) {
-				var lesson = this.data.user.learning[lessonId];
-				if (lesson.engagementProgressRealPercent > 0) {
-					lessonsWithProgress.push({
-						id: lessonId,
-						lastAccessDate: new Date(lesson.accessLastDate)
-					});
-				}
-			}
-		}
-
-		// Sorting lessons by last access date
-		lessonsWithProgress.sort(function(a, b) {
-			return b.lastAccessDate - a.lastAccessDate;
-		});
-
-		var lessonsIds = lessonsWithProgress.map(function(lesson) { return String(lesson.id); });
-		var coursesIds = [];
-
-		lessonsIds.forEach(function(lessonId) {
-			if (!this.data.lesson[lessonId]) {
-				console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
-				return;
-			}
-
-			var parentChapterId = this.data.lesson[lessonId].parentChapter;
-			if (!this.data.chapter[parentChapterId]) {
-				console.warn("Chapter data for ID " + parentChapterId + " not found in this.data.chapter");
-				return;
-			}
-
-			var parentCourseId = this.data.chapter[parentChapterId].parentCourse;
-			if (coursesIds.indexOf(parentCourseId) === -1) {
-				coursesIds.push(String(parentCourseId));
-			}
-		}.bind(this)); // Using .bind(this) to maintain the context inside the forEach loop
-
-		return {
-			lessonsIds: lessonsIds,
-			coursesIds: coursesIds
-		};
-	};
 	
-	CourseSorter.prototype.filterExpiring = function() {
-		var currentDateTime = new Date();
-		var lessons = [];
-		var coursesIds = [];
+	CourseSorter.prototype.getCoursesIdsOrderedByProgress = function () {
+        if (!this.data || !this.data.user || !this.data.user.learning || !this.data.lesson || !this.data.chapter) {
+            throw new Error("Invalid data structure. Necessary data is missing.");
+        }
 
-		for (var lessonId in this.data.user.learning) {
-			if (this.data.user.learning.hasOwnProperty(lessonId)) {
-				var lesson = this.data.user.learning[lessonId];
-				// Exclude lessons where deadlineDateString is undefined
-				if (typeof lesson.deadlineDateString !== 'undefined' && lesson.deadlineDateString) {
-					var deadline = new Date(lesson.deadlineDateString);
-					lessons.push({
-						id: lessonId,
-						deadline: deadline,
-						isExpired: deadline < currentDateTime
-					});
-				}
-			}
-		}
+        var learningData = this.data.user.learning;
+        var lessons = Object.keys(learningData);
 
-		// Sorting lessons: upcoming deadlines first, then past deadlines
-		lessons.sort(function(a, b) {
-			if (a.isExpired === b.isExpired) {
-				return a.deadline - b.deadline; // If both are expired or upcoming, sort by closest deadline
-			}
-			return a.isExpired - b.isExpired; // Upcoming deadlines first
-		});
+        var courseProgress = {};
 
-		var lessonsIds = lessons.map(function(lesson) { return String(lesson.id); });
+        lessons.forEach(function (lessonId) {
+            var lessonData = learningData[lessonId];
+            var engagementProgress = lessonData.engagementProgressMaxPercent || 0;
 
-		// Retrieve corresponding course IDs
-		lessonsIds.forEach(function(lessonId) {
-			if (!this.data.lesson[lessonId]) {
-				console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
-				return;
-			}
+            if (engagementProgress === 0) return;
 
-			var parentChapterId = this.data.lesson[lessonId].parentChapter;
-			if (!this.data.chapter[parentChapterId]) {
-				console.warn("Chapter data for ID " + parentChapterId + " not found in this.data.chapter");
-				return;
-			}
+            if (!this.data.lesson[lessonId]) {
+                console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
+                return;
+            }
 
-			var parentCourseId = this.data.chapter[parentChapterId].parentCourse;
-			if (coursesIds.indexOf(parentCourseId) === -1) {
-				coursesIds.push(String(parentCourseId));
-			}
-		}.bind(this)); // Using .bind(this) to maintain the context inside the forEach loop
+            var parentChapterId = this.data.lesson[lessonId].parentChapter;
 
-		return {
-			lessonsIds: lessonsIds,
-			coursesIds: coursesIds
-		};
-	};
+            if (!this.data.chapter[parentChapterId]) {
+                console.warn("Chapter data for ID " + parentChapterId + " not found in this.data.chapter");
+                return;
+            }
+
+            var parentCourseId = this.data.chapter[parentChapterId].parentCourse;
+
+            if (!courseProgress[parentCourseId] || courseProgress[parentCourseId] < engagementProgress) {
+                courseProgress[parentCourseId] = engagementProgress;
+            }
+        }.bind(this));
+
+        var sortable = [];
+        for (var courseId in courseProgress) {
+            sortable.push([courseId, courseProgress[courseId]]);
+        }
+
+        sortable.sort(function (a, b) {
+            return b[1] - a[1];
+        });
+
+        return sortable.filter(function (item) {
+            return item[1] > 0;
+        }).map(function (item) {
+            return item[0];
+        });
+    }; 
 	
-	CourseSorter.prototype.filterNew = function() {
-		var lessons = [];
-
-		for (var lessonId in this.data.user.learning) {
-			if (this.data.user.learning.hasOwnProperty(lessonId)) {
-				var lesson = this.data.user.learning[lessonId];
-				var availableDate = lesson.availableDateString ? new Date(lesson.availableDateString) : null;
-				lessons.push({
-					id: lessonId,
-					availableDate: availableDate
-				});
-			}
-		}
-
-		// Sorting lessons: newest first, undefined dates last
-		lessons.sort(function(a, b) {
-			if (!a.availableDate && !b.availableDate) return 0; // Both dates are undefined
-			if (!a.availableDate) return 1; // A is undefined, so B comes first
-			if (!b.availableDate) return -1; // B is undefined, so A comes first
-			return b.availableDate - a.availableDate; // Sort by date
-		});
-
-		var lessonsIds = lessons.map(function(lesson) { return String(lesson.id); });
-		var coursesIds = [];
-
-		lessonsIds.forEach(function(lessonId) {
-			if (!this.data.lesson[lessonId]) {
-				console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
-				return;
-			}
-
-			var parentChapterId = this.data.lesson[lessonId].parentChapter;
-			if (!this.data.chapter[parentChapterId]) {
-				console.warn("Chapter data for ID " + parentChapterId + " not found in this.data.chapter");
-				return;
-			}
-
-			var parentCourseId = this.data.chapter[parentChapterId].parentCourse;
-			if (coursesIds.indexOf(parentCourseId) === -1) {
-				coursesIds.push(String(parentCourseId));
-			}
-		}.bind(this));
-
-		return {
-			lessonsIds: lessonsIds,
-			coursesIds: coursesIds
-		};
-	};
 	 
+
+ 
+
 	return CourseSorter;
 })();
 
