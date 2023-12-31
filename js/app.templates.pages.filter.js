@@ -58,6 +58,7 @@ app.templates.pages.filter = {
                 </div>
             </section>
 
+            <input type="hidden" class="addPaginationValue" value="1">
             <section class="app_searchCardsResultContentContainer help-filter-result-container">
                 <div class="row infiniteScrollingContainer">
                     <!-- Infinite Scroll Cards -->  

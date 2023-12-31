@@ -89,7 +89,6 @@ router.on({
 		});
 
 		app.routeId = "/lesson/";
-		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -121,12 +120,12 @@ router.on({
 			callback:  function() {
 				helpTour.pageLoad('lesson'); 
 				if(app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } 
+				window.scrollTo(0, 0);
 			} 
 		});
 
 
 		app.routeId = "/lesson/";
-		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -140,12 +139,11 @@ router.on({
 			callback: function () { 
 				app.setCurrentRouteBottomNavActive();
 				helpTour.pageLoad('search'); 
-				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+				window.scrollTo(0, 0);
 			}
 		});
 
 		app.routeId = "/search/";
-		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -159,12 +157,11 @@ router.on({
 			callback: function () {
 				app.setCurrentRouteBottomNavActive();
 				helpTour.pageLoad('filter'); 
-				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+				window.scrollTo(0, 0);
 			}
 		});
 
 		app.routeId = "/search/";
-		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
@@ -207,13 +204,12 @@ router.on({
 			contentFalse: 	  function(){ return app.templates.pages.course.notFound( params.courseId );},
 			callback: function () { 
 				helpTour.pageLoad('course');
-				$(document).scrollTop(app.dashboardScrollPosition || 0); 
+				window.scrollTo(0, 0);
 			}
 		});
 
 
 		app.routeId = "/course/";
-		window.scrollTo(0, 0);
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
 
