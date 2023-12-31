@@ -119,7 +119,6 @@ app.templates.pages.history = {
         html += `
                 <script>
                     console.log("RUNNING");
-                    dashboardInfiniteScrolling.load();  
                 </script>
 			`;
         return html;

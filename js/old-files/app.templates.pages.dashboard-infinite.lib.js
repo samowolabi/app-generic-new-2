@@ -1,4 +1,4 @@
-var dashboardInfiniteScrollingNew = function () {
+var dashboardInfiniteScrolling = function () {
 	var that = [];
 
 	that.vars = [];
@@ -24,8 +24,14 @@ var dashboardInfiniteScrollingNew = function () {
 		}
 	}
 	that.callbacks.filterSwitch = function () {
-		app.resetFilterInputs();
+		
+		$('.filterDropdown select.level').val('');
+		$('.filterDropdown select.duration').val('');
+		$('.filterDropdown select.era').val('');
+		$('.filterDropdown select.composer').val('');
+		$('.filterDropdown select.workType').val('');
 
+		$('.filterDropdownToggle').toggle();
 		if (that.fx.scrollHeightVariableAndClearHTML()) {
 			that.fx.loadInfiniteCards();
 		}
@@ -47,6 +53,7 @@ var dashboardInfiniteScrollingNew = function () {
 			that.vars.currentscrollHeight = scrollHeight;
 		}
 		//console.log("Infinite Scrolling C", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "(scrollHeight - 100)", (scrollHeight - 100), "scrollPos", scrollPos,  "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
+
 	}
 
 
@@ -97,6 +104,10 @@ var dashboardInfiniteScrollingNew = function () {
 			default:
 				var buttonAction = "Start";
 		}
+
+
+
+
 
 		var icon;
 		switch (course.type) {
@@ -163,11 +174,11 @@ var dashboardInfiniteScrollingNew = function () {
 				var themeOverlay = "materialOverlayShallowBlack";
 				var themeButton = "materialButtonText materialThemeDarkGrey";
 				var actionHtml = `<span>
-									<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
+									<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
 								  </span>`;
-				var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
-									<span data-incomplete>EXPIRED</span>
-									<span data-complete>EXPIRED</span>`;
+				var progressChipHtml = `<span data-new><i>LOCKED</i></span>
+									<span data-incomplete>LOCKED</span>
+									<span data-complete>LOCKED</span>`;
 				var icon = "fa-lock";
 
 				break;
@@ -257,17 +268,20 @@ var dashboardInfiniteScrollingNew = function () {
 		return html;
 	}
 
-
-
 	that.fx = []
-	
 	that.fx.loadInfiniteCards = function () {
 
 		// Load Infinite cards
 		var noOfRecordsPerPage = 9;
 		var paginationValue = $('.addPaginationValue').val();
-		var searchValue = $("input.searchBarInput").val();
+		var searchValue = $(".infiniteScrollingCardsSearchBar input").val();
 		searchValue = searchValue ? searchValue.toLowerCase() : "";
+
+		var level = $('.filterDropdown select.level').val();
+		var duration = $('.filterDropdown select.duration').val();
+		var era = $('.filterDropdown select.era').val();
+		var composer = $('.filterDropdown select.composer').val();
+		var workType = $('.filterDropdown select.workType').val();
 
 		//Restore last used search and filters
 		//app.restoreLastSearch();	
@@ -276,21 +290,10 @@ var dashboardInfiniteScrollingNew = function () {
 		var isFiltersEmpty = (Object.keys(filters).length === 0);
 
 		if ((searchValue === '' || searchValue === null) && (isFiltersEmpty)) {
-			$('.heroSectionContainer').show();
-			$('.app_coursesCardsSection').show();
-			$('.app_ratingsSection').show();
-			$('.app_actionCardsContainer').show();
-			$('.app_coursesCardsFilterPills').show();
-			$('.app_searchCardsResultContentContainer .infiniteScrollingContainer').hide();
-			app.setActivePills('defaultChecked');
+			$('.recommendedDiv').show();
 		}
 		else {
-			$('.heroSectionContainer').hide();
-			$('.app_coursesCardsSection').hide();
-			$('.app_ratingsSection').hide();
-			$('.app_actionCardsContainer').hide();
-			$('.app_coursesCardsFilterPills').hide();
-			$('.app_searchCardsResultContentContainer .infiniteScrollingContainer').show();
+			$('.recommendedDiv').hide();
 		}
 
 		// start
@@ -303,12 +306,11 @@ var dashboardInfiniteScrollingNew = function () {
 		var html = "";
 
 
-		matchedCourses.forEach(function (courseId, index) {
-			// console.error("courseId", courseId);
-			var course = app.data.course[courseId];
-			html += that.createCard(courseId, course, columnWidthClass);
+		matchedCourses.forEach(function (courseId, index) { 
+			var course = app.data.course[courseId]; 
+			html += that.createCard(courseId, course, columnWidthClass); 
 		});
-
+		
 
 		$('.cardLoadingPlaceholder').hide();
 		if (matchedCourses.length == 0) {
@@ -345,9 +347,9 @@ var dashboardInfiniteScrollingNew = function () {
 	exposed.load = function () {
 		if (!exposed.loaded) {
 			exposed.loaded = true;
-			// that.fx.loadInfiniteCards();
+			that.fx.loadInfiniteCards();
 
-			document.querySelector('.materialSearchBar').classList.remove('active')
+			$('.filterDropdownToggle').hide();
 
 			// On Scroll
 			that.vars.currentscrollHeight = 0;
@@ -355,59 +357,22 @@ var dashboardInfiniteScrollingNew = function () {
 			that.vars.scrollDiv = true;
 
 			console.log("TURN ON SCROLL CALLBACK");
-			// $(document).on("scroll", window, that.callbacks.onScroll);
-			
-			// On Search when enter is pressed, search the search bar, hide clear button if search bar is empty
-			$('.materialSearchBar input').on("keyup", (event) => {
-				if (event.target.value === "") {
-					that.callbacks.searchBtn(event);
-					$('.materialSearchBar svg.clearBtn').hide();
-				} else {
-					if (event.key === 'Enter') {
-						that.callbacks.searchBtn(event);
-						
-						app.toggleMaterialSearchbar(event, 'close');
-					}
-					$('.materialSearchBar svg.clearBtn').show();
-				}
-			});
+			$(document).on("scroll", window, that.callbacks.onScroll);
 
-			// On Clear when clear button is clicked, clear the search bar
-			$('.materialSearchBar .clearBtn').on("click", (event) => {
-				$('.materialSearchBar input').val("");
-				that.callbacks.searchBtn(event);
-				$('.materialSearchBar svg.clearBtn').hide();
-			});
-
-			// On Search when search button is clicked, search the search bar
-			$('.materialSearchBar .searchBtn').on("click", function(event) {
-				console.log("CLICKED SEARCH BUTTON");
-				that.callbacks.searchBtn(event);
-
-				app.toggleMaterialSearchbar(event, 'close');
-			});
-
-			// On Search
-			$('.infiniteScrollingCardsSearchBar input').on("change", that.callbacks.infiniteScrollingCardsSearchBar);
-			
-			// When filter forms are changed, filter the cards
-			$('.filterFormsContainer select').on("change", that.callbacks.filterDropdown);
-
-			// When clear filter button is clicked, clear the filter
-			$('.filterBottomButtonDiv button.clearFilter').on("click", (event) => {
-				app.resetFilterInputs();
-				that.callbacks.filterSwitch(event);
-			});
+			$('.filterSwitch').on("click", that.callbacks.filterSwitch);
+			$('.searchBtn').on("click", that.callbacks.searchBtn);
+			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
+			$('.filterDropdown select').on("change", that.callbacks.filterDropdown);
 		}
 	};
 
 	exposed.callbacks = that.callbacks;
-	// exposed.createCard = that.createCard;
 	exposed.unload = function () {
 		if (exposed.loaded) {
-			// $(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
+			$(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
 			$(document).off("click", '.searchBtn', that.callbacks.searchBtn);
-			$(document).off("change", '.filterFormsContainer select', that.callbacks.filterDropdown);
+			$(document).off("change", '.filterDropdown select', that.callbacks.filterDropdown);
+			$(document).off("click", '.filterSwitch', that.callbacks.filterSwitch);
 
 			console.log("TURN OFF SCROLL CALLBACK");
 			$(document).off("scroll", window, that.callbacks.onScroll);

@@ -6,10 +6,19 @@ var materialFilterPills = (function () {
 
         // Get Config
         var defaultValue = settings.hasOwnProperty("defaultValue") ? (settings.defaultValue != '_' ? settings.defaultValue : "") : "";
+
+        var activeSortFilterKey = "";
+        if (settings.hasOwnProperty("activeSortFilterKey")) {
+            activeSortFilterKey = settings.activeSortFilterKey === 'courses' ? 'coursesIds' : 'lessonsIds';
+        } else {
+            activeSortFilterKey = 'coursesIds';
+        }
+
         var list = settings.hasOwnProperty("list") ? settings.list : [];
         var getClickedPillData = settings.hasOwnProperty("getClickedPillData") ? settings.getClickedPillData : function () { return null; };
 
         that.defaultValue = defaultValue;
+        that.activeSortFilterKey = activeSortFilterKey;
         that.list = list;
         that.getClickedPillData = getClickedPillData;
 
@@ -18,6 +27,7 @@ var materialFilterPills = (function () {
             var html = '';
 
             that.list.forEach(function (item) {
+
                 html += `
                     <div class="materialChip materialThemeDark" data-value="${item.value}" data-active="${item.active ? 'defaultChecked' : ''}">
                         <div class="materialChipChoice materialThemeDark">
@@ -65,7 +75,7 @@ var materialFilterPills = (function () {
                 }
 
                 let url = `${window.location.origin}${window.location.pathname}`
-                url += `#!/filter/${filterQuery}`;
+                url += `#!/filter/${filterQuery}/?type=${that.activeSortFilterKey === 'coursesIds' ? 'courses' : 'lessons'}`;
 
                 window.history.pushState({}, '', url);
             }
@@ -74,28 +84,41 @@ var materialFilterPills = (function () {
             // Filter App Data by Key of the filter pills clicked and return the mapped course cards
             function filterAppDataByKey(key) {
                 if (!key) { return null; }
-                
-                const keyData = app.data.explore[key]
+
+                const keyData = app.data.explore[that.activeSortFilterKey][key];
 
                 if (!keyData) { return null; }
 
-                const mappedCourseCard = keyData.map(function (item) {
-                    var course = app.data.course[item];
-                    if (!course) { return null; }
-                    return { courseId: item, course: course }
-                })
+                let mappedCard = [];
+
+                if (that.activeSortFilterKey === 'coursesIds') {
+                    mappedCard = keyData.map(function (item) {
+                        var course = app.data.course[item];
+                        if (!course) { return null; }
+                        return { id: item, data: course }
+                    })
+                } else if (that.activeSortFilterKey === 'lessonsIds') {
+                    mappedCard = keyData.map(function (item) {
+                        var lesson = app.data.lesson[item];
+                        if (!lesson) { return null; }
+                        return { id: item, data: lesson }
+                    })
+                }
 
                 // Remove null values from the array
-                const mappedCourseCardFilter = mappedCourseCard.filter(function (item) {
+                const mappedCardFilter = mappedCard.filter(function (item) {
                     return item !== null;
                 })
 
-                return mappedCourseCardFilter;
+                // Set the active sort filter key
+                that.defaultValue = key;
+
+                return mappedCardFilter;
             }
 
 
             /* Set Active Pills */
-            function setActivePills(value) {
+            that.setActivePills = function (value) {
                 const activePills = document.querySelectorAll(`.materialFilterPillsDiv .materialChip[data-value="${value}"]`);
                 if (!activePills.length) {
                     return;
@@ -112,7 +135,7 @@ var materialFilterPills = (function () {
 
                     const mappedCourseData = filterAppDataByKey(value);
                     if (!mappedCourseData) { return; }
-                    that.getClickedPillData(mappedCourseData)
+                    that.getClickedPillData(mappedCourseData, that.activeSortFilterKey)
                 });
             }
 
@@ -123,7 +146,7 @@ var materialFilterPills = (function () {
                 const scrollAmount = 500;
 
                 // Hide Left Carousel at first
-                parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'none';
+                parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.visibility = 'hidden';
 
                 // Left Scrolling
                 parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').addEventListener('click', function (event) {
@@ -141,22 +164,22 @@ var materialFilterPills = (function () {
                         pillsScrollingDiv.scrollLeft = 0;
                     } else {
                         // Show Left Carousel
-                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'flex';
+                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.visibility = 'visible';
                     }
                 });
 
                 // show Left Carousel if there is scroll
                 pillsScrollingDiv.addEventListener('scroll', function (event) {
                     if (pillsScrollingDiv.scrollLeft > 0) {
-                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'flex';
+                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.visibility = 'visible';
                     } else {
-                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.display = 'none';
+                        parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.visibility = 'hidden';
                     }
                 });
 
                 // Hide Right Carousel if there is no scroll
                 if (pillsScrollingDiv.scrollWidth <= pillsScrollingDiv.clientWidth) {
-                    parentDiv.querySelector('.materialFilterPillsContainer .overlay.rightScroll').style.display = 'none';
+                    parentDiv.querySelector('.materialFilterPillsContainer .overlay.rightScroll').style.visibility = 'hidden';
                 }
 
                 // Set Toggle Pills Active
@@ -179,14 +202,14 @@ var materialFilterPills = (function () {
 
                             const mappedCourseData = filterAppDataByKey(pill.dataset.value);
                             if (!mappedCourseData) { return; }
-                            that.getClickedPillData(mappedCourseData)
+                            that.getClickedPillData(mappedCourseData, that.activeSortFilterKey)
                         }
                     })
                 })
             });
 
             // Get active pills set in data value and check the child input type checkbox programmatically
-            setActivePills(that.defaultValue);
+            that.setActivePills(that.defaultValue);
         } catch (error) {
             console.log(error);
         }

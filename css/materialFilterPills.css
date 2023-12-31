@@ -1,12 +1,13 @@
 .materialFilterPillsContainer {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .materialFilterPillsContainer .overlay {
-    width: 5rem;
+    width: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +27,6 @@
 
 .materialFilterPillsDiv {
     display: flex;
-    justify-content: center;
     gap: 0.65rem;
     overflow-x: auto;
     overflow-y: hidden;
@@ -35,7 +35,6 @@
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    width: 100%;
 }
 
 .materialFilterPillsDiv .materialChipChoice {
@@ -79,4 +78,22 @@
 
 .materialFilterPillsDiv .materialChipInput:checked ~ .materialChipInputText {
     color: #000000;
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 768px) {
+    .materialFilterContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 1.25rem;
+    }
+
+    .materialFilterPillsContainer {
+        width: 100%;
+    }
+
+    .materialFilterContainer .materialInputWrap {
+        width: 150px;
+    }
 }

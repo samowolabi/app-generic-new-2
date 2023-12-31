@@ -226,7 +226,6 @@ app.templates.pages.course = {
         html += `
                 <script>
                     console.log("RUNNING");
-                    // dashboardInfiniteScrolling.load();
                 </script>
 			`;
         return html;

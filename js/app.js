@@ -16,188 +16,188 @@ http.send();
 *  t.is(replaced, 'x d x dddd x dd x dddd x ddd x')
 */
 var replaceOnce = function replaceOnce(str, find, replace, flags) {
-  var gFlag = false
+	var gFlag = false
 
-  if (typeof str !== 'string') {
-    throw new TypeError('`str` parameter must be a string!')
-  }
+	if (typeof str !== 'string') {
+		throw new TypeError('`str` parameter must be a string!')
+	}
 
-  if (!Array.isArray(find)) {
-    throw new TypeError('`find` parameter must be an array!')
-  }
+	if (!Array.isArray(find)) {
+		throw new TypeError('`find` parameter must be an array!')
+	}
 
-  if (!Array.isArray(replace)) {
-    throw new TypeError('`replace` parameter must be an array!')
-  }
+	if (!Array.isArray(replace)) {
+		throw new TypeError('`replace` parameter must be an array!')
+	}
 
-  if (!find.length || !replace.length) {
-    throw new Error('`find` and `replace` parameters must not be empty!')
-  }
+	if (!find.length || !replace.length) {
+		throw new Error('`find` and `replace` parameters must not be empty!')
+	}
 
-  if (find.length !== replace.length) {
-    throw new Error('`find` and `replace` parameters must be equal in length!')
-  }
+	if (find.length !== replace.length) {
+		throw new Error('`find` and `replace` parameters must be equal in length!')
+	}
 
-  if (flags) {
-    if (typeof flags !== 'string') {
-      throw new TypeError('`flags` parameter must be a string!')
-    } else if (~flags.indexOf('g')) {
-      gFlag = true
-    } else {
-      flags += 'g'
-    }
-  } else {
-    flags = 'g'
-  }
+	if (flags) {
+		if (typeof flags !== 'string') {
+			throw new TypeError('`flags` parameter must be a string!')
+		} else if (~flags.indexOf('g')) {
+			gFlag = true
+		} else {
+			flags += 'g'
+		}
+	} else {
+		flags = 'g'
+	}
 
-  var done = []
-  var joined = find.join(')|(')
-  var regex = new RegExp('(' + joined + ')', flags)
+	var done = []
+	var joined = find.join(')|(')
+	var regex = new RegExp('(' + joined + ')', flags)
 
-  return str.replace(regex, (match, ...finds) => {
-    var replaced
+	return str.replace(regex, (match, ...finds) => {
+		var replaced
 
-    finds.some((found, index) => {
-      if (found !== undefined) {
-        if (gFlag) {
-          replaced = replace[index]
-        } else if (!~done.indexOf(found)) {
-          done.push(found)
-          replaced = replace[index]
-        } else {
-          replaced = found
-        }
+		finds.some((found, index) => {
+			if (found !== undefined) {
+				if (gFlag) {
+					replaced = replace[index]
+				} else if (!~done.indexOf(found)) {
+					done.push(found)
+					replaced = replace[index]
+				} else {
+					replaced = found
+				}
 
-        return true
-      }
-    })
+				return true
+			}
+		})
 
-    return replaced
-  })
+		return replaced
+	})
 };
 
-function isMobile(){
-   //Properties on the navigator 
-    function m1() {
-        var regex = /Android|webOS|Phone|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-        return regex.test(navigator.userAgent);
-    }
+function isMobile() {
+	//Properties on the navigator 
+	function m1() {
+		var regex = /Android|webOS|Phone|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+		return regex.test(navigator.userAgent);
+	}
 
-    //Touch event
-    function m2() {
-        return (('ontouchstart' in window) || ("ontouchstart" in document.documentElement));
-    }
+	//Touch event
+	function m2() {
+		return (('ontouchstart' in window) || ("ontouchstart" in document.documentElement));
+	}
 
-    //Window.orientation
-    function m3() {
-        return (window.orientation !== undefined);
-    }
+	//Window.orientation
+	function m3() {
+		return (window.orientation !== undefined);
+	}
 
-    //Window.matchMedia()
-    function m4() {
-        return (window.matchMedia && window.matchMedia("only screen and (max-width: 760px)").matches);
-    }
+	//Window.matchMedia()
+	function m4() {
+		return (window.matchMedia && window.matchMedia("only screen and (max-width: 760px)").matches);
+	}
 
-    //Screen size
-    function m5() {
-        return (window.innerWidth <= 800 && window.innerHeight <= 600);
-    }
+	//Screen size
+	function m5() {
+		return (window.innerWidth <= 800 && window.innerHeight <= 600);
+	}
 
-    return (m1() || m2() || m3() || m4() || m5());
+	return (m1() || m2() || m3() || m4() || m5());
 }
 
-var app = {}; 
+var app = {};
 
 app.session = {};
 app.session.pageViews = 0;
 app.session.timeElapsed = 0;
-app.session.rewardPointsGained = 0;  
+app.session.rewardPointsGained = 0;
 app.session.onlyOnce = {};
 
 /**
  * Do action if condition or wait. if(condition()){ action(); } else{ wait  and check again } 
  */
-app.debounce = function(actionFx, conditionFx, timeMs){
-	if(typeof timeMs === "undefined"){ timeMs = 5000; }
-	
-	if(conditionFx()){
+app.debounce = function (actionFx, conditionFx, timeMs) {
+	if (typeof timeMs === "undefined") { timeMs = 5000; }
+
+	if (conditionFx()) {
 		actionFx();
-	}else{
-		console.log("app.debounce",actionFx,conditionFx,timeMs);
-		setTimeout(function(){
+	} else {
+		console.log("app.debounce", actionFx, conditionFx, timeMs);
+		setTimeout(function () {
 			app.debounce(actionFx, conditionFx, timeMs);
 		}, timeMs);
 	}
 };
- 
+
 //Will return true if it is the first time it's called or X hours have passed since last call
 /* Sample usage: 
 * app.onlyOnceEvery({id:"trigger5", hours: 4, mode: "cookie"}) 
 * app.onlyOnceEvery({id:"trigger5", days: 4, mode: "session"}) 
 * app.onlyOnceEvery({id:"trigger5", minutes: 4, mode: "cookie"})  
 */
-app.onlyOnceEvery = function(params){
+app.onlyOnceEvery = function (params) {
 	var uniqueId = params.id || "not-set";
 	var days = params.days || false;
 	var hours = params.hours || false;
 	var minutes = params.minutes || false;
 	var mode = params.mode || "session";
 
-	if(days){
-		hours = (days+0) * 24;
+	if (days) {
+		hours = (days + 0) * 24;
 	}
-	
-	if(minutes){
-		hours = (minutes+0) / 60;
+
+	if (minutes) {
+		hours = (minutes + 0) / 60;
 	}
-	
+
 	//TODO test if working correctly.
-	var cookieCheck = function(){
-		uniqueId = "oo-"+uniqueId;
+	var cookieCheck = function () {
+		uniqueId = "oo-" + uniqueId;
 		var nowDate = new Date();
 		var last = Cookies.get(uniqueId);
-		var lastDate = (last? (new Date(last)) : false);
-		var lastDateSession = app.session.onlyOnce[uniqueId]; 
-		
-		if(last && lastDate && ((nowDate - lastDate ) < (hours * 60 * 60 * 1000))){
+		var lastDate = (last ? (new Date(last)) : false);
+		var lastDateSession = app.session.onlyOnce[uniqueId];
+
+		if (last && lastDate && ((nowDate - lastDate) < (hours * 60 * 60 * 1000))) {
 			return false;
 		}
-		
+
 		//If we are on incognito mode, we want to at least remember the last seesion
-		if(lastDateSession && ((nowDate - lastDateSession ) < (hours * 60 * 60 * 1000))){
+		if (lastDateSession && ((nowDate - lastDateSession) < (hours * 60 * 60 * 1000))) {
 			return false;
 		}
-		
+
 		app.session.onlyOnce[uniqueId] = nowDate;
-		Cookies.set(uniqueId, nowDate, { expires: ((hours+0)/24) });
+		Cookies.set(uniqueId, nowDate, { expires: ((hours + 0) / 24) });
 		return true;
-	} 
-	
-	var sessionCheck = function(){
+	}
+
+	var sessionCheck = function () {
 		var nowDate = new Date();
-		var lastDate = app.session.onlyOnce[uniqueId]; 
-		
-		if(lastDate && ((nowDate - lastDate ) < (hours * 60 * 60 * 1000))){
+		var lastDate = app.session.onlyOnce[uniqueId];
+
+		if (lastDate && ((nowDate - lastDate) < (hours * 60 * 60 * 1000))) {
 			return false;
 		}
-		
+
 		app.session.onlyOnce[uniqueId] = nowDate;
 		return true;
 	}
-	
-	
-	if(mode === "cookie"){ 
-		return cookieCheck(); 
+
+
+	if (mode === "cookie") {
+		return cookieCheck();
 	}
-	else{	 
+	else {
 		return sessionCheck();
 	}
 };
 
 app.dialogs = app.dialogs || {};
-app.dialogs.unfinishedLessons = function(settings){
-	if(typeof settings === "undefined"){ settings = {};	}
-	
+app.dialogs.unfinishedLessons = function (settings) {
+	if (typeof settings === "undefined") { settings = {}; }
+
 	var dialogHtml = `<div class="row">
 							<div class="col-sm-12 col-xs-12" data-value="close"  data-href="#!/expiring/">
 									<div class="materialCard materialCardProgress materialCardSizeMega" style="margin: 0; background:#fff !important;    background-position: center !important;   background-size: cover !important;">
@@ -239,10 +239,10 @@ app.dialogs.unfinishedLessons = function(settings){
 }
 
 
-app.dialogs.exclusiveInvitation = function(url, settings){
-	if(typeof settings === "undefined"){ settings = {};	}
-	 
-	
+app.dialogs.exclusiveInvitation = function (url, settings) {
+	if (typeof settings === "undefined") { settings = {}; }
+
+
 	var dialogHtml = `<div class="row">
 		<div class="col-sm-12 col-xs-12" data-value="close" data-href-target="_blank" data-href="${url}">
 				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
@@ -283,38 +283,38 @@ app.dialogs.exclusiveInvitation = function(url, settings){
 	materialDialog.custom(dialogHtml, settings);
 }
 
-app.dialogs.questionProgress = function( settings){
-	if(typeof settings === "undefined"){ settings = {};	}
-    settings.title = settings.title || "Undefined title";
-    settings.subtitle = settings.subtitle || "Undefined subtitle";
-    settings.progressPercentage = settings.progressPercentage || "0";
-    settings.progressDisplay = settings.progressDisplay || "0";
-    settings.progressTitle = settings.progressTitle || "Melody Coins";
-    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
+app.dialogs.questionProgress = function (settings) {
+	if (typeof settings === "undefined") { settings = {}; }
+	settings.title = settings.title || "Undefined title";
+	settings.subtitle = settings.subtitle || "Undefined subtitle";
+	settings.progressPercentage = settings.progressPercentage || "0";
+	settings.progressDisplay = settings.progressDisplay || "0";
+	settings.progressTitle = settings.progressTitle || "Melody Coins";
+	settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
 
-     settings.buttonNo  = settings.buttonNo || {};
-     settings.buttonYes = settings.buttonYes || {};
+	settings.buttonNo = settings.buttonNo || {};
+	settings.buttonYes = settings.buttonYes || {};
 
-     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
-     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
+	settings.buttonNo.caption = settings.buttonNo.caption || "NO";
+	settings.buttonYes.caption = settings.buttonYes.caption || "YES";
 
-     settings.buttonNo.value  = settings.buttonNo.value || "no";
-     settings.buttonYes.value = settings.buttonYes.value || "yes";
+	settings.buttonNo.value = settings.buttonNo.value || "no";
+	settings.buttonYes.value = settings.buttonYes.value || "yes";
 
-     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
-     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
+	settings.buttonNo.href = settings.buttonNo.href || "javascript: void(0);";
+	settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
 
-     settings.buttonNo.additional  = settings.buttonNo.additional || "";
-     settings.buttonYes.additional = settings.buttonYes.additional || "";
+	settings.buttonNo.additional = settings.buttonNo.additional || "";
+	settings.buttonYes.additional = settings.buttonYes.additional || "";
 
-     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
-     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
+	settings.buttonNo.theme = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
+	settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
 
-     settings.hideCallback = settings.hideCallback || function(value){ console.log("Question result: ", value);};
+	settings.hideCallback = settings.hideCallback || function (value) { console.log("Question result: ", value); };
 
-	 settings.image = settings.image || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png";
-	 
-	
+	settings.image = settings.image || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png";
+
+
 	var dialogHtml = `<div class="row">
 		<div class="col-sm-12 col-xs-12">
 				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
@@ -357,68 +357,68 @@ app.dialogs.questionProgress = function( settings){
 				</div>
 			</div>
 	</div>`;
-	
+
 	materialDialog.custom(dialogHtml, settings);
 }
 
-app.dialogs.selectPlan = function( settings){
-	if(typeof settings === "undefined"){ settings = {};	}
-    settings.title = settings.title || "Continue Your Musical Journey";
-    settings.subtitle = settings.subtitle || "GET MORE MELODY COINS<br>WITH OUR SPECIAL LAUNCH OFFER";
-    settings.progressPercentage = settings.progressPercentage || "95";
-    settings.progressDisplay = settings.progressDisplay || "1000";
-    settings.progressTitle = settings.progressTitle || "Melody Coins";
-    settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
+app.dialogs.selectPlan = function (settings) {
+	if (typeof settings === "undefined") { settings = {}; }
+	settings.title = settings.title || "Continue Your Musical Journey";
+	settings.subtitle = settings.subtitle || "GET MORE MELODY COINS<br>WITH OUR SPECIAL LAUNCH OFFER";
+	settings.progressPercentage = settings.progressPercentage || "95";
+	settings.progressDisplay = settings.progressDisplay || "1000";
+	settings.progressTitle = settings.progressTitle || "Melody Coins";
+	settings.progressSubTitle = settings.progressSubTitle || "<b style='color: white'>Your Balance</b>";
 
-     settings.buttonNo  = settings.buttonNo || {};
-     settings.buttonYes = settings.buttonYes || {};
+	settings.buttonNo = settings.buttonNo || {};
+	settings.buttonYes = settings.buttonYes || {};
 
-     settings.buttonNo.caption  = settings.buttonNo.caption || "NO";
-     settings.buttonYes.caption = settings.buttonYes.caption || "YES";
+	settings.buttonNo.caption = settings.buttonNo.caption || "NO";
+	settings.buttonYes.caption = settings.buttonYes.caption || "YES";
 
-     settings.buttonNo.value  = settings.buttonNo.value || "no";
-     settings.buttonYes.value = settings.buttonYes.value || "yes";
+	settings.buttonNo.value = settings.buttonNo.value || "no";
+	settings.buttonYes.value = settings.buttonYes.value || "yes";
 
-     settings.buttonNo.href  = settings.buttonNo.href || "javascript: void(0);";
-     settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
+	settings.buttonNo.href = settings.buttonNo.href || "javascript: void(0);";
+	settings.buttonYes.href = settings.buttonYes.href || "javascript: void(0);";
 
-     settings.buttonNo.additional  = settings.buttonNo.additional || "";
-     settings.buttonYes.additional = settings.buttonYes.additional || "";
+	settings.buttonNo.additional = settings.buttonNo.additional || "";
+	settings.buttonYes.additional = settings.buttonYes.additional || "";
 
-     settings.buttonNo.theme  = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
-     settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
+	settings.buttonNo.theme = settings.buttonNo.theme || "materialButtonOutline materialThemeDark";
+	settings.buttonYes.theme = settings.buttonYes.theme || "materialButtonFill materialThemeDark";
 
-     settings.hideCallback = settings.hideCallback || function(value){ 
+	settings.hideCallback = settings.hideCallback || function (value) {
 		CountdownTimer.end();
 		console.log("Question result: ", value);
-	 };
+	};
 
-	 settings.image = settings.image || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png";
-	
+	settings.image = settings.image || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins.sm.png";
+
 	settings.countdownText = settings.countdownText || "Special Offer";
-	
-	var expireExtensionHoursToAdd = [2,2,2];
-	var urlPathEnd = "test"; 
-	
+
+	var expireExtensionHoursToAdd = [2, 2, 2];
+	var urlPathEnd = "test";
+
 	var countdownDateNow = new Date();
 	var countdownTimezoneNow = "";
-	
+
 	//Only do an extension with the deadline date (never with the start date)
-	var extension = ""; 
+	var extension = "";
 	/*if(availabilityStatus !== "notStarted"){
 		extension = 'data-extension="["'+ expireExtensionHoursToAdd.toString() +'"]"';  
 	} */
 	//var dialogCountdownText = "Testings";
-	
+
 	settings.contentClass = "maxWidth1200";
 
-	
+
 	CountdownTimer.init();
 	var timerHtml = "";
 	var isOfferAvailable = CountdownTimer.getIsOfferAvailable();
-	if(isOfferAvailable){
-		settings.coupon ="SPECIAL-LAUNCH-OFFER";
-		settings.subtitle =  "GET MORE MELODY COINS<br>WITH OUR SPECIAL LAUNCH OFFER";    
+	if (isOfferAvailable) {
+		settings.coupon = "SPECIAL-LAUNCH-OFFER";
+		settings.subtitle = "GET MORE MELODY COINS<br>WITH OUR SPECIAL LAUNCH OFFER";
 		timerHtml = `
 		<div class="time">
 			<span>
@@ -451,15 +451,15 @@ app.dialogs.selectPlan = function( settings){
 			});
 		}
 		</script>`;
-		
+
 		priceMonthly = `<s style="font-size: 0.85em;">$29.90</s> $9.99`;
 		priceYearly = `<s style=" font-size: 0.85em;">$359.00</s> $99.00`;
 		priceLifetime = `<s style=" font-size: 0.85em;">$3999.00</s> $899.00`;
-		
-	}else{
+
+	} else {
 		timerHtml = "";
-		settings.coupon ="";
-		settings.subtitle =  "GET MORE MELODY COINS";    
+		settings.coupon = "";
+		settings.subtitle = "GET MORE MELODY COINS";
 
 		priceMonthly = `$29.90`;
 		priceYearly = `$359.00`;
@@ -467,7 +467,7 @@ app.dialogs.selectPlan = function( settings){
 
 	}
 
-	
+
 	var dialogHtml = `<div class="row">
 		<div class="col-sm-12 col-xs-12">
 				<div class="materialCard materialCardProgress materialCardSizeMega materialThemeDark" style="margin: 0; background-color:#111111 !important;    background-position: center !important;   background-size: cover !important;">
@@ -570,14 +570,14 @@ You may cancel at any time. Your subscription will continue until you cancel. Ca
 	materialDialog.custom(dialogHtml, settings);
 }
 
-					
-app.callback = function(callbackDataAsUrl, trackOnServer = true){
+
+app.callback = function (callbackDataAsUrl, trackOnServer = true) {
 	//Add mobile data
-	callbackDataAsUrl += "&isMobile=" + (isMobile()? "y":"n");
+	callbackDataAsUrl += "&isMobile=" + (isMobile() ? "y" : "n");
 
 	console.log("app.callback", callbackDataAsUrl);
-	if(trackOnServer){ HydraSystem.track(callbackDataAsUrl); }
-	
+	if (trackOnServer) { HydraSystem.track(callbackDataAsUrl); }
+
 	/*
 	Possible callbacks: 
 	app.callback("path=" + app.currentRoute + "&unlock=clicked");
@@ -647,7 +647,7 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 	//Posible actions:
 	//app.showCustomDialog(true)
 	//app.showAnnoucementDialog(true) 
-	
+
 	/*
 	Extract parameters of tracker in an associative array.
 	Example Result: 
@@ -657,24 +657,24 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		"origin": "timer" 
 	}
 	*/
-	function extractFromCallbackData(tracker){
+	function extractFromCallbackData(tracker) {
 		var result = {};
 		var params = tracker.split("&");
-		for(var i = 0; i < params.length; i++){
+		for (var i = 0; i < params.length; i++) {
 			var param = params[i].split("=");
 			result[param[0]] = param[1];
 		}
 		return result;
 	}
-	
+
 	var callbackData = extractFromCallbackData(callbackDataAsUrl);
-	
+
 	var defaultTriggers = [
 		{
 			"description": "Lesson Engagement",
 			"enabled": true,
-			"conditions":[
-				{"progress": ">=95", "progress": "<=100"}
+			"conditions": [
+				{ "progress": ">=95", "progress": "<=100" }
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -684,9 +684,9 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "Feedback Engagement",
 			"enabled": true,
-			"conditions":[
-				{"rating": ">=4","rating":"<=5"},
-				{"testimonial": "positive"}
+			"conditions": [
+				{ "rating": ">=4", "rating": "<=5" },
+				{ "testimonial": "positive" }
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -696,10 +696,10 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "Book Viewer Engagement",
 			"enabled": true,
-			"conditions":[ 
-				{"book": "y","action":"page-change", "bookCurrentPage":">2"},
-				{"book": "y","action":"print"},
-				{"book": "y","action":"open-contextual-menu"},
+			"conditions": [
+				{ "book": "y", "action": "page-change", "bookCurrentPage": ">2" },
+				{ "book": "y", "action": "print" },
+				{ "book": "y", "action": "open-contextual-menu" },
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -709,9 +709,9 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "Book Viewer Engagement",
 			"enabled": false,
-			"conditions":[  
-				{"book": "y","action":"open-toolbar-menu"},
-				
+			"conditions": [
+				{ "book": "y", "action": "open-toolbar-menu" },
+
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -727,9 +727,9 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "Book Viewer Engagement",
 			"enabled": false,
-			"conditions":[ 
-				{"book": "y","action":"download"},
-				{"book": "y","action":"print"},
+			"conditions": [
+				{ "book": "y", "action": "download" },
+				{ "book": "y", "action": "print" },
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -739,8 +739,8 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "App Engagement",
 			"enabled": false,
-			"conditions":[
-				{"timer": "global", "rewardPointsGained": ">100", "timeElapsed": ">60000", "pageViews": ">5"}
+			"conditions": [
+				{ "timer": "global", "rewardPointsGained": ">100", "timeElapsed": ">60000", "pageViews": ">5" }
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -750,9 +750,9 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "App Engagement",
 			"enabled": true,
-			"conditions":[
-				{"timer": "global", "rewardPointsGained": ">39"},
-				{"timer": "global", "timeElapsed": ">120000"},
+			"conditions": [
+				{ "timer": "global", "rewardPointsGained": ">39" },
+				{ "timer": "global", "timeElapsed": ">120000" },
 			],
 			"action": `
 				if(app.onlyOnceEvery({id:"trigger8", minutes: 4, mode: "session"})){
@@ -768,8 +768,8 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "Attention Button Clicked",
 			"enabled": true,
-			"conditions":[
-				{"attentionButton": "clicked"}
+			"conditions": [
+				{ "attentionButton": "clicked" }
 			],
 			"action": ` 
 				if(app.data.offer.isDataAvailable()){
@@ -786,8 +786,8 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "App Engagement",
 			"enabled": false,
-			"conditions":[
-				{"pageview": "y"}
+			"conditions": [
+				{ "pageview": "y" }
 			],
 			"action": `
 				if(!app.session.customDialogTriggered){
@@ -799,8 +799,8 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 		{
 			"description": "Exit Intent",
 			"enabled": true,
-			"conditions":[
-				{"exitintent": "y"}
+			"conditions": [
+				{ "exitintent": "y" }
 			],
 			"action": `
 				titleNotifier.add();
@@ -820,23 +820,23 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 				}*/
 				
 				`
-		} 
+		}
 	];
 	//TODO: an option to get triggers from app.data.user.... so we can have different triggers for every user
 	var triggers = defaultTriggers;
-	 
-	
-	function extractFromCallbackData(tracker){
+
+
+	function extractFromCallbackData(tracker) {
 		var result = {};
 		var params = tracker.split("&");
-		for(var i = 0; i < params.length; i++){
+		for (var i = 0; i < params.length; i++) {
 			var param = params[i].split("=");
 			result[param[0]] = param[1];
 		}
 		return result;
 	};
- 
-	var callbackData = extractFromCallbackData(callbackDataAsUrl); 
+
+	var callbackData = extractFromCallbackData(callbackDataAsUrl);
 	/*
 	var callbackData = {
 			"path": "/lesson/1001",
@@ -846,36 +846,36 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 			"color": "blue"
 	}
 	*/
- 
+
 	//Evaluate if trigger is true or not
-	function evaluateTrigger(trigger, callbackData){
-		if(trigger.enabled != true){
+	function evaluateTrigger(trigger, callbackData) {
+		if (trigger.enabled != true) {
 			return false;
 		}
 		var results = [];
-		for(var i = 0; i < trigger.conditions.length; i++){
+		for (var i = 0; i < trigger.conditions.length; i++) {
 			var condition = trigger.conditions[i];
 			//console.log("--------------Condition--------------", condition)
 			var subresult = true;
-			for(var key in condition){
+			for (var key in condition) {
 				//console.log(key, condition[key], callbackData[key]);
 				/*if((!callbackData[key]) || (condition[key] != callbackData[key])){
 					subresult = false;
 					break;
 				}*/
-				
-				var re = /^([<>=!]+)?(.+?)$/; 
+
+				var re = /^([<>=!]+)?(.+?)$/;
 				var matches = re.exec(condition[key]);
-				if(!matches){
+				if (!matches) {
 					console.log("Wrong operator on condition", condition[key]);
 					return false;
 				}
-				
+
 				var conditionOperator = matches[1] || "=="; //If undefined use equal
-				var conditionValue 	  = matches[2];
-				
+				var conditionValue = matches[2];
+
 				var comparisonResult = false;
-				switch(conditionOperator){
+				switch (conditionOperator) {
 					case "<":
 						comparisonResult = (callbackData[key] < conditionValue);
 						break;
@@ -888,7 +888,7 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 					case ">=":
 						comparisonResult = (callbackData[key] >= conditionValue);
 						break;
-					case "=": 
+					case "=":
 					case "==":
 						comparisonResult = (callbackData[key] == conditionValue);
 						break;
@@ -898,10 +898,10 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 					default:
 						comparisonResult = false;
 				}
-				
+
 				//console.log("XXX",trigger,  key, callbackData[key], conditionOperator, conditionValue, comparisonResult);
-				if((callbackData[key]) && (comparisonResult)){ 
-				}else{
+				if ((callbackData[key]) && (comparisonResult)) {
+				} else {
 					subresult = false;
 					break;
 				}
@@ -910,13 +910,13 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 			results.push(subresult)
 			//console.log("--------------OR--------------")
 		}
-		 
+
 		var result = false;
 		for (var j = 0; j < results.length; j++) {
-		  if (results[j]) {
-			result = true;
-			break;
-		  }
+			if (results[j]) {
+				result = true;
+				break;
+			}
 		}
 		return result;
 	}
@@ -924,42 +924,42 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 
 	//Evaluate all triggers
 	//DEBUG MODE: Add "?debug=yes" to the url to turn on debug mode and execute all js at once to check for errors. Must do this before launching any campaign or making changes
-	function evaluateTriggers(triggers, callbackData){
-		for(var key in triggers){
+	function evaluateTriggers(triggers, callbackData) {
+		for (var key in triggers) {
 			var trigger = triggers[key];
-			
+
 			var debugMode = app.getQueryParameter("debug");
-			
-			if(debugMode !=="yes"){
+
+			if (debugMode !== "yes") {
 				var result = evaluateTrigger(trigger, callbackData);
-				if(result){
-					console.log("Triggered: ", callbackData, triggers, trigger, trigger.action); 
-					
-					try { eval(trigger.action) } 
+				if (result) {
+					console.log("Triggered: ", callbackData, triggers, trigger, trigger.action);
+
+					try { eval(trigger.action) }
 					catch (err) {
 						var message = err.message;
-						if (err instanceof SyntaxError){
-						  message = "Syntax Error: " +err.message+ ". Code: "+ trigger.action;
+						if (err instanceof SyntaxError) {
+							message = "Syntax Error: " + err.message + ". Code: " + trigger.action;
 						}
 						console.log(message);
-						HydraSystem.track(callbackDataAsUrl + "&error=y&code="+trigger.action);
-					} 
+						HydraSystem.track(callbackDataAsUrl + "&error=y&code=" + trigger.action);
+					}
 				}
 			}
-			else{
+			else {
 				//On debug mode, run all triggers at the same time to check for js errors.
-				console.log("Debugging Trigger: ", trigger, trigger.action); 
-				try { 
-					eval(trigger.action); 
-				} 
+				console.log("Debugging Trigger: ", trigger, trigger.action);
+				try {
+					eval(trigger.action);
+				}
 				catch (err) {
 					var message = err.message;
-					if (err instanceof SyntaxError){
-					  message = "Syntax Error: " +err.message+ ". Code: "+ trigger.action;
+					if (err instanceof SyntaxError) {
+						message = "Syntax Error: " + err.message + ". Code: " + trigger.action;
 					}
 					console.log(message);
-					HydraSystem.track(callbackDataAsUrl + "&error=y&code="+trigger.action);
-				} 
+					HydraSystem.track(callbackDataAsUrl + "&error=y&code=" + trigger.action);
+				}
 			}
 		}
 	}
@@ -967,91 +967,91 @@ app.callback = function(callbackDataAsUrl, trackOnServer = true){
 	evaluateTriggers(triggers, callbackData);
 }
 /* Must match PHP keys on HydraAppGeneric.class.php */
-app.uncompressedKeys = ['"visible"','"deadlineDateString"','"availableDateString"','"engagementProgressArrayDetails"','"engagementProgressMaxPercent"','"engagementProgressRealPercent"','"engagementTime"','"accessFirstDate"','"accessLastDate"','"accessCount"','"engagementFirstDate"','"engagementLastDate"','"reached25Once"','"reached50Once"','"reached75Once"','"reached100Once"'];
-app.compressedKeys   = ['"v"','"dD"','"aD"','"eA"','"eM"','"eP"','"eT"','"aF"','"aL"','"aC"','"eF"','"eL"','"r2"','"r5"','"r7"','"rT"'];
+app.uncompressedKeys = ['"visible"', '"deadlineDateString"', '"availableDateString"', '"engagementProgressArrayDetails"', '"engagementProgressMaxPercent"', '"engagementProgressRealPercent"', '"engagementTime"', '"accessFirstDate"', '"accessLastDate"', '"accessCount"', '"engagementFirstDate"', '"engagementLastDate"', '"reached25Once"', '"reached50Once"', '"reached75Once"', '"reached100Once"'];
+app.compressedKeys = ['"v"', '"dD"', '"aD"', '"eA"', '"eM"', '"eP"', '"eT"', '"aF"', '"aL"', '"aC"', '"eF"', '"eL"', '"r2"', '"r5"', '"r7"', '"rT"'];
 
-app.compressJSON = function(JsonString){ 
+app.compressJSON = function (JsonString) {
 	return replaceOnce(JsonString, app.uncompressedKeys, app.compressedKeys, "g");
 }
 
-app.uncompressJSON = function(JsonString){
-	 return replaceOnce(JsonString, app.compressedKeys, app.uncompressedKeys, "g");
+app.uncompressJSON = function (JsonString) {
+	return replaceOnce(JsonString, app.compressedKeys, app.uncompressedKeys, "g");
 }
- 
- /* Store interval timers that are currently running */
+
+/* Store interval timers that are currently running */
 app.intervalTimers = [];
 app.timeoutTimers = [];
 
 // Run a global check timer every X ms
-app.intervalTimerGlobal = setInterval(function(){ 
-		
+app.intervalTimerGlobal = setInterval(function () {
+
 	//Exit if user is not logged in.
-	if(!(app.data && app.data.user &&  app.data.user.profile &&  app.data.user.profile.email)){
+	if (!(app.data && app.data.user && app.data.user.profile && app.data.user.profile.email)) {
 		return false;
 	}
-	
-	if(!app.session.__specialPromotionDialogLastShownDate){
-		app.session.__specialPromotionDialogLastShownDate  = false;
+
+	if (!app.session.__specialPromotionDialogLastShownDate) {
+		app.session.__specialPromotionDialogLastShownDate = false;
 	}
-	
-	if(!app.session.__rewardPointsGainedLastSpecialPromotionDialog){
-		app.session.__rewardPointsGainedLastSpecialPromotionDialog  = 0;
+
+	if (!app.session.__rewardPointsGainedLastSpecialPromotionDialog) {
+		app.session.__rewardPointsGainedLastSpecialPromotionDialog = 0;
 	}
-		
-	var updateTimeElapsed = function(){
-		if(!app.session.__startDate){
-			app.session.__startDate  = new Date();
+
+	var updateTimeElapsed = function () {
+		if (!app.session.__startDate) {
+			app.session.__startDate = new Date();
 		}
-		
+
 		var endDate = new Date();
 		var startDate = app.session.__startDate;
-		app.session.timeElapsed = endDate.getTime() - startDate.getTime(); 
+		app.session.timeElapsed = endDate.getTime() - startDate.getTime();
 	}();
-	
-	var updateRewardPointsGained = function(){
-		if(app.data.user.profile.rewardPoints){
-			if(!app.session.__startRewardPoints){
-				app.session.__startRewardPoints  = app.data.user.profile.rewardPoints;
+
+	var updateRewardPointsGained = function () {
+		if (app.data.user.profile.rewardPoints) {
+			if (!app.session.__startRewardPoints) {
+				app.session.__startRewardPoints = app.data.user.profile.rewardPoints;
 			}
 		}
-		
+
 		var endRewardPoints = app.data.user.profile.rewardPoints;
 		var startRewardPoints = app.session.__startRewardPoints;
-		
-		app.session.rewardPointsGained = endRewardPoints - startRewardPoints;  
+
+		app.session.rewardPointsGained = endRewardPoints - startRewardPoints;
 	}();
-	
-	var conditionToShowDialog = function(){
-		 
+
+	var conditionToShowDialog = function () {
+
 		//var conditionRewardPoints = app.session.rewardPointsGained >= 100;
 		var conditionTimeElapsedSession = app.session.timeElapsed >= 8 * 1000;
 		var conditionDialogNeverShownBefore = app.session.__specialPromotionDialogLastShownDate === false;
-		if(!conditionDialogNeverShownBefore){
-			var conditionTimeElapsedLastSpecialPromotionDialog = moment(new Date()).diff(moment(app.session.__specialPromotionDialogLastShownDate), 'minutes') >= 5; 
+		if (!conditionDialogNeverShownBefore) {
+			var conditionTimeElapsedLastSpecialPromotionDialog = moment(new Date()).diff(moment(app.session.__specialPromotionDialogLastShownDate), 'minutes') >= 5;
 		}
-		else{
+		else {
 			var conditionTimeElapsedLastSpecialPromotionDialog = false;
 		}
-			
+
 		var conditionNewRewardPointsSinceLastSpecialPromotionDialog = ((app.session.rewardPointsGained - app.session.__rewardPointsGainedLastSpecialPromotionDialog) >= 20);
-		
+
 		/* Show the first time after 8 seconds, the second time show if any action was done (+20 reward points), and at least 5 minutes have passed. If these two criteria apply, keep showing */
-		
+
 		return (conditionTimeElapsedSession && (conditionDialogNeverShownBefore || conditionTimeElapsedLastSpecialPromotionDialog) && conditionNewRewardPointsSinceLastSpecialPromotionDialog);
-		
+
 	}
 
 	//Show custom dialog if conditions met
-	if(conditionToShowDialog()){
-	    console.log("Show Promotion Dialog");
+	if (conditionToShowDialog()) {
+		console.log("Show Promotion Dialog");
 		//app.showSpecialPromotionDialog();
-		app.session.__specialPromotionDialogLastShownDate  = new Date();
+		app.session.__specialPromotionDialogLastShownDate = new Date();
 		app.session.__rewardPointsGainedLastSpecialPromotionDialog = app.session.rewardPointsGained;
 	}
-	
-	app.callback('timer=global&rewardPointsGained=' + (app.session.rewardPointsGained) + '&timeElapsed=' + (app.session.timeElapsed) + '&pageViews=' + (app.session.pageViews), false); 
+
+	app.callback('timer=global&rewardPointsGained=' + (app.session.rewardPointsGained) + '&timeElapsed=' + (app.session.timeElapsed) + '&pageViews=' + (app.session.pageViews), false);
 	//console.log("Run global timer", app.session);
-	
+
 }, 5000);
 
 
@@ -1059,20 +1059,20 @@ app.intervalTimerGlobal = setInterval(function(){
 * @type: private function
 * @purpose: Will clear all setIntervals and setTimeouts. Called automatically on every new page generation.
 **/
-app.stopTimers = function(){
-		/* Stop previous INTERVAL timers and reset the array */
-		var intervalTimersLength = app.intervalTimers ? app.intervalTimers.length: 0;
-		for (var i=0; i<intervalTimersLength; i++) {
-			clearInterval(app.intervalTimers[i]); 
-		}
-		app.intervalTimers = [];
+app.stopTimers = function () {
+	/* Stop previous INTERVAL timers and reset the array */
+	var intervalTimersLength = app.intervalTimers ? app.intervalTimers.length : 0;
+	for (var i = 0; i < intervalTimersLength; i++) {
+		clearInterval(app.intervalTimers[i]);
+	}
+	app.intervalTimers = [];
 
-		/* Stop previous TIMEOUT timers and reset the array */
-		var timeoutTimersLength = app.timeoutTimers ? app.timeoutTimers.length: 0;
-		for (var i=0; i<timeoutTimersLength; i++) {
-			clearInterval(app.timeoutTimers[i]); 
-		}
-		app.timeoutTimers = []; 
+	/* Stop previous TIMEOUT timers and reset the array */
+	var timeoutTimersLength = app.timeoutTimers ? app.timeoutTimers.length : 0;
+	for (var i = 0; i < timeoutTimersLength; i++) {
+		clearInterval(app.timeoutTimers[i]);
+	}
+	app.timeoutTimers = [];
 }
 
 
@@ -1083,7 +1083,7 @@ app.stopTimers = function(){
 * @param callable fx: function
 * @param int timeInMs: time for setInterval
 **/
-app.runTimer = function(fx, timeInMs){
+app.runTimer = function (fx, timeInMs) {
 	var intervalTimer = setInterval(fx, timeInMs);
 
 	//Store interval timer so we can stop it after loading a new page
@@ -1092,7 +1092,7 @@ app.runTimer = function(fx, timeInMs){
 	return intervalTimer;
 }
 
-app.clearTimer = function(fx) {
+app.clearTimer = function (fx) {
 	fx = clearInterval(fx);
 	return fx;
 }
@@ -1103,7 +1103,7 @@ app.clearTimer = function(fx) {
 * @param callable fx: function
 * @param int timeInMs: time for setInterval
 **/
-app.runTimeout = function(fx, timeInMs){
+app.runTimeout = function (fx, timeInMs) {
 	var timeoutTimer = setTimeout(fx, timeInMs);
 
 	//Store timeout timer so we can stop it after loading a new page
@@ -1114,22 +1114,22 @@ app.runTimeout = function(fx, timeInMs){
 * @type: private function
 * @purpose: Will clear all page specific variables and events. Called automatically on every new page generation.
 **/
-app.resetPageVariablesAndBindedEvents = function(){
-	if(typeof thisLessonId !== "undefined") { thisLessonId = null; }
-	if(typeof thisLesson !== "undefined")   { thisLesson = null; }
-	if(typeof ebookStats !== "undefined")   { ebookStats = null; }
-	if(typeof videoStats !== "undefined")   { videoStats = null; }
-	if(typeof articleStats !== "undefined") { articleStats = null; }
-	
+app.resetPageVariablesAndBindedEvents = function () {
+	if (typeof thisLessonId !== "undefined") { thisLessonId = null; }
+	if (typeof thisLesson !== "undefined") { thisLesson = null; }
+	if (typeof ebookStats !== "undefined") { ebookStats = null; }
+	if (typeof videoStats !== "undefined") { videoStats = null; }
+	if (typeof articleStats !== "undefined") { articleStats = null; }
+
 	//Stop any binded event of reading progres
 	trackReadProgressStop();
-	
+
 	//Stop and reset all timers
-	app.stopTimers(); 
-	
+	app.stopTimers();
+
 	//Disable events from infinite scrolling dashboard (will be skipped if not loaded)
-	dashboardInfiniteScrolling.unload();
-	
+	dashboardInfiniteScrollingLib.unload();
+
 	material.init();
 }
 
@@ -1138,47 +1138,47 @@ app.resetPageVariablesAndBindedEvents = function(){
 * @purpose: Gets next lesson from course, given current lesson id as input. If no more lessons are left on this course, it returns false. 
 * @param int currentLessonId
 **/
-app.getNextLessonFromCourse = function(currentLessonId){ 
+app.getNextLessonFromCourse = function (currentLessonId) {
 	// Get the next lesson from current chapter
-	var getNextLessonId = function(currentLessonId){
+	var getNextLessonId = function (currentLessonId) {
 		var parentChapterId = app.data.lesson[currentLessonId].parentChapter;
-		var nextLessonIndex = app.data.chapter[parentChapterId].lessonIds.indexOf("" +currentLessonId) +1;
-		var nextLessonId 	= app.data.chapter[parentChapterId].lessonIds[nextLessonIndex];
+		var nextLessonIndex = app.data.chapter[parentChapterId].lessonIds.indexOf("" + currentLessonId) + 1;
+		var nextLessonId = app.data.chapter[parentChapterId].lessonIds[nextLessonIndex];
 		return nextLessonId;
 	}
-	
-	var getNextChapterFirstLessonId = function(currentChapterId){
-		var parentCourseId 	 = app.data.chapter[currentChapterId].parentCourse;
-		var nextChapterIndex = app.data.course[parentCourseId].chapterIds.indexOf("" +currentChapterId) +1;
-		var nextChapterId    = app.data.course[parentCourseId].chapterIds[nextChapterIndex];
-		
-		if(nextChapterId && app.data.chapter[nextChapterId].lessonIds &&  Array.isArray(app.data.chapter[nextChapterId].lessonIds) && app.data.chapter[nextChapterId].lessonIds[0]){
+
+	var getNextChapterFirstLessonId = function (currentChapterId) {
+		var parentCourseId = app.data.chapter[currentChapterId].parentCourse;
+		var nextChapterIndex = app.data.course[parentCourseId].chapterIds.indexOf("" + currentChapterId) + 1;
+		var nextChapterId = app.data.course[parentCourseId].chapterIds[nextChapterIndex];
+
+		if (nextChapterId && app.data.chapter[nextChapterId].lessonIds && Array.isArray(app.data.chapter[nextChapterId].lessonIds) && app.data.chapter[nextChapterId].lessonIds[0]) {
 			return app.data.chapter[nextChapterId].lessonIds[0];
 		}
-		else if(nextChapterId){
+		else if (nextChapterId) {
 			return getNextChapterFirstLessonId(nextChapterId);
 		}
-		else{
+		else {
 			return false;
 		}
 	}
-	
+
 	var currentChapterId = app.data.lesson[currentLessonId].parentChapter;
 	var nextLessonId = getNextLessonId(currentLessonId);
-	if(!nextLessonId){
+	if (!nextLessonId) {
 		nextLessonId = getNextChapterFirstLessonId(currentChapterId);
-	} 
-	
-	return nextLessonId;		
+	}
+
+	return nextLessonId;
 }
 
 
 
-app.getCurrentRewardLevel = function(){
+app.getCurrentRewardLevel = function () {
 	var currentRewardPoints = app.data.user.profile.rewardPoints || 0;
 	var rewardAwards = app.data.rewards;
 	var currentRewardLevel = 0;
-	if(rewardAwards){
+	if (rewardAwards) {
 		for (var i = 0; i < rewardAwards.levels.length; i++) {
 			if (currentRewardPoints >= rewardAwards.levels[i].rewardPoints) {
 				currentRewardLevel = i;
@@ -1194,77 +1194,77 @@ app.getCurrentRewardLevel = function(){
 * @param string  snackBarText: text to show
 * @param int rewardPointsToAdd: points to add.
 **/
-app.addRewardPoints = function(snackBarText, rewardPointsToAdd){
-	
+app.addRewardPoints = function (snackBarText, rewardPointsToAdd) {
+
 	var oldRewardLevel = app.getCurrentRewardLevel();
-	
-	app.data.user.profile.rewardPointsDate = datetimeToEST(new Date());	
-	app.data.user.profile.rewardPoints = app.data.user.profile.rewardPoints || 10;	
+
+	app.data.user.profile.rewardPointsDate = datetimeToEST(new Date());
+	app.data.user.profile.rewardPoints = app.data.user.profile.rewardPoints || 10;
 	app.data.user.profile.rewardPoints += rewardPointsToAdd;
-	 
-	var newRewardLevel = app.getCurrentRewardLevel(); 
-	
-	
+
+	var newRewardLevel = app.getCurrentRewardLevel();
+
+
 	//User advanced to next Rewards Level
-	if(newRewardLevel > oldRewardLevel){
+	if (newRewardLevel > oldRewardLevel) {
 		var newRewardLevelDisplay = newRewardLevel + 1; //Index based 1
 		//Track reward level
-		app.callback("path=" + app.currentRoute + "&rewardlevel="+ newRewardLevelDisplay + "L");
+		app.callback("path=" + app.currentRoute + "&rewardlevel=" + newRewardLevelDisplay + "L");
 		materialSnackBar.push(`Congratulations! You've unlocked Rewards Level ${newRewardLevelDisplay}`);
 	}
-	 
-	var createHistogramOfRewardPoints = function(){ 
 
-        app.data.user.profile.rewardPointsHistogram = app.data.user.profile.rewardPointsHistogram || {};
-		var rewardPointsHistogram = app.data.user.profile.rewardPointsHistogram;  
- 
-        var dayCounter = rewardPointsHistogram["counter"] || 0; 
+	var createHistogramOfRewardPoints = function () {
 
-        var today 		  = dateToSQL(new Date());	
-        var dateOnCounter = rewardPointsHistogram["date." + dayCounter + ""] || null;
+		app.data.user.profile.rewardPointsHistogram = app.data.user.profile.rewardPointsHistogram || {};
+		var rewardPointsHistogram = app.data.user.profile.rewardPointsHistogram;
 
-        /* If date is undefined, it's the first time, set date to today, and total sum to score */
-        if(!dateOnCounter) {
-            rewardPointsHistogram["date." + dayCounter + ""] = today;
-            rewardPointsHistogram["sum."  + dayCounter + ""] = rewardPointsToAdd;
-        }
-        else if(dateOnCounter === today){
-            /* If stored date is today, then it's not the first time. Update the counter only */
-            var sum =  rewardPointsHistogram["sum." + dayCounter + ""] || 0;
-            rewardPointsHistogram["sum." + dayCounter + ""]  = sum + rewardPointsToAdd;
-        }
-        else{
-            /* If stored date is not today, then it's a new day. */
+		var dayCounter = rewardPointsHistogram["counter"] || 0;
 
-			var frequencyTrackingMaximumNumberOfDays = 365*5; // 5 years
-			
-            dayCounter++;
-            if(dayCounter >=(frequencyTrackingMaximumNumberOfDays)){
-                dayCounter =0;
-            }
+		var today = dateToSQL(new Date());
+		var dateOnCounter = rewardPointsHistogram["date." + dayCounter + ""] || null;
 
-            //Update day counter, date, and set sum to score
+		/* If date is undefined, it's the first time, set date to today, and total sum to score */
+		if (!dateOnCounter) {
+			rewardPointsHistogram["date." + dayCounter + ""] = today;
+			rewardPointsHistogram["sum." + dayCounter + ""] = rewardPointsToAdd;
+		}
+		else if (dateOnCounter === today) {
+			/* If stored date is today, then it's not the first time. Update the counter only */
+			var sum = rewardPointsHistogram["sum." + dayCounter + ""] || 0;
+			rewardPointsHistogram["sum." + dayCounter + ""] = sum + rewardPointsToAdd;
+		}
+		else {
+			/* If stored date is not today, then it's a new day. */
 
-            rewardPointsHistogram["counter"] = dayCounter;
-            rewardPointsHistogram["sum." + dayCounter + ""]  = rewardPointsToAdd;
-            rewardPointsHistogram["date." + dayCounter + ""] = today; 
-        }  
-    }();  
-	
+			var frequencyTrackingMaximumNumberOfDays = 365 * 5; // 5 years
+
+			dayCounter++;
+			if (dayCounter >= (frequencyTrackingMaximumNumberOfDays)) {
+				dayCounter = 0;
+			}
+
+			//Update day counter, date, and set sum to score
+
+			rewardPointsHistogram["counter"] = dayCounter;
+			rewardPointsHistogram["sum." + dayCounter + ""] = rewardPointsToAdd;
+			rewardPointsHistogram["date." + dayCounter + ""] = today;
+		}
+	}();
+
 	//Track reward points to the nearest hundreds
-	app.callback("path=" + app.currentRoute + "&rewardpoints="+ Math.round(app.data.user.profile.rewardPoints/100)*100 + "p");
-	
+	app.callback("path=" + app.currentRoute + "&rewardpoints=" + Math.round(app.data.user.profile.rewardPoints / 100) * 100 + "p");
+
 	/* Only show snackbar if not empty */
-	if(snackBarText){
+	if (snackBarText) {
 		materialSnackBar.push(`${snackBarText}. You've gained ${rewardPointsToAdd} additional Reward Points`);
 	}
 }
 
-app.fetchRemoteData = function(callback){
-	$.ajax({  
+app.fetchRemoteData = function (callback) {
+	$.ajax({
 		dataType: "text", //To avoid parsing of JSON
-		url: config.serverUrl, 
-		cache: false, 
+		url: config.serverUrl,
+		cache: false,
 		type: "POST",
 		crossDomain: true,
 		headers: {
@@ -1272,54 +1272,54 @@ app.fetchRemoteData = function(callback){
 		},
 		data: {
 			"url": window.location.href,
-            "referrer": document.referrer,
+			"referrer": document.referrer,
 			"action": "get",
-			"hs_uid": (localStorage.getItem('hs_uid') || ""), 
+			"hs_uid": (localStorage.getItem('hs_uid') || ""),
 			"hs_uidh": (localStorage.getItem('hs_uidh') || ""),
 			"appName": config.appName
-		} 
-	 })
-	 .done(function(data) { 
+		}
+	})
+		.done(function (data) {
 
-		try{
-            //Uncompress the data keys
-            data = JSON.parse(app.uncompressJSON(data));
-        }catch(e){
-            console.error(e);
-            data = {
-                "error": "parsing-json"
-            }
-        }
+			try {
+				//Uncompress the data keys
+				data = JSON.parse(app.uncompressJSON(data));
+			} catch (e) {
+				console.error(e);
+				data = {
+					"error": "parsing-json"
+				}
+			}
 
-		if(app.returnedError(data)){return false};		
+			if (app.returnedError(data)) { return false };
 
-		var lessonId = false;
-		app.refresh(lessonId, data);
-		if(typeof callback === "function") {callback();};
-	 })
-	 .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-        // console.log('Error Getting status for parameters: - Error:' + errorThrown);
-		console.log(XMLHttpRequest + ' ' + textStatus + ' ' + errorThrown);
-		materialDialog.alertNoInternetConnection();	 
-	 });  
+			var lessonId = false;
+			app.refresh(lessonId, data);
+			if (typeof callback === "function") { callback(); };
+		})
+		.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			// console.log('Error Getting status for parameters: - Error:' + errorThrown);
+			console.log(XMLHttpRequest + ' ' + textStatus + ' ' + errorThrown);
+			materialDialog.alertNoInternetConnection();
+		});
 }
 
-app.saveToServer = function(lessonId){
-	if(typeof lessonId === "undefined"){lessonId = null;}
-	
+app.saveToServer = function (lessonId) {
+	if (typeof lessonId === "undefined") { lessonId = null; }
+
 	//Check if global variable is defined and available.
-	if(typeof thisLessonId !== "undefined"){lessonId = thisLessonId;} 
-	 
-	 //Recalculate all stats before sending data.
-	app.data = app.__buildDataFromDataRaw(app.data); 
- 
- 	//Compress the data keys
-	var dataToSend = app.compressJSON(JSON.stringify(app.data.user)); 
-		
-	$.ajax({  
+	if (typeof thisLessonId !== "undefined") { lessonId = thisLessonId; }
+
+	//Recalculate all stats before sending data.
+	app.data = app.__buildDataFromDataRaw(app.data);
+
+	//Compress the data keys
+	var dataToSend = app.compressJSON(JSON.stringify(app.data.user));
+
+	$.ajax({
 		dataType: "text", //To avoid parsing of JSON
-		url: config.serverUrl, 
-		cache: false, 
+		url: config.serverUrl,
+		cache: false,
 		type: "POST",
 		crossDomain: true,
 		headers: {
@@ -1327,112 +1327,112 @@ app.saveToServer = function(lessonId){
 		},
 		data: {
 			"url": window.location.href,
-            "referrer": document.referrer,
+			"referrer": document.referrer,
 			"action": "set",
 			"data": dataToSend,
-			"hs_uid": (localStorage.getItem('hs_uid') || ""), 
+			"hs_uid": (localStorage.getItem('hs_uid') || ""),
 			"hs_uidh": (localStorage.getItem('hs_uidh') || ""),
 			"appName": config.appName
-		} 
-	 })
-	 .done(function(data) {  
-		//Uncompress the data keys
-		try{
-		    data = JSON.parse(app.uncompressJSON(data));
-		}catch(e){
-		    console.error(e);
-		    data = {
-		        "error": "parsing-json"
-		    }
 		}
-
-		if(app.returnedError(data)){return false};
-  
-		if(!lessonId){
-			app.refresh(null, data);  
-		}else{ 
-			//If we are in a lesson page, ensure that the lesson is 100% finished. Else, loading data will override actual data while user is watching, deleting user progress, and generating a bug.
-			if(app.data.user.learning[lessonId] && app.data.user.learning[lessonId].engagementProgressRealPercent == 100){
-				app.refresh(lessonId, data); 
+	})
+		.done(function (data) {
+			//Uncompress the data keys
+			try {
+				data = JSON.parse(app.uncompressJSON(data));
+			} catch (e) {
+				console.error(e);
+				data = {
+					"error": "parsing-json"
+				}
 			}
-		}
-	 })
-	 .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-        console.log('Error Getting status for parameters: - Error:' + errorThrown); 
-		//Fail silently.
-	 });  
+
+			if (app.returnedError(data)) { return false };
+
+			if (!lessonId) {
+				app.refresh(null, data);
+			} else {
+				//If we are in a lesson page, ensure that the lesson is 100% finished. Else, loading data will override actual data while user is watching, deleting user progress, and generating a bug.
+				if (app.data.user.learning[lessonId] && app.data.user.learning[lessonId].engagementProgressRealPercent == 100) {
+					app.refresh(lessonId, data);
+				}
+			}
+		})
+		.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+			console.log('Error Getting status for parameters: - Error:' + errorThrown);
+			//Fail silently.
+		});
 	console.log("Save data to server");
 }
 
-app.returnedError = function(data){
-	if(data.error){
-	
+app.returnedError = function (data) {
+	if (data.error) {
+
 		var settings = {
-			hideCallback: function(){
+			hideCallback: function () {
 				location.reload();
 			}
 		}
 
-		switch(data.error){
-		case "user-lessons-json-empty":
-			materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ULJ-E100", settings);
-			return true;
-			break;
-		case "user-lessons-json-invalid":
-			materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ULJ-I200", settings);
-			return true;
-			break;
-		case "all-lessons-json-empty":
-			materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ALJ-E300", settings);
-			return true;
-			break;
-		case "all-lessons-json-invalid":
-			materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ALJ-I400", settings);
-			return true;
-			break;
-		case "invalid-user-id-hash-combination":
+		switch (data.error) {
+			case "user-lessons-json-empty":
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ULJ-E100", settings);
+				return true;
+				break;
+			case "user-lessons-json-invalid":
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ULJ-I200", settings);
+				return true;
+				break;
+			case "all-lessons-json-empty":
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ALJ-E300", settings);
+				return true;
+				break;
+			case "all-lessons-json-invalid":
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: ALJ-I400", settings);
+				return true;
+				break;
+			case "invalid-user-id-hash-combination":
 			//Sane as unknown user, ask to login again
-		case "unknown-user-id":
-			// materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: UN-U500", settings);
-			materialDialog.show("dialogSignup", {
-				modal: true,
-				hideCallback: function(){}
-			});
-			
-			return true;
-			break; 
-		default:
-			materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: UN-X600", settings);
-			return true;
-			break; 	
+			case "unknown-user-id":
+				// materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: UN-U500", settings);
+				materialDialog.show("dialogSignup", {
+					modal: true,
+					hideCallback: function () { }
+				});
+
+				return true;
+				break;
+			default:
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: UN-X600", settings);
+				return true;
+				break;
 		}
 	}
-	
+
 	return false;
 };
 
 
-app.refresh = function(lessonId, dataFromServer){
-	if(typeof dataFromServer === "undefined"){dataFromServer = false;}
-	 
+app.refresh = function (lessonId, dataFromServer) {
+	if (typeof dataFromServer === "undefined") { dataFromServer = false; }
+
 	var data = dataFromServer ? dataFromServer : app.data;
-	 
-	app.data = app.__buildDataFromDataRaw(data);  
-	$('.action-cards-all').html(app.templates.modules.actionCards.content(app.data.user.cards)); 
-	$('.action-cards-top').html(app.templates.modules.actionCards.content([], true)); 
-	$('.action-cards-bottom').html(app.templates.modules.actionCards.content(app.data.user.cards, false)); material.init(); 
-	
-	if(lessonId) { 
+
+	app.data = app.__buildDataFromDataRaw(data);
+	$('.action-cards-all').html(app.templates.modules.actionCards.content(app.data.user.cards));
+	$('.action-cards-top').html(app.templates.modules.actionCards.content([], true));
+	$('.action-cards-bottom').html(app.templates.modules.actionCards.content(app.data.user.cards, false)); material.init();
+
+	if (lessonId) {
 		var chapterId = app.data.lesson[lessonId].parentChapter;
 		var parentCourseId = app.data.chapter[chapterId].parentCourse;
 		$("#page-lesson-outline").html(app.templates.modules.lessonsOutline.content(app.data, parentCourseId, lessonId));
 	}
- 
+
 	material.init();
 }
- 
 
-app.refeshBackButtonUrl = function(){
+
+app.refeshBackButtonUrl = function () {
 	var updateBackHref = function (hashHistory) {
 		$(".materialBarDashboardBackBtn").attr("href", `#!${hashHistory[hashHistory.length - 2] || ""}`);
 	}
@@ -1465,963 +1465,894 @@ app.refeshBackButtonUrl = function(){
 	}
 }
 
- 
-app.getLessonIdsFromCourse = function(courseId){ 
+
+app.getLessonIdsFromCourse = function (courseId) {
 	var affectedLessons = [];
-	var chapterIds = app.data.course[courseId].chapterIds || []; 
-	
-	chapterIds.forEach(function (chapterId) { 
-		var lessonIds =  app.data.chapter[chapterId].lessonIds || []; 
+	var chapterIds = app.data.course[courseId].chapterIds || [];
+
+	chapterIds.forEach(function (chapterId) {
+		var lessonIds = app.data.chapter[chapterId].lessonIds || [];
 		affectedLessons = affectedLessons.concat(lessonIds);
-	}); 
-	
+	});
+
 	return affectedLessons;
 };
-		
-app.__buildDataFromDataRaw = function(data){ 
-  
-		/* Transfer user data (from "user->learning") to lesson data (lesson)*/
-		var transferFromUserLearningToLessonObject = function(){ 
-			for (var lessonId in data.lesson) {
-				data.lesson[lessonId].visible 			  = (data.user.learning[lessonId] && data.user.learning[lessonId].visible) ? data.user.learning[lessonId].visible : false;
-				data.lesson[lessonId].availableDateString = (data.user.learning[lessonId] && data.user.learning[lessonId].availableDateString) ? data.user.learning[lessonId].availableDateString : false;
-				data.lesson[lessonId].deadlineDateString  = (data.user.learning[lessonId] && data.user.learning[lessonId].deadlineDateString) ? data.user.learning[lessonId].deadlineDateString : false;
-				data.lesson[lessonId].progress 			  = (data.user.learning[lessonId] && data.user.learning[lessonId].engagementProgressMaxPercent) ? data.user.learning[lessonId].engagementProgressMaxPercent : 0;
-			}
-		}();
-	
-		data.user.stats 		= data.user.stats || {};
-		data.user.stats.lessons = data.user.stats.lessons || {};
-		data.user.stats.profile = data.user.stats.profile || {};
-		
-		/* Remove invisible lessons so they don't count on progress stats nor are shown */				
-		var removeInvisibleLessons = function(){ 
-			for (var lessonId in data.lesson) {
-			
-				if(data.lesson[lessonId].visible === false){
-					delete data.lesson[lessonId];
-				} 
-			}  
-		}();
-				
-		var buildLessonsIds = function(){ 
-			for (var lessonId in data.lesson) {
-				data.lesson[lessonId].id = lessonId;
-			}
-		}();
 
-		var buildChapterChildrenIds = function(){ 
-			//Initialize
-			for (var chapterId in data.chapter) {
-				data.chapter[chapterId].lessonIds = [];
-			}
-			//Populate
-			for (var lessonId in data.lesson) {
-				var chapterId = data.lesson[lessonId].parentChapter;  
-				if(data.chapter[chapterId]){
-					data.chapter[chapterId].lessonIds = data.chapter[chapterId].lessonIds || [];
-					data.chapter[chapterId].lessonIds.push(lessonId);
-				}
-				else{
-					console.log("Invalid chapterId", chapterId);
-					materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap so we can fix this for you: INV-CHAPTER-"+ chapterId, {
-						hideCallback: function(){
-							location.reload();
-						}
-					}); 
-				}
-			}
-		}();
+app.__buildDataFromDataRaw = function (data) {
 
-		var buildCourseChildrenIds = function(){ 
-			//Initialize
-			for (var courseId in data.course) {
-				data.course[courseId].chapterIds = [];
+	/* Transfer user data (from "user->learning") to lesson data (lesson)*/
+	var transferFromUserLearningToLessonObject = function () {
+		for (var lessonId in data.lesson) {
+			data.lesson[lessonId].visible = (data.user.learning[lessonId] && data.user.learning[lessonId].visible) ? data.user.learning[lessonId].visible : false;
+			data.lesson[lessonId].availableDateString = (data.user.learning[lessonId] && data.user.learning[lessonId].availableDateString) ? data.user.learning[lessonId].availableDateString : false;
+			data.lesson[lessonId].deadlineDateString = (data.user.learning[lessonId] && data.user.learning[lessonId].deadlineDateString) ? data.user.learning[lessonId].deadlineDateString : false;
+			data.lesson[lessonId].progress = (data.user.learning[lessonId] && data.user.learning[lessonId].engagementProgressMaxPercent) ? data.user.learning[lessonId].engagementProgressMaxPercent : 0;
+		}
+	}();
+
+	data.user.stats = data.user.stats || {};
+	data.user.stats.lessons = data.user.stats.lessons || {};
+	data.user.stats.profile = data.user.stats.profile || {};
+
+	/* Remove invisible lessons so they don't count on progress stats nor are shown */
+	var removeInvisibleLessons = function () {
+		for (var lessonId in data.lesson) {
+
+			if (data.lesson[lessonId].visible === false) {
+				delete data.lesson[lessonId];
 			}
-			//Populate
-			for (var chapterId in data.chapter) {
-				var courseId = data.chapter[chapterId].parentCourse;
-				if(data.course[courseId]){
-					data.course[courseId].chapterIds = data.course[courseId].chapterIds || [];
-					data.course[courseId].chapterIds.push(chapterId);
-				}
-				else{
-					console.log("Invalid courseId", courseId);
-					materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap so we can fix this for you: INV-COURSE-"+ courseId, {
-						hideCallback: function(){
-							location.reload();
-						}
-					}); 
-				}
-				
+		}
+	}();
+
+	var buildLessonsIds = function () {
+		for (var lessonId in data.lesson) {
+			data.lesson[lessonId].id = lessonId;
+		}
+	}();
+
+	var buildChapterChildrenIds = function () {
+		//Initialize
+		for (var chapterId in data.chapter) {
+			data.chapter[chapterId].lessonIds = [];
+		}
+		//Populate
+		for (var lessonId in data.lesson) {
+			var chapterId = data.lesson[lessonId].parentChapter;
+			if (data.chapter[chapterId]) {
+				data.chapter[chapterId].lessonIds = data.chapter[chapterId].lessonIds || [];
+				data.chapter[chapterId].lessonIds.push(lessonId);
 			}
-		}();
-		 
-		 
-		 
-		var calculateLessonsDates = function(){
-			for (var lessonId in data.lesson) { 
-				if(data.lesson[lessonId].deadlineDateString){			 
-					var deadlineDate = new Date(data.lesson[lessonId].deadlineDateString);
-					var deadlineDateTime = (deadlineDate.getTime());
-	
-					data.lesson[lessonId].deadlineDate =  deadlineDate;			
-					data.lesson[lessonId].deadlineDateTime = deadlineDateTime; 	
-				} 
-				if(data.lesson[lessonId].availableDateString){			 
-					var availableDate = new Date(data.lesson[lessonId].availableDateString);		
-					var availableDateTime = (availableDate.getTime());
-	
-					data.lesson[lessonId].availableDate =  availableDate;			
-					data.lesson[lessonId].availableDateTime = availableDateTime; 	
-				} 
-			}
-		}();
-		
-		
-	
-		var calculateLessonsDateStatus = function(){
-			for (var lessonId in data.lesson) { 
-				if(data.lesson[lessonId].deadlineDateString){			
-					var msToDeadline = data.lesson[lessonId].deadlineDateTime - Date.now();
-					data.lesson[lessonId].expired =  (msToDeadline<=0)? true : false;
-					data.lesson[lessonId].msToDeadline = msToDeadline;
-					data.lesson[lessonId].daysToDeadline = (msToDeadline / 1000 / 60 / 60 / 24);
-				}
-				if(data.lesson[lessonId].availableDateString){				
-					var msToAvailable = data.lesson[lessonId].availableDateTime - Date.now();
-					data.lesson[lessonId].available =  (msToAvailable<=0)? true : false;
-					data.lesson[lessonId].msToAvailable = msToAvailable;
-					data.lesson[lessonId].daysToAvailable = (msToAvailable / 1000 / 60 / 60 / 24);			
-				}
-	
-				/*
-				* We need to consider all cases, which gives us six different possible status.
-				* Date Status available (6):
-				*
-				* comingSoon: The available date is more than 15 days away, so we will not show the countdown, just show "coming soon"
-				* comingAsap: The available date is less than 15 days away, we so we will show a precise countdown 
-				* available: lesson is available and is not expiring
-				* expiringAsap: the lesson is expiring in less than 15 days
-				* expiringSoon: the lesson is expiring in more than 15 days
-				* expired: the lesson has expired
-				*/
-				if(!data.lesson[lessonId].deadlineDateString && !data.lesson[lessonId].availableDateString){		
-					data.lesson[lessonId].dateStatus = "available"; 
-					continue; /* Stop checking: continue to next lesson */
-				}	
-				
-				if(data.lesson[lessonId].availableDateString){		
-					if(!data.lesson[lessonId].available){
-						data.lesson[lessonId].dateStatus = (data.lesson[lessonId].daysToAvailable > 15) ? "comingSoon" : "comingAsap";
-						continue; /* Stop checking: continue to next lesson */ 
+			else {
+				console.log("Invalid chapterId", chapterId);
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap so we can fix this for you: INV-CHAPTER-" + chapterId, {
+					hideCallback: function () {
+						location.reload();
 					}
-				}
-				
-				/* If we reached here, then the curren status is available, but it cuold get overriden with the deadline */						
+				});
+			}
+		}
+	}();
+
+	var buildCourseChildrenIds = function () {
+		//Initialize
+		for (var courseId in data.course) {
+			data.course[courseId].chapterIds = [];
+		}
+		//Populate
+		for (var chapterId in data.chapter) {
+			var courseId = data.chapter[chapterId].parentCourse;
+			if (data.course[courseId]) {
+				data.course[courseId].chapterIds = data.course[courseId].chapterIds || [];
+				data.course[courseId].chapterIds.push(chapterId);
+			}
+			else {
+				console.log("Invalid courseId", courseId);
+				materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap so we can fix this for you: INV-COURSE-" + courseId, {
+					hideCallback: function () {
+						location.reload();
+					}
+				});
+			}
+
+		}
+	}();
+
+
+
+	var calculateLessonsDates = function () {
+		for (var lessonId in data.lesson) {
+			if (data.lesson[lessonId].deadlineDateString) {
+				var deadlineDate = new Date(data.lesson[lessonId].deadlineDateString);
+				var deadlineDateTime = (deadlineDate.getTime());
+
+				data.lesson[lessonId].deadlineDate = deadlineDate;
+				data.lesson[lessonId].deadlineDateTime = deadlineDateTime;
+			}
+			if (data.lesson[lessonId].availableDateString) {
+				var availableDate = new Date(data.lesson[lessonId].availableDateString);
+				var availableDateTime = (availableDate.getTime());
+
+				data.lesson[lessonId].availableDate = availableDate;
+				data.lesson[lessonId].availableDateTime = availableDateTime;
+			}
+		}
+	}();
+
+
+
+	var calculateLessonsDateStatus = function () {
+		for (var lessonId in data.lesson) {
+			if (data.lesson[lessonId].deadlineDateString) {
+				var msToDeadline = data.lesson[lessonId].deadlineDateTime - Date.now();
+				data.lesson[lessonId].expired = (msToDeadline <= 0) ? true : false;
+				data.lesson[lessonId].msToDeadline = msToDeadline;
+				data.lesson[lessonId].daysToDeadline = (msToDeadline / 1000 / 60 / 60 / 24);
+			}
+			if (data.lesson[lessonId].availableDateString) {
+				var msToAvailable = data.lesson[lessonId].availableDateTime - Date.now();
+				data.lesson[lessonId].available = (msToAvailable <= 0) ? true : false;
+				data.lesson[lessonId].msToAvailable = msToAvailable;
+				data.lesson[lessonId].daysToAvailable = (msToAvailable / 1000 / 60 / 60 / 24);
+			}
+
+			/*
+			* We need to consider all cases, which gives us six different possible status.
+			* Date Status available (6):
+			*
+			* comingSoon: The available date is more than 15 days away, so we will not show the countdown, just show "coming soon"
+			* comingAsap: The available date is less than 15 days away, we so we will show a precise countdown 
+			* available: lesson is available and is not expiring
+			* expiringAsap: the lesson is expiring in less than 15 days
+			* expiringSoon: the lesson is expiring in more than 15 days
+			* expired: the lesson has expired
+			*/
+			if (!data.lesson[lessonId].deadlineDateString && !data.lesson[lessonId].availableDateString) {
 				data.lesson[lessonId].dateStatus = "available";
-						
-				if(data.lesson[lessonId].deadlineDateString){		
-					if(!data.lesson[lessonId].expired){
-						data.lesson[lessonId].dateStatus = (data.lesson[lessonId].daysToDeadline > 15) ? "expiringSoon" : "expiringAsap";
-						continue; /* Stop checking: continue to next lesson */ 
-					}
-					else{
-						data.lesson[lessonId].dateStatus = "expired"; 
-					}
+				continue; /* Stop checking: continue to next lesson */
+			}
+
+			if (data.lesson[lessonId].availableDateString) {
+				if (!data.lesson[lessonId].available) {
+					data.lesson[lessonId].dateStatus = (data.lesson[lessonId].daysToAvailable > 15) ? "comingSoon" : "comingAsap";
+					continue; /* Stop checking: continue to next lesson */
 				}
-				 
-			} 
-		}();
-		
-		var calculateEarliestAvailableDateTimes = function() {
-			for (var courseId in data.course) {
-				data.course[courseId].earliestAvailableDateTime = false;
-				var chapterIds = data.course[courseId].chapterIds || []; 	
-				var chapterIdsLength = chapterIds.length;
-				for (var i = 0; i < chapterIdsLength; i++){
-					var chapterId = chapterIds[i]; 
-					var lessonIds = data.chapter[chapterId].lessonIds || [];
-					var lessonIdsLength = lessonIds.length;
-					for (var j = 0; j < lessonIdsLength; j++){
-						var lessonId = lessonIds[j]; 
-						
-						if(data.lesson[lessonId].availableDateString){ 
-							if( (!["comingSoon", "comingAsap"].includes(data.lesson[lessonId].dateStatus)) && (data.course[courseId].earliestAvailableDateTime === false)){
-								data.course[courseId].earliestAvailableDateString = data.lesson[lessonId].availableDateString; 
-								data.course[courseId].earliestAvailableDateTime   = data.lesson[lessonId].availableDateTime; 
-								data.course[courseId].earliestAvailableDate       = data.lesson[lessonId].availableDate; 
+			}
+
+			/* If we reached here, then the curren status is available, but it cuold get overriden with the deadline */
+			data.lesson[lessonId].dateStatus = "available";
+
+			if (data.lesson[lessonId].deadlineDateString) {
+				if (!data.lesson[lessonId].expired) {
+					data.lesson[lessonId].dateStatus = (data.lesson[lessonId].daysToDeadline > 15) ? "expiringSoon" : "expiringAsap";
+					continue; /* Stop checking: continue to next lesson */
+				}
+				else {
+					data.lesson[lessonId].dateStatus = "expired";
+				}
+			}
+
+		}
+	}();
+
+	var calculateEarliestAvailableDateTimes = function () {
+		for (var courseId in data.course) {
+			data.course[courseId].earliestAvailableDateTime = false;
+			var chapterIds = data.course[courseId].chapterIds || [];
+			var chapterIdsLength = chapterIds.length;
+			for (var i = 0; i < chapterIdsLength; i++) {
+				var chapterId = chapterIds[i];
+				var lessonIds = data.chapter[chapterId].lessonIds || [];
+				var lessonIdsLength = lessonIds.length;
+				for (var j = 0; j < lessonIdsLength; j++) {
+					var lessonId = lessonIds[j];
+
+					if (data.lesson[lessonId].availableDateString) {
+						if ((!["comingSoon", "comingAsap"].includes(data.lesson[lessonId].dateStatus)) && (data.course[courseId].earliestAvailableDateTime === false)) {
+							data.course[courseId].earliestAvailableDateString = data.lesson[lessonId].availableDateString;
+							data.course[courseId].earliestAvailableDateTime = data.lesson[lessonId].availableDateTime;
+							data.course[courseId].earliestAvailableDate = data.lesson[lessonId].availableDate;
+							data.user.stats.lessons.newestLessonId = lessonId;
+						}
+						else {
+							if ((!["comingSoon", "comingAsap"].includes(data.lesson[lessonId].dateStatus)) && (data.lesson[lessonId].availableDateTime < data.course[courseId].earliestAvailableDateTime)) {
+								data.course[courseId].earliestAvailableDateString = data.lesson[lessonId].availableDateString;
+								data.course[courseId].earliestAvailableDateTime = data.lesson[lessonId].availableDateTime;
+								data.course[courseId].earliestAvailableDate = data.lesson[lessonId].availableDate;
 								data.user.stats.lessons.newestLessonId = lessonId;
 							}
-							else{
-								if( (!["comingSoon", "comingAsap"].includes(data.lesson[lessonId].dateStatus)) && (data.lesson[lessonId].availableDateTime < data.course[courseId].earliestAvailableDateTime)){
-									data.course[courseId].earliestAvailableDateString = data.lesson[lessonId].availableDateString;
-									data.course[courseId].earliestAvailableDateTime   = data.lesson[lessonId].availableDateTime; 
-									data.course[courseId].earliestAvailableDate       = data.lesson[lessonId].availableDate; 
-									data.user.stats.lessons.newestLessonId = lessonId;
-								}
-							}
 						}
-					}	
-				} 
+					}
+				}
 			}
-		}();
+		}
+	}();
 
-		var calculateEarliestDeadlineDateTimes = function() {
-			for (var courseId in data.course) {
-				data.course[courseId].earliestDeadlineDateTime = false;
-				var chapterIds = data.course[courseId].chapterIds || []; 	
-				var chapterIdsLength = chapterIds.length;
-				for (var i = 0; i < chapterIdsLength; i++){
-					var chapterId = chapterIds[i]; 
-					var lessonIds = data.chapter[chapterId].lessonIds || [];
-					var lessonIdsLength = lessonIds.length;
-					for (var j = 0; j < lessonIdsLength; j++){
-						var lessonId = lessonIds[j]; 
-						
-						if(data.lesson[lessonId].deadlineDateString){  
-							if( (!["expired"].includes(data.lesson[lessonId].dateStatus)) && data.course[courseId].earliestDeadlineDateTime === false){
-								data.course[courseId].earliestDeadlineDateString = data.lesson[lessonId].deadlineDateString; 
-								data.course[courseId].earliestDeadlineDateTime   = data.lesson[lessonId].deadlineDateTime; 
-								data.course[courseId].earliestDeadlineDate       = data.lesson[lessonId].deadlineDate; 
+	var calculateEarliestDeadlineDateTimes = function () {
+		for (var courseId in data.course) {
+			data.course[courseId].earliestDeadlineDateTime = false;
+			var chapterIds = data.course[courseId].chapterIds || [];
+			var chapterIdsLength = chapterIds.length;
+			for (var i = 0; i < chapterIdsLength; i++) {
+				var chapterId = chapterIds[i];
+				var lessonIds = data.chapter[chapterId].lessonIds || [];
+				var lessonIdsLength = lessonIds.length;
+				for (var j = 0; j < lessonIdsLength; j++) {
+					var lessonId = lessonIds[j];
+
+					if (data.lesson[lessonId].deadlineDateString) {
+						if ((!["expired"].includes(data.lesson[lessonId].dateStatus)) && data.course[courseId].earliestDeadlineDateTime === false) {
+							data.course[courseId].earliestDeadlineDateString = data.lesson[lessonId].deadlineDateString;
+							data.course[courseId].earliestDeadlineDateTime = data.lesson[lessonId].deadlineDateTime;
+							data.course[courseId].earliestDeadlineDate = data.lesson[lessonId].deadlineDate;
+							data.user.stats.lessons.expiringLessonId = lessonId;
+						}
+						else {
+							if ((!["expired"].includes(data.lesson[lessonId].dateStatus)) && data.lesson[lessonId].deadlineDateTime < data.course[courseId].earliestDeadlineDateTime) {
+								data.course[courseId].earliestDeadlineDateString = data.lesson[lessonId].deadlineDateString;
+								data.course[courseId].earliestDeadlineDateTime = data.lesson[lessonId].deadlineDateTime;
+								data.course[courseId].earliestDeadlineDate = data.lesson[lessonId].deadlineDate;
 								data.user.stats.lessons.expiringLessonId = lessonId;
 							}
-							else{
-								if( (!["expired"].includes(data.lesson[lessonId].dateStatus)) && data.lesson[lessonId].deadlineDateTime < data.course[courseId].earliestDeadlineDateTime){
-									data.course[courseId].earliestDeadlineDateString = data.lesson[lessonId].deadlineDateString; 
-									data.course[courseId].earliestDeadlineDateTime   = data.lesson[lessonId].deadlineDateTime; 
-									data.course[courseId].earliestDeadlineDate       = data.lesson[lessonId].deadlineDate; 
-									data.user.stats.lessons.expiringLessonId = lessonId;
-								}
-							}
 						}
-					}	
-				} 
-			}
-		}();
-
-
-		var calculateLessonsProgressStatus = function(){
-			for (var lessonId in data.lesson) {  
-	
-				/* 
-				* Progress Status available (3):
-				*
-				* new: progress is < 6
-				* inProgress: progress is >= 6 and < 94. 
-				* completed: progress >= 94
-				*/
-				if(data.lesson[lessonId].progress < 6){
-					data.lesson[lessonId].progressStatus = "new";
-				}
-				else{
-					if(data.lesson[lessonId].progress < 94){
-						data.lesson[lessonId].progressStatus = "inProgress";
 					}
-					else{
-						data.lesson[lessonId].progressStatus = "completed";
-					}
-				} 
-				 
-			} 
-		}();
-		
-		
-
-		var sortLessonsByOrder = function(){
-			for (var chapterId in data.chapter) {
-				var lessonIds = data.chapter[chapterId].lessonIds || []; 
-				if(lessonIds.length === 0) {continue};
-				
-				var tempLessonIds = [];
-			
-				var lessonIdsLength = lessonIds.length;
-				for (var i = 0; i < lessonIdsLength; i++){
-					var lessonId = lessonIds[i];
-					tempLessonIds.push({lessonId: lessonId, order: data.lesson[lessonId].order});
 				}
-				
-				tempLessonIds.sort(function(obj1, obj2) { 
-					return obj1.order - obj2.order;
-				});
-			
-				var sortedLessonIds = [];
-				var tempLessonIdsLength = tempLessonIds.length;
-				for (var i = 0; i < tempLessonIdsLength; i++){
-					sortedLessonIds.push(tempLessonIds[i].lessonId);
+			}
+		}
+	}();
+
+
+	var calculateLessonsProgressStatus = function () {
+		for (var lessonId in data.lesson) {
+
+			/* 
+			* Progress Status available (3):
+			*
+			* new: progress is < 6
+			* inProgress: progress is >= 6 and < 94. 
+			* completed: progress >= 94
+			*/
+			if (data.lesson[lessonId].progress < 6) {
+				data.lesson[lessonId].progressStatus = "new";
+			}
+			else {
+				if (data.lesson[lessonId].progress < 94) {
+					data.lesson[lessonId].progressStatus = "inProgress";
 				}
-				
-				data.chapter[chapterId].lessonIds = sortedLessonIds;
-			}
-		}();
-
-
-		var sortChaptersByOrder = function(){
-			for (var courseId in data.course) {
-				var chapterIds = data.course[courseId].chapterIds || []; 
-				if(chapterIds.length === 0) {continue};
-				
-				var tempChapterIds = [];
-			
-				var chapterIdsLength = chapterIds.length;
-				for (var i = 0; i < chapterIdsLength; i++){
-					var chapterId = chapterIds[i];
-					tempChapterIds.push({chapterId: chapterId, order: data.chapter[chapterId].order});
+				else {
+					data.lesson[lessonId].progressStatus = "completed";
 				}
-				tempChapterIds.sort(function(obj1, obj2) { 
-					return obj1.order - obj2.order;
-				});
-			
-				var sortedChapterIds = [];
-				var tempChapterIdsLength = tempChapterIds.length;
-				for (var i = 0; i < tempChapterIdsLength; i++){
-					sortedChapterIds.push(tempChapterIds[i].chapterId);
+			}
+
+		}
+	}();
+
+
+
+	var sortLessonsByOrder = function () {
+		for (var chapterId in data.chapter) {
+			var lessonIds = data.chapter[chapterId].lessonIds || [];
+			if (lessonIds.length === 0) { continue };
+
+			var tempLessonIds = [];
+
+			var lessonIdsLength = lessonIds.length;
+			for (var i = 0; i < lessonIdsLength; i++) {
+				var lessonId = lessonIds[i];
+				tempLessonIds.push({ lessonId: lessonId, order: data.lesson[lessonId].order });
+			}
+
+			tempLessonIds.sort(function (obj1, obj2) {
+				return obj1.order - obj2.order;
+			});
+
+			var sortedLessonIds = [];
+			var tempLessonIdsLength = tempLessonIds.length;
+			for (var i = 0; i < tempLessonIdsLength; i++) {
+				sortedLessonIds.push(tempLessonIds[i].lessonId);
+			}
+
+			data.chapter[chapterId].lessonIds = sortedLessonIds;
+		}
+	}();
+
+
+	var sortChaptersByOrder = function () {
+		for (var courseId in data.course) {
+			var chapterIds = data.course[courseId].chapterIds || [];
+			if (chapterIds.length === 0) { continue };
+
+			var tempChapterIds = [];
+
+			var chapterIdsLength = chapterIds.length;
+			for (var i = 0; i < chapterIdsLength; i++) {
+				var chapterId = chapterIds[i];
+				tempChapterIds.push({ chapterId: chapterId, order: data.chapter[chapterId].order });
+			}
+			tempChapterIds.sort(function (obj1, obj2) {
+				return obj1.order - obj2.order;
+			});
+
+			var sortedChapterIds = [];
+			var tempChapterIdsLength = tempChapterIds.length;
+			for (var i = 0; i < tempChapterIdsLength; i++) {
+				sortedChapterIds.push(tempChapterIds[i].chapterId);
+			}
+
+			data.course[courseId].chapterIds = sortedChapterIds;
+		}
+	}();
+
+
+	var clearChapterStats = function () {
+		for (var chapterId in data.chapter) {
+			data.chapter[chapterId].stats = {};
+		}
+	}();
+
+	var clearCourseStats = function () {
+		for (var courseId in data.course) {
+			data.course[courseId].stats = {};
+		}
+	}();
+
+	var buildChapterStats = function () {
+		for (var chapterId in data.chapter) {
+			var lessonIds = data.chapter[chapterId].lessonIds || [];
+
+			var complete = 0;
+			var total = lessonIds.length;
+			var sumOfProgress = 0;
+			for (var i = 0; i < total; i++) {
+				var lessonId = lessonIds[i];
+				if (data.lesson[lessonId].progressStatus === "completed") {
+					complete++;
 				}
-				
-				data.course[courseId].chapterIds = sortedChapterIds;
+				sumOfProgress += data.lesson[lessonId].progress;
 			}
-		}();
+
+			var totalProgress = total ? Math.round(sumOfProgress / total) : 0;
+
+			data.chapter[chapterId].stats = {};
+			data.chapter[chapterId].stats.lessons = {
+				complete: complete,
+				incomplete: total - complete,
+				total: total,
+				sumOfProgress: sumOfProgress,
+				totalProgress: totalProgress
+			};
+		}
+	}()
 
 
-		var clearChapterStats = function(){ 
-			for (var chapterId in data.chapter) {
-				data.chapter[chapterId].stats = {};   
-			}
-		}();
-		
-		var clearCourseStats = function(){ 
-			for (var courseId in data.course) {  
-				data.course[courseId].stats = {};   
-			}
-		}(); 
-		
-		var buildChapterStats = function(){ 
-			for (var chapterId in data.chapter) {
-				var lessonIds = data.chapter[chapterId].lessonIds || []; 
-			 
-				var complete = 0;
-				var total = lessonIds.length;
-				var sumOfProgress = 0;
-				for (var i = 0; i < total; i++){
-					var lessonId = lessonIds[i];
-					if(data.lesson[lessonId].progressStatus === "completed"){
-						complete++;
-					}
-					sumOfProgress += data.lesson[lessonId].progress;
-				}
-				
-				var totalProgress = total? Math.round(sumOfProgress / total):0; 
- 
-				data.chapter[chapterId].stats = {};
-				data.chapter[chapterId].stats.lessons = {
-						complete: complete, 
-						incomplete: total - complete,
-						total: total,
-						sumOfProgress: sumOfProgress,
-						totalProgress: totalProgress
-				};
-			}
-		}()
+	var buildCourseStats = function () {
+		for (var courseId in data.course) {
+			var chapterIds = data.course[courseId].chapterIds || [];
 
-
-		var buildCourseStats = function(){ 
-			for (var courseId in data.course) {
-				var chapterIds = data.course[courseId].chapterIds || []; 
-			
-				var complete = 0;
-				var incomplete = 0;
-				var total = 0;
-				var sumOfProgress = 0;
-				var chapterIdsLength = chapterIds.length;
-				for (var i = 0; i < chapterIdsLength; i++){
-					var chapterId = chapterIds[i];
-					complete += data.chapter[chapterId].stats.lessons.complete;
-					incomplete += data.chapter[chapterId].stats.lessons.incomplete;
-					total += data.chapter[chapterId].stats.lessons.total;
-					sumOfProgress += data.chapter[chapterId].stats.lessons.sumOfProgress;
-				}
-				
-				var totalProgress = total? Math.round(sumOfProgress / total):0;
-				 
-				data.course[courseId].stats = {};
-				data.course[courseId].stats.lessons = {
-						complete: complete,
-						incomplete: incomplete,
-						total: total,
-						sumOfProgress: sumOfProgress,
-						totalProgress: totalProgress
-				}; 
-	 
-			}
-		}()
- 
-		/* Do not delete this function. This internal function uses "data". The global uses "app.data" */
-		var getLessonIdsFromCourse = function(courseId){ 
-			var affectedLessons = [];
-			var chapterIds = data.course[courseId].chapterIds || []; 
-			
-			chapterIds.forEach(function (chapterId) { 
-				var lessonIds =  data.chapter[chapterId].lessonIds || []; 
-				affectedLessons = affectedLessons.concat(lessonIds);
-			}); 
-			
-			return affectedLessons;
-		};
-
-		var buildCourseDateStatus = function(){ 
-			for (var courseId in data.course) {
-				 var lessonIds = getLessonIdsFromCourse(courseId);
-				 
-				 var msToDeadlines = [];
-				 var msToAvailables = [];
-				 
-				 
-				 // Si ninguna esta available, usar la PRIMERA fecha de "coming soon"
-				 //IF Chequear todas las lecciones de un curso. Si hay por lo menos una "expiring", el curso esta "expiring" con la fecha mas proxima.
-				 //ELSE IF Chequear todas las lecciones de un curso. Si hay por lo menos una "available", el curso esta "available".
-
- 
- 
-				//Default value is expired
-				data.course[courseId].dateStatus = "expired";
-
-				lessonIds.forEach(function (lessonId) { 
-				 
-							//If there is just one lesson that is available, the whole course becomes available, if not expiringAsap or expiringSoon
-							if(data.lesson[lessonId].dateStatus == "available"){
-								if((data.course[courseId].dateStatus != "expiringSoon") && (data.course[courseId].dateStatus != "expiringAsap")){
-									data.course[courseId].dateStatus = "available";
-								}
-							}
-							
-							//If there is just one lesson that is expiring, the whole course becomes expiring
-							if((data.lesson[lessonId].dateStatus == "expiringAsap") || (data.lesson[lessonId].dateStatus == "expiringSoon")){
-								if(data.course[courseId].msToDeadline){
-									if(data.lesson[lessonId].msToDeadline < data.course[courseId].msToDeadline){
-										data.course[courseId].msToDeadline = data.lesson[lessonId].msToDeadline;
-										data.course[courseId].deadlineDateString = data.lesson[lessonId].deadlineDateString;
-									};
-								}
-								else{
-									data.course[courseId].msToDeadline = data.lesson[lessonId].msToDeadline;
-									data.course[courseId].deadlineDateString = data.lesson[lessonId].deadlineDateString;
-								}
-								 
-								if(data.lesson[lessonId].dateStatus == "expiringAsap"){
-									data.course[courseId].dateStatus = "expiringAsap";
-								}
-								else if((data.lesson[lessonId].dateStatus == "expiringSoon") && (data.course[courseId].dateStatus != "expiringAsap")){
-									data.course[courseId].dateStatus = "expiringSoon";
-								}
-								
-							}; 
-							
-							//If course is "expired", and there is just one lesson comingSoon or comingAsap, we will use that value.
-							if((data.lesson[lessonId].dateStatus == "comingAsap") || (data.lesson[lessonId].dateStatus == "comingSoon")){
-								if(data.course[courseId].msToAvailable){
-									if(data.lesson[lessonId].msToAvailable < data.course[courseId].msToAvailable){
-										data.course[courseId].msToAvailable = data.lesson[lessonId].msToAvailable;
-										data.course[courseId].availableDateString = data.lesson[lessonId].availableDateString;
-									};
-								}
-								else{
-									data.course[courseId].msToAvailable = data.lesson[lessonId].msToAvailable;
-									data.course[courseId].availableDateString = data.lesson[lessonId].availableDateString;
-								}
-
-								 
-								if(data.course[courseId].dateStatus == "expired"){
-									if(data.lesson[lessonId].dateStatus == "comingAsap"){
-										data.course[courseId].dateStatus = "comingAsap";
-									}
-									else if((data.lesson[lessonId].dateStatus == "comingSoon") && (data.course[courseId].dateStatus != "comingAsap")){
-										data.course[courseId].dateStatus = "comingSoon";
-									}
-								}
-								
-							}; 
-							 
-							 
-				});
-				 
-			}
-		}()
- 
- 
-		var buildUserStatsLessons = function(){ 
 			var complete = 0;
 			var incomplete = 0;
-			var total = 0; 
-				
-			for (var courseId in data.course) { 
-				complete += data.course[courseId].stats.lessons.complete;
-				incomplete += data.course[courseId].stats.lessons.incomplete;
-				total += data.course[courseId].stats.lessons.total; 
+			var total = 0;
+			var sumOfProgress = 0;
+			var chapterIdsLength = chapterIds.length;
+			for (var i = 0; i < chapterIdsLength; i++) {
+				var chapterId = chapterIds[i];
+				complete += data.chapter[chapterId].stats.lessons.complete;
+				incomplete += data.chapter[chapterId].stats.lessons.incomplete;
+				total += data.chapter[chapterId].stats.lessons.total;
+				sumOfProgress += data.chapter[chapterId].stats.lessons.sumOfProgress;
 			}
-			
-			data.user.stats.lessons.complete = complete;
-			data.user.stats.lessons.incomplete = incomplete;
-			data.user.stats.lessons.total = total; 
-			
-		}();
 
-		var buildUserStatsProfile = function(){ 
-			var complete =0;
-			if(data.user.profile.pianoLevel) {complete++;}
-			if(data.user.profile.genres) {complete += data.user.profile.genres.length;}
-			if(data.user.profile.interests) {complete += data.user.profile.interests.length;}
-			 
-			var total = 7; //pianoLevel +  3 genres + 3 interests 7 // + name + email =  9
-		 
-			data.user.stats.profile.complete = complete;
-			data.user.stats.profile.incomplete =  total - complete;
-			data.user.stats.profile.total = total; 
-					
-		}();
-		
-		
-		var calculateChaptersProgressStatus = function(){
-			for (var chapterId in data.chapter) {  
-	
-				/* 
-				* Progress Status available (3):
-				*
-				* new: progress is < 6
-				* inProgress: progress is >= 6 and < 94. 
-				* completed: progress >= 94
-				*/
-				if(data.chapter[chapterId].stats.lessons.totalProgress < 6){
-					data.chapter[chapterId].progressStatus = "new";
+			var totalProgress = total ? Math.round(sumOfProgress / total) : 0;
+
+			data.course[courseId].stats = {};
+			data.course[courseId].stats.lessons = {
+				complete: complete,
+				incomplete: incomplete,
+				total: total,
+				sumOfProgress: sumOfProgress,
+				totalProgress: totalProgress
+			};
+
+		}
+	}()
+
+	/* Do not delete this function. This internal function uses "data". The global uses "app.data" */
+	var getLessonIdsFromCourse = function (courseId) {
+		var affectedLessons = [];
+		var chapterIds = data.course[courseId].chapterIds || [];
+
+		chapterIds.forEach(function (chapterId) {
+			var lessonIds = data.chapter[chapterId].lessonIds || [];
+			affectedLessons = affectedLessons.concat(lessonIds);
+		});
+
+		return affectedLessons;
+	};
+
+	var buildCourseDateStatus = function () {
+		for (var courseId in data.course) {
+			var lessonIds = getLessonIdsFromCourse(courseId);
+
+			var msToDeadlines = [];
+			var msToAvailables = [];
+
+
+			// Si ninguna esta available, usar la PRIMERA fecha de "coming soon"
+			//IF Chequear todas las lecciones de un curso. Si hay por lo menos una "expiring", el curso esta "expiring" con la fecha mas proxima.
+			//ELSE IF Chequear todas las lecciones de un curso. Si hay por lo menos una "available", el curso esta "available".
+
+
+
+			//Default value is expired
+			data.course[courseId].dateStatus = "expired";
+
+			lessonIds.forEach(function (lessonId) {
+
+				//If there is just one lesson that is available, the whole course becomes available, if not expiringAsap or expiringSoon
+				if (data.lesson[lessonId].dateStatus == "available") {
+					if ((data.course[courseId].dateStatus != "expiringSoon") && (data.course[courseId].dateStatus != "expiringAsap")) {
+						data.course[courseId].dateStatus = "available";
+					}
 				}
-				else{
-					if(data.chapter[chapterId].stats.lessons.totalProgress < 94){
-						data.chapter[chapterId].progressStatus = "inProgress";
+
+				//If there is just one lesson that is expiring, the whole course becomes expiring
+				if ((data.lesson[lessonId].dateStatus == "expiringAsap") || (data.lesson[lessonId].dateStatus == "expiringSoon")) {
+					if (data.course[courseId].msToDeadline) {
+						if (data.lesson[lessonId].msToDeadline < data.course[courseId].msToDeadline) {
+							data.course[courseId].msToDeadline = data.lesson[lessonId].msToDeadline;
+							data.course[courseId].deadlineDateString = data.lesson[lessonId].deadlineDateString;
+						};
 					}
-					else{
-						data.chapter[chapterId].progressStatus = "completed";
+					else {
+						data.course[courseId].msToDeadline = data.lesson[lessonId].msToDeadline;
+						data.course[courseId].deadlineDateString = data.lesson[lessonId].deadlineDateString;
 					}
-				} 
-				 
-			} 
-		}();
-		
-		var calculateCoursesProgressStatus = function(){
-			for (var courseId in data.course) {  
-	
-				/* 
-				* Progress Status available (3):
-				*
-				* new: progress is < 6
-				* inProgress: progress is >= 6 and < 94. 
-				* completed: progress >= 94
-				*/
-				if(data.course[courseId].stats.lessons.totalProgress < 6){
-					data.course[courseId].progressStatus = "new";
+
+					if (data.lesson[lessonId].dateStatus == "expiringAsap") {
+						data.course[courseId].dateStatus = "expiringAsap";
+					}
+					else if ((data.lesson[lessonId].dateStatus == "expiringSoon") && (data.course[courseId].dateStatus != "expiringAsap")) {
+						data.course[courseId].dateStatus = "expiringSoon";
+					}
+
+				};
+
+				//If course is "expired", and there is just one lesson comingSoon or comingAsap, we will use that value.
+				if ((data.lesson[lessonId].dateStatus == "comingAsap") || (data.lesson[lessonId].dateStatus == "comingSoon")) {
+					if (data.course[courseId].msToAvailable) {
+						if (data.lesson[lessonId].msToAvailable < data.course[courseId].msToAvailable) {
+							data.course[courseId].msToAvailable = data.lesson[lessonId].msToAvailable;
+							data.course[courseId].availableDateString = data.lesson[lessonId].availableDateString;
+						};
+					}
+					else {
+						data.course[courseId].msToAvailable = data.lesson[lessonId].msToAvailable;
+						data.course[courseId].availableDateString = data.lesson[lessonId].availableDateString;
+					}
+
+
+					if (data.course[courseId].dateStatus == "expired") {
+						if (data.lesson[lessonId].dateStatus == "comingAsap") {
+							data.course[courseId].dateStatus = "comingAsap";
+						}
+						else if ((data.lesson[lessonId].dateStatus == "comingSoon") && (data.course[courseId].dateStatus != "comingAsap")) {
+							data.course[courseId].dateStatus = "comingSoon";
+						}
+					}
+
+				};
+
+
+			});
+
+		}
+	}()
+
+
+	var buildUserStatsLessons = function () {
+		var complete = 0;
+		var incomplete = 0;
+		var total = 0;
+
+		for (var courseId in data.course) {
+			complete += data.course[courseId].stats.lessons.complete;
+			incomplete += data.course[courseId].stats.lessons.incomplete;
+			total += data.course[courseId].stats.lessons.total;
+		}
+
+		data.user.stats.lessons.complete = complete;
+		data.user.stats.lessons.incomplete = incomplete;
+		data.user.stats.lessons.total = total;
+
+	}();
+
+	var buildUserStatsProfile = function () {
+		var complete = 0;
+		if (data.user.profile.pianoLevel) { complete++; }
+		if (data.user.profile.genres) { complete += data.user.profile.genres.length; }
+		if (data.user.profile.interests) { complete += data.user.profile.interests.length; }
+
+		var total = 7; //pianoLevel +  3 genres + 3 interests 7 // + name + email =  9
+
+		data.user.stats.profile.complete = complete;
+		data.user.stats.profile.incomplete = total - complete;
+		data.user.stats.profile.total = total;
+
+	}();
+
+
+	var calculateChaptersProgressStatus = function () {
+		for (var chapterId in data.chapter) {
+
+			/* 
+			* Progress Status available (3):
+			*
+			* new: progress is < 6
+			* inProgress: progress is >= 6 and < 94. 
+			* completed: progress >= 94
+			*/
+			if (data.chapter[chapterId].stats.lessons.totalProgress < 6) {
+				data.chapter[chapterId].progressStatus = "new";
+			}
+			else {
+				if (data.chapter[chapterId].stats.lessons.totalProgress < 94) {
+					data.chapter[chapterId].progressStatus = "inProgress";
 				}
-				else{
-					if(data.course[courseId].stats.lessons.totalProgress < 94){
-						data.course[courseId].progressStatus = "inProgress";
-					}
-					else{
-						data.course[courseId].progressStatus = "completed";
-					}
-				} 
-				 
-			} 
-		}();
+				else {
+					data.chapter[chapterId].progressStatus = "completed";
+				}
+			}
+
+		}
+	}();
+
+	var calculateCoursesProgressStatus = function () {
+		for (var courseId in data.course) {
+
+			/* 
+			* Progress Status available (3):
+			*
+			* new: progress is < 6
+			* inProgress: progress is >= 6 and < 94. 
+			* completed: progress >= 94
+			*/
+			if (data.course[courseId].stats.lessons.totalProgress < 6) {
+				data.course[courseId].progressStatus = "new";
+			}
+			else {
+				if (data.course[courseId].stats.lessons.totalProgress < 94) {
+					data.course[courseId].progressStatus = "inProgress";
+				}
+				else {
+					data.course[courseId].progressStatus = "completed";
+				}
+			}
+
+		}
+	}();
 
  
-		
-		
-	
 
-		var getCoursesIdsOrderedByProgress = function(data) {
-			if (!data || !data.user || !data.user.learning || !data.lesson || !data.chapter) {
-				throw new Error("Invalid data structure. Necessary data is missing.");
+	var calculateCourseExplorationByFilters = function () {
+		var courseSorter = new CourseSorter(data);
+		data.explore = courseSorter.sortCoursesByAllFilters(); 
+	}();
+
+	data.global = {};
+	data.global.courses = {};
+
+	data.global.courses.sortedNewestFirst = function () {
+		var tempCoursesIds = [];
+
+		for (var courseId in data.course) {
+			tempCoursesIds.push({ courseId: courseId, earliestAvailableDateTime: data.course[courseId].earliestAvailableDateTime });
+		}
+		tempCoursesIds.sort(function (obj1, obj2) {
+			return obj2.earliestAvailableDateTime - obj1.earliestAvailableDateTime;
+		});
+
+		var sortedCoursesIds = [];
+		var tempCoursesIdsLength = tempCoursesIds.length;
+		for (var i = 0; i < tempCoursesIdsLength; i++) {
+			sortedCoursesIds.push(tempCoursesIds[i].courseId);
+		}
+
+		return sortedCoursesIds;
+	}();
+
+
+	data.global.courses.sortedExpiringFirst = function () {
+		var tempCoursesIds = [];
+
+		for (var courseId in data.course) {
+			//TODO: what if course already expired. Don't include it in the sort. We need to do: expiring first (that has not expired) then newest first
+			tempCoursesIds.push({ courseId: courseId, earliestDeadlineDateTime: data.course[courseId].earliestDeadlineDateTime });
+		}
+		tempCoursesIds.sort(function (obj1, obj2) {
+			return obj1.earliestDeadlineDateTime - obj2.earliestDeadlineDateTime;
+		});
+
+		var sortedCoursesIds = [];
+		var tempCoursesIdsLength = tempCoursesIds.length;
+		for (var i = 0; i < tempCoursesIdsLength; i++) {
+			sortedCoursesIds.push(tempCoursesIds[i].courseId);
+		}
+
+		return sortedCoursesIds;
+	}();
+
+
+	data.user.recommendations = LessonRecommender.getRecommendations(data);
+
+	var prepareDataSpecialOffer = function () {
+
+		data.offer = data.offer || {};
+		data.offer.general = data.offer.general || {};
+		data.offer.general.availability = data.offer.general.availability || {};
+		data.offer.pages = data.offer.pages || {};
+
+		data.offer.pages.comingSoon = data.offer.pages.comingSoon || {};
+		data.offer.pages.specialOffer = data.offer.pages.specialOffer || {};
+		data.offer.pages.expires = data.offer.pages.expires || {};
+
+		data.offer.pages.comingSoon.apps = data.offer.pages.comingSoon.apps || {};
+		data.offer.pages.specialOffer.apps = data.offer.pages.specialOffer.apps || {};
+		data.offer.pages.expires.apps = data.offer.pages.expires.apps || {};
+
+
+		data.offer.isDataAvailable = function () {
+
+			if (!!(
+				data.offer &&
+				data.offer.general &&
+				data.offer.general.availability &&
+				data.offer.general.availability.expireDate &&
+				data.offer.general.availability.startDate &&
+				data.offer.general.availability.startTimezone &&
+				data.offer.general.availability.expireTimezone &&
+				data.offer.general.availability.urlPathStartArray &&
+				data.offer.general.availability.urlPathStartArray[0] &&
+				data.offer.general.availability.urlPathEnd &&
+				data.offer.pages &&
+				data.offer.pages.comingSoon &&
+				data.offer.pages.specialOffer &&
+				data.offer.pages.expires)) {
+				/*  &&
+				data.offer.pages.comingSoon.apps &&
+				data.offer.pages.specialOffer.apps &&
+				data.offer.pages.expires.app*/
+
+				return true;
+			} else {
+				console.log("Missing special offer data. Hide.");
+				return false;
 			}
-		
-			var learningData = data.user.learning;
-			var lessons = Object.keys(learningData);
-		
-			// Map of courseId to max engagementProgress
-			var courseProgress = {};
-		
-			lessons.forEach(function(lessonId) {
-				var lessonData = learningData[lessonId];
-				var engagementProgress = lessonData.engagementProgressMaxPercent || 0;
-		
-				// Skip if engagementProgress is 0
-				if (engagementProgress === 0) {
-					return;
-				}
-		
-				// Check if the lesson data exists in data.lesson
-				if (!data.lesson[lessonId]) {
-					console.warn("Lesson data for ID " + lessonId + " not found in data.lesson");
-					return; // Skip this lessonId
-				}
-		
-				var parentChapterId = data.lesson[lessonId].parentChapter;
-		
-				// Check if the chapter data exists in data.chapter
-				if (!data.chapter[parentChapterId]) {
-					console.warn("Chapter data for ID " + parentChapterId + " not found in data.chapter");
-					return; // Skip this lessonId
-				}
-		
-				var parentCourseId = data.chapter[parentChapterId].parentCourse;
-		
-				// Update the course progress if this lesson has higher progress
-				if (!courseProgress[parentCourseId] || courseProgress[parentCourseId] < engagementProgress) {
-					courseProgress[parentCourseId] = engagementProgress;
-				}
-			});
-		
-			// Convert the map to an array of [courseId, engagementProgress]
-			var sortable = [];
-			for (var courseId in courseProgress) {
-				sortable.push([courseId, courseProgress[courseId]]);
-			}
-		
-			// Sort by engagementProgress
-			sortable.sort(function(a, b) {
-				return b[1] - a[1]; // Descending order
-			});
-		
-			// Extract and return courseIds
-			return sortable.filter(function(item) {
-				return item[1] > 0; // Filter out courses with 0 progress
-			}).map(function(item) {
-				return item[0];
-			});
 		};
 
-		var calculateCourseExplorationByFilters = function(){
-			var courseSorter = new CourseSorter(data);
-			data.explore = courseSorter.sortCoursesByAllFilters();
-			var inProgressCourses = getCoursesIdsOrderedByProgress(data);
+		data.offer.general.availability.status = function () {
+			if (!data.offer.isDataAvailable()) {
+				return "hide";
+			}
 
-			// Insert 'In Progress' at the beginning of data.explore
-			var updatedExplore = { 'In Progress': inProgressCourses };
-			for (var key in data.explore) {
-				updatedExplore[key] = data.explore[key];
-			}
-			data.explore = updatedExplore;
-		}();
+			var expireDate = data.offer.general.availability.expireDate;
+			var startDate = data.offer.general.availability.startDate;
+			var startTimezone = data.offer.general.availability.startTimezone;
+			var expireTimezone = data.offer.general.availability.expireTimezone;
 
-		data.global =  {};  
-		data.global.courses = {}; 
-		
-		data.global.courses.sortedNewestFirst = function(){
-			var tempCoursesIds= [];
-			
-			for (var courseId in data.course) {
-				tempCoursesIds.push({courseId: courseId, earliestAvailableDateTime: data.course[courseId].earliestAvailableDateTime});
-			}
-			tempCoursesIds.sort(function(obj1, obj2) { 
-				return obj2.earliestAvailableDateTime - obj1.earliestAvailableDateTime;
-			});
-			
-			var sortedCoursesIds = [];
-			var tempCoursesIdsLength = tempCoursesIds.length;
-			for (var i = 0; i < tempCoursesIdsLength; i++){
-				sortedCoursesIds.push(tempCoursesIds[i].courseId);
-			}
-			 
-			return sortedCoursesIds;
-		}();
+			var startDateObject = moment.tz(startDate, "YYYY-MM-DD HH:mm:ss", startTimezone);
+			var expireDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone);
+			var nowDateObject = moment.tz(moment(), "YYYY-MM-DD HH:mm:ss", startTimezone);
 
+			var expireExtensionHoursToAdd = data.offer.general.availability.expireExtensionHoursToAdd;
+			var expireExtensionDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone);
 
-		data.global.courses.sortedExpiringFirst = function(){
-			var tempCoursesIds= [];
-			
-			for (var courseId in data.course) {
-				//TODO: what if course already expired. Don't include it in the sort. We need to do: expiring first (that has not expired) then newest first
-				tempCoursesIds.push({courseId: courseId, earliestDeadlineDateTime: data.course[courseId].earliestDeadlineDateTime});
+			for (var i = 0; i < expireExtensionHoursToAdd.length; i++) {
+				expireExtensionDateObject.add(expireExtensionHoursToAdd[i], 'hours');
 			}
-			tempCoursesIds.sort(function(obj1, obj2) { 
-				return obj1.earliestDeadlineDateTime - obj2.earliestDeadlineDateTime;
-			});
-			
-			var sortedCoursesIds = [];
-			var tempCoursesIdsLength = tempCoursesIds.length;
-			for (var i = 0; i < tempCoursesIdsLength; i++){
-				sortedCoursesIds.push(tempCoursesIds[i].courseId);
-			}
-			 
-			return sortedCoursesIds;
-		}();
-		
-		var prepareDataSpecialOffer = function(){ 
-			
-			data.offer = data.offer || {};
-			data.offer.general = data.offer.general || {};
-			data.offer.general.availability = data.offer.general.availability || {};
-			data.offer.pages = data.offer.pages || {};
-			
-			data.offer.pages.comingSoon 	= data.offer.pages.comingSoon || {};
-			data.offer.pages.specialOffer 	= data.offer.pages.specialOffer || {};
-			data.offer.pages.expires 		= data.offer.pages.expires || {};
-			
-			data.offer.pages.comingSoon.apps 	= data.offer.pages.comingSoon.apps || {};
-			data.offer.pages.specialOffer.apps 	= data.offer.pages.specialOffer.apps || {};
-			data.offer.pages.expires.apps 		= data.offer.pages.expires.apps || {};
-			 
-			
-			data.offer.isDataAvailable = function(){   
-				
-				if(!!(
-					data.offer &&
-					data.offer.general &&
-					data.offer.general.availability &&
-					data.offer.general.availability.expireDate &&
-					data.offer.general.availability.startDate &&
-					data.offer.general.availability.startTimezone &&
-					data.offer.general.availability.expireTimezone &&
-					data.offer.general.availability.urlPathStartArray &&
-					data.offer.general.availability.urlPathStartArray[0] &&
-					data.offer.general.availability.urlPathEnd &&
-					data.offer.pages &&
-					data.offer.pages.comingSoon &&
-					data.offer.pages.specialOffer &&
-					data.offer.pages.expires)){
-					/*  &&
-					data.offer.pages.comingSoon.apps &&
-					data.offer.pages.specialOffer.apps &&
-					data.offer.pages.expires.app*/
-					 
-					return true; 
-				}else{
-					console.log("Missing special offer data. Hide.");
-					return false;
-				}
-			};
-			
-			data.offer.general.availability.status = function(){ 
-				if(!data.offer.isDataAvailable()){ 
-					return "hide"; 
-				}
-				
-				var expireDate 	= data.offer.general.availability.expireDate;
-				var startDate 	= data.offer.general.availability.startDate;
-				var startTimezone 	= data.offer.general.availability.startTimezone;
-				var expireTimezone 	= data.offer.general.availability.expireTimezone;
-				
-				var startDateObject 	= moment.tz(startDate, "YYYY-MM-DD HH:mm:ss", startTimezone);
-				var expireDateObject 	= moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone);
-				var nowDateObject 		= moment.tz(moment(), "YYYY-MM-DD HH:mm:ss", startTimezone);
 
-				var expireExtensionHoursToAdd = data.offer.general.availability.expireExtensionHoursToAdd;
-				var expireExtensionDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone);
+			//Wait 3 days before hiding
+			var expireExtensionHideDateObject = expireExtensionDateObject.clone().add(3, 'days');
 
-				for (var i = 0; i < expireExtensionHoursToAdd.length; i++) {
-					expireExtensionDateObject.add(expireExtensionHoursToAdd[i], 'hours');
-				}
-				
-				//Wait 3 days before hiding
-				var expireExtensionHideDateObject = expireExtensionDateObject.clone().add(3, 'days');
-				
-				var startDateCompare = nowDateObject.isAfter(startDateObject); 
-				var expireExtensionDateCompare = nowDateObject.isAfter(expireExtensionDateObject);
-				var expireExtensionHideDateCompare = nowDateObject.isAfter(expireExtensionHideDateObject);
+			var startDateCompare = nowDateObject.isAfter(startDateObject);
+			var expireExtensionDateCompare = nowDateObject.isAfter(expireExtensionDateObject);
+			var expireExtensionHideDateCompare = nowDateObject.isAfter(expireExtensionHideDateObject);
 
-				if (expireExtensionHideDateCompare) {
-					return "hide"; 
-				} else if (expireExtensionDateCompare) {
-					return "expired";
-				} else if (startDateCompare) {
-					return "active";
-				}  else {
-					return "notStarted";
-				}
-			};
-			
-			data.offer.general.availability.nearestDeadlineDate = function(){
-				var expireDate 	= data.offer.general.availability.expireDate;
-				var expireTimezone 	= data.offer.general.availability.expireTimezone;
-				var nearestDeadlineDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone); 
-				var expireExtensionHoursToAdd = data.offer.general.availability.expireExtensionHoursToAdd;
-				 
-				for (var i = 0; i < expireExtensionHoursToAdd.length; i++) {
-					nearestDeadlineDateObject.add(expireExtensionHoursToAdd[i], 'hours');
-					if (nowDateObject.isBefore(nearestDeadlineDateObject)) {
-						break;
-					}
-				}
-				 
-				return nearestDeadlineDateObject.format("YYYY-MM-DD HH:mm:ss"); 
+			if (expireExtensionHideDateCompare) {
+				return "hide";
+			} else if (expireExtensionDateCompare) {
+				return "expired";
+			} else if (startDateCompare) {
+				return "active";
+			} else {
+				return "notStarted";
 			}
-			
-			data.offer.general.availability.countdownDateNow = function(){ 
-				var startDate 		= data.offer.general.availability.startDate;
-				var startTimezone 	= data.offer.general.availability.startTimezone;
-				var expireTimezone 	= data.offer.general.availability.expireTimezone;
-				
-				switch(data.offer.general.availability.status()){
-					case "notStarted":
-						var dateCountDownObject = moment.tz(startDate, "YYYY-MM-DD HH:mm:ss", startTimezone);
-						break;
-					case "active": 
-					case "expired":
-					case "hide":
-						var dateCountDownObject = moment.tz(data.offer.general.availability.nearestDeadlineDate(), "YYYY-MM-DD HH:mm:ss", expireTimezone);
-						break;
-				}
-				
-				return dateCountDownObject.format("YYYY-MM-DD HH:mm:ss"); 
-			}
-			
-			data.offer.general.availability.countdownTimezoneNow = function(){ 
-				var startTimezone 	= data.offer.general.availability.startTimezone;
-				var expireTimezone 	= data.offer.general.availability.expireTimezone;
-				
-				switch(data.offer.general.availability.status()){
-					case "notStarted":
-						return startTimezone;
-						break;
-					case "active": 
-					case "expired":
-					case "hide":
-						return expireTimezone;
-						break;
+		};
+
+		data.offer.general.availability.nearestDeadlineDate = function () {
+			var expireDate = data.offer.general.availability.expireDate;
+			var expireTimezone = data.offer.general.availability.expireTimezone;
+			var nearestDeadlineDateObject = moment.tz(expireDate, "YYYY-MM-DD HH:mm:ss", expireTimezone);
+			var expireExtensionHoursToAdd = data.offer.general.availability.expireExtensionHoursToAdd;
+
+			for (var i = 0; i < expireExtensionHoursToAdd.length; i++) {
+				nearestDeadlineDateObject.add(expireExtensionHoursToAdd[i], 'hours');
+				if (nowDateObject.isBefore(nearestDeadlineDateObject)) {
+					break;
 				}
 			}
-			
-			data.offer.pages.appDataNow = function(){ 
-				if(!data.offer.isDataAvailable()){ 
-					return false; 
-				}
-				
-				switch(data.offer.general.availability.status()){
-					case "notStarted":
-						//TODO: return data.offer.pages.comingSoon.apps;
-						break;
-					case "active": 
-						//TODO: return data.offer.pages.specialOffer.apps;
-					case "expired":
-					case "hide":
-						//TODO: return data.offer.pages.expired.apps;
-						break;
-				}
+
+			return nearestDeadlineDateObject.format("YYYY-MM-DD HH:mm:ss");
+		}
+
+		data.offer.general.availability.countdownDateNow = function () {
+			var startDate = data.offer.general.availability.startDate;
+			var startTimezone = data.offer.general.availability.startTimezone;
+			var expireTimezone = data.offer.general.availability.expireTimezone;
+
+			switch (data.offer.general.availability.status()) {
+				case "notStarted":
+					var dateCountDownObject = moment.tz(startDate, "YYYY-MM-DD HH:mm:ss", startTimezone);
+					break;
+				case "active":
+				case "expired":
+				case "hide":
+					var dateCountDownObject = moment.tz(data.offer.general.availability.nearestDeadlineDate(), "YYYY-MM-DD HH:mm:ss", expireTimezone);
+					break;
 			}
-			
-		}();
-		
-		var addCardSpecialOffer = function(){ 
-			/* DATA STRUCTURE:  app.data.offer.pages.(comingSoon|specialOffer)
-				"apps": {
-					  "dialog": {
-						"title":"Give the gift of music",
-						"body": "Great opportunity",
-						"button": "ACCESS NOW",
-						"countdownText": "Ends Soon",
-						"imageBackground": "JPOG",
-						"imageCircle": "JPOG", 
-						"msToShow": 10000 => hardcodear todos los conditions to show, para empezar
-					  },
-					  "card":{
-						 "title":"Give the gift of music",
-						"body": "Great opportunity",
-						"button": "ACCESS NOW",
-						"countdownText": "Ends Soon",
-						"imageBackground": "JPOG",
-						"imageCircle": "JPOG", 
-					  }
+
+			return dateCountDownObject.format("YYYY-MM-DD HH:mm:ss");
+		}
+
+		data.offer.general.availability.countdownTimezoneNow = function () {
+			var startTimezone = data.offer.general.availability.startTimezone;
+			var expireTimezone = data.offer.general.availability.expireTimezone;
+
+			switch (data.offer.general.availability.status()) {
+				case "notStarted":
+					return startTimezone;
+					break;
+				case "active":
+				case "expired":
+				case "hide":
+					return expireTimezone;
+					break;
+			}
+		}
+
+		data.offer.pages.appDataNow = function () {
+			if (!data.offer.isDataAvailable()) {
+				return false;
+			}
+
+			switch (data.offer.general.availability.status()) {
+				case "notStarted":
+					//TODO: return data.offer.pages.comingSoon.apps;
+					break;
+				case "active":
+				//TODO: return data.offer.pages.specialOffer.apps;
+				case "expired":
+				case "hide":
+					//TODO: return data.offer.pages.expired.apps;
+					break;
+			}
+		}
+
+	}();
+
+	var addCardSpecialOffer = function () {
+		/* DATA STRUCTURE:  app.data.offer.pages.(comingSoon|specialOffer)
+			"apps": {
+				  "dialog": {
+					"title":"Give the gift of music",
+					"body": "Great opportunity",
+					"button": "ACCESS NOW",
+					"countdownText": "Ends Soon",
+					"imageBackground": "JPOG",
+					"imageCircle": "JPOG", 
+					"msToShow": 10000 => hardcodear todos los conditions to show, para empezar
 				  },
-			*/
-			
-			var availabilityStatus = data.offer.general.availability.status();
-			if(availabilityStatus === "hide") { return false; }
-				
-			var appDataNow = data.offer.pages.appDataNow();
-			if(!appDataNow){ return false; } 
+				  "card":{
+					 "title":"Give the gift of music",
+					"body": "Great opportunity",
+					"button": "ACCESS NOW",
+					"countdownText": "Ends Soon",
+					"imageBackground": "JPOG",
+					"imageCircle": "JPOG", 
+				  }
+			  },
+		*/
 
-			var cardTitle  = appDataNow.card.title; 
-			var cardBody   = appDataNow.card.body; 
-			var cardButton = appDataNow.card.button; 
-		 
-			var imageBackground   = appDataNow.card.imageBackground; 
-			var imageCircle 	  = appDataNow.card.imageCircle; 
-			var cardCountdownText = appDataNow.card.countdownText; 
-		 
-			var urlPathEnd 				  = appDataNow.offer.general.availability.urlPathEnd; 
-			var expireExtensionHoursToAdd = appDataNow.offer.general.availability.expireExtensionHoursToAdd;
-			 
-			var countdownDateNow 	 = appDataNow.offer.general.availability.countdownDateNow();
-			var countdownTimezoneNow = appDataNow.offer.general.availability.countdownTimezoneNow();
-			
-			//Only do an extension with the deadline date (never with the start date) 
-			var extension = "";
-			if(availabilityStatus !== "notStarted"){
-				extension = 'data-extension="["'+ expireExtensionHoursToAdd.toString() +'"]"'; 
+		var availabilityStatus = data.offer.general.availability.status();
+		if (availabilityStatus === "hide") { return false; }
+
+		var appDataNow = data.offer.pages.appDataNow();
+		if (!appDataNow) { return false; }
+
+		var cardTitle = appDataNow.card.title;
+		var cardBody = appDataNow.card.body;
+		var cardButton = appDataNow.card.button;
+
+		var imageBackground = appDataNow.card.imageBackground;
+		var imageCircle = appDataNow.card.imageCircle;
+		var cardCountdownText = appDataNow.card.countdownText;
+
+		var urlPathEnd = appDataNow.offer.general.availability.urlPathEnd;
+		var expireExtensionHoursToAdd = appDataNow.offer.general.availability.expireExtensionHoursToAdd;
+
+		var countdownDateNow = appDataNow.offer.general.availability.countdownDateNow();
+		var countdownTimezoneNow = appDataNow.offer.general.availability.countdownTimezoneNow();
+
+		//Only do an extension with the deadline date (never with the start date) 
+		var extension = "";
+		if (availabilityStatus !== "notStarted") {
+			extension = 'data-extension="["' + expireExtensionHoursToAdd.toString() + '"]"';
+		}
+
+		data.user.cards.push(
+			{
+				"type": "circularDeadlineImage",
+				"theme": "materialThemeDark",
+				"colClass": "col-sm-12 col-xs-12",
+				"header": cardTitle,
+				"description": cardBody,
+				"buttonText": cardButton,
+				"buttonClass": "materialButtonOutline",
+				"progressValue": "0",
+				"progressText": "Completed",
+				"deadlineDatetime": countdownDateNow,
+				"deadlineExtras": '" data-format="Y-m-d H:i:s" ' + extension + ' data-timezone="' + countdownTimezoneNow + '"',
+				"size": "materialCardSizeMega",
+				"deadlineText": cardCountdownText,
+				"circularImage": imageCircle,
+				"backgroundImage": "url(" + imageBackground + ") !important",
+				"backgroundImagePosition": "center !important",
+				"backgroundImageSize": "initial !important",
+				"buttonDisabled": false,
+				"buttonHref": "https://pianoencyclopedia.com/en/exclusive-invitation/" + urlPathEnd + "/?ref=offer-card",
+				"buttonTarget": "_blank",
+				"buttonAction": ""
 			}
-			
-			data.user.cards.push(	
-				{
-					"type": "circularDeadlineImage",
-					"theme": "materialThemeDark",
-					"colClass": "col-sm-12 col-xs-12",
-					"header": cardTitle,
-					"description": cardBody,
-					"buttonText":  cardButton,
-					"buttonClass": "materialButtonOutline",
-					"progressValue": "0",
-					"progressText": "Completed",
-					"deadlineDatetime": countdownDateNow,
-					"deadlineExtras": '" data-format="Y-m-d H:i:s" ' + extension + ' data-timezone="' + countdownTimezoneNow + '"',
-					"size": "materialCardSizeMega",
-					"deadlineText": cardCountdownText,
-					"circularImage": imageCircle,
-					"backgroundImage": "url("+imageBackground+") !important",
-					"backgroundImagePosition": "center !important",
-					"backgroundImageSize": "initial !important",
-					"buttonDisabled": false,
-					"buttonHref": "https://pianoencyclopedia.com/en/exclusive-invitation/"+ urlPathEnd +"/?ref=offer-card",
-					"buttonTarget": "_blank",
-					"buttonAction": ""
-				}
-			);  
-		}();
+		);
+	}();
 
-		//Reward points start at 10
-		data.user.profile.rewardPoints = data.user.profile.rewardPoints || 10;
-		
-		return  data;
+	//Reward points start at 10
+	data.user.profile.rewardPoints = data.user.profile.rewardPoints || 10;
+
+	return data;
 }
 
 /* Gets query parameter */
-app.getQueryParameter = function (name, url)  {
-    if(typeof url === "undefined"){ url = window.location.href; }
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+app.getQueryParameter = function (name, url) {
+	if (typeof url === "undefined") { url = window.location.href; }
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
 
 /* 
 Cleans query parameters of email tracking to avoid double tracking of email clicks
 */
-app.cleanUpUrlEmailTracking = function(){
+app.cleanUpUrlEmailTracking = function () {
 	var uri = window.location.toString();
-	if (uri.indexOf("?") > 0) {  
-		var re = /((?:hs_et|hs_es|hs_eth|hs_esh)=(?:.+?)[&])/; 
+	if (uri.indexOf("?") > 0) {
+		var re = /((?:hs_et|hs_es|hs_eth|hs_esh)=(?:.+?)[&])/;
 		var replacementpattern = "";
 		var cleanUri = uri.replace(re, replacementpattern);
-		window.history.replaceState({}, document.title, cleanUri); 
+		window.history.replaceState({}, document.title, cleanUri);
 	}
-} 
+}
 
-app.showSpecialPromotionDialog  = function(){ 
+app.showSpecialPromotionDialog = function () {
 
 	var availabilityStatus = app.data.offer.general.availability.status();
-	if(availabilityStatus === "hide") { return false; }
-	
-	var data = app.data.offer.pages.appDataNow();
-	if(!data){ return false; } 
+	if (availabilityStatus === "hide") { return false; }
 
-	
+	var data = app.data.offer.pages.appDataNow();
+	if (!data) { return false; }
+
+
 	//TODO: NO ES MUY IMPORTANTE. hacer que si el countdown expira por que comienza, o finaliza, que carguen los cards de nuevo! Y que el dialog haga refresh. Estamos listos para lanzar.
 
 	/* DATA STRUCTURE:  app.data.offer.pages.(comingSoon|specialOffer)
@@ -2445,29 +2376,29 @@ app.showSpecialPromotionDialog  = function(){
 			  }
 		  },
 	*/
-	
-	var dialogTitle  		= data.dialog.title; 
-	var dialogButton   		= data.dialog.body; 
-	var dialogCountdownText = data.dialog.countdownText; 
-	var dialogButton 		= data.dialog.button; 
- 
-	var imageBackground 	= data.dialog.imageBackground; 
-	var imageCircle 		= data.dialog.imageCircle; 
-	 
-	 
+
+	var dialogTitle = data.dialog.title;
+	var dialogButton = data.dialog.body;
+	var dialogCountdownText = data.dialog.countdownText;
+	var dialogButton = data.dialog.button;
+
+	var imageBackground = data.dialog.imageBackground;
+	var imageCircle = data.dialog.imageCircle;
+
+
 	var expireExtensionHoursToAdd = app.data.offer.general.availability.expireExtensionHoursToAdd;
-	var urlPathEnd = app.data.offer.general.availability.urlPathEnd; 
-	
+	var urlPathEnd = app.data.offer.general.availability.urlPathEnd;
+
 	var countdownDateNow = app.data.offer.general.availability.countdownDateNow();
 	var countdownTimezoneNow = app.data.offer.general.availability.countdownTimezoneNow();
-	
+
 	//Only do an extension with the deadline date (never with the start date)
-	var extension = ""; 
-	if(availabilityStatus !== "notStarted"){
-		extension = 'data-extension="["'+ expireExtensionHoursToAdd.toString() +'"]"';  
-	} 
-	
-	 
+	var extension = "";
+	if (availabilityStatus !== "notStarted") {
+		extension = 'data-extension="["' + expireExtensionHoursToAdd.toString() + '"]"';
+	}
+
+
 	var html = `
 		<div class="row">
 			<div class="col-sm-12 col-xs-12" data-value="close" data-href-target="_blank" data-href="https://pianoencyclopedia.com/en/exclusive-invitation/${urlPathEnd}/?ref=offer-dialog">
@@ -2506,111 +2437,115 @@ app.showSpecialPromotionDialog  = function(){
 					</div> 
 				</div>
 		</div>`;
-		
-	material.history.clear();	
-				 
+
+	material.history.clear();
+
 	$('<div id="offerDialog" class="materialDialog" style="padding: 0;" data-on-init-callback="app.data.user.dialog.init(thisComponent)"></div>').appendTo('body');
-	app.data.user.dialog.init = function(thisComponent) {
-		thisComponent.html(html);		
+	app.data.user.dialog.init = function (thisComponent) {
+		thisComponent.html(html);
 	};
-	materialDialog.show('offerDialog', {modal: (app.data.user.dialog.modal || false), hideCallback: function(){ 
-		material.history.clear(); 
-	}}); 
+	materialDialog.show('offerDialog', {
+		modal: (app.data.user.dialog.modal || false), hideCallback: function () {
+			material.history.clear();
+		}
+	});
 }
 
-app.showCustomDialog = function(waitInMs){
+app.showCustomDialog = function (waitInMs) {
 	var success = "No user dialog data";
-	if(app.data.user.dialog){
+	if (app.data.user.dialog) {
 		//HARDCODE: modal, so no matter where the user clicks, it will open.
-		 app.data.user.dialog.modal = false;
-		
+		app.data.user.dialog.modal = false;
+
 		// Do not show dialog if query contains ?overrideCustomDialog=yes 
 		var overrideCustomDialog = app.getQueryParameter("overrideCustomDialog");
-		if(overrideCustomDialog === "yes"){app.customDialogShown = true}
-		  
-		if(app.data.user.dialog && app.data.user.dialog.html){
+		if (overrideCustomDialog === "yes") { app.customDialogShown = true }
+
+		if (app.data.user.dialog && app.data.user.dialog.html) {
 			app.data.user.dialog.stats = app.data.user.dialog.stats || {};
-			
+
 			success = "Already triggered";
-			
-			if(!app.session.customDialogTriggered){ 
+
+			if (!app.session.customDialogTriggered) {
 				app.session.customDialogTriggered = true;
-  
+
 				success = true;
-				app.customDialogTimer = setTimeout(function(){    
-					app.data.user.dialog.stats.lastShown = datetimeToEST(new Date()); 
+				app.customDialogTimer = setTimeout(function () {
+					app.data.user.dialog.stats.lastShown = datetimeToEST(new Date());
 					app.session.customDialogShown = true;
-				
+
 					//Wait until no dialogs are open to open a new dialog
-					var OpenDialogFx = function(){
-						material.history.clear();	 
+					var OpenDialogFx = function () {
+						material.history.clear();
 						$('<div id="customDialog" class="materialDialog" style="padding: 0;" data-on-init-callback="app.data.user.dialog.init(thisComponent)"></div>').appendTo('body');
-						app.data.user.dialog.init = function(thisComponent) {
-							thisComponent.html(app.data.user.dialog.html);	
+						app.data.user.dialog.init = function (thisComponent) {
+							thisComponent.html(app.data.user.dialog.html);
 						};
-						materialDialog.show('customDialog', {modal: (app.data.user.dialog.modal || false), hideCallback: function(){ 
-							material.history.clear();  
-						}}); 
+						materialDialog.show('customDialog', {
+							modal: (app.data.user.dialog.modal || false), hideCallback: function () {
+								material.history.clear();
+							}
+						});
 					};
-					
-					var conditionFx = function(){
+
+					var conditionFx = function () {
 						return (!materialDialog.areDialogsOpen());
 					};
-					
+
 					app.debounce(OpenDialogFx, conditionFx, 5000);
-					
+
 				}, waitInMs);
 			}
-			
-	 	}
+
+		}
 	}
-	
+
 	return success;
-	
+
 };
 
-app.showAnnoucementDialog = function(openNow){ 
-	
+app.showAnnoucementDialog = function (openNow) {
+
 	app.customAnnouncementRead = false;
-	
-	var Template = function(text, input) {
+
+	var Template = function (text, input) {
 		var output = text;
 		for (var key in input) {
 			output = output.replace(new RegExp("\\[" + key + "\\]", "g"), input[key]);
 		}
 		return output;
 	};
-	 
- 
+
+
 	//app.x = app.x || {};
 	//HARD CODE FOR CONTEST. 700 is the wait time for the Ultimate collectionf of piano music
-	
+
 	app.data.user.announcement = app.data.user.announcement || {};
 	var success = false;
-	if(app.data.user.announcement){
-	 
+	if (app.data.user.announcement) {
+
 		// Do not show announcement dialog if query contains ?overrideAnnouncement=yes 
 		var overrideCustomAnnouncement = app.getQueryParameter("overrideAnnouncement");
-		if(overrideCustomAnnouncement === "yes"){app.customAnnouncementShown = true}
-		
+		if (overrideCustomAnnouncement === "yes") { app.customAnnouncementShown = true }
+
 		// Show a announcement dialog once per session
 		app.customAnnouncementShown = app.customAnnouncementShown || false;
-		
+
 		//TODO: use this value to check if the message is new or not compared to LAST READ date (no implementado)
 		var messageDate = app.data.user.announcement.messageDate;
-		
-		
+
+
 		// Default settings  
 		var waitInMs = app.data.user.announcement.waitInMs || -1;
 		var isModal = (app.data.user.announcement.modal == false) ? false : true;
-		
+
 		var announcementOrigin = "timer";
-		if(openNow){
+		if (openNow) {
 			waitInMs = 0;
 			app.customAnnouncementShown = false;
 			announcementOrigin = "user";
 		}
-		
+
 		//Provide a default html template
 		var htmlTemplate = app.data.user.announcement.html || `
 		<div class="row">
@@ -2684,23 +2619,23 @@ app.showAnnoucementDialog = function(openNow){
 				</div>
 			</div>
 		</div>`;
-		
+
 		//HARDCODE URL. TODO: Remove later:
-		if(app.data.offer.isDataAvailable()){
+		if (app.data.offer.isDataAvailable()) {
 			var url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
 		}
-		else{
+		else {
 			var url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
 		}
 		app.data.user.announcement.buttonYesUrl = url;
-		
+
 		//Give text, code a template system able to replace  [NAME] [SUBJECT]  [COLOR] and any other variable dynamically.
 		var input = {
 			"CARD-ACTION": app.data.user.announcement.cardAction || "",
 			"BACKGROUND-IMAGE": app.data.user.announcement.backgroundImage || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/special-offer-backgrounds/header/christmas.min.jpg",
 			"BACKGROUND-TEXTURE": app.data.user.announcement.backgroundTexture || "ttexture5 black5 opacity5",
 			"DEADLINE-TEXT": app.data.user.announcement.deadlineText || "ENDS SOON",
-			"DEADLINE-DATE": app.data.user.announcement.deadlineDate, 
+			"DEADLINE-DATE": app.data.user.announcement.deadlineDate,
 			"MESSAGE-FROM": app.data.user.announcement.messageFrom || "[NOT-SET]",
 			"MESSAGE-SUBJECT": app.data.user.announcement.messageSubject || "[NOT-SET]",
 			"AUDIO-FILEPATH": app.data.user.announcement.audioFilePath || "",
@@ -2712,44 +2647,46 @@ app.showAnnoucementDialog = function(openNow){
 			"BUTTON-YES-BEHAVIOR": app.data.user.announcement.buttonYesBehavior || 'target="_blank"',
 			"BUTTON-NO-CAPTION": app.data.user.announcement.button1Caption || "No, thanks",
 		}
-		
+
 		var compiledHtmlTemplate = Template(htmlTemplate, input);
-		
-		if(!app.customAnnouncementShown && app.data.user.announcement && compiledHtmlTemplate && app.data.user.announcement.audioFilePath && app.data.user.announcement.transcriptionFilePath && waitInMs >= 0){
-			
+
+		if (!app.customAnnouncementShown && app.data.user.announcement && compiledHtmlTemplate && app.data.user.announcement.audioFilePath && app.data.user.announcement.transcriptionFilePath && waitInMs >= 0) {
+
 			//Show notification counter if we have a message to show
-			if(!app.customAnnouncementRead){
-				$(".announcementNotificationsCounter").show(); 
+			if (!app.customAnnouncementRead) {
+				$(".announcementNotificationsCounter").show();
 			}
-			
+
 			app.customAnnouncementShown = true;
-			
-			
+
+
 			//If message is opened before timeout, clear the timeout
-			if(openNow && app.customAnnouncementTimer){
+			if (openNow && app.customAnnouncementTimer) {
 				clearTimeout(app.customAnnouncementTimer);
 			}
-			
-			app.customAnnouncementTimer = setTimeout(function(){  
+
+			app.customAnnouncementTimer = setTimeout(function () {
 				app.customAnnouncementTimer = false;
-				material.history.clear();	
-				 
+				material.history.clear();
+
 				$('<div id="customAnnouncement" class="materialDialog" style="padding: 0;" data-on-init-callback="app.data.user.announcement.init(thisComponent)"></div>').appendTo('body');
-				app.data.user.announcement.init = function(thisComponent) {
-					thisComponent.html(compiledHtmlTemplate);		
+				app.data.user.announcement.init = function (thisComponent) {
+					thisComponent.html(compiledHtmlTemplate);
 				};
-				materialDialog.show('customAnnouncement', {modal: isModal, hideCallback: function(){ 
-					material.history.clear(); 
-				}}); 
+				materialDialog.show('customAnnouncement', {
+					modal: isModal, hideCallback: function () {
+						material.history.clear();
+					}
+				});
 			}, waitInMs);
 			success = true;
-	 	}else{
+		} else {
 			var settings = {};
-			if(openNow) {materialDialog.alert("No new messages", "We'll notify you whenever we make an important announcement so you don't miss anything.<br><br>Keep enjoying learning the piano with The Piano Encyclopedia!", settings);}
-			
+			if (openNow) { materialDialog.alert("No new messages", "We'll notify you whenever we make an important announcement so you don't miss anything.<br><br>Keep enjoying learning the piano with The Piano Encyclopedia!", settings); }
+
 		}
 	}
-	return success; 
+	return success;
 };
 
 
@@ -2799,7 +2736,7 @@ app.__showCustomDialog = function(openNow){
 				}}); 
 			}, waitInMs);
 			
-	 	}
+		  }
 	}
 };
 */
@@ -3139,7 +3076,7 @@ app.showAnnoucementDialog = function(openNow){
 				}}); 
 			}, waitInMs);
 			success = true;
-	 	}else{
+		  }else{
 			var settings = {};
 			if(openNow) {materialDialog.alert("No new messages", "We'll notify you whenever we make an important announcement so you don't miss anything.<br><br>Keep enjoying learning the piano with The Piano Encyclopedia!", settings);}
 			
@@ -3148,149 +3085,149 @@ app.showAnnoucementDialog = function(openNow){
 	return success; 
 };
 */
-app.html = function(params){ 
-	 
+app.html = function (params) {
+
 	//Reset Page Specific variables and events on every new page creation
 	app.resetPageVariablesAndBindedEvents();
-	
-	var __updateHtml = function(params){
-		 
-		if(typeof params.contentCondition  === "function"){	params.contentCondition  = params.contentCondition();} 
-		if(params.contentCondition === true){
-			if(typeof params.contentTrue  === "function"){	params.contentTrue  = params.contentTrue();}
+
+	var __updateHtml = function (params) {
+
+		if (typeof params.contentCondition === "function") { params.contentCondition = params.contentCondition(); }
+		if (params.contentCondition === true) {
+			if (typeof params.contentTrue === "function") { params.contentTrue = params.contentTrue(); }
 			var content = params.contentTrue;
 		}
-		else{
-			if(typeof params.contentFalse  === "function"){	params.contentFalse  = params.contentFalse();}
+		else {
+			if (typeof params.contentFalse === "function") { params.contentFalse = params.contentFalse(); }
 			var content = params.contentFalse;
 		}
 		/* It is possible to add some animation such as "animated pulse faster" */
-		$(params.target).removeClass("animated faster").animate({ opacity: 0.01 }, 300, function(){
-		
+		$(params.target).removeClass("animated faster").animate({ opacity: 0.01 }, 300, function () {
+
 			/*$(params.target).html(content).addClass("animated  faster  ").animate({ opacity: 1 }, 300, function(){});*/
 			$(params.target).html(content).addClass("animated faster").animate({ opacity: 1 }, 300);
-			if(typeof params.callback === "function"){ params.callback();}
-			 
+			if (typeof params.callback === "function") { params.callback(); }
+
 			material.init(params.target);
 		});
-			
-		app.updateUI(); 
-		
+
+		app.updateUI();
+
 	};
 
 	//TODO: add a last datetime for fetching data, so if X time has passed ew fetch it again
 	//if(app.data && app.dataIsFresh() )
-	if(app.data){
-		__updateHtml(params);  		
+	if (app.data) {
+		__updateHtml(params);
 	}
-	else{
+	else {
 		$(params.target).html(params.loading);
-		app.fetchRemoteData(function(){
-			__updateHtml(params); 
+		app.fetchRemoteData(function () {
+			__updateHtml(params);
 			//app.showCustomDialog();
 			//app.showAnnoucementDialog();
 		})
 	}
-	
+
 };
 
-app.updateUI = function(){ 
-	if($(".valueFirstName").html() != app.data.user.profile.firstname){
+app.updateUI = function () {
+	if ($(".valueFirstName").html() != app.data.user.profile.firstname) {
 		$(".valueFirstName").hide().html(app.data.user.profile.firstname).fadeIn(500);
 	}
-	
-	if($(".valueMembershipType").html() != app.data.user.profile.membershipType){
-		$(".valueMembershipType").hide().html(app.data.user.profile.membershipType).fadeIn(500);  
+
+	if ($(".valueMembershipType").html() != app.data.user.profile.membershipType) {
+		$(".valueMembershipType").hide().html(app.data.user.profile.membershipType).fadeIn(500);
 	}
 };
 
 // Usage: app.searchCourses("", {"form": "Rondo", "era": "Classical"})
-app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
+app.searchCourses = function (keyword = "", filters, pageNumber, pageSize = 9) {
 	var matchedCourses = [];
 	for (var courseId in app.data.course) {
-		
+
 		var lessonsIdsFromCourse = app.getLessonIdsFromCourse(courseId);
 
 		//If course has no lessons, skip it.
-		if(lessonsIdsFromCourse.length === 0){
+		if (lessonsIdsFromCourse.length === 0) {
 			continue;
 		}
-		
+
 		var course = app.data.course[courseId];
 
 
 
-		var hasComposer = false, hasLevel = false, hasForm = false, hasEra = false, hasDuration = false, hasGenre = false, hasKeyword1 = false, hasKeyword2 = false;  hasKeyword3 = false;  hasKeyword4 = false;  
-		
-		if(keyword){
-		
-			if(course.title){
-				hasKeyword1 	= ( course.title.toLowerCase().search(keyword.toLowerCase()) 	   !== -1 ) ? true : false; 
-			} 
-			
-			if(course.description){
-				hasKeyword2 	= ( course.description.toLowerCase().search(keyword.toLowerCase()) !== -1 ) ? true : false;
-			} 
-			
-			//Deep search on filters of the course
-			if(course.filters){   
-				var hasFilters = true; 
-				for (var filterKey in course.filters) { 
-					var value = course.filters[filterKey]; 
-					if(value){
-						if(typeof value !== "string"){ value = value.toString(); }
-						hasKeyword4 = ( value.toLowerCase().search(keyword.toLowerCase()) !== -1 ) ? true : false; 
-						if(hasKeyword4){ break; } 
-					} 
-				} 
+		var hasComposer = false, hasLevel = false, hasForm = false, hasEra = false, hasDuration = false, hasGenre = false, hasKeyword1 = false, hasKeyword2 = false; hasKeyword3 = false; hasKeyword4 = false;
+
+		if (keyword) {
+
+			if (course.title) {
+				hasKeyword1 = (course.title.toLowerCase().search(keyword.toLowerCase()) !== -1) ? true : false;
 			}
-		
+
+			if (course.description) {
+				hasKeyword2 = (course.description.toLowerCase().search(keyword.toLowerCase()) !== -1) ? true : false;
+			}
+
+			//Deep search on filters of the course
+			if (course.filters) {
+				var hasFilters = true;
+				for (var filterKey in course.filters) {
+					var value = course.filters[filterKey];
+					if (value) {
+						if (typeof value !== "string") { value = value.toString(); }
+						hasKeyword4 = (value.toLowerCase().search(keyword.toLowerCase()) !== -1) ? true : false;
+						if (hasKeyword4) { break; }
+					}
+				}
+			}
+
 			//Deep search on title and subtitle of lessons and title of chapter
-			var deepSearch = function(courseId, keyword){
+			var deepSearch = function (courseId, keyword) {
 				var hasKeyword = false;
-				var chapterIds = app.data.course[courseId].chapterIds || false; 
-				
-				if(chapterIds){
-					chapterIds.some(function (chapterId) { 
-						console.log(chapterId, "chapter"); 
-						
+				var chapterIds = app.data.course[courseId].chapterIds || false;
+
+				if (chapterIds) {
+					chapterIds.some(function (chapterId) {
+						console.log(chapterId, "chapter");
+
 						var chapter = app.data.chapter[chapterId];
-						if(chapter.title){ 
-							hasKeyword 	= ( chapter.title.toLowerCase().search(keyword.toLowerCase()) !== -1 ) ? true : false; 
-							if(hasKeyword){ return true; } /* Break the loop */
+						if (chapter.title) {
+							hasKeyword = (chapter.title.toLowerCase().search(keyword.toLowerCase()) !== -1) ? true : false;
+							if (hasKeyword) { return true; } /* Break the loop */
 						}
-					
-						var lessonIds = app.data.chapter[chapterId].lessonIds || false; 
-						if(lessonIds){
-							lessonIds.some(function (lessonId) { 
-								console.log(lessonId, "lesson"); 
+
+						var lessonIds = app.data.chapter[chapterId].lessonIds || false;
+						if (lessonIds) {
+							lessonIds.some(function (lessonId) {
+								console.log(lessonId, "lesson");
 								var lesson = app.data.lesson[lessonId];
-								
-								if(lesson.title){
-									hasKeyword 	= ( lesson.title.toLowerCase().search(keyword.toLowerCase()) !== -1 ) ? true : false; 
-									if(hasKeyword){ return true; } /* Break the loop */
+
+								if (lesson.title) {
+									hasKeyword = (lesson.title.toLowerCase().search(keyword.toLowerCase()) !== -1) ? true : false;
+									if (hasKeyword) { return true; } /* Break the loop */
 								}
-								
-								if(lesson.subtitle){
-									hasKeyword 	= ( lesson.subtitle.toLowerCase().search(keyword.toLowerCase()) !== -1 ) ? true : false;
-									if(hasKeyword){ return true; }  /* Break the loop */
+
+								if (lesson.subtitle) {
+									hasKeyword = (lesson.subtitle.toLowerCase().search(keyword.toLowerCase()) !== -1) ? true : false;
+									if (hasKeyword) { return true; }  /* Break the loop */
 								}
-								
+
 							})
 						}
-						if(hasKeyword) { return true;}  /* Break the loop */
+						if (hasKeyword) { return true; }  /* Break the loop */
 					})
 				}
 				return hasKeyword;
-			}; 			
-			
+			};
+
 			hasKeyword3 = deepSearch(courseId, keyword);
 		}
-		 
-		
-		
-		var hasFilters = true; 
-		if(course.filters){
+
+
+
+		var hasFilters = true;
+		if (course.filters) {
 			/*if(composer && course.filters.composer) { hasComposer 	= ((course.filters.composer === composer) 	 || composer === "All") ? true : false; }
 			if(level && course.filters.level)		{ hasLevel 		= ((course.filters.level === level) 		 || level === "All") ? true : false; } 
 			if(form && course.filters.form)			{ hasForm 		= ((course.filters.form === form) 		 	 || form === "All") ? true : false; }
@@ -3298,155 +3235,155 @@ app.searchCourses = function(keyword="", filters, pageNumber, pageSize = 9){
 			if(duration && course.filters.duration)	{ hasDuration 	= ((course.filters.duration >= duration) 	 || duration === "All") ? true : false; }
 			if(genre && course.filters.genre)		{ hasGenre 		= ((course.filters.genre === genre) 		 || genre === "All") ? true : false; } 
 			*/
-			
-			if(filters){
-				var hasFilters = true; 
+
+			if (filters) {
+				var hasFilters = true;
 				for (var filterKey in filters) {
-					
-					var value = filters[filterKey]; 
-					if(course.filters[filterKey] && value && (value != "All"))		{ hasFilters = hasFilters && ((course.filters[filterKey] == value)   || value === "All") ? true : false; } 
-					 
+
+					var value = filters[filterKey];
+					if (course.filters[filterKey] && value && (value != "All")) { hasFilters = hasFilters && ((course.filters[filterKey] == value) || value === "All") ? true : false; }
+
 				}
 			}
 		}
-	  
-		if(keyword){
-			if( (hasKeyword1 || hasKeyword2 || hasKeyword3 || hasKeyword4)  && (hasFilters) ){
-				 matchedCourses.push(courseId);
+
+		if (keyword) {
+			if ((hasKeyword1 || hasKeyword2 || hasKeyword3 || hasKeyword4) && (hasFilters)) {
+				matchedCourses.push(courseId);
 			}
-		}else{
-			if(hasFilters){
-				 matchedCourses.push(courseId);
+		} else {
+			if (hasFilters) {
+				matchedCourses.push(courseId);
 			}
 		}
-		
-	}
-	
-	function paginate(array, page_size, page_number) {
-	  // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-	  return array.slice((page_number - 1) * page_size, page_number * page_size);
+
 	}
 
-	
+	function paginate(array, page_size, page_number) {
+		// human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+		return array.slice((page_number - 1) * page_size, page_number * page_size);
+	}
+
+
 	//matchedCourses.sort();
-	
+
 	//Do a more complex sort.
 	//TODO: include  order by "new" (available date) and then by "expiring" (expire date)
-	var complexSort = function(matchedCourses){
+	var complexSort = function (matchedCourses) {
 		var matchedCoursesOrdered = [];
-		
+
 		for (const courseId of matchedCourses) {
-		 
+
 			var data = "No order";
 			var course = app.data.course[courseId];
-			if(course){ 
-				var sortFxResult = config.layout.searchResultsSortFx(course); 
-				if(sortFxResult){ 
-					data = sortFxResult; 
+			if (course) {
+				var sortFxResult = config.layout.searchResultsSortFx(course);
+				if (sortFxResult) {
+					data = sortFxResult;
 				}
 			}
-			
+
 			var item = [courseId, data];
-			matchedCoursesOrdered.push(item);	
+			matchedCoursesOrdered.push(item);
 		}
 		console.log(matchedCoursesOrdered);
 		matchedCoursesOrdered.sort(function (a, b) {
-		      var nameA = a[1].toString().toUpperCase(); // ignore upper and lowercase
-              var nameB = b[1].toString().toUpperCase(); // ignore upper and lowercase
-              if (nameA < nameB) {
-                return -1;
-              }
-              if (nameA > nameB) {
-                return 1;
-              }
+			var nameA = a[1].toString().toUpperCase(); // ignore upper and lowercase
+			var nameB = b[1].toString().toUpperCase(); // ignore upper and lowercase
+			if (nameA < nameB) {
+				return -1;
+			}
+			if (nameA > nameB) {
+				return 1;
+			}
 
-              // names must be equal
-              return 0;
+			// names must be equal
+			return 0;
 		});
-		
+
 		console.log("matchedCoursesOrdered", matchedCoursesOrdered);
-		
+
 		var matchedCoursesOrderedIdsOnly = [];
 		for (const item of matchedCoursesOrdered) {
 			var courseId = item[0];
 			matchedCoursesOrderedIdsOnly.push(courseId);
 		}
 
-	   console.log("matchedCoursesOrderedIdsOnly", matchedCoursesOrderedIdsOnly);
-       return matchedCoursesOrderedIdsOnly;
-		
+		console.log("matchedCoursesOrderedIdsOnly", matchedCoursesOrderedIdsOnly);
+		return matchedCoursesOrderedIdsOnly;
+
 	};
-	
+
 	matchedCourses = complexSort(matchedCourses);
-	
+
 	//Save last search. TODO must do a better implementation
 	//app.saveLastSearch(filters, keyword); 
-	
+
 	return paginate(matchedCourses, pageSize, pageNumber);
-	
+
 }
 
-app.getFilterArray = function(){
+app.getFilterArray = function () {
 	var filters = {};
-	$(".filterInput").each(function(index) {
-	  var filterValue = $( this ).val();
-	  var filterName = $( this ).data("filter");
-	  if(filterValue) {filters[filterName] = filterValue;}	  
+	$(".filterInput").each(function (index) {
+		var filterValue = $(this).val();
+		var filterName = $(this).data("filter");
+		if (filterValue) { filters[filterName] = filterValue; }
 	});
-	
-	
+
+
 	return filters;
 }
-	
-app.updateFiltersForm = function(filterArray){ 
-	for (var filterKey in filterArray) { 
-		var filterValue = filterArray; 
-		if(filterValue){
-			$("#filterInput"+filterKey).val(filterValue).change();
-		} 
-	} 
+
+app.updateFiltersForm = function (filterArray) {
+	for (var filterKey in filterArray) {
+		var filterValue = filterArray;
+		if (filterValue) {
+			$("#filterInput" + filterKey).val(filterValue).change();
+		}
+	}
 }
- 
-app.saveLastSearch = function(filters, keyword){ 
+
+app.saveLastSearch = function (filters, keyword) {
 	//Save values
 	app.lastSearchFilters = filters;
 	app.lastSearchKeyword = keyword;
-}				
-	
-app.restoreLastSearch = function(){ 
+}
+
+app.restoreLastSearch = function () {
 	var filters = app.lastSearchFilters;
 	var keyword = app.lastSearchKeyword;
-	
+
 	$(".infiniteScrollingCardsSearchBar input").val(keyword);
 	app.updateFiltersForm(filters);
-}				
+}
 
-app.updateOneTimeSpecialOfferHtml = function(timeout){
-	 
-		 
-	var createOneTimeSpecialOfferHtml = function(settings){ 
+app.updateOneTimeSpecialOfferHtml = function (timeout) {
+
+
+	var createOneTimeSpecialOfferHtml = function (settings) {
 		settings.theme = settings.theme || "materialThemeDark";
-		
+
 		settings.header1 = settings.header1 || "One-Time Only Special Offer";
 		settings.header2 = settings.header2 || "Discover The Logic Behind Music";
 		settings.header3 = settings.header3 || "Get this Special Offer";
 		settings.paragraph = settings.paragraph || "Learn how to play the piano. Play your favorite songs by ear, improvise, and even compose your own music.";
-		
+
 		settings.description = settings.description || "Some description";
-		settings.buttonText =  settings.buttonText ||  "Claim it!";
-		settings.buttonClass =  settings.buttonClass ||  "materialButtonOutline"; 
-		settings.buttonTarget = settings.buttonTarget || "_self"; 
-		settings.buttonHref   = settings.buttonHref || false; 
-		
-		settings.deadlineDatetime 	= settings.deadlineDatetime || "2019-1-1 23:59:59";
-		settings.deadlineExtras 	= settings.deadlineExtras || "";
-		settings.deadlineText 		= settings.deadlineText || "Expires Soon";
-		
-		settings.circularImage = settings.circularImage || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/offer-includes-bubbles/free-upgrades.v2.min.png"; 
+		settings.buttonText = settings.buttonText || "Claim it!";
+		settings.buttonClass = settings.buttonClass || "materialButtonOutline";
+		settings.buttonTarget = settings.buttonTarget || "_self";
+		settings.buttonHref = settings.buttonHref || false;
+
+		settings.deadlineDatetime = settings.deadlineDatetime || "2019-1-1 23:59:59";
+		settings.deadlineExtras = settings.deadlineExtras || "";
+		settings.deadlineText = settings.deadlineText || "Expires Soon";
+
+		settings.circularImage = settings.circularImage || "https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/offer-includes-bubbles/free-upgrades.v2.min.png";
 		settings.backgroundImage = settings.backgroundImage || "";
 
-		var backgroundImageCss = settings.backgroundImage ? "background-image: url('backgroundImage')": "";
-		
+		var backgroundImageCss = settings.backgroundImage ? "background-image: url('backgroundImage')" : "";
+
 		return `
 		<div style="background-color: #303335; margin: 30px 0; box-shadow: 0 0 6px 0px #ffc100b8; ${backgroundImageCss}">
 			<div>
@@ -3486,110 +3423,110 @@ app.updateOneTimeSpecialOfferHtml = function(timeout){
 					
 				</div>
 			</div>
-		</div>`; 
+		</div>`;
 	};
- 
+
 	var oneTimeSpecialOfferHtml = "";
-	if(app.data.user.oneTimeSpecialOffer){
-		
+	if (app.data.user.oneTimeSpecialOffer) {
+
 		var settings = {};
 		settings.theme = app.data.user.oneTimeSpecialOffer.theme;
-		settings.header1 = app.data.user.oneTimeSpecialOffer.header1 ;
+		settings.header1 = app.data.user.oneTimeSpecialOffer.header1;
 		settings.header2 = app.data.user.oneTimeSpecialOffer.header2;
 		settings.header3 = app.data.user.oneTimeSpecialOffer.header3;
 		settings.paragraph = app.data.user.oneTimeSpecialOffer.paragraph;
-		
+
 		settings.description = app.data.user.oneTimeSpecialOffer.description;
-		settings.buttonText =  app.data.user.oneTimeSpecialOffer.buttonText;
-		settings.buttonClass =  app.data.user.oneTimeSpecialOffer.buttonClass; 
-		settings.buttonTarget = app.data.user.oneTimeSpecialOffer.buttonTarget; 
-		settings.buttonHref   = app.data.user.oneTimeSpecialOffer.buttonHref; 
-		
-		settings.deadlineDatetime 	= app.data.user.oneTimeSpecialOffer.deadlineDatetime;
-		settings.deadlineExtras 	= app.data.user.oneTimeSpecialOffer.deadlineExtras;
-		settings.deadlineText 		= app.data.user.oneTimeSpecialOffer.deadlineText;
-		
-		settings.circularImage = app.data.user.oneTimeSpecialOffer.circularImage; 
+		settings.buttonText = app.data.user.oneTimeSpecialOffer.buttonText;
+		settings.buttonClass = app.data.user.oneTimeSpecialOffer.buttonClass;
+		settings.buttonTarget = app.data.user.oneTimeSpecialOffer.buttonTarget;
+		settings.buttonHref = app.data.user.oneTimeSpecialOffer.buttonHref;
+
+		settings.deadlineDatetime = app.data.user.oneTimeSpecialOffer.deadlineDatetime;
+		settings.deadlineExtras = app.data.user.oneTimeSpecialOffer.deadlineExtras;
+		settings.deadlineText = app.data.user.oneTimeSpecialOffer.deadlineText;
+
+		settings.circularImage = app.data.user.oneTimeSpecialOffer.circularImage;
 		settings.backgroundImage = app.data.user.oneTimeSpecialOffer.backgroundImage;
-			
+
 		oneTimeSpecialOfferHtml = createOneTimeSpecialOfferHtml(settings);
-	 
+
 		var obj = $(".oneTimeSpecialOfferPlaceHolder").hide().html(oneTimeSpecialOfferHtml);
 		var fadeInAnimationTime = 1000;
-		var fx = function(){
+		var fx = function () {
 			obj.fadeIn(fadeInAnimationTime);
-			
-			app.runTimeout(function(){ 
-				$(".oneTimeSpecialOfferPlaceHolder h3:first-child").addClass("animated flash"); 
-				app.runTimeout(function(){
-					$(".oneTimeSpecialOfferPlaceHolder .materialProgressCircle-value").addClass("animated flash"); 
-					app.runTimeout(function(){
-						$(".oneTimeSpecialOfferPlaceHolder .materialButtonFill").addClass("animated flash");			
-					}, 2000);	
+
+			app.runTimeout(function () {
+				$(".oneTimeSpecialOfferPlaceHolder h3:first-child").addClass("animated flash");
+				app.runTimeout(function () {
+					$(".oneTimeSpecialOfferPlaceHolder .materialProgressCircle-value").addClass("animated flash");
+					app.runTimeout(function () {
+						$(".oneTimeSpecialOfferPlaceHolder .materialButtonFill").addClass("animated flash");
+					}, 2000);
 				}, 1000);
 			}, 2000);
 		};
-		
-		if(timeout){
+
+		if (timeout) {
 			app.runTimeout(fx, timeout);
 		}
-		else{
+		else {
 			fx();
 		}
-		
+
 		//Make count
-		material.init(".oneTimeSpecialOfferPlaceHolder");	
+		material.init(".oneTimeSpecialOfferPlaceHolder");
 	}
-	
+
 }
 
-					
-app.createFiltersHtml = function(){
-	
-	var getCoursesFilters = function(){
+
+app.createFiltersHtml = function () {
+
+	var getCoursesFilters = function () {
 		var filters = {};
 		for (var courseId in app.data.course) {
-			
+
 			var course = app.data.course[courseId];
-	  
-			if(course.filters){
+
+			if (course.filters) {
 				for (var filterKey in course.filters) {
 					//console.log(filters, filters.filterKey);
-					if(!filters[filterKey]){ 
+					if (!filters[filterKey]) {
 						filters[filterKey] = {};
 					}
-					
-					var value = course.filters[filterKey]; 
-					
-					if(!filters[filterKey][value]){
+
+					var value = course.filters[filterKey];
+
+					if (!filters[filterKey][value]) {
 						filters[filterKey][value] = 1;
 					}
-					else{
+					else {
 						filters[filterKey][value]++;
 					}
 				}
 			}
 		}
-		 
+
 		return filters;
 	}
 
-	var createFilterField = function(values, label){
-		
+	var createFilterField = function (values, label) {
+
 		var options = [];
 		var optionsSorted = [];
 		var optionsHtml = "";
 		for (var value in values) {
 			options.push(value);
 		}
-		
-		var capitalizedLabel = capitalizeFirstLetter(label);	
-		 
+
+		var capitalizedLabel = capitalizeFirstLetter(label);
+
 		options.sort();
 		for (var value of options) {
 			optionsHtml += `<option value='${value}'>${value}</option>`;
 		}
-		
+
 		return `
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<div class="materialInputContainer">
@@ -3604,71 +3541,71 @@ app.createFiltersHtml = function(){
 						<label class="materialInputLabel materialThemeDark">${capitalizedLabel}</label>
 					</div>
 				</div>
-			</div>`;	
-	}	
+			</div>`;
+	}
 
 	var filters = getCoursesFilters();
 
-	var html = ""; 
+	var html = "";
 	for (var filterKey in filters) {
 		var values = filters[filterKey];
-		 
-		function capitalizeFirstLetter(string) {
-		  return string.charAt(0).toUpperCase() + string.slice(1);
-		}
-		 
-		html += createFilterField(values,  filterKey);
-	}
-	
-	return html;
-}	
 
-app.createFiltersHtmlNew = function(){
-	
-	var getCoursesFilters = function(){
+		function capitalizeFirstLetter(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+
+		html += createFilterField(values, filterKey);
+	}
+
+	return html;
+}
+
+app.createFiltersHtmlNew = function () {
+
+	var getCoursesFilters = function () {
 		var filters = {};
 		for (var courseId in app.data.course) {
-			
+
 			var course = app.data.course[courseId];
-	  
-			if(course.filters){
+
+			if (course.filters) {
 				for (var filterKey in course.filters) {
 					//console.log(filters, filters.filterKey);
-					if(!filters[filterKey]){ 
+					if (!filters[filterKey]) {
 						filters[filterKey] = {};
 					}
-					
-					var value = course.filters[filterKey]; 
-					
-					if(!filters[filterKey][value]){
+
+					var value = course.filters[filterKey];
+
+					if (!filters[filterKey][value]) {
 						filters[filterKey][value] = 1;
 					}
-					else{
+					else {
 						filters[filterKey][value]++;
 					}
 				}
 			}
 		}
-		 
+
 		return filters;
 	}
 
-	var createFilterField = function(values, label){
-		
+	var createFilterField = function (values, label) {
+
 		var options = [];
 		var optionsSorted = [];
 		var optionsHtml = "";
 		for (var value in values) {
 			options.push(value);
 		}
-		
-		var capitalizedLabel = capitalizeFirstLetter(label);	
-		 
+
+		var capitalizedLabel = capitalizeFirstLetter(label);
+
 		options.sort();
 		for (var value of options) {
 			optionsHtml += `<option value='${value}'>${value}</option>`;
 		}
-		
+
 		return `
 			<div class="materialInputContainer">
 				<div class="materialInputWrap">
@@ -3682,47 +3619,43 @@ app.createFiltersHtmlNew = function(){
 					<label class="materialInputLabel materialThemeDark">${capitalizedLabel}</label>
 				</div>
 			</div>
-		`;	
-	}	
+		`;
+	}
 
 	var filters = getCoursesFilters();
 
 
 	//if there are no filters, then hide the filter functionality
 
-	var html = ""; 
+	var html = "";
 	for (var filterKey in filters) {
 		var values = filters[filterKey];
-		 
+
 		function capitalizeFirstLetter(string) {
-		  return string.charAt(0).toUpperCase() + string.slice(1);
+			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
-		 
-		html += createFilterField(values,  filterKey);
+
+		html += createFilterField(values, filterKey);
 	}
-	
+
 	return html;
 }
 
 
-app.resetFilterInputs = function() {
-    $(".filterInput").each(function() {
-        $(this).val('');
-    });
+app.resetFilterInputs = function () {
+	$(".filterInput").each(function () {
+		$(this).val('');
+	});
 };
 
 
-app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
+app.createLessonCard = function (lessonId, lesson, columnWidthClass) {
 
 	let parentChapterId = app.data.lesson[lessonId].parentChapter;
 	let parentCourseId = app.data.chapter[parentChapterId].parentCourse;
 	let course = app.data.course[parentCourseId]
 
-	// console.log("parentCourseId", parentCourseId);
-	// console.error('lesson', lesson)
-	// console.error('app.data.course[parentCourseId]', app.data.course[parentCourseId])
-
-	var href = `#!/lesson/${lessonId}`;
+	var href = `#!/lesson/${lessonId}${config.content.tourIds.includes(Number(lessonId)) ? '?tour' : ''}`;
 
 	var countdownHtml = function (date) {
 		return `
@@ -3784,7 +3717,7 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 			var themeOverlay = "";
 			var themeButton = "materialButtonFill materialThemeDark";
 			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+								<a href="${href}" data-propagation="yes" class="materialButtonText ${themeButton} ${config.content.tourIds.includes(Number(lessonId)) ? ' help-button-resume-demo-tour ' : ' '}" data-button >${buttonAction}</a>
 							  </span>
 							  ${shareButtonHtml}`;
 			var progressChipHtml = `<span data-new><i>NEW</i></span>
@@ -3798,7 +3731,7 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 			var themeOverlay = "";
 			var themeButton = "materialButtonFill materialThemeDark";
 			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+								<a href="${href}" data-propagation="yes" class="materialButtonText ${themeButton} ${config.content.tourIds.includes(Number(lessonId)) ? ' help-button-resume-demo-tour ' : ' '}" data-button >${buttonAction}</a>
 							  </span>
 							  ${shareButtonHtml}`;
 			var progressChipHtml = `<span data-new><i>NEW</i></span>
@@ -3833,7 +3766,7 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 			var themeOverlay = "materialOverlayShallowBlack";
 			var themeButton = "materialButtonText materialThemeDarkGrey";
 			var actionHtml = `<span>
-								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
+								<button disabled="disabled" data-propagation="yes" class="materialButtonText ${themeButton} ${config.content.tourIds.includes(Number(lessonId)) ? ' help-button-resume-demo-tour ' : ' '}" data-button><i class="fa fa-lock"></i> Locked</button>
 							  </span>`;
 			var progressChipHtml = `<span data-new><i>LOCKED</i></span>
 								<span data-incomplete>LOCKED</span>
@@ -3848,7 +3781,7 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 			var themeOverlay = "";
 			var themeButton = "materialButtonFill materialThemeDark";
 			var actionHtml = `<span>
-								<a href="${href}" class="${themeButton}" data-button >${buttonAction}</a>
+								<a href="${href}" data-propagation="yes" class="${themeButton} ${config.content.tourIds.includes(Number(lessonId)) ? 'help-button-resume-demo-tour' : ''}" data-button >${buttonAction}</a>
 							  </span>
 							  ${shareButtonHtml}`;
 			var progressChipHtml = `<span data-new><i>NEW</i></span>
@@ -3888,9 +3821,9 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 
 	var html = `
 		<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
-		<div class="${columnWidthClass}">
-		<div class="materialCard ${theme}">
-					<div class="materialCardTop" data-button data-href="${href}"> 
+		<div class="${columnWidthClass}" data-propagation="yes">
+		<div class="materialCard ${theme}" data-propagation="yes">
+					<div class="materialCardTop" data-button data-href="${href}" data-propagation="yes"> 
 						<div class="materialCardImg">
 							<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
 							<div class="materialCardImgOverlay ${themeOverlay}"></div>
@@ -3928,9 +3861,9 @@ app.createLessonCard = function(lessonId, lesson, columnWidthClass) {
 }
 
 
-app.createCourseCard = function(courseId, course, columnWidthClass) {
+app.createCourseCard = function (courseId, course, columnWidthClass) {
 
-	var href = `#!/course/${courseId}`;
+	var href = `#!/course/${courseId}${config.content.tourIds.includes(Number(courseId)) ? '?tour' : ''}`;
 
 	var countdownHtml = function (date) {
 		return `
@@ -3994,7 +3927,7 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 			var themeOverlay = "";
 			var themeButton = "materialButtonFill materialThemeDark";
 			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+								<a href="${href}" data-propagation="yes" class="materialButtonText ${themeButton} ${config.content.tourIds.includes(Number(courseId)) ? ' help-button-resume-demo-tour ' : ''}" data-button >${buttonAction}</a>
 							  </span>
 							  ${shareButtonHtml}`;
 			var progressChipHtml = `<span data-new><i>NEW</i></span>
@@ -4008,7 +3941,7 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 			var themeOverlay = "";
 			var themeButton = "materialButtonFill materialThemeDark";
 			var actionHtml = `<span>
-								<a href="${href}" class="materialButtonText ${themeButton}" data-button >${buttonAction}</a>
+								<a href="${href}" data-propagation="yes" class="materialButtonText ${themeButton} ${config.content.tourIds.includes(Number(courseId)) ? ' help-button-resume-demo-tour ' : ''}" data-button >${buttonAction}</a>
 							  </span>
 							  ${shareButtonHtml}`;
 			var progressChipHtml = `<span data-new><i>NEW</i></span>
@@ -4043,7 +3976,7 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 			var themeOverlay = "materialOverlayShallowBlack";
 			var themeButton = "materialButtonText materialThemeDarkGrey";
 			var actionHtml = `<span>
-								<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
+								<button disabled="disabled" data-propagation="yes" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
 							  </span>`;
 			var progressChipHtml = `<span data-new><i>LOCKED</i></span>
 								<span data-incomplete>LOCKED</span>
@@ -4058,7 +3991,7 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 			var themeOverlay = "";
 			var themeButton = "materialButtonFill materialThemeDark";
 			var actionHtml = `<span>
-								<a href="${href}" class="${themeButton}" data-button >${buttonAction}</a>
+								<a href="${href}" data-propagation="yes" class="${themeButton} ${config.content.tourIds.includes(Number(courseId)) ? 'help-button-resume-demo-tour' : ''}" data-button >${buttonAction}</a>
 							  </span>
 							  ${shareButtonHtml}`;
 			var progressChipHtml = `<span data-new><i>NEW</i></span>
@@ -4096,9 +4029,9 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 
 	var html = `
 		<!--<div class="${columnWidthClass}" style="min-height: ${config.layout.searchResultsMinHeight};">-->
-		<div class="${columnWidthClass}">
-		<div class="materialCard ${theme}">
-					<div class="materialCardTop" data-button data-href="${href}"> 
+		<div class="${columnWidthClass}" data-propagation="yes">
+		<div class="materialCard ${theme}" data-propagation="yes">
+					<div class="materialCardTop" data-button data-href="${href}" data-propagation="yes"> 
 						<div class="materialCardImg">
 							<div class="materialCardImgInside" style="background-image: url(${courseImage}); background-color: ${courseBackgroundColor};"></div> 
 							<div class="materialCardImgOverlay ${themeOverlay}"></div>
@@ -4117,7 +4050,9 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 								</span>
 							</div>
 						</div>
-					${progressHtml}
+						
+						${progressHtml}
+
 						<div class="materialCardInfo ${theme}">
 							<h2 class="materialHeader" style="font-size: ${config.layout.searchResultsCourseTitleFontSize}">${course.title}</h2>
 							${lineText1}
@@ -4125,14 +4060,13 @@ app.createCourseCard = function(courseId, course, columnWidthClass) {
 							${scarcityHtml} 
 						</div>
 					</div>
-					<div class="materialCardAction ${theme}">
+					<div class="materialCardAction ${theme}" data-propagation="yes">
 						${actionHtml}
 					</div>
 				</div>   
 		</div>`;
 
 	return html;
-
 }
 
 
@@ -4149,7 +4083,7 @@ app.routes["/lesson/:lessonId"] = function(){
 			}); 
 		app.routeId = "/lesson/";	
 		window.scrollTo(0, 0);		
-    },
+	},
 	'': function (params) { 
 		app.html({
 				target: "#content", 
@@ -4159,7 +4093,7 @@ app.routes["/lesson/:lessonId"] = function(){
 			}); 
 		app.routeId = "/dashboard/";
 		window.scrollTo(0, 0);		 
-    }, 
+	}, 
 	'/expiring/': function (params) {  
 		if(app.routeId.startsWith("/dashboard/")){ 
 			
@@ -4180,7 +4114,7 @@ app.routes["/lesson/:lessonId"] = function(){
 			}); 
 		}
 		app.routeId = "/dashboard/expiring/";
-    }, 
+	}, 
 	'/newest/': function (params) {  
 		if(app.routeId.startsWith("/dashboard/")){
 			
@@ -4203,11 +4137,11 @@ app.routes["/lesson/:lessonId"] = function(){
 		app.routeId = "/dashboard/newest/";
 		*/
 
-app.wallet = function(){
+app.wallet = function () {
 	var expose = {};
-	 
+
 	/* Returns the price of the parent course */
-	var getCoursePriceFromLesson = function(lessonId) {
+	var getCoursePriceFromLesson = function (lessonId) {
 		try {
 			var parentChapterId = app.data.lesson[lessonId].parentChapter;
 			if (!parentChapterId) {
@@ -4218,7 +4152,7 @@ app.wallet = function(){
 			if (!parentCourseId) {
 				throw new Error('Parent course ID not found');
 			}
-  
+
 			// Check if price is defined. If not, return null.
 			return getCoursePrice(parentCourseId);
 		} catch (error) {
@@ -4227,29 +4161,29 @@ app.wallet = function(){
 		}
 	};
 
-	var getCoursePriceBeforeFromLesson = function(lessonId) {
-	    try {
-            var parentChapterId = app.data.lesson[lessonId].parentChapter;
-            if (!parentChapterId) {
-                throw new Error('Parent chapter ID not found');
-            }
+	var getCoursePriceBeforeFromLesson = function (lessonId) {
+		try {
+			var parentChapterId = app.data.lesson[lessonId].parentChapter;
+			if (!parentChapterId) {
+				throw new Error('Parent chapter ID not found');
+			}
 
-            var parentCourseId = app.data.chapter[parentChapterId].parentCourse;
-            if (!parentCourseId) {
-                throw new Error('Parent course ID not found');
-            }
+			var parentCourseId = app.data.chapter[parentChapterId].parentCourse;
+			if (!parentCourseId) {
+				throw new Error('Parent course ID not found');
+			}
 
-            // Check if price is defined. If not, return null.
-            return getCoursePriceBefore(parentCourseId);
-        } catch (error) {
-            console.error('Error retrieving price from lesson ID:', error);
-            return null;
-        }
+			// Check if price is defined. If not, return null.
+			return getCoursePriceBefore(parentCourseId);
+		} catch (error) {
+			console.error('Error retrieving price from lesson ID:', error);
+			return null;
+		}
 	}
 
-	var getCoursePrice = function(courseId) {
+	var getCoursePrice = function (courseId) {
 		try {
-			  
+
 			var courseData = app.data.course[courseId];
 			if (!courseData) {
 				throw new Error('Course data is missing');
@@ -4263,275 +4197,298 @@ app.wallet = function(){
 		}
 	};
 
-	var getCoursePriceBefore = function(courseId) {
-    		try {
+	var getCoursePriceBefore = function (courseId) {
+		try {
 
-    			var courseData = app.data.course[courseId];
-    			if (!courseData) {
-    				throw new Error('Course data is missing');
-    			}
+			var courseData = app.data.course[courseId];
+			if (!courseData) {
+				throw new Error('Course data is missing');
+			}
 
-    			// Check if price is defined. If not, return null.
-    			return courseData.price ? courseData.priceBefore.melodyCoins : null;
-    		} catch (error) {
-    			console.error('Error retrieving price before from course ID:', error);
-    			return null;
-    		}
-    	};
- 
+			// Check if price is defined. If not, return null.
+			return courseData.price ? courseData.priceBefore.melodyCoins : null;
+		} catch (error) {
+			console.error('Error retrieving price before from course ID:', error);
+			return null;
+		}
+	};
 
-	var getUserBalance = function(){
+
+	var getUserBalance = function () {
 		try {
 			return app.data.user.wallet.melodyCoins;
-		}catch (error) {
+		} catch (error) {
 			console.error('Error retrieving Melody Coins Balance:', error);
 			return 0;
 		}
 	};
 
-	var unlockCourseFromLesson = function(lessonId){
-	    try {
-            var parentChapterId = app.data.lesson[lessonId].parentChapter;
-            if (!parentChapterId) {
-                throw new Error('Parent chapter ID not found');
-            }
-
-            var parentCourseId = app.data.chapter[parentChapterId].parentCourse;
-            if (!parentCourseId) {
-                throw new Error('Parent course ID not found');
-            }
-            unlockCourse(parentCourseId);
-        } catch (error) {
-            console.error('Error retrieving course ID from lesson ID:', error);
-            return null;
-        }
-	};
-
-	var unlockCourse = function(courseId){
-	      try {
-	           var userBalance = getUserBalance();
-	           var coursePrice = getCoursePrice(courseId);
-	           var coursePriceBefore = getCoursePriceBefore(courseId);
-
-	           var subtitle;
-	           if(coursePrice == coursePriceBefore){
-	                subtitle = "Gain immediate access to this course for only:<br> <b>&#9834; " + coursePrice + " Melody Coins</b>. <br><br><b>Do you want to unlock this course now?</b>";
-	           }else{
-	                subtitle = "Gain immediate access to this course for only:<br> <s>&#9834; " + coursePriceBefore + " </s> <b>&#9834; " + coursePrice + " Melody Coins</b>. <br><br><b>Do you want to unlock this course now?</b>";
-	           }
-
-
-               //If there is no price, then the course is not unlockable via Melody Coins
-	           if(coursePrice && coursePrice >0){
-                   if (userBalance >= coursePrice) {
-                          var userBalanceAfterUnlock = userBalance - coursePrice;
-                           //Unlock via Melody Coins
-
-                            var userBalance = app.wallet.getUserBalance();
-                            var settings = {
-                                title: "Unlock Full Course Access?",
-                                subtitle: subtitle,
-                                buttonNo: {
-                                    caption: "Not yet",
-                                    value: "no"
-                                },
-                                buttonYes: {
-                                    caption: "Unlock Now!",
-                                    value: "yes"
-                                },
-                                progressPercentage: "95",
-                                progressDisplay: userBalance,
-                                progressTitle: "Melody Coins",
-                                progressSubTitle: "<b style='color: white'>Your Balance</b>",
-                                hideCallback: function(result){
-
-                                        if(result.lastValue === "yes"){
-                                            $.ajax({
-                                                dataType: "text", //To avoid parsing of JSON
-                                                url: config.serverUrl,
-                                                cache: false,
-                                                type: "POST",
-                                                crossDomain: true,
-                                                headers: {
-                                                    "accept": "application/json"
-                                                },
-                                                data: {
-                                                    "url": window.location.href,
-                                                    "referrer": document.referrer,
-                                                    "action": "unlockCourse",
-                                                    "hs_uid": (localStorage.getItem('hs_uid') || ""),
-                                                    "hs_uidh": (localStorage.getItem('hs_uidh') || ""),
-                                                    "appName": config.appName,
-                                                    "courseId": courseId,
-                                                }
-                                             })
-                                             .done(function(data) {
-                                                try{
-                                                    data = JSON.parse(data);
-                                                }
-                                                catch(e){
-                                                    console.error("Error parsing JSON response from server", e);
-                                                    data = null;
-                                                }
-
-                                                if(data && data.success == true && data.result === "COURSE_UNLOCK_SUCCESS"){
-                                                    var settings = {
-                                                        buttonCaption:  "Awesome!",
-                                                        hideCallback: function(){
-                                                            location.reload();
-                                                        }
-                                                    }
-
-                                                  materialDialog.alert("Course Unlocked!", "Congratulations! You've just unlocked this course permanently by using merely &#9834; " + coursePrice + " Melody Coins. Your new balance is &#9834; " + userBalanceAfterUnlock + " Melody Coins. Get ready to dive into all the lessons this course offers. <br><br><b>The app will now refresh to grant you full access. Happy learning!</b>", settings);
-
-                                                }else{
-                                                    // Show error message
-                                                    var settings = {
-                                                        hideCallback: function(){
-                                                            location.reload();
-                                                        }
-                                                    }
-
-                                                    materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: MEL-1" + data.error, settings);
-                                                }
-                                             })
-                                             .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-                                                // console.log('Error Getting status for parameters: - Error:' + errorThrown);
-                                                console.log(XMLHttpRequest + ' ' + textStatus + ' ' + errorThrown);
-                                                materialDialog.alertNoInternetConnection();
-                                             });
-                                        }
-
-                                }
-                            }
-                          app.dialogs.questionProgress(settings);
-
-
-                   } else {
-                           var needMoreCoins = coursePrice - userBalance;
-                           var settings = {};
-
-                          /* if(app.data.offer.isDataAvailable()){
-                               url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
-                           }
-                           else{
-                               url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
-                           }*/
-
-							app.dialogs.questionProgress({
-								title: "You need just &#9834; " + needMoreCoins + " Melody Coins!",
-								subtitle: "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by purchasing Melody Coins in our shop. <br><br> <b>Would you like get more Melody Coins  to unlock this course now?</b>",
-								buttonNo: {
-									caption: "Not yet",
-									value: "no"
-								},
-								buttonYes: {
-								   caption: "Yes!", 
-								   value: "yes"
-								},
-								progressPercentage: "95",
-								progressDisplay: userBalance,
-								progressTitle: "Melody Coins",
-								progressSubTitle: "<b style='color: white'>Your Balance</b>",
-								hideCallback: function(result){
-									 if(result.lastValue === "yes"){
-										app.dialogs.selectPlan();
-									 }
-								}
-							});
-							 
-                            
-							/*var dialogTitle = "You need just &#9834; " + needMoreCoins + " Melody Coins!";
-                            var dialogMessage = "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>";
-
-                           materialDialog.question(dialogTitle,dialogMessage,
-                           {
-                               "buttonNo": {
-                                   caption: "Not yet",
-                                   value: "no"
-                               },
-                               "buttonYes": {
-                                   caption: "Unlock All",
-                                   href: url + "?ref=members-area-unlock",
-                                   additional: "target='_blank'",
-                                   value: "yes"
-                               }
-                           });*/
-                   }
-	           }
-	           else{
-                    if(app.data.offer.isDataAvailable()){
-                        url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
-                    }
-                    else{
-                        url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
-                    }
-
-               		materialDialog.question(    "Unlock Complete Access to All Premium Lessons?",
-                     "This lesson, along with all other exclusive premium lessons, is available only to students of our Digital-Home Study Course, 'The Logic Behind Music', and cannot be unlocked individually. By enrolling in this globally acclaimed course, you gain lifetime access to all premium content in our Members-Area. <br><br><b>Enroll in 'The Logic Behind Music' now, unlock all premium lessons, and embark on your journey to achieving your musical dreams with The Piano Encyclopedia!</b>",
-               		{
-               			"buttonNo":{
-               				caption: "Not yet",
-               				value: "no"
-               			},
-               			"buttonYes":{
-               				caption: "Unlock All",
-               				href:  url + "?ref=members-area-unlock",
-               				additional: "target='_blank'",
-               				value: "yes"
-               			}
-               		});
-	           }
+	var unlockCourseFromLesson = function (lessonId) {
+		try {
+			var parentChapterId = app.data.lesson[lessonId].parentChapter;
+			if (!parentChapterId) {
+				throw new Error('Parent chapter ID not found');
 			}
-	      catch (error) {
-	              console.error('Error unlocking course:', error);
-	      }
+
+			var parentCourseId = app.data.chapter[parentChapterId].parentCourse;
+			if (!parentCourseId) {
+				throw new Error('Parent course ID not found');
+			}
+			unlockCourse(parentCourseId);
+		} catch (error) {
+			console.error('Error retrieving course ID from lesson ID:', error);
+			return null;
+		}
 	};
-		
-		
- 
-    expose.getCoursePriceFromLesson = getCoursePriceFromLesson;
-    expose.getCoursePrice = getCoursePrice;
-    expose.getCoursePriceBeforeFromLesson = getCoursePriceBeforeFromLesson;
-    expose.getCoursePriceBefore = getCoursePriceBefore;
-    expose.unlockCourse = unlockCourse;
-    expose.unlockCourseFromLesson = unlockCourseFromLesson;
-    expose.getUserBalance = getUserBalance;
+
+	var unlockCourse = function (courseId) {
+		try {
+			var userBalance = getUserBalance();
+			var coursePrice = getCoursePrice(courseId);
+			var coursePriceBefore = getCoursePriceBefore(courseId);
+
+			var subtitle;
+			if (coursePrice == coursePriceBefore) {
+				subtitle = "Gain immediate access to this course for only:<br> <b>&#9834; " + coursePrice + " Melody Coins</b>. <br><br><b>Do you want to unlock this course now?</b>";
+			} else {
+				subtitle = "Gain immediate access to this course for only:<br> <s>&#9834; " + coursePriceBefore + " </s> <b>&#9834; " + coursePrice + " Melody Coins</b>. <br><br><b>Do you want to unlock this course now?</b>";
+			}
+
+
+			//If there is no price, then the course is not unlockable via Melody Coins
+			if (coursePrice && coursePrice > 0) {
+				if (userBalance >= coursePrice) {
+					var userBalanceAfterUnlock = userBalance - coursePrice;
+					//Unlock via Melody Coins
+
+					var userBalance = app.wallet.getUserBalance();
+					var settings = {
+						title: "Unlock Full Course Access?",
+						subtitle: subtitle,
+						buttonNo: {
+							caption: "Not yet",
+							value: "no"
+						},
+						buttonYes: {
+							caption: "Unlock Now!",
+							value: "yes"
+						},
+						progressPercentage: "95",
+						progressDisplay: userBalance,
+						progressTitle: "Melody Coins",
+						progressSubTitle: "<b style='color: white'>Your Balance</b>",
+						hideCallback: function (result) {
+
+							if (result.lastValue === "yes") {
+								$.ajax({
+									dataType: "text", //To avoid parsing of JSON
+									url: config.serverUrl,
+									cache: false,
+									type: "POST",
+									crossDomain: true,
+									headers: {
+										"accept": "application/json"
+									},
+									data: {
+										"url": window.location.href,
+										"referrer": document.referrer,
+										"action": "unlockCourse",
+										"hs_uid": (localStorage.getItem('hs_uid') || ""),
+										"hs_uidh": (localStorage.getItem('hs_uidh') || ""),
+										"appName": config.appName,
+										"courseId": courseId,
+									}
+								})
+									.done(function (data) {
+										try {
+											data = JSON.parse(data);
+										}
+										catch (e) {
+											console.error("Error parsing JSON response from server", e);
+											data = null;
+										}
+
+										if (data && data.success == true && data.result === "COURSE_UNLOCK_SUCCESS") {
+											var settings = {
+												buttonCaption: "Awesome!",
+												hideCallback: function () {
+													location.reload();
+												}
+											}
+
+											materialDialog.alert("Course Unlocked!", "Congratulations! You've just unlocked this course permanently by using merely &#9834; " + coursePrice + " Melody Coins. Your new balance is &#9834; " + userBalanceAfterUnlock + " Melody Coins. Get ready to dive into all the lessons this course offers. <br><br><b>The app will now refresh to grant you full access. Happy learning!</b>", settings);
+
+										} else {
+											// Show error message
+											var settings = {
+												hideCallback: function () {
+													location.reload();
+												}
+											}
+
+											materialDialog.alert("Oops!", "Sorry, there seems to be an issue with your account. Please contact support@pianoencyclopedia with the following error message asap  so we can fix this for you: MEL-1" + data.error, settings);
+										}
+									})
+									.fail(function (XMLHttpRequest, textStatus, errorThrown) {
+										// console.log('Error Getting status for parameters: - Error:' + errorThrown);
+										console.log(XMLHttpRequest + ' ' + textStatus + ' ' + errorThrown);
+										materialDialog.alertNoInternetConnection();
+									});
+							}
+
+						}
+					}
+					app.dialogs.questionProgress(settings);
+
+
+				} else {
+					var needMoreCoins = coursePrice - userBalance;
+					var settings = {};
+
+					/* if(app.data.offer.isDataAvailable()){
+						 url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
+					 }
+					 else{
+						 url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
+					 }*/
+
+					app.dialogs.questionProgress({
+						title: "You need just &#9834; " + needMoreCoins + " Melody Coins!",
+						subtitle: "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by purchasing Melody Coins in our shop. <br><br> <b>Would you like get more Melody Coins  to unlock this course now?</b>",
+						buttonNo: {
+							caption: "Not yet",
+							value: "no"
+						},
+						buttonYes: {
+							caption: "Yes!",
+							value: "yes"
+						},
+						progressPercentage: "95",
+						progressDisplay: userBalance,
+						progressTitle: "Melody Coins",
+						progressSubTitle: "<b style='color: white'>Your Balance</b>",
+						hideCallback: function (result) {
+							if (result.lastValue === "yes") {
+								app.dialogs.selectPlan();
+							}
+						}
+					});
+
+
+					/*var dialogTitle = "You need just &#9834; " + needMoreCoins + " Melody Coins!";
+					var dialogMessage = "Sorry, you currently have &#9834; " + userBalance + " Melody Coins. You need just &#9834; " + needMoreCoins + " more Melody Coins to unlock this course. You can earn more Melody Coins by becoming a member of our Digital-Home Study Course, 'The Logic Behind Music', or by purchasing Melody Coins in our shop. <br><br> <b>Would you like to become a member of 'The Logic Behind Music' now and unlock this course?</b>";
+
+				   materialDialog.question(dialogTitle,dialogMessage,
+				   {
+					   "buttonNo": {
+						   caption: "Not yet",
+						   value: "no"
+					   },
+					   "buttonYes": {
+						   caption: "Unlock All",
+						   href: url + "?ref=members-area-unlock",
+						   additional: "target='_blank'",
+						   value: "yes"
+					   }
+				   });*/
+				}
+			}
+			else {
+				if (app.data.offer.isDataAvailable()) {
+					url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
+				}
+				else {
+					url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
+				}
+
+				materialDialog.question("Unlock Complete Access to All Premium Lessons?",
+					"This lesson, along with all other exclusive premium lessons, is available only to students of our Digital-Home Study Course, 'The Logic Behind Music', and cannot be unlocked individually. By enrolling in this globally acclaimed course, you gain lifetime access to all premium content in our Members-Area. <br><br><b>Enroll in 'The Logic Behind Music' now, unlock all premium lessons, and embark on your journey to achieving your musical dreams with The Piano Encyclopedia!</b>",
+					{
+						"buttonNo": {
+							caption: "Not yet",
+							value: "no"
+						},
+						"buttonYes": {
+							caption: "Unlock All",
+							href: url + "?ref=members-area-unlock",
+							additional: "target='_blank'",
+							value: "yes"
+						}
+					});
+			}
+		}
+		catch (error) {
+			console.error('Error unlocking course:', error);
+		}
+	};
+
+
+
+	expose.getCoursePriceFromLesson = getCoursePriceFromLesson;
+	expose.getCoursePrice = getCoursePrice;
+	expose.getCoursePriceBeforeFromLesson = getCoursePriceBeforeFromLesson;
+	expose.getCoursePriceBefore = getCoursePriceBefore;
+	expose.unlockCourse = unlockCourse;
+	expose.unlockCourseFromLesson = unlockCourseFromLesson;
+	expose.getUserBalance = getUserBalance;
 	return expose;
 }();
 
-app.getPreviewFromLesson = function(lessonId) {
-    if (!lessonId || !app.data.lesson || !app.data.lesson[lessonId]) {
-        return null;
-    }
 
-    var lesson = app.data.lesson[lessonId];
-    if (lesson.preview) {
-        return lesson.preview;
-    }
+app.getURLParams = function () {
+	let urlParams = '' // Get the data after ? in the url, if there is any
 
-    var parentChapterId = lesson.parentChapter;
-    if (!parentChapterId || !app.data.chapter || !app.data.chapter[parentChapterId]) {
-        return null;
-    }
+	if (window.location.hash) {
+		urlParams = window.location.hash.split('?')[1] // Get the data after ? in the url, if there is any
+	} else if (window.location.search) {
+		urlParams = window.location.search.substring(1) // Get the data after ? in the url, if there is any
+	}
 
-    var parentChapter = app.data.chapter[parentChapterId];
-    var parentCourseId = parentChapter.parentCourse;
-    if (!parentCourseId || !app.data.course || !app.data.course[parentCourseId]) {
-        return null;
-    }
+	if (!urlParams) { return null; }
 
-    var parentCourse = app.data.course[parentCourseId];
-    return parentCourse.preview || null;
+	urlParams = urlParams.split('&') // Split the data by &
+		.map((param) => param.split('=')) // Split the data by =
+		.reduce((values, [key, value]) => {
+			values[key] = decodeURIComponent(value);
+			return values;
+		}, {}); // Convert the data to an object
+
+	return urlParams;
+}
+
+
+app.getPreviewFromLesson = function (lessonId) {
+	if (!lessonId || !app.data.lesson || !app.data.lesson[lessonId]) {
+		return null;
+	}
+
+	var lesson = app.data.lesson[lessonId];
+	if (lesson.preview) {
+		return lesson.preview;
+	}
+
+	var parentChapterId = lesson.parentChapter;
+	if (!parentChapterId || !app.data.chapter || !app.data.chapter[parentChapterId]) {
+		return null;
+	}
+
+	var parentChapter = app.data.chapter[parentChapterId];
+	var parentCourseId = parentChapter.parentCourse;
+	if (!parentCourseId || !app.data.course || !app.data.course[parentCourseId]) {
+		return null;
+	}
+
+	var parentCourse = app.data.course[parentCourseId];
+	return parentCourse.preview || null;
 };
 
 
-app.setCurrentRouteBottomNavActive = function() {
+app.setCurrentRouteBottomNavActive = function () {
 	// Add active class to bottom navigation
 	const bottomNavLinks = document.querySelectorAll('.bottomNavigationContainer button');
 	const currentPath = app.currentRoute;
 
-	bottomNavLinks.forEach(function(link) {
+	bottomNavLinks.forEach(function (link) {
 		link.classList.remove('active');
 
 		if (currentPath == '') {
@@ -4548,63 +4505,148 @@ app.setCurrentRouteBottomNavActive = function() {
 }
 
 
-CourseSorter = (function() {
-    // Constructor
-    var CourseSorter = function(data) {
-        this.data = data;
-    };
+CourseSorter = (function () {
+	// Constructor
+	var CourseSorter = function (data) {
+		this.data = data;
+	};
 
-    // Method to sort courseIds by a specified filter
-    CourseSorter.prototype.sortCourses = function(filterName, order) {
-        var courseIds = Object.keys(this.data.course);
+	// Method to sort courseIds by a specified filter
+	CourseSorter.prototype.sortCourses = function (filterName, order) {
+		var courseIds = Object.keys(this.data.course);
 
-        return courseIds.sort(function(a, b) {
-            var valueA = this.data.course[a].filters[filterName];
-            var valueB = this.data.course[b].filters[filterName];
+		return courseIds.sort(function (a, b) {
+			var valueA = this.data.course[a].filters[filterName];
+			var valueB = this.data.course[b].filters[filterName];
 
-            if (order === 'ascending') {
-                if (valueA < valueB) return -1;
-                if (valueA > valueB) return 1;
-            } else { // for 'descending'
-                if (valueA > valueB) return -1;
-                if (valueA < valueB) return 1;
+			if (order === 'ascending') {
+				if (valueA < valueB) return -1;
+				if (valueA > valueB) return 1;
+			} else { // for 'descending'
+				if (valueA > valueB) return -1;
+				if (valueA < valueB) return 1;
+			}
+
+			return 0; // if equal
+		}.bind(this));
+	};
+
+	// Method to retrieve unique filter names from all courses
+	CourseSorter.prototype.getUniqueFilterNames = function () {
+		var filterNames = {};
+		Object.keys(this.data.course).forEach(function (courseId) {
+			var filters = this.data.course[courseId].filters;
+			if (!filters) return null;
+			Object.keys(filters).forEach(function (filterName) {
+				filterNames[filterName] = true;
+			});
+		}.bind(this));
+
+		return Object.keys(filterNames);
+	};
+
+	// Method to sort courseIds for each filter in ascending order
+	CourseSorter.prototype.sortCoursesByAllFilters = function () {
+		var sortedCourses = {};
+		var finalSort = { "lessonsIds": {}, "coursesIds": {} };
+
+		//Add filter by progress
+		finalSort["coursesIds"]["In Progress"] = this.getCoursesIdsOrderedByProgress();
+		finalSort["lessonsIds"]["In Progress"] = this.getLessonsFromCourses(finalSort["coursesIds"]["In Progress"]);
+
+		 
+		var filters = this.getUniqueFilterNames();
+
+		filters.forEach(function (filterName) {
+			sortedCourses[filterName] = this.sortCourses(filterName, 'ascending');
+			finalSort["coursesIds"][filterName] = sortedCourses[filterName];
+			finalSort["lessonsIds"][filterName] = this.getLessonsFromCourses(sortedCourses[filterName]);
+		}.bind(this));
+		 
+		return finalSort;
+	};
+
+	CourseSorter.prototype.getLessonsFromCourses = function (courseIds) {
+		let data = this.data;
+		var orderedLessons = [];
+
+		courseIds.forEach(function(courseId) {
+			Object.keys(data.lesson).forEach(function (lessonId) {
+				var lesson = data.lesson[lessonId];
+				var chapterId = lesson.parentChapter;
+				var parentCourse = data.chapter[chapterId].parentCourse;
+
+				if (String(parentCourse) === courseId) {
+					orderedLessons.push(lessonId);
+				}
+			});
+		});
+
+		return orderedLessons;
+	};
+
+	
+	CourseSorter.prototype.getCoursesIdsOrderedByProgress = function () {
+        if (!this.data || !this.data.user || !this.data.user.learning || !this.data.lesson || !this.data.chapter) {
+            throw new Error("Invalid data structure. Necessary data is missing.");
+        }
+
+        var learningData = this.data.user.learning;
+        var lessons = Object.keys(learningData);
+
+        var courseProgress = {};
+
+        lessons.forEach(function (lessonId) {
+            var lessonData = learningData[lessonId];
+            var engagementProgress = lessonData.engagementProgressMaxPercent || 0;
+
+            if (engagementProgress === 0) return;
+
+            if (!this.data.lesson[lessonId]) {
+                console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
+                return;
             }
 
-            return 0; // if equal
-        }.bind(this));
-    };
+            var parentChapterId = this.data.lesson[lessonId].parentChapter;
 
-    // Method to retrieve unique filter names from all courses
-    CourseSorter.prototype.getUniqueFilterNames = function() {
-        var filterNames = {};
-        Object.keys(this.data.course).forEach(function(courseId) {
-            var filters = this.data.course[courseId].filters;
-			if(!filters) return null;
-            Object.keys(filters).forEach(function(filterName) {
-                filterNames[filterName] = true;
-            });
-        }.bind(this));
+            if (!this.data.chapter[parentChapterId]) {
+                console.warn("Chapter data for ID " + parentChapterId + " not found in this.data.chapter");
+                return;
+            }
 
-        return Object.keys(filterNames);
-    };
+            var parentCourseId = this.data.chapter[parentChapterId].parentCourse;
 
-    // Method to sort courseIds for each filter in ascending order
-    CourseSorter.prototype.sortCoursesByAllFilters = function() {
-        var sortedCourses = {};
-        var filters = this.getUniqueFilterNames();
-
-        filters.forEach(function(filterName) {
-            sortedCourses[filterName] = this.sortCourses(filterName, 'ascending');
+            if (!courseProgress[parentCourseId] || courseProgress[parentCourseId] < engagementProgress) {
+                courseProgress[parentCourseId] = engagementProgress;
+            }
         }.bind(this));
 
-        return sortedCourses;
-    };
+        var sortable = [];
+        for (var courseId in courseProgress) {
+            sortable.push([courseId, courseProgress[courseId]]);
+        }
 
-    return CourseSorter;
+        sortable.sort(function (a, b) {
+            return b[1] - a[1];
+        });
+
+        return sortable.filter(function (item) {
+            return item[1] > 0;
+        }).map(function (item) {
+            return item[0];
+        });
+    }; 
+	
+	 
+
+ 
+
+	return CourseSorter;
 })();
 
-app.checkout = function(pathname, coupon, userInformation) {
-	try{
+
+app.checkout = function (pathname, coupon, userInformation) {
+	try {
 		// Valid pathnames
 		var validPathnames = [
 			'the-ultimate-collection-of-piano-music',
@@ -4617,12 +4659,12 @@ app.checkout = function(pathname, coupon, userInformation) {
 			console.error('Invalid pathname. Checkout process aborted.');
 			return; // Exit the function if pathname is not valid
 		}
-		
+
 		var paymentContact = {};
-		 
+
 		// Name fallback logic
 		var firstNameProvided = userInformation && userInformation.firstName;
-		var lastNameProvided = userInformation &&  userInformation.lastName;
+		var lastNameProvided = userInformation && userInformation.lastName;
 		var profileNameProvided = app && app.data && app.data.user && app.data.user.profile && app.data.user.profile.name;
 
 		if (firstNameProvided) {
@@ -4632,7 +4674,7 @@ app.checkout = function(pathname, coupon, userInformation) {
 			paymentContact.lastName = lastNameProvided;
 		}
 
-		try{
+		try {
 			if ((profileNameProvided && !firstNameProvided) || (profileNameProvided && !lastNameProvided)) {
 				var fullName = app.data.user.profile.name.trim();
 				var nameParts = fullName.split(/\s+/); // Split by one or more spaces
@@ -4659,24 +4701,24 @@ app.checkout = function(pathname, coupon, userInformation) {
 				}
 			}
 		}
-		catch(e){
-			console.error('Checkout Error:', e);	
+		catch (e) {
+			console.error('Checkout Error:', e);
 		}
 
 
-		if (userInformation &&  userInformation.email) {
+		if (userInformation && userInformation.email) {
 			paymentContact.email = userInformation.email;
 		} else if (app && app.data && app.data.user && app.data.user.profile && app.data.user.profile.email) {
 			paymentContact.email = app.data.user.profile.email;
 		}
-	
-		if (userInformation &&  userInformation.company) {
+
+		if (userInformation && userInformation.company) {
 			paymentContact.company = userInformation.company;
 		}
-		if (userInformation &&  userInformation.phone) {
+		if (userInformation && userInformation.phone) {
 			paymentContact.phone = userInformation.phone;
 		}
-		if (userInformation &&  userInformation.addressLine1) {
+		if (userInformation && userInformation.addressLine1) {
 			paymentContact.addressLine1 = userInformation.addressLine1;
 		}
 		if (userInformation && userInformation.addressLine2) {
@@ -4694,7 +4736,7 @@ app.checkout = function(pathname, coupon, userInformation) {
 		if (userInformation && userInformation.postalCode) {
 			paymentContact.postalCode = userInformation.postalCode;
 		}
-		
+
 
 		console.log(paymentContact);
 		// Configure the FastSpring Builder
@@ -4718,125 +4760,125 @@ app.checkout = function(pathname, coupon, userInformation) {
 		fastspring.builder.reset(); //clear the cart
 		fastspring.builder.push(fastSpringConfig);
 	}
-	catch(e){
+	catch (e) {
 		var settings = {
-			hideCallback: function(){
+			hideCallback: function () {
 				location.reload();
 			}
 		};
-		
+
 		materialDialog.alert(
-		"Oops! We're Really Popular Right Now!",
-		"It seems a lot of piano enthusiasts are heading to checkout at the same moment! Please wait a moment and try again soon. If this message keeps popping up, our friendly team is ready to assist you at <a href='mailto:support@pianoencyclopedia.com'>support@pianoencyclopedia.com</a>. Just shoot us an email with 'CHECKOUT-1' and we'll help you process your order.", settings 
+			"Oops! We're Really Popular Right Now!",
+			"It seems a lot of piano enthusiasts are heading to checkout at the same moment! Please wait a moment and try again soon. If this message keeps popping up, our friendly team is ready to assist you at <a href='mailto:support@pianoencyclopedia.com'>support@pianoencyclopedia.com</a>. Just shoot us an email with 'CHECKOUT-1' and we'll help you process your order.", settings
 		);
-		
+
 	}
 };
 
-var CountdownTimer = (function() {
-    var that = {};
+var CountdownTimer = (function () {
+	var that = {};
 
-    var displayElements;
-    var interval = null;
-    var isOfferAvailable;
- 
-	that.init = function() {
-        
-        try {
-            isOfferAvailable = !__isOfferRecentlyShown();
-        } catch (error) {
-            console.error("Error checking offer availability:", error);
-            isOfferAvailable = false;
-        }
-        return true;
-    };
+	var displayElements;
+	var interval = null;
+	var isOfferAvailable;
 
-    that.start = function(elements) {
-        displayElements = elements;
-        if (!displayElements.d || !displayElements.h || !displayElements.m || !displayElements.s) {
-            console.error("CountdownTimer initialization failed: Required HTML elements are missing.");
-            return false;
-        }
-		
+	that.init = function () {
+
+		try {
+			isOfferAvailable = !__isOfferRecentlyShown();
+		} catch (error) {
+			console.error("Error checking offer availability:", error);
+			isOfferAvailable = false;
+		}
+		return true;
+	};
+
+	that.start = function (elements) {
+		displayElements = elements;
+		if (!displayElements.d || !displayElements.h || !displayElements.m || !displayElements.s) {
+			console.error("CountdownTimer initialization failed: Required HTML elements are missing.");
+			return false;
+		}
+
 		if (!displayElements || !isOfferAvailable) {
-            return;
-        }
-        try {
-            __calculateAndDisplayTime();
-            interval = setInterval(__calculateAndDisplayTime, 1000);
-        } catch (error) {
-            console.error("Error starting the countdown:", error);
-        }
-    };
+			return;
+		}
+		try {
+			__calculateAndDisplayTime();
+			interval = setInterval(__calculateAndDisplayTime, 1000);
+		} catch (error) {
+			console.error("Error starting the countdown:", error);
+		}
+	};
 
-    that.end = function() {
-        if (!interval) {
-            return;
-        }
-        clearInterval(interval);
-        interval = null;
-        __setDisplayToZero();
-        isOfferAvailable = false;
-    };
+	that.end = function () {
+		if (!interval) {
+			return;
+		}
+		clearInterval(interval);
+		interval = null;
+		__setDisplayToZero();
+		isOfferAvailable = false;
+	};
 
-    that.getIsOfferAvailable = function() {
-        return isOfferAvailable;
-    };
+	that.getIsOfferAvailable = function () {
+		return isOfferAvailable;
+	};
 
-    function __calculateAndDisplayTime() {
-        try {
-            var remainingTime = __getRemainingTime();
-            if (remainingTime <= 0) {
-                clearInterval(interval);
-                __setDisplayToZero();
-                __updateLastOfferTime();
-                isOfferAvailable = false;
-            } else {
-                __updateDisplay(remainingTime);
-            }
-        } catch (error) {
-            console.error("Error calculating or displaying time:", error);
-            clearInterval(interval);
-            __setDisplayToZero();
-        }
-    }
+	function __calculateAndDisplayTime() {
+		try {
+			var remainingTime = __getRemainingTime();
+			if (remainingTime <= 0) {
+				clearInterval(interval);
+				__setDisplayToZero();
+				__updateLastOfferTime();
+				isOfferAvailable = false;
+			} else {
+				__updateDisplay(remainingTime);
+			}
+		} catch (error) {
+			console.error("Error calculating or displaying time:", error);
+			clearInterval(interval);
+			__setDisplayToZero();
+		}
+	}
 
-    function __getRemainingTime() {
-        var now = new Date();
-        var midnight = new Date();
-        midnight.setHours(24, 0, 0, 0);
-        return midnight.getTime() - now.getTime();
-    }
+	function __getRemainingTime() {
+		var now = new Date();
+		var midnight = new Date();
+		midnight.setHours(24, 0, 0, 0);
+		return midnight.getTime() - now.getTime();
+	}
 
-    function __updateDisplay(remainingTime) {
-        displayElements.d.innerHTML = __getTrueNumber(Math.floor(remainingTime / (1000 * 60 * 60 * 24)));
-        displayElements.h.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        displayElements.m.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60)));
-        displayElements.s.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60)) / 1000));
-    }
+	function __updateDisplay(remainingTime) {
+		displayElements.d.innerHTML = __getTrueNumber(Math.floor(remainingTime / (1000 * 60 * 60 * 24)));
+		displayElements.h.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+		displayElements.m.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60)));
+		displayElements.s.innerHTML = __getTrueNumber(Math.floor((remainingTime % (1000 * 60)) / 1000));
+	}
 
-    function __getTrueNumber(num) {
-        return num < 10 ? "0" + num : num;
-    }
+	function __getTrueNumber(num) {
+		return num < 10 ? "0" + num : num;
+	}
 
-    function __isOfferRecentlyShown() {
-        var lastOfferTime = localStorage.getItem("lastOfferTime");
-        var now = new Date().getTime();
-        return lastOfferTime && now - lastOfferTime < 2 * 24 * 60 * 60 * 1000;
-    }
+	function __isOfferRecentlyShown() {
+		var lastOfferTime = localStorage.getItem("lastOfferTime");
+		var now = new Date().getTime();
+		return lastOfferTime && now - lastOfferTime < 2 * 24 * 60 * 60 * 1000;
+	}
 
-    function __setDisplayToZero() {
-        displayElements.d.innerHTML = 
-        displayElements.h.innerHTML = 
-        displayElements.m.innerHTML = 
-        displayElements.s.innerHTML = "00";
-    }
+	function __setDisplayToZero() {
+		displayElements.d.innerHTML =
+			displayElements.h.innerHTML =
+			displayElements.m.innerHTML =
+			displayElements.s.innerHTML = "00";
+	}
 
-    function __updateLastOfferTime() {
-        localStorage.setItem("lastOfferTime", new Date().getTime());
-    }
+	function __updateLastOfferTime() {
+		localStorage.setItem("lastOfferTime", new Date().getTime());
+	}
 
-    return that;
+	return that;
 })();
 
 // Usage
@@ -4857,7 +4899,577 @@ if(isOfferAvailable){
 */
 // To end the timer, you can call:
 // CountdownTimer.end();
- 
+
 
 //app.init();
 //TODO: create wrapper over ajax request, to retry twice?	
+var LessonHelper = function () {
+
+	var that = {};
+
+
+	that.isLessonExpiringInDays = function (lesson, days, marginHours) {
+		marginHours = typeof marginHours !== 'undefined' ? marginHours : 36;
+		if (!lesson.deadlineDateString) {
+			return false;
+		}
+
+		try {
+			var deadlineDate = new Date(lesson.deadlineDateString);
+
+			// Add margin hours to the current date
+			var currentDateWithMargin = new Date();
+			currentDateWithMargin.setHours(currentDateWithMargin.getHours() + marginHours);
+
+			var daysRemaining = Math.ceil((deadlineDate - currentDateWithMargin) / (1000 * 60 * 60 * 24));
+
+			// If days remaining is less than or equal to the specified days AND greater than 0 (not already expired)
+			return daysRemaining <= days && daysRemaining > 0;
+		} catch (e) {
+			console.warn("Invalid date format detected: " + lesson.deadlineDateString);
+			return false;
+		}
+	};
+
+	that.isLessonAvailableNow = function (lesson) {
+		if (!lesson.availableDateString) {
+			return true;
+		}
+
+		try {
+			var availableDate = new Date(lesson.availableDateString);
+			var currentDate = new Date();
+
+			return availableDate <= currentDate;
+		} catch (e) {
+			console.warn("Invalid date format detected: " + lesson.availableDateString);
+			return false;
+		}
+	};
+
+	that.isLessonNotAvailableNow = function (lesson) {
+		return !that.isLessonAvailableNow(lesson);
+	};
+
+	that.isLessonNotExpired = function (lesson, marginHours) {
+		marginHours = typeof marginHours !== 'undefined' ? marginHours : 0;
+		if (!lesson.expiryDateString) {
+			return true; // Assuming lessons with no expiry date are always available.
+		}
+
+		try {
+			var expiryDate = new Date(lesson.expiryDateString);
+
+			// Add margin hours to the current time to check against the expiry date.
+			var currentDateWithMargin = new Date();
+			currentDateWithMargin.setHours(currentDateWithMargin.getHours() + marginHours);
+
+			// If expiry date is greater than the current date with margin, then the lesson has not expired.
+			return expiryDate > currentDateWithMargin;
+		} catch (e) {
+			console.warn("Invalid date format detected: " + lesson.expiryDateString);
+			return false; // Assuming lessons with invalid expiry dates are expired.
+		}
+	};
+
+	that.isLessonExpired = function (lesson) {
+		return !that.isLessonNotExpired(lesson);
+	};
+
+	that.isRated = function (lesson) {
+		return 'rating' in lesson;
+	};
+
+	that.isLessonVisible = function (lesson) {
+		return 'visible' in lesson && lesson.visible;
+	};
+
+	that.isProgressBelowLimit = function (lesson, limit) {
+		if (!('engagementProgressMaxPercent' in lesson)) {
+			lesson.engagementProgressMaxPercent = 0;
+		}
+
+		return lesson.engagementProgressMaxPercent < limit;
+	};
+
+	that.isProgressInRange = function (lesson, min, max) {
+		if (!('engagementProgressMaxPercent' in lesson)) {
+			lesson.engagementProgressMaxPercent = 0;
+		}
+
+		return lesson.engagementProgressMaxPercent >= min && lesson.engagementProgressMaxPercent <= max;
+	};
+
+
+
+
+	return that;
+}();
+
+
+
+var LessonRecommender = function () {
+	var that = {};
+
+
+	/**
+	 * Sorts an array of lesson objects by a specified date field.
+	 *
+	 * @param array $lessonsArray Array of lesson objects to sort.
+	 * @param string $dateFieldName Name of the date property to sort by.
+	 * @param string $order The order to sort by ('ascending' or 'descending').
+	 * @param bool $placeEmptyAtEnd True to place items with empty/invalid dates at the end.
+	 * @return array Sorted array, or original array on error.
+	 */
+	that.__sortLessonsArrayByDate = function (lessonsArray, dateFieldName, order, placeEmptyAtEnd) {
+		if (!Array.isArray(lessonsArray) || !dateFieldName) {
+			// Log error or handle invalid input
+			console.log("__sortLessonsArrayByDate: Invalid input.", {
+				lessonsArray: lessonsArray,
+				dateFieldName: dateFieldName,
+				order: order,
+				placeEmptyAtEnd: placeEmptyAtEnd
+			});
+			return lessonsArray;
+		}
+
+		var sortedArray = lessonsArray.slice(); // Copy array to avoid modifying original
+		sortedArray.sort(function (a, b) {
+			var dateA = a[dateFieldName] ? new Date(a[dateFieldName]).getTime() : false;
+			var dateB = b[dateFieldName] ? new Date(b[dateFieldName]).getTime() : false;
+
+			if (dateA === false && dateB === false) {
+				return 0; // Both dates are invalid or empty.
+			} else if (dateA === false) {
+				return placeEmptyAtEnd ? 1 : -1;
+			} else if (dateB === false) {
+				return placeEmptyAtEnd ? -1 : 1;
+			}
+
+			return (order === 'descending' ? (dateB - dateA) : (dateA - dateB));
+		});
+
+		return sortedArray;
+	};
+
+	that.__getCourseIds = function (data, lessonIds) {
+
+		var coursesIds = [];
+		for (var i = 0; i < lessonIds.length; i++) {
+			var lessonId = lessonIds[i];
+			var parentChapterId = data.lesson && data.lesson[lessonId] ? data.lesson[lessonId].parentChapter : null;
+			if (parentChapterId != null) {
+				var parentCourseId = data && data.chapter && data.chapter[parentChapterId] ? data.chapter[parentChapterId].parentCourse : null;
+				coursesIds.push(parentCourseId);
+			}
+		}
+
+		// Remove duplicates and reindex
+		coursesIds = coursesIds.filter(function (value, index, self) {
+			return self.indexOf(value) === index;
+		});
+
+		return coursesIds;
+	};
+
+	that.__getDisplayNameFromType = function (typeName) {
+		switch (typeName) {
+			case 'ebook':
+				return 'Books';
+			case 'video':
+				return 'Videos';
+			case 'interactive-video':
+				return 'Interactive Videos';
+			case 'article':
+				return 'Articles';
+			default:
+				return typeName;
+		}
+	};
+
+	that.__hasRecentType = function (data, lesson, types) {
+		if (!lesson.id || !data.user.learning || !data.user.learning[lesson.id] || !data.user.learning[lesson.id].type) {
+			return false;
+		}
+
+		return types.indexOf(data.user.learning[lesson.id].type) !== -1;
+	};
+
+	that.calculateLessonsExpiring = function (data, maxRecommendations) {
+		var expiryDays = 7;
+		var lessonsExpiringArray = [];
+
+		for (var lessonId in data.user.learning) {
+			if (data.user.learning.hasOwnProperty(lessonId)) {
+				var lesson = data.user.learning[lessonId];
+				lesson.id = parseInt(lessonId, 10);
+				if (LessonHelper.isLessonAvailableNow(lesson) &&
+					LessonHelper.isLessonNotExpired(lesson) &&
+					LessonHelper.isLessonVisible(lesson) &&
+					LessonHelper.isLessonExpiringInDays(lesson, expiryDays) &&
+					!that.__includedInPreviousWeekTopRecommendations(lesson)) {
+
+					lessonsExpiringArray.push(lesson);
+				}
+			}
+		}
+
+		// Sort by expiry date, closest first (ascending order)
+		lessonsExpiringArray = that.__sortLessonsArrayByDate(lessonsExpiringArray, 'deadlineDateString', 'ascending');
+
+		var lessonIds = lessonsExpiringArray.map(function (lesson) {
+			return lesson.id;
+		});
+
+		var coursesIds = that.__getCourseIds(data, lessonIds);
+
+		// Limit lessons to maximum
+		lessonIds = lessonIds.slice(0, maxRecommendations);
+		coursesIds = coursesIds.slice(0, maxRecommendations);
+
+		// Assign the sorted array back to the class property
+		that.lessonsExpiring = {
+			lessonsIds: lessonIds,
+			coursesIds: coursesIds
+		};
+	};
+
+	that.calculateLessonsToResume = function (data, maxRecommendations) {
+		var rangeFrom = 25;
+		var rangeTo = 70;
+		var lessonsToResumeArray = [];
+
+		for (var lessonId in data.user.learning) {
+			if (data.user.learning.hasOwnProperty(lessonId)) {
+				var lesson = data.user.learning[lessonId];
+				lesson.id = parseInt(lessonId, 10);
+				if (LessonHelper.isLessonAvailableNow(lesson) &&
+					LessonHelper.isLessonNotExpired(lesson) &&
+					LessonHelper.isLessonVisible(lesson) &&
+					LessonHelper.isProgressInRange(lesson, rangeFrom, rangeTo) &&
+					!that.__includedInPreviousWeekTopRecommendations(lesson)) {
+
+					lessonsToResumeArray.push(lesson);
+				}
+			}
+		}
+
+		// Sort by access date, most recent first (descending order)
+		lessonsToResumeArray = that.__sortLessonsArrayByDate(lessonsToResumeArray, 'accessLastDate', 'descending');
+
+		var lessonIds = lessonsToResumeArray.map(function (lesson) {
+			return lesson.id;
+		});
+
+		var coursesIds = that.__getCourseIds(data, lessonIds);
+
+		// Limit lessons to maximum
+		lessonIds = lessonIds.slice(0, maxRecommendations);
+		coursesIds = coursesIds.slice(0, maxRecommendations);
+
+		// Assign the sorted array back to the class property
+		that.lessonsToResume = {
+			lessonsIds: lessonIds,
+			coursesIds: coursesIds
+		};
+	};
+
+	that.calculateLessonsToDiversifyType = function (data, maxRecommendations) {
+		var recentTypes = that.__getRecentLessonTypes(data, 10);
+		var lessonsToDiversifyTypeArray = [];
+
+		for (var lessonId in data.user.learning) {
+			if (data.user.learning.hasOwnProperty(lessonId)) {
+				var lesson = data.user.learning[lessonId];
+				lesson.id = parseInt(lessonId, 10);
+				if (LessonHelper.isLessonAvailableNow(lesson) &&
+					LessonHelper.isLessonNotExpired(lesson) &&
+					LessonHelper.isLessonVisible(lesson) &&
+					!that.__hasRecentType(data, lesson, recentTypes) &&
+					!that.__includedInPreviousWeekTopRecommendations(lesson)) {
+
+					lessonsToDiversifyTypeArray.push(lesson);
+				}
+			}
+		}
+
+		// Sort by access date, oldest first (ascending order)
+		lessonsToDiversifyTypeArray = that.__sortLessonsArrayByDate(lessonsToDiversifyTypeArray, 'accessLastDate', 'ascending');
+
+		var lessonIds = lessonsToDiversifyTypeArray.map(function (lesson) {
+			return lesson.id;
+		});
+
+		var coursesIds = that.__getCourseIds(data, lessonIds);
+
+		// Limit lessons to maximum
+		lessonIds = lessonIds.slice(0, maxRecommendations);
+		coursesIds = coursesIds.slice(0, maxRecommendations);
+
+		// Assign the sorted array back to the class property
+		that.lessonsToDiversifyType = {
+			lessonsIds: lessonIds,
+			coursesIds: coursesIds
+		};
+	};
+
+	that.__getRecentLessonTypes = function (data, recentLessonCount) {
+		var lessonsArray = [];
+
+		Object.keys(data.user.learning).forEach(function (key) {
+			var lesson = data.user.learning[key];
+			if (LessonHelper.isLessonAvailableNow(lesson) &&
+				LessonHelper.isLessonNotExpired(lesson) &&
+				LessonHelper.isLessonVisible(lesson) &&
+				LessonHelper.isProgressBelowLimit(lesson, 70) &&
+				!that.__includedInPreviousWeekTopRecommendations(lesson) &&
+				!LessonHelper.isRated(lesson)) {
+
+				// Add the lesson to the array for further sorting
+				lessonsArray.push(lesson);
+			}
+		}, this);
+
+		// Sort by access date, most recent first
+		lessonsArray = that.__sortLessonsArrayByDate(lessonsArray, 'accessLastDate', "descending");
+
+		var types = [];
+		for (var i = 0; i < recentLessonCount && i < lessonsArray.length; i++) {
+			var lesson = lessonsArray[i];
+			var lessonId = lesson.id;
+			if (data.lesson[lessonId] && data.lesson[lessonId].type) {
+				types.push(data.lesson[lessonId].type);
+			}
+		}
+
+		return types;
+	};
+
+	that.calculateLessonsRecommendedByType = function (data, maxRecommendations) {
+		var lessonsArray = {};
+
+		for (var lessonId in data.user.learning) {
+			if (data.user.learning.hasOwnProperty(lessonId)) {
+				var lesson = data.user.learning[lessonId];
+				lesson.id = parseInt(lessonId, 10);
+				if (LessonHelper.isLessonAvailableNow(lesson) &&
+					LessonHelper.isLessonNotExpired(lesson) &&
+					LessonHelper.isLessonVisible(lesson)) {
+
+					if (data.lesson && data.lesson[lessonId] && data.lesson[lessonId].type) {
+						var typeName = data.lesson[lessonId].type;
+
+						if (!lessonsArray[typeName]) {
+							lessonsArray[typeName] = [];
+						}
+
+						lessonsArray[typeName].push(lesson);
+					}
+				}
+			}
+		}
+
+		var lessonsIdsByType = {};
+		for (var typeName in lessonsArray) {
+			if (lessonsArray.hasOwnProperty(typeName)) {
+				var lessons = lessonsArray[typeName];
+				lessonsArray[typeName] = that.__sortLessonsArrayByDate(lessons, 'accessLastDate', 'ascending');
+				lessonsIdsByType[typeName] = { lessonsIds: [], coursesIds: [] };
+
+				for (var i = 0; i < lessonsArray[typeName].length; i++) {
+					var lesson = lessonsArray[typeName][i];
+					lessonsIdsByType[typeName].lessonsIds.push(lesson.id);
+				}
+
+				lessonsIdsByType[typeName].displayName = that.__getDisplayNameFromType(typeName);
+				lessonsIdsByType[typeName].coursesIds = that.__getCourseIds(data, lessonsIdsByType[typeName].lessonsIds);
+
+				// Limit lessons to maximum
+				lessonsIdsByType[typeName].lessonsIds = lessonsIdsByType[typeName].lessonsIds.slice(0, maxRecommendations);
+				lessonsIdsByType[typeName].coursesIds = lessonsIdsByType[typeName].coursesIds.slice(0, maxRecommendations);
+			}
+		}
+
+		that.lessonsRecommendedByType = lessonsIdsByType;
+	};
+
+	that.calculateLessonsNewest = function (data, maxRecommendations) {
+		var lessonsNewestArray = [];
+
+		for (var lessonId in data.user.learning) {
+			if (data.user.learning.hasOwnProperty(lessonId)) {
+				var lesson = data.user.learning[lessonId];
+				lesson.id = parseInt(lessonId, 10);
+				if (LessonHelper.isLessonAvailableNow(lesson) &&
+					LessonHelper.isLessonNotExpired(lesson) &&
+					LessonHelper.isLessonVisible(lesson) &&
+					LessonHelper.isProgressBelowLimit(lesson, 10) &&
+					!that.__includedInPreviousWeekTopRecommendations(lesson) &&
+					!LessonHelper.isRated(lesson)) {
+
+					lessonsNewestArray.push(lesson);
+				}
+			}
+		}
+
+		// Sort by available date, oldest first (ascending order)
+		lessonsNewestArray = that.__sortLessonsArrayByDate(lessonsNewestArray, 'availableDateString', 'ascending');
+
+		var lessonIds = lessonsNewestArray.map(function (lesson) {
+			return lesson.id;
+		});
+
+		var coursesIds = that.__getCourseIds(data, lessonIds);
+
+		// Limit lessons to maximum
+		lessonIds = lessonIds.slice(0, maxRecommendations);
+		coursesIds = coursesIds.slice(0, maxRecommendations);
+
+		// Assign the sorted array back to the class property
+		that.lessonsNewest = {
+			lessonsIds: lessonIds,
+			coursesIds: coursesIds
+		};
+
+	};
+
+	that.__includedInPreviousWeekTopRecommendations = function (lesson) {
+		return that.previousWeekTopRecommendations.indexOf(lesson.id) !== -1;
+	};
+
+	that.calculateThisWeekTopRecommendations = function (data) {
+		var maxRecommendations = 4;
+		that.thisWeekTopRecommendations = { lessonsIds: [], coursesIds: [] };
+
+		// Utility function to add item if available
+		var addItemIfAvailable = function (array, targetArray, index) {
+			index = typeof index !== 'undefined' ? index : 0;
+			if (array[index] !== undefined) {
+				targetArray.push(array[index]);
+			}
+		};
+
+		// Add one from each category
+		addItemIfAvailable(that.lessonsNewest.lessonsIds, that.thisWeekTopRecommendations.lessonsIds, 0);
+		addItemIfAvailable(that.lessonsExpiring.lessonsIds, that.thisWeekTopRecommendations.lessonsIds, 0);
+		addItemIfAvailable(that.lessonsToResume.lessonsIds, that.thisWeekTopRecommendations.lessonsIds, 0);
+		addItemIfAvailable(that.lessonsToDiversifyType.lessonsIds, that.thisWeekTopRecommendations.lessonsIds, 0);
+
+		// Fill remaining slots from lessonsNewest and lessonsToDiversifyType
+		var additionalSources = [that.lessonsNewest.lessonsIds, that.lessonsToDiversifyType.lessonsIds];
+		for (var i = 0; i < additionalSources.length; i++) {
+			var source = additionalSources[i];
+			if (!Array.isArray(source) || source.length === 0) {
+				continue;
+			}
+
+			var sourceCount = source.length;
+			var currentRecommendationsCount = that.thisWeekTopRecommendations.lessonsIds.length;
+
+			for (var j = 1; j < sourceCount && currentRecommendationsCount < maxRecommendations; j++) {
+				addItemIfAvailable(source, that.thisWeekTopRecommendations.lessonsIds, j);
+
+				// Update the count of current recommendations after each addition
+				currentRecommendationsCount = that.thisWeekTopRecommendations.lessonsIds.length;
+
+				// Break the loop if maximum recommendations are reached
+				if (currentRecommendationsCount >= maxRecommendations) {
+					break;
+				}
+			}
+
+			// Break the outer loop if maximum recommendations are reached
+			if (currentRecommendationsCount >= maxRecommendations) {
+				break;
+			}
+		}
+
+		var lessonsIds = that.thisWeekTopRecommendations.lessonsIds;
+		var coursesIds = that.__getCourseIds(data, lessonsIds);
+
+		that.thisWeekTopRecommendations.coursesIds = coursesIds;
+	};
+
+	/**
+  * @param int $cacheForDays: number of days to cache recommendations
+  * @return object:
+  * date: date of last calculation of recommendations
+  *
+  * data: (object)
+  *
+  * data->newest : array of newest lessons ids
+  * data->expiring : array of expiring lessons ids
+  * data->toResume : array of lessons ids to resume
+  * data->toDiversifyType : array of lessons ids to diversify type
+  * data->recommendedByType : array of lessons ids recommended by type
+  * data->thisWeekTopRecommendations : array of top recommendations for this week
+  * data->types->{types} : array of types
+  *  e.g: data->types->video : array of lessons ids for video type
+  *
+  */
+	that.getRecommendations = function (data, maxRecommendations, cacheForDays) {
+		maxRecommendations = typeof maxRecommendations !== 'undefined' ? maxRecommendations : 30;
+		cacheForDays = typeof cacheForDays !== 'undefined' ? cacheForDays : 7;
+
+		that.previousWeekTopRecommendations = (
+			data && data.user && data.user.recommendations && data.user.recommendations.data &&
+			data.user.recommendations.data.thisWeekTopRecommendations &&
+			data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds
+		) ? data.user.recommendations.data.thisWeekTopRecommendations.lessonsIds : [];
+
+		that.lessonsNewest = { lessonsIds: [], coursesIds: [] };
+		that.lessonsExpiring = { lessonsIds: [], coursesIds: [] };
+		that.lessonsToResume = { lessonsIds: [], coursesIds: [] };
+		that.lessonsToDiversifyType = { lessonsIds: [], coursesIds: [] };
+		that.lessonsRecommendedByType = { lessonsIds: [], coursesIds: [] };
+		that.thisWeekTopRecommendations = { lessonsIds: [], coursesIds: [] };
+
+
+		try {
+			var shouldResetRecommendations = false;
+
+			if (!data.user.recommendations || !data.user.recommendations.date || !data.user.recommendations.data) {
+				shouldResetRecommendations = true;
+			} else {
+				var recommendationDate = new Date(data.user.recommendations.date);
+				var currentDate = new Date();
+				var timeDiff = currentDate - recommendationDate;
+				var days = timeDiff / (1000 * 3600 * 24);
+
+				if (days > cacheForDays) {
+					shouldResetRecommendations = true;
+				}
+			}
+
+			if (shouldResetRecommendations) {
+				that.calculateLessonsNewest(data, maxRecommendations);
+				that.calculateLessonsExpiring(data, maxRecommendations);
+				that.calculateLessonsToResume(data, maxRecommendations);
+				that.calculateLessonsToDiversifyType(data, maxRecommendations);
+				that.calculateLessonsRecommendedByType(data, maxRecommendations);
+				that.calculateThisWeekTopRecommendations(data, maxRecommendations);
+
+				var result = {};
+				result.data = {
+					newest: that.lessonsNewest,
+					expiring: that.lessonsExpiring,
+					toResume: that.lessonsToResume,
+					toDiversifyType: that.lessonsToDiversifyType,
+					thisWeekTopRecommendations: that.thisWeekTopRecommendations,
+					types: that.lessonsRecommendedByType
+				};
+				result.date = new Date().toISOString();
+				return result;
+			} else {
+				return data.user.recommendations;
+			}
+		} catch (e) {
+			console.error('getRecommendations Error: ', e.message, e.stack);
+			return {};
+		}
+	};
+
+	return that;
+
+}();
+

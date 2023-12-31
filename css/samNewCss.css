@@ -441,10 +441,6 @@
         margin: 1rem 0;
     }
 
-    .materialFilterPillsContainer .overlay {
-        width: 5rem;
-    }
-
     .app_searchCardsResultContentContainer {
         margin-top: 5rem;
         padding: 0 1.5rem;
@@ -1044,6 +1040,39 @@
 }
 
 
+/** Filter Page **/
+.app_coursesCardsFilterPills  {
+    padding: 1rem 0;
+}
+
+section.filterDropdownSection {
+    padding: 0 1rem;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+section.filterDropdownSection .materialInputWrap {
+    width: 230px;
+}
+
+section.filterDropdownSection .materialInputWrap:after {
+    border-left: 0.375em solid transparent;
+    border-right: 0.375em solid transparent;
+    border-top: 0.375em solid white;
+}
+
+section.filterDropdownSection .materialInputControl {
+    color: rgba(255,255,255,0.75);
+    background-color: hsl(0,0%,13.1%);
+    font-size: 1em;
+}
+
+/** Media Queries for mobile **/
+@media (max-width: 768px) {
+    section.filterDropdownSection .materialInputWrap {
+        width: 100%;
+    }
+}
 
 
 /** Merging **/

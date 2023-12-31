@@ -1,65 +1,54 @@
-var dashboardInfiniteScrolling = function () {
-	var that = [];
+var dashboardInfiniteScrollingLib = function () {
+    var that = [];
 
-	that.vars = [];
-	that.vars.currentscrollHeight = 0;
-	that.vars.count = 0;
-	that.vars.scrollDiv = true;
+    that.vars = [];
+    that.vars.currentscrollHeight = 0;
+    that.vars.count = 0;
+    that.vars.scrollDiv = true;
 
-	that.callbacks = [];
-	that.callbacks.infiniteScrollingCardsSearchBar = function () {
-		if (that.fx.scrollHeightVariableAndClearHTML()) {
-			that.fx.loadInfiniteCards();
-		}
-	}
-	that.callbacks.searchBtn = function (event) {
-		event.preventDefault()
-		if (that.fx.scrollHeightVariableAndClearHTML()) {
-			that.fx.loadInfiniteCards();
-		}
-	}
-	that.callbacks.filterDropdown = function () {
-		if (that.fx.scrollHeightVariableAndClearHTML()) {
-			that.fx.loadInfiniteCards();
-		}
-	}
-	that.callbacks.filterSwitch = function () {
-		
-		$('.filterDropdown select.level').val('');
-		$('.filterDropdown select.duration').val('');
-		$('.filterDropdown select.era').val('');
-		$('.filterDropdown select.composer').val('');
-		$('.filterDropdown select.workType').val('');
+    that.callbacks = [];
+    that.callbacks.infiniteScrollingCardsSearchBar = function () {
+        if (that.fx.scrollHeightVariableAndClearHTML()) {
+            that.fx.loadInfiniteCards();
+        }
+    }
+    that.callbacks.searchBtn = function (event) {
+        event && event.preventDefault();
+        if (that.fx.scrollHeightVariableAndClearHTML()) {
+            that.fx.loadInfiniteCards();
+        }
+    }
+    that.callbacks.filterDropdown = function () {
+        if (that.fx.scrollHeightVariableAndClearHTML()) {
+            that.fx.loadInfiniteCards();
+        }
+    }
+    that.callbacks.filterSwitch = function () {
+        app.resetFilterInputs();
 
-		$('.filterDropdownToggle').toggle();
-		if (that.fx.scrollHeightVariableAndClearHTML()) {
-			that.fx.loadInfiniteCards();
-		}
-	}
-
-	that.callbacks.onScroll = function () {
-		//console.log("START: ON SCROLL CALLBACK");
+        if (that.fx.scrollHeightVariableAndClearHTML()) {
+            that.fx.loadInfiniteCards();
+        }
+    }
+    that.callbacks.onScroll = function () {
+		// console.log("START: ON SCROLL CALLBACK");
 		var scrollHeight = $(document).height();
 		var scrollPos = Math.floor($(window).height() + $(window).scrollTop());
 		var distanceFromBottom = 500;
 		var isBottom = ((scrollHeight - distanceFromBottom) < scrollPos) ? true : false;
 		if (that.vars.scrollDiv === false) {
-			//console.log("Infinite Scrolling A", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "scrollPos", scrollPos, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
+			// console.log("Infinite Scrolling A", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "scrollPos", scrollPos, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
 			that.vars.currentscrollHeight = 0;
 		}
 		if (that.vars.scrollDiv && isBottom && that.vars.currentscrollHeight < scrollHeight) {
-			//console.log("Infinite Scrolling B", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "scrollPos", scrollPos, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
+			// console.log("Infinite Scrolling B", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "scrollPos", scrollPos, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
 			that.fx.loadInfiniteCards();
 			that.vars.currentscrollHeight = scrollHeight;
 		}
-		//console.log("Infinite Scrolling C", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "(scrollHeight - 100)", (scrollHeight - 100), "scrollPos", scrollPos,  "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
-
+		// console.log("Infinite Scrolling C", "that.vars.scrollDiv", that.vars.scrollDiv, "isBottom", isBottom, "(scrollHeight - 100)", (scrollHeight - 100), "scrollPos", scrollPos,  "that.vars.currentscrollHeight < scrollHeight", (that.vars.currentscrollHeight < scrollHeight), "that.vars.currentscrollHeight", that.vars.currentscrollHeight, "scrollHeight", scrollHeight, "$(window).height()", $(window).height(), "$(window).scrollTop()", $(window).scrollTop());
 	}
-
-
-	that.createCard = function (courseId, course, columnWidthClass) {
-
-		var href = `#!/course/${courseId}`;
+    that.createCard = function (courseId, course, columnWidthClass) {
+        var href = `#!/course/${courseId}`;
 
 		var countdownHtml = function (date) {
 			return `
@@ -104,10 +93,6 @@ var dashboardInfiniteScrolling = function () {
 			default:
 				var buttonAction = "Start";
 		}
-
-
-
-
 
 		var icon;
 		switch (course.type) {
@@ -174,11 +159,11 @@ var dashboardInfiniteScrolling = function () {
 				var themeOverlay = "materialOverlayShallowBlack";
 				var themeButton = "materialButtonText materialThemeDarkGrey";
 				var actionHtml = `<span>
-									<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Locked</button>
+									<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
 								  </span>`;
-				var progressChipHtml = `<span data-new><i>LOCKED</i></span>
-									<span data-incomplete>LOCKED</span>
-									<span data-complete>LOCKED</span>`;
+				var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
+									<span data-incomplete>EXPIRED</span>
+									<span data-complete>EXPIRED</span>`;
 				var icon = "fa-lock";
 
 				break;
@@ -268,52 +253,29 @@ var dashboardInfiniteScrolling = function () {
 		return html;
 	}
 
-	that.fx = []
-	that.fx.loadInfiniteCards = function () {
-
-		// Load Infinite cards
+    that.fx = []
+    that.fx.loadInfiniteCards = function () {
+        // Load Infinite cards
 		var noOfRecordsPerPage = 9;
 		var paginationValue = $('.addPaginationValue').val();
-		var searchValue = $(".infiniteScrollingCardsSearchBar input").val();
+		var searchValue = $(".materialSearchBar input.searchBarInput").val();
 		searchValue = searchValue ? searchValue.toLowerCase() : "";
 
-		var level = $('.filterDropdown select.level').val();
-		var duration = $('.filterDropdown select.duration').val();
-		var era = $('.filterDropdown select.era').val();
-		var composer = $('.filterDropdown select.composer').val();
-		var workType = $('.filterDropdown select.workType').val();
-
-		//Restore last used search and filters
-		//app.restoreLastSearch();	
-
-		var filters = app.getFilterArray();
+        $('.cardLoadingPlaceholder').show();
+        var filters = app.getFilterArray();
 		var isFiltersEmpty = (Object.keys(filters).length === 0);
+        var matchedCourses = app.searchCourses(searchValue, filters, paginationValue);
 
-		if ((searchValue === '' || searchValue === null) && (isFiltersEmpty)) {
-			$('.recommendedDiv').show();
-		}
-		else {
-			$('.recommendedDiv').hide();
-		}
-
-		// start
-
-		$('.cardLoadingPlaceholder').show();
-		var filters = app.getFilterArray();
-		var matchedCourses = app.searchCourses(searchValue, filters, paginationValue);
-
-		var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
+        var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;
 		var html = "";
 
-
-		matchedCourses.forEach(function (courseId, index) { 
-			var course = app.data.course[courseId]; 
-			html += that.createCard(courseId, course, columnWidthClass); 
+        matchedCourses.forEach(function (courseId, index) {
+			var course = app.data.course[courseId];
+			html += that.createCard(courseId, course, columnWidthClass);
 		});
-		
 
-		$('.cardLoadingPlaceholder').hide();
-		if (matchedCourses.length == 0) {
+        $('.cardLoadingPlaceholder').hide();
+        if (matchedCourses.length == 0) {
 			if (paginationValue > 1) {
 			} else {
 				that.fx.scrollHeightVariableAndClearHTML();
@@ -326,15 +288,14 @@ var dashboardInfiniteScrolling = function () {
 			$('.noResultsDiv').hide();
 		}
 
-		$('.infiniteScrollingContainer').append(html);
+        $('.infiniteScrollingContainer').append(html);
 		material.init(".infiniteScrollingContainer");
 
 		Number(paginationValue++);
 		$('.addPaginationValue').val(paginationValue);
+    }
 
-	}
-
-	that.fx.scrollHeightVariableAndClearHTML = function () {
+    that.fx.scrollHeightVariableAndClearHTML = function () {
 		// clear saved scrollHeightVariable and html 
 		that.vars.currentscrollHeight = 0;
 		$('.addPaginationValue').val('1');
@@ -342,43 +303,34 @@ var dashboardInfiniteScrolling = function () {
 		return true
 	}
 
-	var exposed = [];
+    var exposed = [];
 	exposed.loaded = false;
-	exposed.load = function () {
-		if (!exposed.loaded) {
+    exposed.load = function () {
+        if (!exposed.loaded) {
 			exposed.loaded = true;
-			that.fx.loadInfiniteCards();
 
-			$('.filterDropdownToggle').hide();
-
-			// On Scroll
+            // On Scroll
 			that.vars.currentscrollHeight = 0;
 			that.vars.count = 0;
 			that.vars.scrollDiv = true;
 
-			console.log("TURN ON SCROLL CALLBACK");
-			$(document).on("scroll", window, that.callbacks.onScroll);
+            console.log("TURN ON SCROLL CALLBACK");
+            $(document).on("scroll", window, that.callbacks.onScroll);
+        }
+    }
 
-			$('.filterSwitch').on("click", that.callbacks.filterSwitch);
-			$('.searchBtn').on("click", that.callbacks.searchBtn);
-			$('.infiniteScrollingCardsSearchBar input').on("change ", that.callbacks.infiniteScrollingCardsSearchBar);
-			$('.filterDropdown select').on("change", that.callbacks.filterDropdown);
-		}
-	};
-
-	exposed.callbacks = that.callbacks;
-	exposed.unload = function () {
+    exposed.callbacks = that.callbacks;
+    exposed.unload = function () {
 		if (exposed.loaded) {
-			$(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
+			// $(document).off("change", '.infiniteScrollingCardsSearchBar input', that.callbacks.infiniteScrollingCardsSearchBar);
 			$(document).off("click", '.searchBtn', that.callbacks.searchBtn);
-			$(document).off("change", '.filterDropdown select', that.callbacks.filterDropdown);
-			$(document).off("click", '.filterSwitch', that.callbacks.filterSwitch);
+			$(document).off("change", '.filterFormsContainer select', that.callbacks.filterDropdown);
 
 			console.log("TURN OFF SCROLL CALLBACK");
 			$(document).off("scroll", window, that.callbacks.onScroll);
 			exposed.loaded = false;
 		}
 	};
-
-	return exposed;
+	
+    return exposed;
 }();

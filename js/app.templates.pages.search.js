@@ -44,10 +44,12 @@ app.templates.pages.search = {
 
         html += `
             <script>
-                function redirectToHomeIfValueIsEmpty(data){
+                function redirectToHomeIfValueIsEmpty(data) {
                     if (!data) { return; }
                     if (data.hasOwnProperty("searchValue") && data.searchValue == "") { 
-                        router.navigate('/'); 
+                        if (data.hasOwnProperty("filterValue") && data.filterValue == null) {
+                            router.navigate('/'); 
+                        }
                     }
                 }
             </script>

@@ -259,20 +259,6 @@ router.on({
 		app.routeId = "/history/";
 		$(".materialBarDashboardBackBtn").fadeIn();
 	},
-
-	'/old-home/': function (params) {
-		app.html({
-			target: "#content",
-			loading: function () { return app.templates.pages.dashboardInfiniteScrolling.loading(); },
-			contentCondition: function () { return true; },
-			contentTrue: function () { return app.templates.pages.dashboardInfiniteScrolling.content(); },
-			callback: function () { }
-		});
-
-
-		app.routeId = "/dashboard-infinite-scrolling/";
-		$(".materialBarDashboardBackBtn").hide();
-	},
 	/*
 	'/lesson/:lessonId/rating/:rating': function (params) { 
 		app.html({

@@ -11,29 +11,51 @@ app.templates.pages.filter = {
         return html;
     },
     content: function (filterQuery) {
+
         filterQuery = filterQuery || "";
+        let defaultSortFilter = app.getURLParams()?.type || 'courses';
 
-        // Filter Pills
-        let filterPillsData = Object.keys(app.data.explore).map((item, index) => {
-            return {
-                name: item, value: item, active: false
-            }
-        })
+        // Get Filter Pills
+        const getFilterPills = function () {
+            let sortFilter = app.getURLParams()?.type === 'lessons' ? 'lessonsIds' : 'coursesIds';
+            
+            let exploreData = app.data.explore[sortFilter];
 
-        // Push "All" filter pill to the beginning of the array
-        filterPillsData.unshift({
-            name: 'All', value: '', active: true
-        })
+            let allPillsData = [
+                { name: 'All', value: '', active: true }
+            ]
+
+            let filterPillsData = Object.keys(exploreData).map((item, index) => {
+                return {
+                    name: item, value: item, active: false
+                }
+            })
+
+            return [...allPillsData, ...filterPillsData];
+        }
 
         var html = `
             <section class="app_coursesCardsFilterPills">	
                 ${
                     materialFilterPills.create({
                         defaultValue: filterQuery,
-                        list: filterPillsData,
-                        getClickedPillData: (data) => populateCards(data)
+                        activeSortFilterKey: defaultSortFilter,
+                        list: getFilterPills(),
+                        getClickedPillData: (data, activeSortFilterKey) => populateCards(data, activeSortFilterKey)
                     })
                 }
+            </section>
+
+            <section class="filterDropdownSection marginTop10">
+                <div class="materialInputWrap">
+                    <select class="materialInputControl materialThemeDark" required="">
+                        <option value="courses" selected>Show Courses</option>
+                        <option value="lessons">Show Lessons</option>
+                    </select>
+                    <span class="materialInputHighlight"></span>
+                    <span class="materialInputBar materialThemeDark"></span>
+                    <label class="materialInputLabel materialThemeDark">Select</label>
+                </div>
             </section>
 
             <section class="app_searchCardsResultContentContainer help-filter-result-container">
@@ -51,24 +73,49 @@ app.templates.pages.filter = {
 
         html += `
             <script>
-                function populateCards(data) {
+                function populateCards(data, activeSortFilterKey) {
                     if (!data) { 
                         document.querySelector('.infiniteScrollingContainer').innerHTML = '';
                         router.navigate('/');
                         return;
                     }
 
-                    const columnWidthClass = 'cardSearchResult ' + config.layout.searchResults;
+                    document.querySelector('.infiniteScrollingContainer').innerHTML = '';
 
+                    const columnWidthClass = 'cardSearchResult ' + config.layout.searchResults;
                     const mappedCards = data.map(function (item) {
-                        return app.createCourseCard(item.courseId, item.course, columnWidthClass)
+                        return activeSortFilterKey === 'coursesIds' ? 
+                            app.createCourseCard(item.id, item.data, columnWidthClass) : 
+                            app.createLessonCard(item.id, item.data, columnWidthClass);
                     })
 
                     const html = mappedCards.join('');
                     document.querySelector('.infiniteScrollingContainer').innerHTML = html;
                 }
 
+                function onChangeSortFilter() {
+                    document.querySelector('section.filterDropdownSection select').addEventListener('change', function (e) {
+                        // Get the data after ? in the url, if there is any
+                        let urlData = window.location.hash.split('?');
+
+                        let url = '';
+                        if (urlData.length > 1) {
+                            url += urlData[0] + '?type=' + e.target.value;
+                        } else {
+                            url += window.location.hash + '?type=' + e.target.value;
+                        }
+                        
+                        router.navigate(url);
+                    });
+                }
+
+                // Set the default sort filter
+                if (app.getURLParams()?.type) {
+                    document.querySelector('section.filterDropdownSection select').value = app.getURLParams()?.type || 'courses';
+                }
+
                 materialFilterPills.init();
+                onChangeSortFilter();
             </script>
         `
 

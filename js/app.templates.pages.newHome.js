@@ -48,6 +48,20 @@ app.templates.pages.newHome = {
 		function lessonArray() {
 			return [
 				{
+					header: 'Featured Courses',
+					lesson: {
+						ids: config.content.featuredCourses,
+						type: 'course'
+					}
+				},
+				{
+					header: 'Featured Lessons',
+					lesson: {
+						ids: config.content.featuredLessons,
+						type: 'lesson'
+					}
+				},
+				{
 					header: 'Resume Your Lessons',
 					lesson: {
 						ids: app.data.user.recommendations.data.toResume.lessonsIds,
@@ -232,7 +246,7 @@ app.templates.pages.newHome = {
 		var heroSectionArray = [...heroSectionArrayCourseIds(), ...heroSectionArrayLessonIds()]
 
 		// Filter Pills
-		let filterPillsData = Object.keys(app.data.explore).map((item, index) => {
+		let filterPillsData = Object.keys(app.data.explore['coursesIds']).map((item, index) => {
 			return {
 				name: item, value: item, active: false
 			}
@@ -260,13 +274,13 @@ app.templates.pages.newHome = {
 				<section class="heroSectionContainer" style="position: relative;">
 					<header class="app_headerContainer" style="position: absolute; top: 10px; width: 100%;">
 						${app.templates.modules.appHeader.content({
-			getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
-		})}
+							getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
+						})}
 					</header>
 
 					${materialHeroSection.create({
-			data: heroSectionArray
-		})}
+						data: heroSectionArray
+					})}
 				</section>
 
 				<div class="homeContentContainer">
@@ -333,11 +347,11 @@ app.templates.pages.newHome = {
 						</div>
 					</section>
 
-					<section class="app_coursesCardsFilterPills">	
+					<section class="app_coursesCardsFilterPills marginTop20">	
 						${materialFilterPills.create({
-				list: filterPillsData,
-				getClickedPillData: (data) => populateCards(data)
-			})
+							list: filterPillsData,
+							getClickedPillData: (data) => populateCards(data)
+						})
 			}
 					</section>
 				
@@ -347,9 +361,9 @@ app.templates.pages.newHome = {
 								<p class="sectionHeader">${item.header}</p>
 
 								${materialCardScrolling.create({
-				data: app.data,
-				list: item.lesson
-			})}
+									data: app.data,
+									list: item.lesson
+								})}
 							</div>
 						`)}
 					</section>
@@ -378,7 +392,6 @@ app.templates.pages.newHome = {
 				}
             </script>
 		`
-
 
 		html += `
 					<script>

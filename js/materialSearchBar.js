@@ -132,28 +132,6 @@ var materialSearchBar = (function () {
                 window.history.pushState({}, '', url);
             }
 
-            // Auto fill select filters with query params
-            function getURLParams() {
-                let urlParams = '' // Get the data after ? in the url, if there is any
-
-                if (window.location.hash) {
-                    urlParams = window.location.hash.split('?')[1] // Get the data after ? in the url, if there is any
-                } else if (window.location.search) {
-                    urlParams = window.location.search.substring(1) // Get the data after ? in the url, if there is any
-                }
-
-                if (!urlParams) { return null; }
-
-                urlParams = urlParams.split('&') // Split the data by &
-                    .map((param) => param.split('=')) // Split the data by =
-                    .reduce((values, [key, value]) => {
-                        values[key] = decodeURIComponent(value);
-                        return values;
-                    }, {}); // Convert the data to an object
-
-                return urlParams;
-            }
-
             // Auto fill search bar with default value, and show clear button, if default value is not empty, also auto focus on search bar
             if (that.defaultValue) {
                 $('.materialSearchBar input').val(that.defaultValue);
@@ -178,7 +156,7 @@ var materialSearchBar = (function () {
             // Auto fill select filters with query params
             var autoFillSelectFilters = function () {
                 if (!that.showFilterSwitch) { return; }
-                let urlParams = getURLParams();
+                let urlParams = app.getURLParams();
                 if (urlParams) {
                     Object.keys(urlParams).forEach(function (key) {
                         let selectFilter = document.querySelector(`.materialSearchBar .filterFormsDiv select[data-filter="${key}"]`);
@@ -224,7 +202,7 @@ var materialSearchBar = (function () {
                 // Callback function
                 that.getSearchandFilterValueCallback({
                     searchValue: searchValue,
-                    filterValue: getURLParams()
+                    filterValue: app.getURLParams()
                 });
             });
 
@@ -250,7 +228,7 @@ var materialSearchBar = (function () {
                         let searchValue = $('.materialSearchBar input').val();
                         that.getSearchandFilterValueCallback({
                             searchValue: searchValue,
-                            filterValue: getURLParams()
+                            filterValue: app.getURLParams()
                         });
                     }
                     $('.materialSearchBar svg.clearBtn').show();
@@ -265,7 +243,7 @@ var materialSearchBar = (function () {
                     let searchValue = $('.materialSearchBar input').val();
                     that.getSearchandFilterValueCallback({
                         searchValue: searchValue,
-                        filterValue: getURLParams()
+                        filterValue: app.getURLParams()
                     });
                 }, that.doneTypingInterval);
             });
@@ -279,7 +257,7 @@ var materialSearchBar = (function () {
                 let searchValue = $('.materialSearchBar input').val();
                 that.getSearchandFilterValueCallback({
                     searchValue: searchValue,
-                    filterValue: getURLParams()
+                    filterValue: app.getURLParams()
                 });
             });
 
@@ -297,7 +275,7 @@ var materialSearchBar = (function () {
                     // Callback function
                     that.getSearchandFilterValueCallback({
                         searchValue: searchValue,
-                        filterValue: getURLParams()
+                        filterValue: app.getURLParams()
                     });
                 });
             }
@@ -315,7 +293,7 @@ var materialSearchBar = (function () {
                 // Callback function
                 that.getSearchandFilterValueCallback({
                     searchValue: '',
-                    filterValue: getURLParams()
+                    filterValue: app.getURLParams()
                 });
             });
 
