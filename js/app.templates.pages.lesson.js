@@ -21,8 +21,7 @@ app.templates.pages.lesson = {
 
         var lessonSubtitle 	   = app.data.lesson[lessonId].subtitle;
 
-        var dataLesson = app.data.lesson[lessonId];
-    
+        var dataLesson = app.data.lesson[lessonId];    
 
         dataLesson.breadcrumb = [
             {
@@ -39,7 +38,7 @@ app.templates.pages.lesson = {
             }
         ]
 
-        var getLessonIDModuleData = app.templates.modules.lesson.content(lessonId)
+        var getLessonIDModuleData = app.templates.modules.lesson.content(lessonId);
 
         var html =`
             <main class="app_mainContainer maxWidthContainer marginBottom20">
@@ -55,7 +54,6 @@ app.templates.pages.lesson = {
                     <div>
                         ${getLessonIDModuleData.html}
                     </div>
-                
 
                     <div>
                         ${app.templates.modules.lessonsOutline.content(parentCourseId, getLessonIDModuleData.progressPercent)}

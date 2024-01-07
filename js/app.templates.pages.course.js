@@ -17,7 +17,6 @@ app.templates.pages.course = {
         var courseData = app.data.course[courseId]
         var courseProgress = app.data.course[courseId].stats.lessons.totalProgress || 0;
 
-        
         var buttonCaption = '';
 
         if (courseProgress > 0) {

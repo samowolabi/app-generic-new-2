@@ -1424,9 +1424,16 @@ app.refresh = function (lessonId, dataFromServer) {
 	$('.action-cards-bottom').html(app.templates.modules.actionCards.content(app.data.user.cards, false)); material.init();
 
 	if (lessonId) {
-		var chapterId = app.data.lesson[lessonId].parentChapter;
-		var parentCourseId = app.data.chapter[chapterId].parentCourse;
-		$("#page-lesson-outline").html(app.templates.modules.lessonsOutline.content(app.data, parentCourseId, lessonId));
+		if (app.data.lesson[lessonId]) {
+			var chapterId = app.data.lesson[lessonId].parentChapter;
+
+			if (app.data.chapter[chapterId]) {
+				var parentCourseId = app.data.chapter[chapterId].parentCourse;
+
+				var getLessonIDModuleData = app.templates.modules.lesson.content(lessonId);
+				$("#page-lesson-outline").html(app.templates.modules.lessonsOutline.content(parentCourseId, getLessonIDModuleData.progressPercent));
+			}
+		}
 	}
 
 	material.init();
@@ -1983,7 +1990,6 @@ app.__buildDataFromDataRaw = function (data) {
 
 	var calculateChaptersProgressStatus = function () {
 		for (var chapterId in data.chapter) {
-
 			/* 
 			* Progress Status available (3):
 			*
@@ -2031,11 +2037,11 @@ app.__buildDataFromDataRaw = function (data) {
 		}
 	}();
 
- 
+
 
 	var calculateCourseExplorationByFilters = function () {
 		var courseSorter = new CourseSorter(data);
-		data.explore = courseSorter.sortCoursesByAllFilters(); 
+		data.explore = courseSorter.sortCoursesByAllFilters();
 	}();
 
 	data.global = {};
@@ -3704,8 +3710,20 @@ app.createLessonCard = function (lessonId, lesson, columnWidthClass) {
 
 	var icon;
 	switch (lesson.type) {
-		case "add-here-different-course-types":
+		case "video":
+			icon = "fa-video-camera";
+			break;
+		case "article":
 			icon = "fa-newspaper-o";
+			break;
+		case "ebook":
+			icon = "fa-book";
+			break;
+		case "interactive-video":
+			icon = "fa-video-camera";
+			break;
+		case "interactive-pdf":
+			icon = "fa-text-o";
 			break;
 		default:
 			icon = "fa-graduation-cap";
@@ -3914,8 +3932,20 @@ app.createCourseCard = function (courseId, course, columnWidthClass) {
 
 	// TODO: Get type for this
 	switch (course?.type) {
-		case "add-here-different-course-types":
+		case "video":
+			icon = "fa-video-camera";
+			break;
+		case "article":
 			icon = "fa-newspaper-o";
+			break;
+		case "ebook":
+			icon = "fa-book";
+			break;
+		case "interactive-video":
+			icon = "fa-video-camera";
+			break;
+		case "interactive-pdf":
+			icon = "fa-text-o";
 			break;
 		default:
 			icon = "fa-graduation-cap";
@@ -4555,17 +4585,17 @@ CourseSorter = (function () {
 		var inProgress = this.filterInProgressOrderedByLastAccessDate();
 		finalSort["lessonsIds"]["In Progress"] = inProgress.lessonsIds;
 		finalSort["coursesIds"]["In Progress"] = inProgress.coursesIds;
-		
+
 		//Add filter by expiring
 		var inExpiring = this.filterExpiring();
 		finalSort["lessonsIds"]["Expiring"] = inExpiring.lessonsIds;
 		finalSort["coursesIds"]["Expiring"] = inExpiring.coursesIds;
-		
+
 		//Add filter by new
 		var inNew = this.filterNew();
 		finalSort["lessonsIds"]["New"] = inNew.lessonsIds;
 		finalSort["coursesIds"]["New"] = inNew.coursesIds;
-		 
+
 		var filters = this.getUniqueFilterNames();
 
 		filters.forEach(function (filterName) {
@@ -4573,7 +4603,7 @@ CourseSorter = (function () {
 			finalSort["coursesIds"][filterName] = sortedCourses[filterName];
 			finalSort["lessonsIds"][filterName] = this.getLessonsFromCourses(sortedCourses[filterName]);
 		}.bind(this));
-		 
+
 		return finalSort;
 	};
 
@@ -4581,7 +4611,7 @@ CourseSorter = (function () {
 		let data = this.data;
 		var orderedLessons = [];
 
-		courseIds.forEach(function(courseId) {
+		courseIds.forEach(function (courseId) {
 			Object.keys(data.lesson).forEach(function (lessonId) {
 				var lesson = data.lesson[lessonId];
 				var chapterId = lesson.parentChapter;
@@ -4597,7 +4627,7 @@ CourseSorter = (function () {
 	};
 
 	//getCoursesIdsOrderedByExpiringDate 
-    CourseSorter.prototype.filterInProgressOrderedByLastAccessDate = function() {
+	CourseSorter.prototype.filterInProgressOrderedByLastAccessDate = function () {
 		var lessonsWithProgress = [];
 		for (var lessonId in this.data.user.learning) {
 			if (this.data.user.learning.hasOwnProperty(lessonId)) {
@@ -4612,14 +4642,14 @@ CourseSorter = (function () {
 		}
 
 		// Sorting lessons by last access date
-		lessonsWithProgress.sort(function(a, b) {
+		lessonsWithProgress.sort(function (a, b) {
 			return b.lastAccessDate - a.lastAccessDate;
 		});
 
-		var lessonsIds = lessonsWithProgress.map(function(lesson) { return String(lesson.id); });
+		var lessonsIds = lessonsWithProgress.map(function (lesson) { return String(lesson.id); });
 		var coursesIds = [];
 
-		lessonsIds.forEach(function(lessonId) {
+		lessonsIds.forEach(function (lessonId) {
 			if (!this.data.lesson[lessonId]) {
 				console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
 				return;
@@ -4642,8 +4672,8 @@ CourseSorter = (function () {
 			coursesIds: coursesIds
 		};
 	};
-	
-	CourseSorter.prototype.filterExpiring = function() {
+
+	CourseSorter.prototype.filterExpiring = function () {
 		var currentDateTime = new Date();
 		var lessons = [];
 		var coursesIds = [];
@@ -4664,17 +4694,17 @@ CourseSorter = (function () {
 		}
 
 		// Sorting lessons: upcoming deadlines first, then past deadlines
-		lessons.sort(function(a, b) {
+		lessons.sort(function (a, b) {
 			if (a.isExpired === b.isExpired) {
 				return a.deadline - b.deadline; // If both are expired or upcoming, sort by closest deadline
 			}
 			return a.isExpired - b.isExpired; // Upcoming deadlines first
 		});
 
-		var lessonsIds = lessons.map(function(lesson) { return String(lesson.id); });
+		var lessonsIds = lessons.map(function (lesson) { return String(lesson.id); });
 
 		// Retrieve corresponding course IDs
-		lessonsIds.forEach(function(lessonId) {
+		lessonsIds.forEach(function (lessonId) {
 			if (!this.data.lesson[lessonId]) {
 				console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
 				return;
@@ -4697,8 +4727,8 @@ CourseSorter = (function () {
 			coursesIds: coursesIds
 		};
 	};
-	
-	CourseSorter.prototype.filterNew = function() {
+
+	CourseSorter.prototype.filterNew = function () {
 		var lessons = [];
 
 		for (var lessonId in this.data.user.learning) {
@@ -4713,17 +4743,17 @@ CourseSorter = (function () {
 		}
 
 		// Sorting lessons: newest first, undefined dates last
-		lessons.sort(function(a, b) {
+		lessons.sort(function (a, b) {
 			if (!a.availableDate && !b.availableDate) return 0; // Both dates are undefined
 			if (!a.availableDate) return 1; // A is undefined, so B comes first
 			if (!b.availableDate) return -1; // B is undefined, so A comes first
 			return b.availableDate - a.availableDate; // Sort by date
 		});
 
-		var lessonsIds = lessons.map(function(lesson) { return String(lesson.id); });
+		var lessonsIds = lessons.map(function (lesson) { return String(lesson.id); });
 		var coursesIds = [];
 
-		lessonsIds.forEach(function(lessonId) {
+		lessonsIds.forEach(function (lessonId) {
 			if (!this.data.lesson[lessonId]) {
 				console.warn("Lesson data for ID " + lessonId + " not found in this.data.lesson");
 				return;
@@ -4746,7 +4776,7 @@ CourseSorter = (function () {
 			coursesIds: coursesIds
 		};
 	};
-	 
+
 	return CourseSorter;
 })();
 

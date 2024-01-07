@@ -137,6 +137,7 @@ app.templates.modules.lesson = {
 		
         //Custom expired text based on deadline date, price, and context (top or bottom)
         var expiredText = function(thisLesson, context) {
+            console.error('thisLesson', thisLesson);
 
             var priceMelodyCoins = app.wallet.getCoursePriceFromLesson(thisLesson.id);
             var priceMelodyCoinsBefore = app.wallet.getCoursePriceBeforeFromLesson(thisLesson.id);
@@ -1207,7 +1208,7 @@ app.templates.modules.lesson = {
                                 
                                 ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
                                 
-                                <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "top")}</div>
+                                <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "bottom")}</div>
                             </div>
                         </div>
 

@@ -1,8 +1,9 @@
-app.templates = app.templates || {}; 
-app.templates.modules = app.templates.modules  || {}; 
+app.templates = app.templates || {};
+app.templates.modules = app.templates.modules || {};
 app.templates.modules.lessonsOutline = {
-	loading : function() {
-			var html =`
+	loading: function () {
+
+		var html = `
 				<h5 class="materialOutlineHeaderTitle materialThemeDark">
 					<span class="materialPlaceHolder materialThemeDark" style="height:30px;width:250px;margin:0 auto;margin-bottom:10px;display:block"> </span>
 					<span class="materialPlaceHolder materialThemeDark" style="height:25px;width:150px;margin:0 auto;display:block"> </span>
@@ -115,53 +116,51 @@ app.templates.modules.lessonsOutline = {
 						</li>
 					</ul>
 				</div> `;
-			
-			return html;
+
+		return html;
 	},
 
-    content : function (courseId, progressPercent) {
-        var data = app.data;
-		
-		var completenessPorcentage_1 = Math.round(app.data.user.stats.lessons.complete /app.data.user.stats.lessons.total * 100);
-        var completenessPorcentage_2 = 0;
+	content: function (courseId, progressPercent) {
+
+		var data = app.data;
+
+		var completenessPorcentage_1 = Math.round(app.data.user.stats.lessons.complete / app.data.user.stats.lessons.total * 100);
+		var completenessPorcentage_2 = 0;
 
 		var url;
 
-        if(app.data.offer.isDataAvailable()){
-            url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
-        }
-        else{
-            url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
-        }
+		if (app.data.offer.isDataAvailable()) {
+			url = "https://pianoencyclopedia.com/en/" + app.data.offer.general.availability.urlPathStartArray[0] + "/" + app.data.offer.general.availability.urlPathEnd + "/";
+		}
+		else {
+			url = "https://pianoencyclopedia.com/en/piano-courses/the-logic-behind-music/";
+		}
 
-        var html = `
+		var html = `
             <section class="app_lessonContentSection">
 				<div class="courseProgress help-course-progress">
 					<h4>Course Progress</h4>
 
 					<div class="circleChatProgress">
-						${
-							materialMiniCircleProgress.create({
-								percentage: Number(progressPercent)
-							})
-						}
+						${materialMiniCircleProgress.create({
+			percentage: Number(progressPercent)
+		})
+			}
 						<p>${Number(progressPercent)}% Completed</p>
 					</div>
 				</div>
 
-                ${
-                    materialAccordion.create({
-                        list: data.course[courseId].chapterIds.map(function(chapterId, index) {
-                            return {
-                                header: data.chapter[chapterId].title,
-                                subHeader: `${data.chapter[chapterId].stats.lessons.incomplete}/${data.chapter[chapterId].stats.lessons.total}`,
-                                onInitOpenAccordion: true,
-                                content: `
+                ${materialAccordion.create({
+				list: data.course[courseId].chapterIds.map(function (chapterId, index) {
+					return {
+						header: data.chapter[chapterId].title,
+						subHeader: `${data.chapter[chapterId].stats.lessons.complete}/${data.chapter[chapterId].stats.lessons.total}`,
+						onInitOpenAccordion: true,
+						content: `
                                     <div class="materialOutlineLearn help-lessons-accordion-content">
                                         <ul class="materialOutlineList"> 
-                                            ${
-                                                data.chapter[chapterId].lessonIds.map(function(lessonId){
-                                                    return `
+                                            ${data.chapter[chapterId].lessonIds.map(function (lessonId) {
+							return `
                                                         <li class="materialOutlineView materialOutlineViewComplete"> 
                                                             <div class="materialOutlineListBody">
                                                                 <a href="#!/lesson/${lessonId}"> 
@@ -172,8 +171,7 @@ app.templates.modules.lessonsOutline = {
                                                                     </div>
                                                                     <h6>${data.lesson[lessonId].title}</h6>
                                                                     <p>${data.lesson[lessonId].subtitle}</p>
-                                                                    ${
-                                                                        data.lesson[lessonId].dateStatus === 'expiredAsap' ? `
+                                                                    ${data.lesson[lessonId].dateStatus === 'expiredAsap' ? `
                                                                             <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring in <span data-countdown="${data.lesson[lessonId].deadlineDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
                                                                         ` : data.lesson[lessonId].dateStatus === 'expiringSoon' ? `
                                                                             <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring Soon</p>
@@ -184,21 +182,21 @@ app.templates.modules.lessonsOutline = {
                                                                         ` : data.lesson[lessonId].dateStatus === 'expired' ? `
                                                                             <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Locked</p>
                                                                         ` : ``
-                                                                    }
+								}
                                                                 </a>
                                                             </div>
-                                                            <div class="materialOutlineIcon ${data.lesson[lessonId].progress > 90 ? ' active ' : ' '}">${data.lesson[lessonId].progress > 90 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-circle"></i>'}</div>
+                                                            <div class="materialOutlineIcon ${data.lesson[lessonId].progress >= 94 ? ' active ' : ' '}">${data.lesson[lessonId].progress >= 94 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-circle"></i>'}</div>
                                                         </li>
                                                     `
-                                                }).join('')
-                                            }
+						}).join('')
+							}
                                         </ul>
                                     </div>
                                 `
-                            }
-                        })
-                    })
-                }
+					}
+				})
+			})
+			}
 
 				<div class="materialAccordionContent" style="max-height: unset;">
 					<div class="materialOutlineLearn materialThemeDark">
@@ -247,13 +245,13 @@ app.templates.modules.lessonsOutline = {
             </section>
         `;
 
-        html += `
+		html += `
             <script>
                 console.log("RUNNING");
                 materialAccordion.init();
             </script>
 		`;
 
-        return html;
-    }
+		return html;
+	}
 }
