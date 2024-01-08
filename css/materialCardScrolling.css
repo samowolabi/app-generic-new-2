@@ -81,8 +81,8 @@
 
 .materialCardsScrolling .materialCardsDiv > div .materialHeader, .materialCardsScrolling .materialCardsDiv > div .materialParagraph {
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
     width: 100%;
 }
 

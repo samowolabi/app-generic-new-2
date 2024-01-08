@@ -118,7 +118,7 @@ router.on({
 			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
 			contentFalse: 	  function(){ return app.templates.pages.lesson.notFound( params.lessonId );},
 			callback:  function() {
-				helpTour.pageLoad('lesson'); 
+				helpTour.pageLoad('lesson', params.lessonId); 
 				if(app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } 
 				window.scrollTo(0, 0);
 			} 
@@ -203,7 +203,7 @@ router.on({
 			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
 			contentFalse: 	  function(){ return app.templates.pages.course.notFound( params.courseId );},
 			callback: function () { 
-				helpTour.pageLoad('course');
+				helpTour.pageLoad('course', params.courseId);
 				window.scrollTo(0, 0);
 			}
 		});

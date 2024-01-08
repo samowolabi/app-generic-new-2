@@ -93,7 +93,7 @@ var materialHeroSection = (function () {
                     () => {
                         i++;
                         changeBGImage();
-                    }, 5000
+                    }, 9000
                 )
             }
 

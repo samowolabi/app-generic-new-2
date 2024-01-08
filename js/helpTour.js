@@ -6,7 +6,7 @@ var helpTour = (function () {
         return currentDate.toISOString();
     }
 
-    that.helpButtonClicked = function (currentRoute) {
+    that.helpButtonClicked = function (currentRoute, courseOrLessonId) {
         if (!currentRoute) { // If no route is passed, get the current route
             currentRoute = app.currentRoute;
 
@@ -42,10 +42,10 @@ var helpTour = (function () {
                 config.help.home();
                 break;
             case 'course':
-                config.help.checkIfTourKeyIsInUrl() ? config.help.demo_course() : config.help.course();
+                config.help.course();
                 break;
             case 'lesson':
-                config.help.checkIfTourKeyIsInUrl() ? config.help.demo_lesson() : config.help.lesson();
+                config.help.lesson();
                 break;
             case 'profile':
                 config.help.profile();
@@ -64,17 +64,23 @@ var helpTour = (function () {
         }
     };
 
-    that.pageLoad = function (currentRoute) {
+    that.pageLoad = function (currentRoute, courseOrLessonId) {
         if (!currentRoute) {
             return;
         }
 
-        if(config.help.checkIfTourKeyIsInUrl()){
-            that.helpButtonClicked(currentRoute);
-            return;
+        // If url has a tour key and and the current route is lesson and the lesson is expired,
+        if(config.help.checkIfTourKeyIsInUrl()) {
+            if (currentRoute == 'lesson' && app.data.lesson[courseOrLessonId].expired === true) {
+                config.help.demo_lesson();
+            } else if (currentRoute == 'course') {
+                config.help.demo_course();
+            }
         }
 
-        // If the user has already seen the tour for the current route, don't show it again, but if the user has not seen the tour, show it
+        // If the user has already seen the tour for the current route, 
+        // don't show it again, but if the user has not seen the tour, 
+        // show the tour 
         if (
             app &&
             app.hasOwnProperty('data') && app.data.hasOwnProperty('user') &&
@@ -84,7 +90,7 @@ var helpTour = (function () {
             return;
         }
 
-        that.helpButtonClicked(currentRoute);
+        that.helpButtonClicked(currentRoute, courseOrLessonId);
     }
 
     return that;
