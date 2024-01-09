@@ -579,7 +579,7 @@ app.templates.modules.lesson = {
                                         <div style="background: transparent;  z-index: 2;">
                                             <a href="#!/lesson/${lessonData.id}/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
                                         </div>
-                                        <iframe src="${lessonData['content']}&progressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe src="${lessonData['content']}${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(1200002)) ? `&p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['content'])}` : `&p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['content'])}`}}&progressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
                                     </div> 
                                 </div>
                             </div>
