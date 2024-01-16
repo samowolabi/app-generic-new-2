@@ -6,6 +6,9 @@ var materialCardScrolling = (function () {
         var html = '';
 
         const { data, list } = settings
+        
+        // Only show 20 card
+        list.ids = list.ids.slice(0, 20);
 
         // Column Width
         var columnWidthClass = `cardSearchResult ${config.layout.searchResults}`;

@@ -56,7 +56,6 @@
     padding: 0 3rem;
 }
 
-/* Media Queries for mobile */
 @media (max-width: 768px) {
     .app_headerDiv {
         padding: 1.2rem;
@@ -89,6 +88,14 @@
 
     .app_coursesCardsFilterPills {
         padding: 0rem;
+    }
+}
+
+/* Media Queries for mobile */
+@media (max-width: 400px) {
+    .app_headerDiv .logo p {
+        font-size: 1rem;
+        max-width: 10.5rem;
     }
 }
 
@@ -762,6 +769,7 @@
 .app_LessonContainer {
     display: flex;
     gap: 2rem;
+    overflow-x: hidden;
 }
 
 
@@ -1052,7 +1060,7 @@ section.filterDropdownSection {
 }
 
 section.filterDropdownSection .materialInputWrap {
-    width: 230px;
+    width: 280px;
 }
 
 section.filterDropdownSection .materialInputWrap:after {
@@ -1064,7 +1072,11 @@ section.filterDropdownSection .materialInputWrap:after {
 section.filterDropdownSection .materialInputControl {
     color: rgba(255,255,255,0.75);
     background-color: hsl(0,0%,13.1%);
-    font-size: 1em;
+    font-size: 1.15em;
+}
+
+section.filterDropdownSection label {
+    font-size: 1em !important;
 }
 
 /** Media Queries for mobile **/

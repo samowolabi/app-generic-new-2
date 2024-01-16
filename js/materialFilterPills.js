@@ -130,6 +130,18 @@ var materialFilterPills = (function () {
                     // Add active class to the pill
                     pill.classList.add('active');
 
+                    // Scroll the pill to center
+                    const pillsScrollingDiv = pill.closest('.materialFilterPillsDiv');
+                    const pillWidth = pill.clientWidth;
+                    const pillOffsetLeft = pill.offsetLeft;
+                    const pillsScrollingDivWidth = pillsScrollingDiv.clientWidth;
+                    const pillsScrollingDivScrollLeft = pillsScrollingDiv.scrollLeft;
+
+                    const scrollAmount = 150;
+                    const scrollLeft = pillOffsetLeft - (pillsScrollingDivWidth / 2) + (pillWidth / 2) + pillsScrollingDivScrollLeft;
+
+                    pillsScrollingDiv.scrollLeft = scrollLeft - scrollAmount;
+
                     // Update the URL with the filter query
                     updateFilterQueryUrl(value);
 
@@ -143,7 +155,7 @@ var materialFilterPills = (function () {
             document.querySelectorAll(".materialFilterPillsContainer").forEach(function (parentDiv) {
                 const pillsScrollingDiv = parentDiv.querySelector('.materialFilterPillsDiv');
                 const containerWidth = pillsScrollingDiv.scrollWidth;
-                const scrollAmount = 500;
+                const scrollAmount = 150;
 
                 // Hide Left Carousel at first
                 parentDiv.querySelector('.materialFilterPillsContainer .overlay.leftScroll').style.visibility = 'hidden';
@@ -192,6 +204,15 @@ var materialFilterPills = (function () {
 
                         // Add active class to the pill
                         pill.classList.add('active');
+
+                        // Scroll the pill to center
+                        const pillWidth = pill.clientWidth;
+                        const pillOffsetLeft = pill.offsetLeft;
+                        const pillsScrollingDivWidth = pillsScrollingDiv.clientWidth;
+                        const pillsScrollingDivScrollLeft = pillsScrollingDiv.scrollLeft;
+
+                        const scrollLeft = pillOffsetLeft - (pillsScrollingDivWidth / 2) + (pillWidth / 2) + pillsScrollingDivScrollLeft;
+                        pillsScrollingDiv.scrollLeft = scrollLeft - scrollAmount;
 
                         // Show all cards if 'All' is selected
                         if (!pill.dataset.value) {

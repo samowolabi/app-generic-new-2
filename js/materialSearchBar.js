@@ -88,9 +88,12 @@ var materialSearchBar = (function () {
                 let materialSearchBar = document.querySelector('.materialSearchBar')
 
                 if (!materialSearchBar.contains(event.target) && event.target !== materialSearchBar) {
-                    app.toggleMaterialSearchbar(event, 'close');
+                    toggleMaterialSearchbar('close');
                 }
             }
+
+            // Close Material Searchbar on outside click
+            document.addEventListener('click', closeMaterialSearchBarOutClick);
 
             // Update the URL with the search query in this format /search/:searchQuery
             function updateSearchQueryUrl(searchQuery) {

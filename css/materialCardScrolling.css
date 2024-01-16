@@ -79,10 +79,17 @@
     min-height: unset;
 }
 
-.materialCardsScrolling .materialCardsDiv > div .materialHeader, .materialCardsScrolling .materialCardsDiv > div .materialParagraph {
-    white-space: nowrap;
-    /* overflow: hidden;
+.materialCardsScrolling .materialCardsDiv > div .materialHeader, 
+.materialCardsScrolling .materialCardsDiv > div .materialParagraph,
+.infiniteScrollingContainer .materialCard .materialHeader, 
+.infiniteScrollingContainer .materialCard .materialParagraph
+{
+    /* white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis; */
+    text-overflow: none;
+    overflow: visible;
+    white-space: normal;
     width: 100%;
 }
 

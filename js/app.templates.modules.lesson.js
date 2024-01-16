@@ -1,8 +1,8 @@
-app.templates = app.templates || {}; 
-app.templates.modules = app.templates.modules  || {}; 
+app.templates = app.templates || {};
+app.templates.modules = app.templates.modules || {};
 app.templates.modules.lesson = {
-	loading : function(){
-			var html =`
+    loading: function () {
+        var html = `
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="materialLessonVideo">
@@ -30,10 +30,10 @@ app.templates.modules.lesson = {
 						</div>
 					</div>
 				</div>`;
-			
-			return html;
-	},
-	content : function (lessonId){
+
+        return html;
+    },
+    content: function (lessonId) {
         var thisLesson = app.data.user.learning[lessonId];
         var lessonData = app.data.lesson[lessonId]
 
@@ -47,116 +47,116 @@ app.templates.modules.lesson = {
 
 
         //Default values
-		thisLesson.engagementProgressArrayDetails 	= thisLesson.engagementProgressArrayDetails || []; 
-		thisLesson.engagementProgressMaxPercent 	= thisLesson.engagementProgressMaxPercent   || 0; 
-		thisLesson.engagementProgressRealPercent 	= thisLesson.engagementProgressRealPercent  || 0; 
-		thisLesson.engagementTime 					= thisLesson.engagementTime   || 0; 
- 
-		//Set access first date, only the first time. Set access last date every time. Update access count
-		thisLesson.accessFirstDate 	= thisLesson.accessFirstDate  || datetimeToEST(new Date());  
-		thisLesson.accessLastDate 	= datetimeToEST(new Date()); 
-		thisLesson.accessCount 		= thisLesson.accessCount  || 0;  
-		thisLesson.accessCount++;
-		
-		app.data.user.stats.lessons.lastLessonAccessedId = lessonData.id;
+        thisLesson.engagementProgressArrayDetails = thisLesson.engagementProgressArrayDetails || [];
+        thisLesson.engagementProgressMaxPercent = thisLesson.engagementProgressMaxPercent || 0;
+        thisLesson.engagementProgressRealPercent = thisLesson.engagementProgressRealPercent || 0;
+        thisLesson.engagementTime = thisLesson.engagementTime || 0;
+
+        //Set access first date, only the first time. Set access last date every time. Update access count
+        thisLesson.accessFirstDate = thisLesson.accessFirstDate || datetimeToEST(new Date());
+        thisLesson.accessLastDate = datetimeToEST(new Date());
+        thisLesson.accessCount = thisLesson.accessCount || 0;
+        thisLesson.accessCount++;
+
+        app.data.user.stats.lessons.lastLessonAccessedId = lessonData.id;
 
         // Progress text
-        var progressText = (thisLesson.engagementProgressRealPercent==100) ? "Completed": "Unfinished";
-		var descriptionOrSubtitleHtml = lessonData["description"] ? `<p>${lessonData["description"]}</p>` : `<h2>${lessonData["subtitle"]}</h2>`;
+        var progressText = (thisLesson.engagementProgressRealPercent == 100) ? "Completed" : "Unfinished";
+        var descriptionOrSubtitleHtml = lessonData["description"] ? `<p>${lessonData["description"]}</p>` : `<h2>${lessonData["subtitle"]}</h2>`;
 
-		//TODO: add more customization and a dialog sequence that will open on click
-		var unlockButtonHtml = function(dateStatus, context){
-			
-			var text = ``;		
-			var themeIsDark = false;
-			var classAdditionals = "";
-			var style = "";
-			var extraHtmlBefore = "";
-			
-			switch(dateStatus){
-				case "expiringAsap": 
-					text = ``;
-					break;
-				case "expiringSoon":  
-					text = ``;
-					break;
-				case "comingAsap":
-					text = `Unlock Now`;
-					themeIsDark = true;
-					break;
-				case "comingSoon":
-					text = `Unlock Now`; 
-					themeIsDark = true;
-					break;
-				case "expired":
-					text = `Unlock Now`;		
-					break;	
-				case "available": 
-				default: 
-					text = "";
-			}
-        
-            var previewButtonHtml ="";
+        //TODO: add more customization and a dialog sequence that will open on click
+        var unlockButtonHtml = function (dateStatus, context) {
 
-			switch(context){
-				case "top":
-					classAdditionals = "resumeLessonBtn";
-					style = "";
-					extraHtmlBefore = "";
-					themeIsDark = true; //Always dark theme on top
+            var text = ``;
+            var themeIsDark = false;
+            var classAdditionals = "";
+            var style = "";
+            var extraHtmlBefore = "";
 
-					//Check if there is a lesson preview or a course preview
+            switch (dateStatus) {
+                case "expiringAsap":
+                    text = ``;
+                    break;
+                case "expiringSoon":
+                    text = ``;
+                    break;
+                case "comingAsap":
+                    text = `Unlock Now`;
+                    themeIsDark = true;
+                    break;
+                case "comingSoon":
+                    text = `Unlock Now`;
+                    themeIsDark = true;
+                    break;
+                case "expired":
+                    text = `Unlock Now`;
+                    break;
+                case "available":
+                default:
+                    text = "";
+            }
+
+            var previewButtonHtml = "";
+
+            switch (context) {
+                case "top":
+                    classAdditionals = "resumeLessonBtn";
+                    style = "";
+                    extraHtmlBefore = "";
+                    themeIsDark = true; //Always dark theme on top
+
+                    //Check if there is a lesson preview or a course preview
                     var isPreviewAvailable = !!app.getPreviewFromLesson(lessonData.id);
-					previewButtonHtml =  (isPreviewAvailable) ? `<br><br><a href='#' onclick='dialogPreviewLesson(${lessonData.id}); return false;' class='materialButtonText  materialThemeDark resumeLessonBtn' ><i class='fa fa-eye'></i> Preview</a>` : ``;
-					break;
-				case "bottom":
-				default:
-					classAdditionals = "";
-					style = "font-size: 0.8em; margin-top: 50px;letter-spacing: 3.36px;"; 
-					extraHtmlBefore = "<br>";
-					previewButtonHtml =  "";
-					break;
-			}
-			
-			if(themeIsDark){
-				classAdditionals += " materialThemeDark";
-			}
+                    previewButtonHtml = (isPreviewAvailable) ? `<br><br><a href='#' onclick='dialogPreviewLesson(${lessonData.id}); return false;' class='materialButtonText  materialThemeDark resumeLessonBtn' ><i class='fa fa-eye'></i> Preview</a>` : ``;
+                    break;
+                case "bottom":
+                default:
+                    classAdditionals = "";
+                    style = "font-size: 0.8em; margin-top: 50px;letter-spacing: 3.36px;";
+                    extraHtmlBefore = "<br>";
+                    previewButtonHtml = "";
+                    break;
+            }
+
+            if (themeIsDark) {
+                classAdditionals += " materialThemeDark";
+            }
 
             classAdditionals += " help-lesson-unlock-button";
 
-			if(text){
-				return `${extraHtmlBefore}<button data-propagation="yes" class="materialButtonFill ${classAdditionals}" onclick="dialogUnlockLesson(${lessonData.id}); setTimeout(() => { if(config.help.checkIfTourKeyIsInUrl()){ config.help.demo_buy_melody() } }, 2000); return false;" style="${style}"><i class="fa fa-unlock"></i> ${text}</button> ${previewButtonHtml}`;
-			}
-			else{
-				return ``;
-			}
-			
-		};
+            if (text) {
+                return `${extraHtmlBefore}<button data-propagation="yes" class="materialButtonFill ${classAdditionals}" onclick="dialogUnlockLesson(${lessonData.id}); setTimeout(() => { if(config.help.checkIfTourKeyIsInUrl()){ config.help.demo_buy_melody() } }, 2000); return false;" style="${style}"><i class="fa fa-unlock"></i> ${text}</button> ${previewButtonHtml}`;
+            }
+            else {
+                return ``;
+            }
+
+        };
 
         var unlockButtonContext = "bottom";
-		
+
         //Custom expired text based on deadline date, price, and context (top or bottom)
-        var expiredText = function(thisLesson, context) {
+        var expiredText = function (thisLesson, context) {
             console.error('thisLesson', thisLesson);
 
             var priceMelodyCoins = app.wallet.getCoursePriceFromLesson(thisLesson.id);
             var priceMelodyCoinsBefore = app.wallet.getCoursePriceBeforeFromLesson(thisLesson.id);
             var deadlineDateString = thisLesson.deadlineDateString;
 
+            priceMelodyCoins = undefined;
+
+            var pricingText;
+            if (priceMelodyCoins == priceMelodyCoinsBefore) {
+                pricingText = "&#9834; " + priceMelodyCoins + " Melody Coins";
+            } else {
+                pricingText = "<s>&#9834; " + priceMelodyCoinsBefore + " </s> &#9834; " + priceMelodyCoins + " Melody Coins";
+            }
 
 
-           var pricingText;
-           if(priceMelodyCoins == priceMelodyCoinsBefore){
-                pricingText =  "&#9834; " + priceMelodyCoins + " Melody Coins";
-           }else{
-                pricingText =  "<s>&#9834; " + priceMelodyCoinsBefore + " </s> &#9834; " + priceMelodyCoins + " Melody Coins";
-           }
-
-
-            var defaultMessage = (context === "top") ? "Free access has expired": "We're sorry, you missed it! This lesson is no longer available for free.";
+            var defaultMessage = (context === "top") ? "Free access has expired" : "We're sorry, you missed it! This lesson is no longer available for free.";
 
             try {
-                if (!deadlineDateString) {
+                if (!deadlineDateString || !priceMelodyCoins) {
                     return defaultMessage;
                 }
 
@@ -170,38 +170,58 @@ app.templates.modules.lesson = {
                 var expiredDaysAgo = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 var expiredHoursAgo = Math.ceil(diffTime / (1000 * 60 * 60));
 
-                var formatMessage = function(value, unit) {
+                var formatMessage = function (value, unit) {
                     return "Free access has expired " + (value === 1 ? "one" : value) + " " + unit + (value === 1 ? "" : "s") + " ago.";
                 };
 
                 var messageWithPrice = (priceMelodyCoins > 0) ? ` Unlock this lesson now for just ${pricingText}!` : ` Gain unlimited access now!`;
 
-                if (expiredDaysAgo < 1) {
-                    return (context === "top") ? formatMessage(expiredHoursAgo, "hour") : (formatMessage(expiredHoursAgo, "hour") + messageWithPrice);
-                } else if (expiredDaysAgo < 7) {
-                    return (context === "top") ? formatMessage(expiredDaysAgo, "day") : (formatMessage(expiredDaysAgo, "day") + messageWithPrice);
-                } else {
-                    return (context === "top") ? "Gain unlimited access now!" : "This lesson is locked." + messageWithPrice;
+                if (context === "top") {
+                    if (expiredDaysAgo < 1) {
+                        return formatMessage(expiredHoursAgo, "hour");
+                    } else if (expiredDaysAgo < 7) {
+                        return formatMessage(expiredDaysAgo, "day");
+                    } else {
+                        return `Unlock for just ${pricingText}`;
+                    }
                 }
+
+                if (context === "bottom") {
+                    if (expiredDaysAgo < 1) {
+                        return formatMessage(expiredHoursAgo, "hour") + messageWithPrice;
+                    } else if (expiredDaysAgo < 7) {
+                        return formatMessage(expiredDaysAgo, "day") + messageWithPrice;
+                    } else {
+                        return `This lesson is locked. ${messageWithPrice}`;
+                    }
+                }
+
+                // if (expiredDaysAgo < 1) {
+                //     return (context === "top") ? formatMessage(expiredHoursAgo, "hour") : (formatMessage(expiredHoursAgo, "hour") + messageWithPrice);
+                // } else if (expiredDaysAgo < 7) {
+                //     return (context === "top") ? formatMessage(expiredDaysAgo, "day") : (formatMessage(expiredDaysAgo, "day") + messageWithPrice);
+                // } else {
+                //     return (context === "top") ? "Gain unlimited access now!" : "This lesson is locked." + messageWithPrice;
+                // }
             } catch (e) {
                 console.error(e);
                 return defaultMessage;
             }
         };
 
-        let segmentedProgressBarHtml = function(lessonId){
-			let segmentedProgressBarInsideHtml = "";
-			for(var i=1; i<=100; i++){
-				segmentedProgressBarInsideHtml += `<div id="segmentedProgressBar${lessonData.id}-${i}" style="width: 1%; height: 8px; float: left;"></div>`;
-			}
+        let segmentedProgressBarHtml = function (lessonId) {
+            let segmentedProgressBarInsideHtml = "";
+            for (var i = 1; i <= 100; i++) {
+                segmentedProgressBarInsideHtml += `<div id="segmentedProgressBar${lessonData.id}-${i}" style="width: 1%; height: 8px; float: left;"></div>`;
+            }
 
-			return `<div id="segmentedProgressBar${lessonId}" class="materialProgressBar materialThemeDarkGold"> 
+            return `<div id="segmentedProgressBar${lessonId}" class="materialProgressBar materialThemeDarkGold"> 
 						${segmentedProgressBarInsideHtml}
 					</div>`;
-		};
+        };
 
         var nextLessonId = app.getNextLessonFromCourse(lessonData.id);
-        if(nextLessonId) {
+        if (nextLessonId) {
             var description = "You are almost done...";
             var buttonText = "Next Lesson";
             var buttonHref = `#!/lesson/${nextLessonId}`;
@@ -210,11 +230,11 @@ app.templates.modules.lesson = {
             var description = "There is more.";
             var buttonText = "Dashboard";
             var buttonHref = `#!/`;
-        
-        }
-        
 
-        switch(lessonData.type){
+        }
+
+
+        switch (lessonData.type) {
             case "video":
 
                 var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
@@ -229,7 +249,7 @@ app.templates.modules.lesson = {
                 </div>
             </div>`;
 
-            var contentTopHtml = `
+                var contentTopHtml = `
                 <div>
                     <div class="row"> 
                         <div class="col-xs-12">
@@ -437,9 +457,9 @@ app.templates.modules.lesson = {
                 </div>
             `;
 
-            var contentBottomHtml = '';
+                var contentBottomHtml = '';
 
-            break;
+                break;
 
             case "article":
                 var contentTopHtml = `
@@ -563,9 +583,9 @@ app.templates.modules.lesson = {
                 var contentBottomHtml = '';
                 break;
 
-                case "ebook":
-                    var contentTopHtml = `
-                        <div class="lessonPreview article">
+            case "ebook":
+                var contentTopHtml = `
+                        <div class="lessonPreview article" onclick="router.navigate('#!/lesson/${lessonData.id}/book');">
                             <div class="overlay">
                                 <div>
                                     <a href="#!/lesson/${lessonData.id}/book" target="_blank" class="materialButtonFill materialThemeDark marginBottom4">Open Book</a>
@@ -688,9 +708,9 @@ app.templates.modules.lesson = {
                             };
                         </script>
                     `;
-                    var contentBottomHtml = '';
+                var contentBottomHtml = '';
 
-                    var attachment 	= `
+                var attachment = `
                         <div class="materialLessonFile">
                             <!--
                             <a href="${lessonData['attachmentUrl']}" target="_blank" id="downloadEbook">
@@ -725,12 +745,12 @@ app.templates.modules.lesson = {
                         </script>
                     `;
 
-                    break;
+                break;
 
 
-                case "interactive-video":
+            case "interactive-video":
 
-                    var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
+                var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
                         <div style="position: relative; display: table;">
                             <div style="display: table-cell; vertical-align: middle; color: wheat; text-align: center; position: relative;">
                                 <h3 style="margin-top: 0;">
@@ -742,7 +762,7 @@ app.templates.modules.lesson = {
                         </div>
                     </div>`;
 
-                    var contentTopHtml = `
+                var contentTopHtml = `
                         <div class="row"> 
                             <div class="col-xs-12">
                                 <div class="materialLessonVideo">
@@ -948,20 +968,21 @@ app.templates.modules.lesson = {
                         </div>
                     `;
 
-                    var contentBottomHtml = '';
-                    break;
+                var contentBottomHtml = '';
+                break;
 
 
-                case "interactive-pdf":
-
+            case "interactive-pdf":
                 var contentTopHtml = `
-                <div class="lessonPreview article">
-                        <div class="overlay">
-                            <div>
-                                <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
-                                <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
+                    <div class="lessonPreview article" onclick="router.navigate('#!/lesson/${lessonData.id}/book');">
+                        <a href="#!/lesson/${lessonData.id}/book" target="_blank">        
+                            <div class="overlay">
+                                <div>
+                                    <button class="materialButtonFill materialThemeDark marginBottom4">Open Book</button>
+                                    <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">0% Completed</h5>
+                                </div>
                             </div>
-                        </div>
+                        </a>
 
                         <div class="row"> 
                             <div class="col-xs-12"> 
@@ -1080,7 +1101,7 @@ app.templates.modules.lesson = {
                 `;
 
                 var contentBottomHtml = '';
-                var attachment 	=`
+                var attachment = `
                     <div class="col-xs-12  col-md-6 materialLessonFile">
                         <a href="${lessonData['attachmentUrl']}" target="_blank" id="downloadEbook">
                             <span class="materialLessonFileIcon">
@@ -1107,14 +1128,14 @@ app.templates.modules.lesson = {
                             app.saveToServer(${lessonData.id}); 
                         });
                     </script>
-                `; 
+                `;
         }
 
 
         // Ebook is a special case coded above
-		if(lessonData.type != "ebook"){
-			if(lessonData['attachmentUrl']){
-				var attachment 	=`<div class="col-xs-12  col-md-6 materialLessonFile">
+        if (lessonData.type != "ebook") {
+            if (lessonData['attachmentUrl']) {
+                var attachment = `<div class="col-xs-12  col-md-6 materialLessonFile">
 									<a href="${lessonData['attachmentUrl']}" target="_blank" >
 										<span class="materialLessonFileIcon">
 											<i class="fa fa-file-${lessonData['attachmentType']}-o" aria-hidden="true"></i>
@@ -1126,19 +1147,19 @@ app.templates.modules.lesson = {
 									</a>
 								</div>
 								`;
-			}else{
-				var attachment 	=`<div class="col-xs-12  col-md-6 materialLessonFile"></div>`;
-			}
-		}
+            } else {
+                var attachment = `<div class="col-xs-12  col-md-6 materialLessonFile"></div>`;
+            }
+        }
 
 
-         /* Mark lesson as complete if rated and real progress is more than 75*/ 
+        /* Mark lesson as complete if rated and real progress is more than 75*/
         var lessonRatingsAndNextLessonButton = `
             <div class="app_LessonRatings">
                 <div class="overallRatings help-lessons-ratings">
                     <p>Rate this Lesson</p>
 
-                    ${materialRating.create({icon: "fa fa-heart", name:"ratingOnLesson", rating: thisLesson.rating, onChangeCallback: "if(!thisLesson().rating) {app.addRewardPoints('Rated Lesson', 40); }; if(thisLesson().engagementProgressRealPercent > 75){ thisLesson().engagementProgressMaxPercent = 100; }; thisLesson().rating = value; app.callback('path=' + app.currentRoute + '&rating='+value); thisLesson().ratingDate = datetimeToEST(new Date()); material.history.clear();	material.history.save('dialogLessonRating', materialDialog.defaultSettings({modal: false, hideCallback: function(){ app.saveToServer("+ lessonId +"); }})); dialogLessonRating.flow();"})}
+                    ${materialRating.create({ icon: "fa fa-heart", name: "ratingOnLesson", rating: thisLesson.rating, onChangeCallback: "if(!thisLesson().rating) {app.addRewardPoints('Rated Lesson', 40); }; if(thisLesson().engagementProgressRealPercent > 75){ thisLesson().engagementProgressMaxPercent = 100; }; thisLesson().rating = value; app.callback('path=' + app.currentRoute + '&rating='+value); thisLesson().ratingDate = datetimeToEST(new Date()); material.history.clear();	material.history.save('dialogLessonRating', materialDialog.defaultSettings({modal: false, hideCallback: function(){ app.saveToServer(" + lessonId + "); }})); dialogLessonRating.flow();" })}
                 </div>
 
                 <div class="help-next-lesson-button" style="display:flex; justify-content:space-end">
@@ -1160,11 +1181,11 @@ app.templates.modules.lesson = {
         `;
 
         var unlockButtonContext = "top";
-        switch(lessonData.dateStatus) {
+        switch (lessonData.dateStatus) {
             case "comingAsap":
             case "comingSoon":
-                   var comingSoonTracking = '<script>app.callback("path=" + app.currentRoute + "&comingsoon=y");</script>';
-                   contentTopHtml = `
+                var comingSoonTracking = '<script>app.callback("path=" + app.currentRoute + "&comingsoon=y");</script>';
+                contentTopHtml = `
                         <div class="heroDiv" style="background-image: url(${lessonData.image}); background-size: cover; background-position: top center;">
                             <div class="heroDivImageOverlay"></div>
                             <div class="heroDivContent">
@@ -1179,26 +1200,26 @@ app.templates.modules.lesson = {
                         </div>
 
                         ${defaultScript}${comingSoonTracking}
-                    `;		
-                   
-                   /* 
-                   //OLD VERSION
-                   contentTopHtml =  `<div class="row"> 
-                               <div class="col-xs-12">
-                                   <div class="materialLessonVideo" style="background: url(${lessonData.image}) center; background-size: cover;">
-                                       <div style="background: hsla(0, 0%, 0%, 0.48); position: absolute; top: 0; left:0; width: 100%; height: 100%; z-index: 1; display: table;">
-                                           <p class="materialLessonVideoIcon"><i class="fa fa-clock-o" <i class="fa fa-lock" style="vertical-align: baseline;"></i></p>
-                                       </div> 
-                                   </div> 
-                               </div>
-                             </div>${defaultScript}${comingSoonTracking}`;	
-                             
-                   */
-                   contentBottomHtml = "";	
-               break;
-           case "expired":
-                   var expireTracking = '<script>app.callback("path=" + app.currentRoute + "&expired=y");</script>';
-                   contentTopHtml = `
+                    `;
+
+                /* 
+                //OLD VERSION
+                contentTopHtml =  `<div class="row"> 
+                            <div class="col-xs-12">
+                                <div class="materialLessonVideo" style="background: url(${lessonData.image}) center; background-size: cover;">
+                                    <div style="background: hsla(0, 0%, 0%, 0.48); position: absolute; top: 0; left:0; width: 100%; height: 100%; z-index: 1; display: table;">
+                                        <p class="materialLessonVideoIcon"><i class="fa fa-clock-o" <i class="fa fa-lock" style="vertical-align: baseline;"></i></p>
+                                    </div> 
+                                </div> 
+                            </div>
+                          </div>${defaultScript}${comingSoonTracking}`;	
+                          
+                */
+                contentBottomHtml = "";
+                break;
+            case "expired":
+                var expireTracking = '<script>app.callback("path=" + app.currentRoute + "&expired=y");</script>';
+                contentTopHtml = `
                         <div class="heroDiv" style="background-image: url(${lessonData.image}); background-size: cover; background-position: top center;">
                             <div class="heroDivImageOverlay"></div>
                             <div class="heroDivContent">
@@ -1208,37 +1229,37 @@ app.templates.modules.lesson = {
                                 
                                 ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
                                 
-                                <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "bottom")}</div>
+                                <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "top")}</div>
                             </div>
                         </div>
 
                         ${defaultScript}${expireTracking}
-                    `;		
-                   /* 
-                   //OLD VERSION
-                   contentTopHtml = `<div class="row"> 
-                               <div class="col-xs-12">
-                                   <div class="materialLessonVideo" style="background: url(${lessonData.image}) center; background-size: cover;">
-                                       <div style="background: hsla(0, 0%, 0%, 0.5); position: absolute; top: 0; left:0; width: 100%; height: 100%; z-index: 1; display: table;">
-                                           <p class="materialLessonVideoIcon"><i class="fa fa-lock" style="vertical-align: baseline;"></i></p>
-                                       </div>										
-                                   </div> 
-                               </div>
-                             </div>${defaultScript}${expireTracking}`;		
-                   
-                   */
-                   contentBottomHtml = "";
-               break;	 	
-       }
+                    `;
+                /* 
+                //OLD VERSION
+                contentTopHtml = `<div class="row"> 
+                            <div class="col-xs-12">
+                                <div class="materialLessonVideo" style="background: url(${lessonData.image}) center; background-size: cover;">
+                                    <div style="background: hsla(0, 0%, 0%, 0.5); position: absolute; top: 0; left:0; width: 100%; height: 100%; z-index: 1; display: table;">
+                                        <p class="materialLessonVideoIcon"><i class="fa fa-lock" style="vertical-align: baseline;"></i></p>
+                                    </div>										
+                                </div> 
+                            </div>
+                          </div>${defaultScript}${expireTracking}`;		
+                
+                */
+                contentBottomHtml = "";
+                break;
+        }
 
 
         var unlockButtonContext = "bottom";
-        switch(lessonData.dateStatus){
+        switch (lessonData.dateStatus) {
             case "expiringAsap":
                 var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring in ${countdownHtml(thisLesson.deadlineDateString)} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
                 break;
-            case "expiringSoon": 
-                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring Soon... ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;  
+            case "expiringSoon":
+                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-unlock"></i>Free Access Expiring Soon... ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
                 attachment = "";
                 break;
             case "comingAsap":
@@ -1252,10 +1273,10 @@ app.templates.modules.lesson = {
             case "expired":
                 var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>${expiredText(thisLesson, "bottom")} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
                 attachment = "";
-                break;	
-            case "available": 
-            default: 
-                var scarcityHtml = `${unlockButtonHtml(lessonData.dateStatus)}`;				
+                break;
+            case "available":
+            default:
+                var scarcityHtml = `${unlockButtonHtml(lessonData.dateStatus)}`;
         }
 
 
@@ -1292,6 +1313,6 @@ app.templates.modules.lesson = {
             </div>
         `;
 
-        return {html: html, progressPercent: thisLesson.engagementProgressRealPercent};
+        return { html: html, progressPercent: thisLesson.engagementProgressRealPercent };
     }
 }

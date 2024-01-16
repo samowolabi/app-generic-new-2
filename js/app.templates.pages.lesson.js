@@ -67,7 +67,7 @@ app.templates.pages.lesson = {
                 </div>
 
                 <div class="container marginTop10">
-                    <div class="row action-cards-top">  
+                    <div class="row action-cards-bottom">  
                         ${app.templates.modules.actionCards.content(app.data.user.cards, true, true)} 
                     </div>
                 </div>

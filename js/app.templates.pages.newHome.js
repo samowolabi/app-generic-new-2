@@ -348,11 +348,12 @@ app.templates.pages.newHome = {
 					</section>
 
 					<section class="app_coursesCardsFilterPills marginTop20">	
-						${materialFilterPills.create({
-							list: filterPillsData,
-							getClickedPillData: (data) => populateCards(data)
-						})
-			}
+						${
+							materialFilterPills.create({
+								list: filterPillsData,
+								getClickedPillData: (data) => populateCards(data)
+							})
+						}
 					</section>
 				
 					<section class="app_coursesCardsSection">
@@ -360,10 +361,12 @@ app.templates.pages.newHome = {
 							<div class="app_coursesCardsContainer">
 								<p class="sectionHeader">${item.header}</p>
 
-								${materialCardScrolling.create({
-									data: app.data,
-									list: item.lesson
-								})}
+								${
+									materialCardScrolling.create({
+										data: app.data,
+										list: item.lesson
+									})
+								}
 							</div>
 						`)}
 					</section>
