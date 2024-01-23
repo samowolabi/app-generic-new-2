@@ -150,7 +150,8 @@ app.templates.modules.lessonsOutline = {
 					</div>
 				</div>
 
-                ${materialAccordion.create({
+                <div id="accordion1">
+				${materialAccordion.create({
 				list: data.course[courseId].chapterIds.map(function (chapterId, index) {
 					return {
 						header: data.chapter[chapterId].title,
@@ -197,6 +198,7 @@ app.templates.modules.lessonsOutline = {
 				})
 			})
 			}
+			</div>
 
 				<div class="materialAccordionContent" style="max-height: unset;">
 					<div class="materialOutlineLearn materialThemeDark">
@@ -248,7 +250,7 @@ app.templates.modules.lessonsOutline = {
 		html += `
             <script>
                 console.log("RUNNING");
-                materialAccordion.init();
+				materialAccordion.init('accordion1');
             </script>
 		`;
 

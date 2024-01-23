@@ -16,6 +16,7 @@
 
 .materialAccordionHeader h4 {
     font-size: 1.78rem;
+    margin-bottom: 5px;
     padding-bottom: 0.35rem;
 }
 
@@ -25,7 +26,7 @@
 
 .materialAccordionHeader p {
     color: #a3a3a3;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 300;
 }
 

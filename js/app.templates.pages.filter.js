@@ -34,6 +34,8 @@ app.templates.pages.filter = {
             return [...allPillsData, ...filterPillsData];
         }
 
+        console.error('getFilterPills', getFilterPills());
+
         var html = `
             <section class="app_coursesCardsFilterPills">	
                 ${
@@ -75,6 +77,8 @@ app.templates.pages.filter = {
         html += `
             <script>
                 function populateCards(data, activeSortFilterKey) {
+                    console.error({ data, activeSortFilterKey })
+
                     if (!data) { 
                         document.querySelector('.infiniteScrollingContainer').innerHTML = '';
                         router.navigate('/');

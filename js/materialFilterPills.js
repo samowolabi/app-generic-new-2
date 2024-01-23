@@ -15,6 +15,36 @@ var materialFilterPills = (function () {
         }
 
         var list = settings.hasOwnProperty("list") ? settings.list : [];
+
+        // Reorder the list according to config.featuredFiltersOrder array provided in config.js
+        if (config.featuredFiltersOrder && config.featuredFiltersOrder.length) {
+            var featuredFiltersOrder = config.featuredFiltersOrder;
+            var featuredFiltersOrderLength = featuredFiltersOrder.length;
+        
+            var featuredFiltersOrderMap = {};
+            featuredFiltersOrder.forEach(function (item, index) {
+                featuredFiltersOrderMap[item.toLowerCase()] = index;
+            });
+        
+            list.sort(function (a, b) {
+                var aIndex = featuredFiltersOrderMap[a.value.toLowerCase()];
+                var bIndex = featuredFiltersOrderMap[b.value.toLowerCase()];
+        
+                if (aIndex === undefined) {
+                    aIndex = a.value.toLowerCase() === '' ? -1 : featuredFiltersOrderLength;
+                }
+        
+                if (bIndex === undefined) {
+                    bIndex = b.value.toLowerCase() === '' ? -1 : featuredFiltersOrderLength;
+                }
+        
+                return aIndex - bIndex;
+            });
+        }
+                   
+
+        console.error('list', list)
+
         var getClickedPillData = settings.hasOwnProperty("getClickedPillData") ? settings.getClickedPillData : function () { return null; };
 
         that.defaultValue = defaultValue;

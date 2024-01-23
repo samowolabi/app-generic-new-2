@@ -127,8 +127,9 @@ app.templates.pages.newHome = {
 			]
 		}
 
-		// Lesson Type
-		function typeArray() {
+
+		// Recommended Lesson Type
+		function recommendedLessonArray() {
 			let returnedData = Object.keys(app.data.user.recommendations.data.types).map((type, index) => {
 				let data = app.data.user.recommendations.data.types[type]
 
@@ -144,11 +145,37 @@ app.templates.pages.newHome = {
 			return returnedData;
 		}
 
-		// Merge both arrays (lessonArray and typeArray)
+
+		// Config Lesson Array
+		function configLessonArray() {
+			let returnedData = config['featuredCarousels'].map((item, index) => {
+				let itemIds = app.data.explore.lessonsIds[item];
+				if (!itemIds) { return null }
+
+				return {
+					header: item,
+					lesson: {
+						ids: itemIds,
+						type: 'lesson'
+					},
+				}
+			}).filter(item => item !== null)
+
+			return returnedData;
+		}
+
+		console.error('configLessonArray', configLessonArray());
+
+
+
+		// Merge both arrays (lessonArray and recommendedLessonArray)
 		var mergedArrays = []
 		if (app.data.user.recommendations.data && Object.keys(app.data.user.recommendations.data).length > 0) {
-			mergedArrays = [...lessonArray(), ...typeArray()]
+			mergedArrays = [...lessonArray(), ...recommendedLessonArray()]
 		}
+
+		// Merge both arrays (mergedArrays and configLessonArray)
+		mergedArrays = [...mergedArrays, ...configLessonArray()]
 
 		const formatAndValidateData = (data) => {
 			if (!Array.isArray(data)) { return [] }
@@ -307,10 +334,11 @@ app.templates.pages.newHome = {
 							<div class="app_ratingsSectionCard rewardPoints">
 								<div class="help-lesson-completed-container">
 									<div class="iconDiv">
-										${materialMiniCircleProgress.create({
-				percentage: (Number(data.user.stats.lessons.complete) * 100) / Number(data.user.stats.lessons.total)
-			})
-			}
+										${
+											materialMiniCircleProgress.create({
+												percentage: (Number(data.user.stats.lessons.complete) * 100) / Number(data.user.stats.lessons.total)
+											})
+										}
 									</div>
 
 									<div class="contentDiv">

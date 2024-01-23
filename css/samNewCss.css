@@ -973,12 +973,10 @@
     letter-spacing: 0.25rem
 }
 
-
-
 .materialBreadCrumbs {
     color: #7E7E7E;
     display: flex;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
     flex-wrap: wrap;
     align-items: center;
     padding: 0;
@@ -1083,6 +1081,70 @@ section.filterDropdownSection label {
 @media (max-width: 768px) {
     section.filterDropdownSection .materialInputWrap {
         width: 100%;
+    }
+}
+
+
+/* Pricing Tables Switch */
+section.pricingTablesSwitchSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0;
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 0;
+    white-space: nowrap;
+    width: 100%;
+    font-size: 150%;
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv span {
+    color: #ffffff;
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv span.pills {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 1.15rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv .materialSlider::before {
+    background-color: hsl(45.33deg 100% 35.25%);
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv input:checked + .materialSlider {
+    background-color: hsl(45.33deg 100% 35.25%);
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv input:checked + .materialSlider::before {
+    background-color: hsl(45.33deg 100% 44.9%);
+}
+
+section.pricingTablesSwitchSection .pricingTablesSwitchDiv input + .materialSlider::before {
+    background-color: hsl(45.33deg 100% 44.9%);
+}
+
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+    section.pricingTablesSwitchSection {
+        margin-bottom: 2rem;
+    }
+
+    section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
+        font-size: 130%;
+    }
+
+    section.pricingTablesSwitchSection .pricingTablesSwitchDiv span.pills {
+        display: none;
     }
 }
 

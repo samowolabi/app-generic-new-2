@@ -25,6 +25,45 @@ var materialAccordion = (function () {
         return html;
     }
 
+    that.init = function (containerId) {
+        try {
+            const accordionContainer = document.getElementById(containerId);
+            const accordionButtons = accordionContainer.querySelectorAll('.materialAccordionHeader');
+
+            // Function to toggle Accordion
+            function toggleAccordion(button, content) {
+                
+                console.error('button', button, 'content', content);
+                
+                button.classList.toggle('active');
+                content.classList.toggle('active');
+                console.error('Contains Max Height', content.style.maxHeight);
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+
+                console.error('button2', button, 'content2', content);
+            }
+
+            accordionButtons.forEach(button => {
+                // Set Default Accordion
+                if (button.dataset.active === 'active') {
+                    toggleAccordion(button, button.nextElementSibling);
+                }
+
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    toggleAccordion(button, content);
+                });
+            });
+        } catch (error) {
+            console.error(error); // Print the actual error message
+        }
+    }
+
     that.create = function (settings) {
         var htmlWrapper = `
             <div class="materialAccordion">
@@ -36,36 +75,8 @@ var materialAccordion = (function () {
         return htmlWrapper;
     }
 
-    that.init = function () {
-        try {
-            const accordionButtons = document.querySelectorAll('.materialAccordionHeader');
-
-            // Function to toggle Accordion
-            function toggleAccordion(button, content) {
-                button.classList.toggle('active');
-                content.classList.toggle('active');
-
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
-            }
-
-            accordionButtons.forEach(button => {
-                // Set Default Accordion
-                if(button.dataset.active === 'active') {
-                    toggleAccordion(button, button.nextElementSibling);
-                }
-                
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    toggleAccordion(button, content);
-                });
-            });
-        } catch (error) {
-            console.error(error); // Print the actual error message
-        }
-    }
-    return that;
+    var expose = {};
+    expose.create = that.create;
+    expose.init = that.init;
+    return expose;
 })();

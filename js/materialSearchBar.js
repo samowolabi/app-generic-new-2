@@ -86,6 +86,7 @@ var materialSearchBar = (function () {
             /* Close Material Searchbar on outside click */
             function closeMaterialSearchBarOutClick(event) {
                 let materialSearchBar = document.querySelector('.materialSearchBar')
+                if (!materialSearchBar) { return; }
 
                 if (!materialSearchBar.contains(event.target) && event.target !== materialSearchBar) {
                     toggleMaterialSearchbar('close');

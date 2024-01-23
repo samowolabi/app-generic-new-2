@@ -482,79 +482,197 @@ app.dialogs.selectPlan = function (settings) {
 									
 						${timerHtml}
 
-							
-<div class="row">
-<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-	<div class="materialCard materialThemeLightGold" style="margin-top: 45px;">
-		<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');">
-			<div class="materialCardImg">
-				<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-monthly-plan.png);"></div>
-			</div>
-			<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
-				<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Monthly<br>
-				<span style=" font-size: 1.5em;">&#9834; 22,000</span><br>
-				MELODY COINS</h2>
-				<p class="materialParagraph materialThemeDark">Embark on a musical journey with The Ultimate Collection of Piano Music, where every month brings new discoveries. Use Melody Coins to unlock new pieces and continuously enrich your repertoire &#8212; all for just:</p>
-				<h2 class="materialHeader" style="margin-bottom: 20px;">${priceMonthly}</h2>
-				<div>
-					<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Monthly Plan</a>
-				</div>
-			</div>
-		</div>
-		<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
-			<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
-		</div>
-	</div>
-</div>
-<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-	<div class="materialCard materialThemeLightGold">
-		<div class="materialCardHeader">
-			<span>Most Popular Choice</span>
-		</div>
-		<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');">
-			<div class="materialCardImg">
-				<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-yearly-plan.png);"></div>
-			</div>
-			<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
-				<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Yearly<br>
-				<span style=" font-size: 1.5em;">&#9834; 300,000</span><br>
-				MELODY COINS</h2>
-				<p class="materialParagraph materialThemeDark">With our annual plan you will instantly receive a year's supply of Melody Coins, unlocking a world of piano pieces to master. Perfect for the dedicated student, this plan offers an enriching journey and smart savings compared to the monthly option.</p>
-				<h2 class="materialHeader" style="margin-bottom: 20px;">${priceYearly}</h2>
-				<div>
-					<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Annual Plan</a>
-				</div>
-			</div>
-		</div>
-		<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
-			<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
-		</div>
-	</div>
-</div>
-<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-	<div class="materialCard materialThemeLightGold"  style="margin-top: 45px;">
-		<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');">
-			<div class="materialCardImg">
-				<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-lifetime-access.png);"></div>
-			</div>
-			<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
-				<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Unlimited<br>
-				<span style=" font-size: 1.3em;">LIFETIME ACCESS</span></h2>
-				<p class="materialParagraph materialThemeDark">Instantly unlock every single piece of The Ultimate Collection of Piano Music with this exclusive offer. This plan grants you unlimited access to all currently available pieces - for life. Only 50 Lifetime Memberships available as part of our special product launch &#8212; secure yours now!</p>
-				<h2 class="materialHeader" style="margin-bottom: 20px;">${priceLifetime}</h2>
-				<div>
-					<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Lifetime Access</a>
-				</div>
-			</div>
-		</div>
-		<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
-			<span style=" display: block; margin: 0 auto; color: grey;">One-time Payment</span>
-		</div>
-	</div>
-</div>
+						
+						<section class="pricingTablesSwitchSection">
+							<div class="materialSwitchSection pricingTablesSwitchDiv">
+								<span>Pay Monthly</span>
+								
+								<label class="materialSwitch">
+									<input type="checkbox" checked="">
+									<span class="materialSlider round"></span>
+								</label>
+
+								<div style="display: flex; align-items: center; gap: 1rem;">
+									<span>Pay Yearly</span>
+									<span class="pills">Save More</span>
+								</div>
+							</div>
+						</section>
 
 
-</div>
+						<div class="owl-carousel owl-theme pricingTableMonthly">
+							<div class="">
+								<div class="materialCard materialThemeLightGold" style="margin-top: 45px;">
+									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');">
+										<div class="materialCardImg">
+											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-monthly-plan.png);"></div>
+										</div>
+										<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+											<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Monthly<br>
+											<span style=" font-size: 1.5em;">&#9834; 22,000</span><br>
+											MELODY COINS</h2>
+											<p class="materialParagraph materialThemeDark">Embark on a musical journey with The Ultimate Collection of Piano Music, where every month brings new discoveries. Use Melody Coins to unlock new pieces and continuously enrich your repertoire &#8212; all for just:</p>
+											<h2 class="materialHeader" style="margin-bottom: 20px;">${priceMonthly}</h2>
+											<div>
+												<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Monthly Plan</a>
+											</div>
+										</div>
+									</div>
+									<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+										<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="">
+								<div class="materialCard materialThemeLightGold">
+									<div class="materialCardHeader">
+										<span>Most Popular Choice</span>
+									</div>
+									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');">
+										<div class="materialCardImg">
+											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-yearly-plan.png);"></div>
+										</div>
+										<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+											<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Yearly<br>
+											<span style=" font-size: 1.5em;">&#9834; 300,000</span><br>
+											MELODY COINS</h2>
+											<p class="materialParagraph materialThemeDark">With our annual plan you will instantly receive a year's supply of Melody Coins, unlocking a world of piano pieces to master. Perfect for the dedicated student, this plan offers an enriching journey and smart savings compared to the monthly option.</p>
+											<h2 class="materialHeader" style="margin-bottom: 20px;">${priceYearly}</h2>
+											<div>
+												<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Annual Plan</a>
+											</div>
+										</div>
+									</div>
+									<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+										<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="">
+								<div class="materialCard materialThemeLightGold"  style="margin-top: 45px;">
+									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');">
+										<div class="materialCardImg">
+											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-lifetime-access.png);"></div>
+										</div>
+										<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+											<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Unlimited<br>
+											<span style=" font-size: 1.3em;">LIFETIME ACCESS</span></h2>
+											<p class="materialParagraph materialThemeDark">Instantly unlock every single piece of The Ultimate Collection of Piano Music with this exclusive offer. This plan grants you unlimited access to all currently available pieces - for life. Only 50 Lifetime Memberships available as part of our special product launch &#8212; secure yours now!</p>
+											<h2 class="materialHeader" style="margin-bottom: 20px;">${priceLifetime}</h2>
+											<div>
+												<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Lifetime Access</a>
+											</div>
+										</div>
+									</div>
+									<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+										<span style=" display: block; margin: 0 auto; color: grey;">One-time Payment</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div style="display: none;" class="owl-carousel owl-theme pricingTableYearly">
+							<div class="">
+								<div class="materialCard materialThemeLightGold" style="margin-top: 45px;">
+									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');">
+										<div class="materialCardImg">
+											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-monthly-plan.png);"></div>
+										</div>
+										<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+											<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Monthly<br>
+											<span style=" font-size: 1.5em;">&#9834; 22,000</span><br>
+											MELODY COINS</h2>
+											<p class="materialParagraph materialThemeDark">Embark on a musical journey with The Ultimate Collection of Piano Music, where every month brings new discoveries. Use Melody Coins to unlock new pieces and continuously enrich your repertoire &#8212; all for just:</p>
+											<h2 class="materialHeader" style="margin-bottom: 20px;">${priceMonthly}</h2>
+											<div>
+												<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Monthly Plan</a>
+											</div>
+										</div>
+									</div>
+									<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+										<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="">
+								<div class="materialCard materialThemeLightGold">
+									<div class="materialCardHeader">
+										<span>Most Popular Choice</span>
+									</div>
+									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');">
+										<div class="materialCardImg">
+											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-yearly-plan.png);"></div>
+										</div>
+										<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+											<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Yearly<br>
+											<span style=" font-size: 1.5em;">&#9834; 300,000</span><br>
+											MELODY COINS</h2>
+											<p class="materialParagraph materialThemeDark">With our annual plan you will instantly receive a year's supply of Melody Coins, unlocking a world of piano pieces to master. Perfect for the dedicated student, this plan offers an enriching journey and smart savings compared to the monthly option.</p>
+											<h2 class="materialHeader" style="margin-bottom: 20px;">${priceYearly}</h2>
+											<div>
+												<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-yearly', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Annual Plan</a>
+											</div>
+										</div>
+									</div>
+									<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+										<span style=" display: block; margin: 0 auto; color: grey;">Cancel or pause anytime</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="">
+								<div class="materialCard materialThemeLightGold"  style="margin-top: 45px;">
+									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');">
+										<div class="materialCardImg">
+											<div class="materialCardImgInside" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic/images/melody-coins-lifetime-access.png);"></div>
+										</div>
+										<div class="materialCardInfo materialThemeLightGold" style="min-height: 193px; text-align: center">
+											<h2 class="materialHeader" style="margin-bottom: 20px;">Receive Unlimited<br>
+											<span style=" font-size: 1.3em;">LIFETIME ACCESS</span></h2>
+											<p class="materialParagraph materialThemeDark">Instantly unlock every single piece of The Ultimate Collection of Piano Music with this exclusive offer. This plan grants you unlimited access to all currently available pieces - for life. Only 50 Lifetime Memberships available as part of our special product launch &#8212; secure yours now!</p>
+											<h2 class="materialHeader" style="margin-bottom: 20px;">${priceLifetime}</h2>
+											<div>
+												<a class="materialButtonFill materialThemeDark"   href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');" style=" font-size: 1.2em; margin-bottom: 20px;">Lifetime Access</a>
+											</div>
+										</div>
+									</div>
+									<div class="materialCardAction materialThemeLightGold" style=" text-align: center;">
+										<span style=" display: block; margin: 0 auto; color: grey;">One-time Payment</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div id="accordion2" style="position: relative; z-index: 2; margin: 5rem 0;">
+							${
+								materialAccordion.create({
+									list: [
+										{
+											header: "What is The Ultimate Collection of Piano Music?",
+											subHeader: "Lorem Ipsum Dolor Sit Amet",
+											onInitOpenAccordion: true,
+											content: `<div style="padding: 5rem 2rem; color: #ffffff; background-color: #131313;">Hello</div>`
+										},
+										{
+											header: "What is The Ultimate Collection of Piano Music?",
+											subHeader: "Lorem Ipsum Dolor Sit Amet",
+											onInitOpenAccordion: false,
+											content: `<div style="padding: 5rem 2rem; color: #ffffff; background-color: #131313;">Hello</div>`
+										},
+										{
+											header: "What is The Ultimate Collection of Piano Music?",
+											subHeader: "Lorem Ipsum Dolor Sit Amet",
+											onInitOpenAccordion: false,
+											content: `<div style="padding: 5rem 2rem; color: #ffffff; background-color: #131313;">Hello</div>`
+										}
+									]
+								})
+							}
+						</div>
 
 
  <!-- As part of your monthly or yearly subscription, you will receive Melody Coins each period. These Melody coins, if not utilized within the current period, can be carried over and used in subsequent periods as long as your subscription remains active. This feature allows you the flexibility to use your Melody coins according to your own schedule and convenience, ensuring that you get the full value of your subscription. Please note, however, that if your subscription is canceled or lapses, any unused Melody coins will expire and will not be redeemable in future periods. If you opt for the lifetime access option, you will not receive Melody Coins. Instead, we will instantly unlock all of the current pieces of The Ultimate Collection of Piano Music for you. This offer provides immediate and permanent access to our extensive collection, ensuring that you have a wealth of piano music at your fingertips.
@@ -567,7 +685,48 @@ You may cancel at any time. Your subscription will continue until you cancel. Ca
 					</div>
 				</div>
 			</div>
-	</div>`;
+	</div>
+	
+	<script>
+		materialAccordion.init('accordion2');
+
+		$('.owl-carousel').owlCarousel({
+			nav: false,
+			margin:10,
+			responsive:{
+				0:{
+					items:1,
+					loop:true,
+					autoplay:true
+				},
+				600:{
+					items:2,
+					loop:true,
+					autoplay:true
+				},
+				1000:{
+					items:3
+				}
+			}
+		})
+
+		$('section.pricingTablesSwitchSection input[type="checkbox"]').on('change', function(event) {
+			// $('section.pricingTablesSwitchSection .materialSwitchSection').toggleClass('active');
+			// $('.owl-carousel').trigger('refresh.owl.carousel');
+
+			console.log("event", event.target.checked);
+
+			if(event.target.checked) {
+				$('.owl-carousel.pricingTableMonthly').fadeIn();
+				$('.owl-carousel.pricingTableYearly').fadeOut();
+			} else {
+				$('.owl-carousel.pricingTableMonthly').fadeOut();
+				$('.owl-carousel.pricingTableYearly').fadeIn();
+			}
+		})
+	</script>
+	
+	`;
 	materialDialog.custom(dialogHtml, settings);
 }
 
