@@ -71,7 +71,7 @@ var materialSearchBar = (function () {
             // Toggle Material Searchbar Function
             function toggleMaterialSearchbar(status) {
                 let materialSearchBar = document.querySelector('.materialSearchBar')
-
+                
                 if (status === 'open') {
                     materialSearchBar.classList.add('active');
                     // document.querySelector('body').style.overflow = 'hidden'
@@ -88,9 +88,23 @@ var materialSearchBar = (function () {
                 let materialSearchBar = document.querySelector('.materialSearchBar')
                 if (!materialSearchBar) { return; }
 
-                if (!materialSearchBar.contains(event.target) && event.target !== materialSearchBar) {
-                    toggleMaterialSearchbar('close');
+                // Check if event.target is not mobileFilterDivTrigger or its children
+                let mobileFilterDivTrigger = document.querySelector('.mobileFilterDivTrigger');
+                
+                if (event.target === mobileFilterDivTrigger) {
+                    return;
                 }
+                if (mobileFilterDivTrigger.contains(event.target)) {
+                    return;
+                }
+                if (materialSearchBar.contains(event.target)) {
+                    return;
+                }
+                if (event.target === materialSearchBar) {
+                    return;
+                }
+
+                toggleMaterialSearchbar('close');
             }
 
             // Close Material Searchbar on outside click

@@ -296,8 +296,6 @@ app.templates.pages.newHome = {
 
 
 			<main class="app_mainContainer">
-
-
 				<section class="heroSectionContainer" style="position: relative;">
 					<header class="app_headerContainer" style="position: absolute; top: 10px; width: 100%;">
 						${app.templates.modules.appHeader.content({
@@ -392,7 +390,8 @@ app.templates.pages.newHome = {
 								${
 									materialCardScrolling.create({
 										data: app.data,
-										list: item.lesson
+										list: item.lesson,
+										limit: 20
 									})
 								}
 							</div>

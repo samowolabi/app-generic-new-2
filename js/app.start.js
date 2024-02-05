@@ -101,7 +101,7 @@ router.on({
 			contentFalse: function () { return app.templates.pages.lesson.notFound(params.lessonId); },
 			callback: function () { 
 				helpTour.pageLoad('lesson');
-				materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + "#auto", {}) 
+				materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + "#auto", {})
 			}
 		});
 

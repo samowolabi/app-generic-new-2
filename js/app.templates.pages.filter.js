@@ -34,7 +34,7 @@ app.templates.pages.filter = {
             return [...allPillsData, ...filterPillsData];
         }
 
-        console.error('getFilterPills', getFilterPills());
+        // console.error('getFilterPills', getFilterPills());
 
         var html = `
             <section class="app_coursesCardsFilterPills">	
@@ -77,7 +77,7 @@ app.templates.pages.filter = {
         html += `
             <script>
                 function populateCards(data, activeSortFilterKey) {
-                    console.error({ data, activeSortFilterKey })
+                    // console.error({ data, activeSortFilterKey })
 
                     if (!data) { 
                         document.querySelector('.infiniteScrollingContainer').innerHTML = '';
@@ -96,6 +96,8 @@ app.templates.pages.filter = {
 
                     const html = mappedCards.join('');
                     document.querySelector('.infiniteScrollingContainer').innerHTML = html;
+
+                    material.init(".infiniteScrollingContainer");
                 }
 
                 function onChangeSortFilter() {
