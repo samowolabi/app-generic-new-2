@@ -33,19 +33,14 @@ var materialAccordion = (function () {
             // Function to toggle Accordion
             function toggleAccordion(button, content) {
                 
-                console.error('button', button, 'content', content);
-                
                 button.classList.toggle('active');
                 content.classList.toggle('active');
-                console.error('Contains Max Height', content.style.maxHeight);
 
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
                 } else {
                     content.style.maxHeight = content.scrollHeight + 'px';
                 }
-
-                console.error('button2', button, 'content2', content);
             }
 
             accordionButtons.forEach(button => {

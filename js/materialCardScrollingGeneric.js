@@ -7,7 +7,11 @@ var materialCardScrollingGeneric = (function () {
         var html = '';
 
         list.forEach(function (element) {
-            html += element;
+            html += `
+                <div class="" tab-id="${element.tab_id}">
+                    ${element.content}
+                </div>
+            `;
         });
 
         return html;
@@ -29,7 +33,7 @@ var materialCardScrollingGeneric = (function () {
                         </svg>
                     </div>
                     
-                    <div class="materialCardsDiv">
+                    <div class="materialCardsDiv" style="width: auto">
                         ${getHtml(settings)}
                     </div>
                 </div>
@@ -83,6 +87,18 @@ var materialCardScrollingGeneric = (function () {
                     }
                 });
             });
+        } catch (error) {
+            console.error(error); // Print the actual error message
+        }
+    }
+
+    that.scrollToDiv = function (tabId) {
+        // tabId is the index of the div to scroll to
+        try {
+            const cardScrollingTabId = document.querySelector(`.materialCardScrollingParentContainer .materialCardsDiv div[tab-id="${tabId}"]`);
+            if (!cardScrollingTabId) { return; }
+
+            cardScrollingTabId.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } catch (error) {
             console.error(error); // Print the actual error message
         }

@@ -1091,6 +1091,12 @@ section.pricingTablesSwitchSection {
     justify-content: center;
     align-items: center;
     margin: 4rem 0;
+    margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    background: rgb(19 19 19 / 50%);
 }
 
 section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
@@ -1098,7 +1104,7 @@ section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    padding: 1rem 0;
+    padding: 2.2rem 0;
     white-space: nowrap;
     width: 100%;
     font-size: 150%;
@@ -1133,18 +1139,91 @@ section.pricingTablesSwitchSection .pricingTablesSwitchDiv input + .materialSlid
     background-color: hsl(45.33deg 100% 44.9%);
 }
 
+section.pricingCategorySwitchSection {
+    position: sticky;
+    top: 72px;
+    left: 0;
+    z-index: 30;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    padding-top: 2rem;
+    font-family: 'Lato', sans-serif;
+    background: rgb(19 19 19 / 50%);
+}
+
+section.pricingCategorySwitchSection.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    background: rgb(19 19 19 / 77%);
+}
+
+
+section.pricingCategorySwitchSection > div {
+    cursor: pointer;
+    border-bottom: 2px solid rgba(255,187,0,0);
+}
+
+section.pricingCategorySwitchSection > div:hover {
+    border-bottom: 2px solid rgba(255,187,0,0.2);
+}
+
+section.pricingCategorySwitchSection > div.active {
+    border-bottom: 2px solid #ffbb00;
+}
+
+section.pricingCategorySwitchSection h4 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.25px;
+    margin: 0;
+}
+
+section.pricingCategorySwitchSection p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+section.pricingCategorySwitchSection p span.line-through {
+    color: rgba(255,255,255,0.5);
+    text-decoration: line-through;
+}
+
 /* Media Queries for mobile */
 @media (max-width: 768px) {
-    section.pricingTablesSwitchSection {
-        margin-bottom: 2rem;
-    }
-
     section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
         font-size: 130%;
     }
 
     section.pricingTablesSwitchSection .pricingTablesSwitchDiv span.pills {
         display: none;
+    }
+
+    section.pricingCategorySwitchSection {
+        position: sticky;
+        top: 70px;
+        left: 0;
+        z-index: 30;
+        margin-bottom: 1rem;
+    }
+
+    section.pricingCategorySwitchSection h4 {
+        font-size: 1.5rem;
+    }
+
+    section.pricingCategorySwitchSection p {
+        font-size: 1.25rem;
     }
 }
 
