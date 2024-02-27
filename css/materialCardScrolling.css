@@ -113,3 +113,11 @@
         justify-content: flex-end;
     }
 }
+
+/* Media Queries for large screens */
+@media (min-width: 1200px) {
+    .materialCardsScrolling .materialCardsDiv {
+        display: flex;
+        justify-content: center;
+    }
+}
