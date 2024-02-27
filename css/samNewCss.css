@@ -1096,7 +1096,7 @@ section.pricingTablesSwitchSection {
     top: 0;
     left: 0;
     z-index: 30;
-    background: rgb(19 19 19 / 50%);
+    background: rgb(19 19 19 / 75%);
 }
 
 section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
@@ -1152,7 +1152,7 @@ section.pricingCategorySwitchSection {
     margin-bottom: 5rem;
     padding-top: 2rem;
     font-family: 'Lato', sans-serif;
-    background: rgb(19 19 19 / 50%);
+    background: rgb(19 19 19 / 75%);
 }
 
 section.pricingCategorySwitchSection.sticky {
@@ -1191,7 +1191,7 @@ section.pricingCategorySwitchSection h4 {
 
 section.pricingCategorySwitchSection p {
     color: rgba(255,255,255,0.75);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     text-align: center;
 }
 
@@ -1223,7 +1223,7 @@ section.pricingCategorySwitchSection p span.line-through {
     }
 
     section.pricingCategorySwitchSection p {
-        font-size: 1.25rem;
+        font-size: 1.6rem;
     }
 }
 
