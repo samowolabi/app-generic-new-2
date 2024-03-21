@@ -47,9 +47,19 @@ var materialCardScrollingGeneric = (function () {
     that.init = function () {
         try {
             document.querySelectorAll(".materialCardScrollingParentContainer").forEach(function (parentDiv) {
+                console.log('parentDiv', parentDiv);
+
                 const cardsScrollingDiv = parentDiv.querySelector('.materialCardsDiv');
-                const containerWidth = cardsScrollingDiv.scrollWidth;
-                const scrollAmount = 800;
+                const scrollAmount = 354;
+
+                // Function to calculate the snap position based on card width
+                function calculateSnapPosition() {
+                    const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
+                    console.log('cardWidth', cardWidth);
+                    
+                    const snapIndex = Math.round(cardsScrollingDiv.scrollLeft / cardWidth);
+                    return snapIndex * cardWidth;
+                }
 
                 // Hide Left Carousel at first
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
@@ -64,27 +74,41 @@ var materialCardScrollingGeneric = (function () {
                 });
 
                 // Hide Right Carousel if there is no scroll
-                if (cardsScrollingDiv.scrollWidth <= cardsScrollingDiv.clientWidth) {
-                    parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').style.display = 'none';
-                }
+                // if (cardsScrollingDiv.scrollWidth <= cardsScrollingDiv.clientWidth) {
+                //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').style.display = 'none';
+                // }
 
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').addEventListener('click', function (event) {
-                    cardsScrollingDiv.scrollLeft -= scrollAmount;
-                    if (cardsScrollingDiv.scrollLeft <= 0) {
-                        cardsScrollingDiv.scrollLeft = containerWidth - cardsScrollingDiv.clientWidth;
-                    }
+                    // cardsScrollingDiv.scrollLeft -= scrollAmount;
+                    // if (cardsScrollingDiv.scrollLeft <= 0) {
+                    //     cardsScrollingDiv.scrollLeft = containerWidth - cardsScrollingDiv.clientWidth;
+                    // }
+
+                    const snapPosition = calculateSnapPosition() - scrollAmount;
+                    cardsScrollingDiv.scrollTo({
+                        left: snapPosition,
+                        behavior: 'smooth'
+                    });
                 });
 
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').addEventListener('click', function (event) {
-                    console.log('scrollRight');
-                    cardsScrollingDiv.scrollLeft += scrollAmount;
+                    // console.log('scrollRight');
+                    // cardsScrollingDiv.scrollLeft += scrollAmount;
 
-                    if (cardsScrollingDiv.scrollLeft + cardsScrollingDiv.clientWidth >= containerWidth) {
-                        cardsScrollingDiv.scrollLeft = 0;
-                    } else {
-                        // Show Left Carousel
-                        parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
-                    }
+                    // if (cardsScrollingDiv.scrollLeft + cardsScrollingDiv.clientWidth >= containerWidth) {
+                    //     cardsScrollingDiv.scrollLeft = 0;
+                    // } else {
+                    //     // Show Left Carousel
+                    //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
+                    // }
+
+                    console.log('scrollRight');
+
+                    const snapPosition = calculateSnapPosition() + scrollAmount;
+                    cardsScrollingDiv.scrollTo({
+                        left: snapPosition,
+                        behavior: 'smooth'
+                    });
                 });
             });
         } catch (error) {

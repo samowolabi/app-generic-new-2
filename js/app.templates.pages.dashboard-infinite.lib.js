@@ -147,7 +147,9 @@ var dashboardInfiniteScrollingLib = function () {
 				var theme = "materialThemeDarkGold";
 				var themeOverlay = "materialOverlayShallowBlack";
 				var themeButton = "materialButtonText";
-				var actionHtml = `<p class="coming" style="font-weight: bold;"><i class="fa fa-clock-o"></i> Available Soon</p>`;
+				var actionHtml = `<span>
+									<a href="${href}" class="materialButtonOutline materialThemeDark" data-button><i class="fa fa-unlock"></i> Unlock Now</a>
+								  </span>`;
 				var progressChipHtml = `<span data-new><i>COMING SOON</i></span>
 									<span data-incomplete>COMING SOON</span>
 									<span data-complete>COMING SOON</span>`;
@@ -159,11 +161,11 @@ var dashboardInfiniteScrollingLib = function () {
 				var themeOverlay = "materialOverlayShallowBlack";
 				var themeButton = "materialButtonText materialThemeDarkGrey";
 				var actionHtml = `<span>
-									<button disabled="disabled" class="materialButtonText ${themeButton}" data-button><i class="fa fa-lock"></i> Expired</button>
+									<a href="${href}" class="materialButtonOutline materialThemeDark" data-button><i class="fa fa-unlock"></i> Unlock Now</a>
 								  </span>`;
-				var progressChipHtml = `<span data-new><i>EXPIRED</i></span>
-									<span data-incomplete>EXPIRED</span>
-									<span data-complete>EXPIRED</span>`;
+				var progressChipHtml = `<span data-new><i>LOCKED</i></span>
+									<span data-incomplete>LOCKED</span>
+									<span data-complete>LOCKED</span>`;
 				var icon = "fa-lock";
 
 				break;

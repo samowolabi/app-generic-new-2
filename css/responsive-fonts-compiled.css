@@ -1,0 +1,1261 @@
+/* Buttons */
+.elementButtonThin, .elementButtonStandard,  .elementButtonExtraWide{
+	font-family: "OptimusPrinceps", "Trajan Pro", Georgia, "Times New Roman", serif !important;
+	line-height: 1.1em !important; 
+}
+  
+/* Taller buttons for mobile */
+.elementButtonThin{
+	 padding: 1.15em 0.8em 0.85em !important;	
+}
+
+.elementButtonStandard{
+	 padding: 1.15em 1.2em 0.85em !important;
+}
+
+.elementButtonExtraWide{
+	 padding: 1.05em 0.6em 0.75em !important;
+	 width: 100%;
+}
+
+@media (min-width: 460px) {
+	.elementButtonExtraWide{
+		padding: 1.05em 3.6em 0.75em !important;
+		width: auto;
+	}
+}
+
+@media (min-width: 768px) {
+	.elementButtonThin{ 
+		padding: 1.05em 0.8em 0.75em !important;	
+	}
+
+	.elementButtonStandard{ 
+		padding: 1.05em 1.2em 0.75em !important;
+	}
+
+	.elementButtonExtraWide{ 
+		padding: 0.95em 3.6em 0.65em !important;
+		width: auto;
+	}
+}
+
+
+.elementButtonIcon{
+	margin-right: 0.25em; 
+	margin-top: -0.08em;
+}
+
+/* Headers */
+.fontSizeOptimusH1, .fontSizeOptimusH2, .fontSizeOptimusH3, .fontSizeOptimusH4, .fontSizeOptimusH5, .fontSizeOptimusH6, .fontSizeOptimusH7, .fontSizeOptimusH8{
+		font-family: "OptimusPrinceps", "Trajan Pro", Georgia, "Times New Roman", serif !important;
+		line-height: 0.98em !important; 
+		letter-spacing: 1px !important;
+}
+
+.fontSizeLatoH1, .fontSizeLatoH2, .fontSizeLatoH3, .fontSizeLatoH4, .fontSizeLatoH5, .fontSizeLatoH6, .fontSizeLatoH7, .fontSizeLatoH8, .fontSizeLatoH9{
+	font-family: Lato, "Myriad Pro", sans-serif !important;
+	line-height: 1.07em !important; 
+	letter-spacing: 1px !important;
+}
+
+/* Paragraphs */
+.fontSizeP5, .fontSizeP6, .fontSizeP7{
+	font-family:  Lato, "Myriad Pro", sans-serif !important;
+	line-height: 1.38em !important;
+}
+ 
+
+/* Action and links */
+.fontSizeA4, .fontSizeA5, .fontSizeA6, .fontSizeA7{
+	 font-family:  Lato, "Myriad Pro", sans-serif !important;
+	 line-height: 1.16em !important;
+}
+
+/* Generic */
+.fontFamilyLato{
+	font-family: Lato, "Myriad Pro", sans-serif !important;
+}
+
+.fontOptimusPrinceps{
+	font-family: "OptimusPrinceps", "Trajan Pro", Georgia, "Times New Roman", serif !important;
+}
+
+.textTransformUppercase{
+	text-transform: uppercase !important;
+}
+.textTransformLowercase{
+	text-transform: lowercase !important;
+}
+.textTransformCapitalize{
+	text-transform: capitalize !important;
+}
+
+
+
+
+ 
+	
+	 
+
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 42px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 38px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 34px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 31px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 28px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 25px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 20px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 18px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 38px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 23px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 21px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 19px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 17px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 16px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 14px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 12px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 11px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 17px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:23px !important;
+	}
+	.buttonSize2{
+		font-size: 21px !important;
+	}
+	.buttonSize3{
+		font-size: 20px !important;
+	}
+	.buttonSize4{
+		font-size: 18px !important;
+	}
+	.buttonSize5{
+		font-size: 17px !important;
+	}
+	.buttonSize6{
+		font-size: 15px !important;
+	}
+	.buttonSize7{
+		font-size: 14px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+
+
+@media (min-width: 576px) {	 
+
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 44px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 39px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 35px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 32px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 29px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 26px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 21px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 19px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 38px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 23px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 21px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 19px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 17px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 16px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 14px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 12px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 11px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 17px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:23px !important;
+	}
+	.buttonSize2{
+		font-size: 22px !important;
+	}
+	.buttonSize3{
+		font-size: 20px !important;
+	}
+	.buttonSize4{
+		font-size: 19px !important;
+	}
+	.buttonSize5{
+		font-size: 17px !important;
+	}
+	.buttonSize6{
+		font-size: 16px !important;
+	}
+	.buttonSize7{
+		font-size: 15px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 768px) {	 
+
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 45px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 40px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 36px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 33px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 30px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 26px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 22px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 19px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 41px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 25px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 23px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 20px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 15px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 13px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 12px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 18px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:25px !important;
+	}
+	.buttonSize2{
+		font-size: 24px !important;
+	}
+	.buttonSize3{
+		font-size: 22px !important;
+	}
+	.buttonSize4{
+		font-size: 20px !important;
+	}
+	.buttonSize5{
+		font-size: 18px !important;
+	}
+	.buttonSize6{
+		font-size: 17px !important;
+	}
+	.buttonSize7{
+		font-size: 16px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 850px) {
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 39px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 35px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 32px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 29px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 26px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 23px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 19px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 17px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 41px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 25px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 23px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 20px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 15px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 13px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 12px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 18px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:25px !important;
+	}
+	.buttonSize2{
+		font-size: 24px !important;
+	}
+	.buttonSize3{
+		font-size: 22px !important;
+	}
+	.buttonSize4{
+		font-size: 20px !important;
+	}
+	.buttonSize5{
+		font-size: 18px !important;
+	}
+	.buttonSize6{
+		font-size: 17px !important;
+	}
+	.buttonSize7{
+		font-size: 16px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 950px) {
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 48px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 43px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 39px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 35px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 32px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 28px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 23px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 21px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 42px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 26px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 23px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 21px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 19px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 15px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 14px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 12px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 19px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:26px !important;
+	}
+	.buttonSize2{
+		font-size: 24px !important;
+	}
+	.buttonSize3{
+		font-size: 22px !important;
+	}
+	.buttonSize4{
+		font-size: 21px !important;
+	}
+	.buttonSize5{
+		font-size: 19px !important;
+	}
+	.buttonSize6{
+		font-size: 17px !important;
+	}
+	.buttonSize7{
+		font-size: 16px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 1100px) {
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 49px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 44px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 40px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 36px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 33px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 29px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 24px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 21px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 43px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 26px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 24px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 21px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 19px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 16px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 14px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 12px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 19px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:26px !important;
+	}
+	.buttonSize2{
+		font-size: 25px !important;
+	}
+	.buttonSize3{
+		font-size: 23px !important;
+	}
+	.buttonSize4{
+		font-size: 21px !important;
+	}
+	.buttonSize5{
+		font-size: 19px !important;
+	}
+	.buttonSize6{
+		font-size: 18px !important;
+	}
+	.buttonSize7{
+		font-size: 17px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 1250px) {
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 50px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 45px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 41px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 37px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 33px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 30px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 24px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 22px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 44px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 27px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 24px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 22px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 20px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 19px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 16px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 14px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 13px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 20px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:27px !important;
+	}
+	.buttonSize2{
+		font-size: 25px !important;
+	}
+	.buttonSize3{
+		font-size: 23px !important;
+	}
+	.buttonSize4{
+		font-size: 22px !important;
+	}
+	.buttonSize5{
+		font-size: 20px !important;
+	}
+	.buttonSize6{
+		font-size: 18px !important;
+	}
+	.buttonSize7{
+		font-size: 17px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 1450px) {
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 54px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 48px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 43px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 39px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 36px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 32px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 26px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 23px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 47px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 29px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 26px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 23px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 21px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 20px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 17px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 15px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 13px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 19px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 18px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 17px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 18px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 21px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:29px !important;
+	}
+	.buttonSize2{
+		font-size: 27px !important;
+	}
+	.buttonSize3{
+		font-size: 25px !important;
+	}
+	.buttonSize4{
+		font-size: 23px !important;
+	}
+	.buttonSize5{
+		font-size: 21px !important;
+	}
+	.buttonSize6{
+		font-size: 19px !important;
+	}
+	.buttonSize7{
+		font-size: 18px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}
+
+@media (min-width: 1600px) {
+/* Responsive Font Sizes */
+	
+	.fontSizeOptimusH1{
+		font-size: 56px !important;
+	}
+	.fontSizeOptimusH2{
+		font-size: 50px !important;
+	}
+	.fontSizeOptimusH3{
+		font-size: 45px !important;
+	}
+	.fontSizeOptimusH4{
+		font-size: 41px !important;
+	}
+	.fontSizeOptimusH5{
+		font-size: 37px !important;
+	}
+	.fontSizeOptimusH6{
+		font-size: 33px !important;
+	}
+	.fontSizeOptimusH7{
+		font-size: 27px !important;
+	}
+	.fontSizeOptimusH8{
+		font-size: 24px !important;
+	}
+
+	
+
+	.fontSizeLatoH1{
+		font-size: 49px !important;
+	}
+	.fontSizeLatoH2{
+		font-size: 30px !important;
+	}
+	.fontSizeLatoH3{
+		font-size: 27px !important;
+	}
+	.fontSizeLatoH4{
+		font-size: 24px !important;
+	}
+	.fontSizeLatoH5{
+		font-size: 22px !important;
+	}
+	.fontSizeLatoH6{
+		font-size: 21px !important;
+	}
+	.fontSizeLatoH7{
+		font-size: 18px !important;
+	}
+	.fontSizeLatoH8{
+		font-size: 16px !important;
+	}
+	.fontSizeLatoH9{
+		font-size: 14px !important;
+	}
+
+ 
+
+	/* Paragraphs */
+	.fontSizeP5{
+		font-size: 20px !important;
+	}
+
+	.fontSizeP6{ 
+		font-size: 19px !important;
+	}
+
+	.fontSizeP7{ 
+		font-size: 18px !important;
+
+	}
+
+	/* Links */
+	.fontSizeA4{
+		 font-size: 20px !important;
+	}
+
+	.fontSizeA5{
+		 font-size: 19px !important;
+	}
+
+	.fontSizeA6{
+		 font-size: 18px !important;
+	}
+	
+	.fontSizeA7{
+		 font-size: 17px !important;
+	}
+
+	/* Quotes */
+	.fontSizeQ6{
+		font-size: 22px !important;
+	}
+
+	/* Buttons */
+	.buttonSize1{
+		font-size:30px !important;
+	}
+	.buttonSize2{
+		font-size: 28px !important;
+	}
+	.buttonSize3{
+		font-size: 26px !important;
+	}
+	.buttonSize4{
+		font-size: 24px !important;
+	}
+	.buttonSize5{
+		font-size: 22px !important;
+	}
+	.buttonSize6{
+		font-size: 20px !important;
+	}
+	.buttonSize7{
+		font-size: 19px !important;
+	}
+	.buttonSize8{
+		font-size: 18px !important;
+	}
+	.buttonSize9{
+		font-size: 17px !important;
+	}
+	.buttonSize10{
+		font-size: 16px !important;
+	}
+}

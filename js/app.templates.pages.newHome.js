@@ -148,23 +148,29 @@ app.templates.pages.newHome = {
 
 		// Config Lesson Array
 		function configLessonArray() {
-			let returnedData = config['featuredCarousels'].map((item, index) => {
-				let itemIds = app.data.explore.lessonsIds[item];
-				if (!itemIds) { return null }
+			if(config['featuredCarousels']){
+				let returnedData = config['featuredCarousels'].map((item, index) => {
+					let itemIds = app.data.explore.coursesIds[item];
+					if (!itemIds) { return null }
 
-				return {
-					header: item,
-					lesson: {
-						ids: itemIds,
-						type: 'lesson'
-					},
-				}
-			}).filter(item => item !== null)
+					return {
+						header: item,
+						lesson: {
+							ids: itemIds,
+							type: 'course'
+						},
+					}
+				}).filter(item => item !== null)
 
-			return returnedData;
+				return returnedData;
+			}
+			else{
+				console.error('configLessonArray', 'WARNING: config.featuredCarousels is not defined and needs to be defined for every app');
+				return [];
+			}
 		}
 
-		console.error('configLessonArray', configLessonArray());
+		//console.error('configLessonArray', configLessonArray());
 
 
 
@@ -175,7 +181,7 @@ app.templates.pages.newHome = {
 		}
 
 		// Merge both arrays (mergedArrays and configLessonArray)
-		mergedArrays = [...mergedArrays, ...configLessonArray()]
+		mergedArrays = [ ...configLessonArray(), ...mergedArrays]
 
 		const formatAndValidateData = (data) => {
 			if (!Array.isArray(data)) { return [] }
@@ -296,6 +302,8 @@ app.templates.pages.newHome = {
 
 
 			<main class="app_mainContainer">
+
+
 				<section class="heroSectionContainer" style="position: relative;">
 					<header class="app_headerContainer" style="position: absolute; top: 10px; width: 100%;">
 						${app.templates.modules.appHeader.content({
@@ -390,8 +398,7 @@ app.templates.pages.newHome = {
 								${
 									materialCardScrolling.create({
 										data: app.data,
-										list: item.lesson,
-										limit: 20
+										list: item.lesson
 									})
 								}
 							</div>

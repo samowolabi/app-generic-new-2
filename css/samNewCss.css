@@ -697,9 +697,9 @@
     letter-spacing: 0.25rem
 }
 
-// Mobile Media Queries
+/* Mobile Media Queries*/
 
-// Ipad
+/* Ipad */
 @media (min-width: 768px) and (max-width: 1024px) {
     .app_lessonOverviewSection {
         padding: 2rem;
@@ -710,10 +710,10 @@
     }
 }
 
-// Mobile
+/* Mobile */
 @media (max-width: 768px) {
     .app_lessonOverviewSection {
-        padding: 0 2rem;
+        padding: 2.75rem 2rem;
     }
 
     .overallRatings {
@@ -933,13 +933,13 @@
 }
 
 .app_articleContentSection .app_articleContentHeader h4 {
-    color: 4E4535;
+    color: #4E4535;
     font-size: 3.5rem;
     text-transform: uppercase;
 }
 
 .app_articleContentSection .app_articleContentHeader p {
-    color: 4E4535;
+    color: #4E4535;
     font-size: 1.8rem;
     text-transform: uppercase;
 }
@@ -972,6 +972,8 @@
     text-transform: uppercase;
     letter-spacing: 0.25rem
 }
+
+
 
 .materialBreadCrumbs {
     color: #7E7E7E;
@@ -1091,12 +1093,23 @@ section.pricingTablesSwitchSection {
     justify-content: center;
     align-items: center;
     margin: 4rem 0;
+    font-size: 1.4em;
     margin-bottom: 0;
     position: sticky;
     top: 0;
     left: 0;
     z-index: 30;
     background: rgb(19 19 19 / 75%);
+}
+
+section.pricingTablesSwitchSection .pills {
+    background: #966e00;
+    padding: 5px 14px;
+    border-radius: 5px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #fff9d9 !important;
+    margin-left: 10px;
 }
 
 section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
@@ -1212,7 +1225,7 @@ section.pricingCategorySwitchSection p span.line-through {
 
     section.pricingCategorySwitchSection {
         position: sticky;
-        top: 70px;
+        top: 105px;
         left: 0;
         z-index: 30;
         margin-bottom: 1rem;
@@ -1262,11 +1275,37 @@ s {
 
 .selectPlan .time span {
 	padding: 0 14px;
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	text-align: center;
+}
+
+@media only screen and (min-width: 360px) {
+    .selectPlan .time span {
+        font-size: 1.4rem;
+    }
 }
 
 .selectPlan .time span div {
 	font-size: 3.5rem;
 }
 
+.pricingTablesSwitchSection span br{
+	display: block;
+}
+
+.pricingTablesSwitchSection .pay{
+	text-align: center;
+}
+.pricingTablesSwitchSection .pills{
+	display: none;
+}
+
+@media only screen and (min-width: 600px) {
+	.pricingTablesSwitchSection span br{
+		display: none;
+		text-align: left;
+	}
+	.pricingTablesSwitchSection .pills{
+		display: block;
+	} 
+}

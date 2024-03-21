@@ -186,7 +186,7 @@ app.templates.pages.course = {
 
         var html = `
             <main class="app_mainContainer maxWidthContainer marginBottom20">
-                <header class="app_heroHeader help-course-hero-section">
+                <header class="app_heroHeader help-course-hero-section" style="background-image: url(${courseData.image})">
                     <div>
                         <div class="app_heroSection maxWidthContainer">
                             <h4 class="fontFamilyOptimus">${courseData.title}</h4>

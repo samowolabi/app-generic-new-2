@@ -99,9 +99,29 @@ router.on({
 			contentCondition: function () { return (typeof app.data.lesson[params.lessonId] !== "undefined"); },
 			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
 			contentFalse: function () { return app.templates.pages.lesson.notFound(params.lessonId); },
-			callback: function () { 
+			callback: function () {
+                var getRelatedVideoUrl = function(lessonId){
+			        //TODO: all this is hardcoded for now, but it should be dynamic in the future.
+ 
+                    // Calculate the adjusted ID to get the associated video URL (only works for The Ultimate Collection of Piano Music)
+                    var adjustedId =  parseInt(lessonId) - 100000;
+                    if(!adjustedId){ return null;}
+
+                    // Check if app.data.lesson[adjustedId] exists
+                    var lessonData = app.data.lesson[adjustedId];
+                    if (!lessonData) {
+                        console.error("Lesson data not found for the given ID  for getting related video URL");
+                        return null;
+                    }
+
+                    // Access the content property
+                    return lessonData.content;
+                };
+                var relatedVideoUrl = getRelatedVideoUrl(params.lessonId);
+                var additionalRelatedVideoUrl = relatedVideoUrl ? ("&relatedVideoUrl=" + encodeURIComponent(relatedVideoUrl)): "";
+
 				helpTour.pageLoad('lesson');
-				materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + "#auto", {})
+				materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + additionalRelatedVideoUrl + "#auto", {})
 			}
 		});
 

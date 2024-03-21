@@ -135,8 +135,111 @@ app.templates.modules.lesson = {
 
         var unlockButtonContext = "bottom";
 
-        //Custom expired text based on deadline date, price, and context (top or bottom)
-        var expiredText = function (thisLesson, context) {
+        var unlockText = function(thisLesson, context) {
+            console.log("unlockText was called with context: " + context + " and lesson: " + thisLesson.id);
+            var priceMelodyCoins = app.wallet.getCoursePriceFromLesson(thisLesson.id);
+            var priceMelodyCoinsBefore = app.wallet.getCoursePriceBeforeFromLesson(thisLesson.id);
+            var deadlineDateString = thisLesson.deadlineDateString;
+            var availableDateString = thisLesson.availableDateString;
+
+            var today = new Date();
+
+            function getPriceText() {
+                if (priceMelodyCoins === null) {
+                    return '';
+                }
+                return (priceMelodyCoins === priceMelodyCoinsBefore)
+                    ? "just &#9834; " + priceMelodyCoins + " Melody Coins"
+                    : "just <s>&#9834; " + priceMelodyCoinsBefore + " </s>&#9834; " + priceMelodyCoins + " Melody Coins";
+            }
+
+            function getMessageMatrix() {
+                return {
+                    top: {
+                        expiredWithPrice: "Unlock now for ",
+                        expiredNoPrice: "Locked. ",
+                        comingSoonWithPrice: "Unlock now for ",
+                        comingSoonNoPrice: "Coming soon. ",
+                        default: "Unlock now for "
+                    },
+                    bottom: {
+                        expiredWithPrice: "This lesson is locked. Unlock now for ",
+                        expiredNoPrice: "Free access expired ",
+                        comingSoonWithPrice: "Unlock now for ",
+                        comingSoonNoPrice: "Unlock early access now!",
+                        default: "Unlock now "
+                    },
+                    default: "Unlock now for "
+                };
+            }
+
+            function parseDateAndCompare(dateString) {
+                if (!dateString) {
+                    return null;
+                }
+                var date = new Date(dateString);
+                if (isNaN(date)) {
+                    throw new Error("Invalid date: " + dateString);
+                }
+                return date - today;
+            }
+
+            function calculateDaysDifference(diffTime) {
+                return Math.ceil(Math.abs(diffTime) / (1000 * 60 * 60 * 24));
+            }
+
+            function createExpiredMessage(diffTime) {
+                var hours = Math.ceil(Math.abs(diffTime) / (1000 * 60 * 60));
+                var days = calculateDaysDifference(diffTime);
+
+                if (hours < 6) return hours + (hours === 1 ? " hour" : " hours") + " ago";
+                if (hours < 24) return "A few hours ago";
+                if (days < 7) return days + (days === 1 ? " day" : " days") + " ago";
+                if (days < 14) return "About a week ago";
+                return "";
+            }
+
+            function createMessage(context, key, priceText, diffTime) {
+                var messages = getMessageMatrix();
+                var message = messages[context][key];
+                if (diffTime !== null && key === 'expiredNoPrice') {
+                    message += createExpiredMessage(diffTime);
+                }
+                return message + (priceText && key !== 'expiredNoPrice' ? priceText : "");
+            }
+
+            try {
+                var pricingText = getPriceText();
+                var availableDateDiff = parseDateAndCompare(availableDateString);
+                var deadlineDateDiff = parseDateAndCompare(deadlineDateString);
+
+                console.log("today", today);
+                console.log("availableDateString", availableDateString);
+                console.log("deadlineDateString", deadlineDateString);
+                console.log("priceMelodyCoins", priceMelodyCoins);
+                console.log("pricingText", pricingText);
+                console.log("availableDateDiff", availableDateDiff);
+                console.log("deadlineDateDiff", deadlineDateDiff);
+                console.log("context", context); // top or bottom
+
+                if (availableDateDiff !== null && availableDateDiff > 0) {
+                    return createMessage(context, priceMelodyCoins !== null ? 'comingSoonWithPrice' : 'comingSoonNoPrice', pricingText, availableDateDiff);
+                }
+
+                if (deadlineDateDiff !== null && deadlineDateDiff < 0) {
+                    return createMessage(context, priceMelodyCoins !== null ? 'expiredWithPrice' : 'expiredNoPrice', pricingText, deadlineDateDiff);
+                }
+
+                return getMessageMatrix()[context].default + (pricingText ? " for " + pricingText : "");
+            } catch (e) {
+                console.error(e);
+                var pricingText = getPriceText();
+                return getMessageMatrix()[context].default + (pricingText ? " for " + pricingText : "");
+            }
+        };
+		
+		//Custom expired text based on deadline date, price, and context (top or bottom)
+        /*var expiredText = function (thisLesson, context) {
             console.error('thisLesson', thisLesson);
 
             var priceMelodyCoins = app.wallet.getCoursePriceFromLesson(thisLesson.id);
@@ -207,7 +310,7 @@ app.templates.modules.lesson = {
                 console.error(e);
                 return defaultMessage;
             }
-        };
+        };*/
 
         let segmentedProgressBarHtml = function (lessonId) {
             let segmentedProgressBarInsideHtml = "";
@@ -724,7 +827,7 @@ app.templates.modules.lesson = {
                                 </span> 
                             </a>
                             -->
-                            <a href="#!/lesson/${lessonData.id}/book${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(lessonData.id)) ? `?p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['attachmentUrl'])}` : `?p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['attachmentUrl'])}`}" target="_blank" style="font-size: 18px;"class="materialButtonFill" id="downloadEbook">
+                            <a href="#!/lesson/${lessonData.id}/book${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(lessonData.id)) ? `&p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['content'])}` : `&p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['content'])}`}" target="_blank" style="font-size: 18px;"class="materialButtonFill" id="downloadEbook">
                                 <i class="fa fa-book" aria-hidden="true"></i>
                                 Open Book
                             </a>
@@ -1230,7 +1333,7 @@ app.templates.modules.lesson = {
                                 
                                 ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}
                                 
-                                <div class="heroDivProgress marginTop5">${expiredText(thisLesson, "top")}</div>
+                                <div class="heroDivProgress marginTop5">${unlockText(thisLesson, "top")}</div>
                             </div>
                         </div>
 
@@ -1272,7 +1375,7 @@ app.templates.modules.lesson = {
                 attachment = "";
                 break;
             case "expired":
-                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>${expiredText(thisLesson, "bottom")} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
+                var scarcityHtml = `<p class="materialParagraph expiring" style="font-weight: bold;"><i class="fa fa-lock"></i>${unlockText(thisLesson, "bottom")} ${unlockButtonHtml(lessonData.dateStatus, unlockButtonContext)}</p>`;
                 attachment = "";
                 break;
             case "available":

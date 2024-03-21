@@ -70,10 +70,10 @@
   overflow: hidden; 
 }
 .materialFullScreenIframe .materialCloseButton {
-    bottom: 10px;
+    bottom: 15px;
     top: auto;
-    right: 30px;
-    left: auto; 
+    left: 15px;
+    right: auto; 
 }
 
 .materialDialog h3, .materialDialog h4 {

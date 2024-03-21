@@ -1,6 +1,7 @@
 .materialCardsScrolling {
     position: relative;
     width: 100%;
+    background: linear-gradient(45deg, #29292969, transparent);
 }
 
 .materialCardsScrolling .overlay {
@@ -11,14 +12,14 @@
 }
 
 .materialCardsScrolling .overlay svg {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 6rem;
+    height: 6rem;
     transition: 0.2s ease-in-out;
 }
 
 .materialCardsScrolling .overlay:hover svg {
-    width: 4rem;
-    height: 4rem;
+    width: 9rem;
+    height: 9rem;
 }
 
 .materialCardsScrolling .overlay.scrollLeft {
@@ -30,12 +31,12 @@
     z-index: 1;
     background: rgb(21,21,21);
     background: linear-gradient(270deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.45) 70%);
-    transition: 0.65s ease-in-out;
+    transition: 0.2s ease-in-out;
+    opacity: 0.5;
 }
 
 .materialCardsScrolling .overlay.scrollLeft:hover {
-    background: rgb(21,21,21);
-    background: linear-gradient(270deg, rgba(21,21,21,0) 0%, rgba(12, 12, 12, 0.65) 70%);
+    opacity: 1;
 }
 
 .materialCardsScrolling .overlay.scrollRight {
@@ -97,6 +98,14 @@
     text-transform: uppercase;
 }
 
+/* Media Queries for tablets */
+@media (max-width: 830px) {
+    .materialCardsScrolling .materialCardsDiv > div {
+        min-width: 100%;
+        width: 100%;
+    }
+}
+
 /* Media Queries for mobile */
 @media (max-width: 768px) {
     .materialCardsScrolling .overlay {
@@ -116,22 +125,5 @@
     .materialCardsScrolling .materialCardsDiv > div {
         min-width: 100%;
         width: 100%;
-    }
-}
-
-
-/* Media Queries for tablets */
-@media (min-width: 768px) {
-    .materialCardsScrolling .materialCardsDiv > div {
-        min-width: 100%;
-        width: 100%;
-    }
-}
-
-/* Media Queries for large screens */
-@media (min-width: 1200px) {
-    .materialCardsScrolling .materialCardsDiv {
-        display: flex;
-        justify-content: center;
     }
 }

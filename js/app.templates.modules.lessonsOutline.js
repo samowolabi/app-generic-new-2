@@ -230,7 +230,7 @@ app.templates.modules.lessonsOutline = {
 							<li data-progress="${completenessPorcentage_2}" data-progress-affects-class="materialOutlineViewComplete" class="materialOutlineView">
 								<div class="materialOutlineListBody">
 									<a target="_blank" href="${url}?source=nativeAd">
-										<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
+										<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/courses-list/course-the-logic-behind-music.v2.min.jpg);">
 											<div class="materialProgressBar ">
 												<div class="materialProgressBarInside" data-progress="${completenessPorcentage_2}" data-progress-affects-width style="width:10px;"></div>
 											</div>

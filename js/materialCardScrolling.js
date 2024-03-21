@@ -7,7 +7,7 @@ var materialCardScrolling = (function () {
 
         const { data, list } = settings
         
-        // Only show 20 card
+        // Limit card from settings config
         if (settings.hasOwnProperty('limit')) {
             list.ids = list.ids.slice(0, settings.limit);
         }

@@ -38,7 +38,7 @@ app.templates.modules.appHeader = {
             <div class="app_headerDiv">
                 <a href='#!/' style="text-decoration: none;">    
                     <div class="logo help-logo-for-header">
-                        <div><img src="images/logo.png" alt="logo" class="logo"></div>
+                        <div><img src="https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/app-generic-supremex/images/logo.png" alt="logo" class="logo"></div>
                         <p><strong>${config.appName}</strong></p>
                     </div>   
                 </a> 
@@ -63,7 +63,7 @@ app.templates.modules.appHeader = {
                         <svg width="32" height="32" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16.7744" cy="17.2744" r="5.25" stroke="#CFCFCF" stroke-width="1.16667"/><path d="M20.625 21.125L24.3373 24.8373" stroke="#CFCFCF" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
 
-                    <a class="materialBarDashboardNavLink" href="#" data-button="" data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; }, hideCallback: function(){ app.sidebarOn = false;}});}; helpTour.pageLoad('sideBarMenu');">
+                    <a class="materialBarDashboardNavLink" href="#" data-button="" data-script="if(!app.sidebarOn){ materialDrawer.show('appSidebarMenu',{direction: 'right', initCallback:function(component){ app.updateUI(); app.sidebarOn = true; $('.melodyCoinsBalance').html(app.wallet.getUserBalance()); }, hideCallback: function(){ app.sidebarOn = false;}});}; helpTour.pageLoad('sideBarMenu');">
                         <div class="userProfileDiv help-profile-trigger-dashboard-nav-link">
                             <svg width="15.5" height="15.5" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.50033 9.49967C11.6865 9.49967 13.4587 7.72747 13.4587 5.54134C13.4587 3.35521 11.6865 1.58301 9.50033 1.58301C7.3142 1.58301 5.54199 3.35521 5.54199 5.54134C5.54199 7.72747 7.3142 9.49967 9.50033 9.49967Z" fill="#A2A2A2" />

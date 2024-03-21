@@ -43,7 +43,7 @@ var materialFilterPills = (function () {
         }
                    
 
-        console.error('list', list)
+       // console.error('list', list)
 
         var getClickedPillData = settings.hasOwnProperty("getClickedPillData") ? settings.getClickedPillData : function () { return null; };
 
