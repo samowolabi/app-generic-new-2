@@ -1216,7 +1216,7 @@ section.pricingCategorySwitchSection p span.line-through {
 /* Media Queries for mobile */
 @media (max-width: 768px) {
     section.pricingTablesSwitchSection .pricingTablesSwitchDiv {
-        font-size: 130%;
+        font-size: 100%;
     }
 
     section.pricingTablesSwitchSection .pricingTablesSwitchDiv span.pills {

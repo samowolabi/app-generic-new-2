@@ -498,7 +498,7 @@ app.dialogs.selectPlan = function (settings) {
 				
 				<section class="pricingTablesSwitchSection">
 					<div class="materialSwitchSection pricingTablesSwitchDiv">
-						<span class="pay">Pay<br> Monthly</span>
+						<span class="pay">Pay Monthly</span>
 						
 						<label class="materialSwitch">
 							<input type="checkbox" checked="">
@@ -506,7 +506,7 @@ app.dialogs.selectPlan = function (settings) {
 						</label>
 
 						<div style="display: flex; align-items: center; gap: 1rem;">
-							<span class="pay">Pay<br> Yearly</span>
+							<span class="pay">Pay Yearly</span>
 							<span class="pills">Save More</span>
 						</div>
 					</div>

@@ -56,7 +56,7 @@ var materialCardScrollingGeneric = (function () {
                 function calculateSnapPosition() {
                     const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
                     console.log('cardWidth', cardWidth);
-                    
+
                     const snapIndex = Math.round(cardsScrollingDiv.scrollLeft / cardWidth);
                     return snapIndex * cardWidth;
                 }
@@ -65,13 +65,30 @@ var materialCardScrollingGeneric = (function () {
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
 
                 // Show left Carousel if there is scroll
-                cardsScrollingDiv.addEventListener('scroll', function (event) {
-                    if (cardsScrollingDiv.scrollLeft > 0) {
-                        parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
-                    } else {
-                        parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
-                    }
+
+                const hammerManager = new Hammer.Manager(cardsScrollingDiv);
+                const hammerSwipe = new Hammer.Swipe();
+                hammerManager.add(hammerSwipe);
+
+                hammerManager.on('swipeleft', function () {
+                    console.log('swipeleft');
                 });
+
+                hammerManager.on('swiperight', function () {
+                    console.log('swiperight');
+                });
+
+                // cardsScrollingDiv.addEventListener('scroll', function (event) {
+                //     // Get if user scroll right or left
+                //     console.log('I am scrolling');
+
+
+                //     // if (cardsScrollingDiv.scrollLeft > 0) {
+                //     //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
+                //     // } else {
+                //     //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
+                //     // }
+                // });
 
                 // Hide Right Carousel if there is no scroll
                 // if (cardsScrollingDiv.scrollWidth <= cardsScrollingDiv.clientWidth) {
