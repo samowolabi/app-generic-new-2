@@ -1,6 +1,7 @@
 var materialCardScrollingGeneric = (function () {
     var that = {};
     that.created = false;
+    that.onCardsScrollCallback = null;
 
     var getHtml = function (settings) {
         const { list, items } = settings
@@ -18,6 +19,8 @@ var materialCardScrollingGeneric = (function () {
     }
 
     that.create = function (settings) {
+        that.onCardsScrollCallback = settings.onCardsScrollCallback;
+
         var htmlWrapper = `
             <div class="materialCardScrollingParentContainer">    
                 <div class="materialCardsScrolling">
@@ -47,8 +50,6 @@ var materialCardScrollingGeneric = (function () {
     that.init = function () {
         try {
             document.querySelectorAll(".materialCardScrollingParentContainer").forEach(function (parentDiv) {
-                console.log('parentDiv', parentDiv);
-
                 const cardsScrollingDiv = parentDiv.querySelector('.materialCardsDiv');
                 const scrollAmount = 354;
 
@@ -64,8 +65,6 @@ var materialCardScrollingGeneric = (function () {
                 // Hide Left Carousel at first
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
 
-                // Show left Carousel if there is scroll
-
                 const hammerManager = new Hammer.Manager(cardsScrollingDiv);
                 const hammerSwipe = new Hammer.Swipe();
                 hammerManager.add(hammerSwipe);
@@ -76,6 +75,17 @@ var materialCardScrollingGeneric = (function () {
 
                 hammerManager.on('swiperight', function () {
                     console.log('swiperight');
+                });
+
+                cardsScrollingDiv.addEventListener('scroll', function (event) {
+                    // Console.log when one of the cards is in the middle
+                    const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
+                    const cardIndex = Math.round(cardsScrollingDiv.scrollLeft / cardWidth);
+
+                    // Call the callback function
+                    if (that.onCardsScrollCallback) {
+                        that.onCardsScrollCallback(cardIndex);
+                    }
                 });
 
                 // cardsScrollingDiv.addEventListener('scroll', function (event) {

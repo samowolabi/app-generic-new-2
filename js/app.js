@@ -488,13 +488,12 @@ app.dialogs.selectPlan = function (settings) {
 				<div class="container-fluid selectPlan ">
 				<div class="row">
 
-				<div style="text-align: center;">
-					<h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;font-size: 2.5em;">${settings.title}</h3>
+				<div style="text-align: center; margin-top: 7rem;">
+					<h3 class="materialHeader materialThemeDark" style="margin-bottom: 20px;font-size: 2.25em;">${settings.title}</h3>
 					<p class="materialParagraph materialThemeDark" style="font-size: 1.7em;">${settings.subtitle}</p>
 				</div>
 							
 				${timerHtml}
-
 				
 				<section class="pricingTablesSwitchSection">
 					<div class="materialSwitchSection pricingTablesSwitchDiv">
@@ -513,9 +512,9 @@ app.dialogs.selectPlan = function (settings) {
 				</section>
 					  
 
-				<div class="pricingTableMonthly" style="display: none">
+				<div class="pricingTableSwitch pricingTableMonthly" style="display: none">
 					<section class="pricingCategorySwitchSection">
-						<div tabId="1">
+						<div tabId="1" class="active">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
 								`<p>$${priceOfferMonthlyPlan1} <span class="line-through">$${priceMonthlyPlan1}</span> /month</p>` :
@@ -618,16 +617,25 @@ app.dialogs.selectPlan = function (settings) {
 									</div>
 								`
 						}
-					]
+					],
+					onCardsScrollCallback: function (tabId) {
+						if($('.pricingTableSwitch.active').hasClass('pricingTableMonthly')) {
+							$('.pricingCategorySwitchSection div').removeClass('active');
+							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 1) + '"]').addClass('active');
+						} else {
+							$('.pricingCategorySwitchSection div').removeClass('active');
+							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 4) + '"]').addClass('active');
+						}
+					}
 				})
 			}
 
 				</div>
 
 
-				<div class="pricingTableYearly">
+				<div class="pricingTableSwitch pricingTableYearly">
 					<section class="pricingCategorySwitchSection">
-						<div tabId="4">
+						<div tabId="4" class="active">
 							<h4>Standard</h4>
 							${
 								isOfferAvailable ?
@@ -732,17 +740,35 @@ app.dialogs.selectPlan = function (settings) {
 									</div>
 							`
 						}
-					]
+					],
+					onCardsScrollCallback: function (tabId) {
+						if($('.pricingTableSwitch.active').hasClass('pricingTableMonthly')) {
+							// Remove active class from all tabs from tab ID 1 to 3
+							for (let i = 1; i <= 3; i++) {
+								$('.pricingCategorySwitchSection div[tabId="' + i + '"]').removeClass('active');
+							}
+
+							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 1) + '"]').addClass('active');
+						} else {
+							// Remove active class from all tabs from tab ID 4 to 6
+							for (let i = 4; i <= 6; i++) {
+								$('.pricingCategorySwitchSection div[tabId="' + i + '"]').removeClass('active');
+							}
+
+							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 4) + '"]').addClass('active');
+						}
+					}
 					})
 				}
 			</div>
 						
-						<p class="materialParagraph materialThemeDark" style=" font-size: 14px; line-height: 14px; font-style: italic; padding: 20px; background: #3700009e; margin: auto 30px;">
-You may cancel at any time. Your subscription will continue until you cancel. Cancellation takes effect at the end of your current billing period. Taxes may apply. All fees are non-refundable. We reserve the right to modify or discontinue our services (or any part thereof) with or without notice. Offer terms are subject to change.</p>
+						<p class="materialParagraph materialThemeDark" style=" font-size: 14px; line-height: 14px; font-style: italic; padding: 30px 20px; background: #3700009e;">
+You may cancel at any time. Your subscription will continue until you cancel. Cancellation takes effect at the end of your current billing period. Taxes may apply. All fees are non-refundable. We reserve the right to modify or discontinue our services (or any part thereof) with or without notice. Offer terms are subject to change.
+</p>
 							
 
 						<h3 style="padding-left: 2rem" class="materialHeader materialThemeDark">Frequently Asked Questions</h3>
-						<div id="accordion-faq1" style="position: relative; z-index: 2; padding: 1.5rem; margin: 2.5rem 0;">
+						<div id="accordion-faq1" style="position: relative; z-index: 2; padding: 1.5rem; margin-bottom: 2.5rem;">
 							${materialAccordion.create({
 			list: [
 				{
@@ -818,19 +844,24 @@ You may cancel at any time. Your subscription will continue until you cancel. Ca
 			if(event.target.checked) {
 				$('.pricingTableMonthly').fadeOut(200);
 				$('.pricingTableYearly').fadeIn(200);
+
+				// Add class active to the yearly tab
+				$('.pricingTableMonthly').removeClass('active');
+				$('.pricingTableYearly').addClass('active');
 			} else {
 				$('.pricingTableMonthly').fadeIn(150);
 				$('.pricingTableYearly').fadeOut(200);
+
+				// Add class active to the monthly tab
+				$('.pricingTableMonthly').addClass('active');
+				$('.pricingTableYearly').removeClass('active');
 			}
 		})
 
 		$('.pricingCategorySwitchSection > div').on('click', function(event) {
 			$('.pricingCategorySwitchSection > div').removeClass('active');
 			$(this).addClass('active');
-		});
 
-
-		$('.pricingCategorySwitchSection > div').on('click', function(event) {
 			// Get Tab ID of the clicked element
 			var tabId = $(this).attr('tabId');
 
