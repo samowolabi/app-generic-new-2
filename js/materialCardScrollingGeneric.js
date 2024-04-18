@@ -85,15 +85,11 @@ var materialCardScrollingGeneric = (function () {
 
                     console.log('cardIndexA', cardIndex);
 
-                    if (cardIndex < 0) {
+                    if (cardIndex <= 0 || cardIndex >= cardsScrollingDiv.children.length) {
                         return;
                     }
-
-                    if (cardIndex === 0) {
-                        cardIndex = 1;
-                    } else {
-                        cardIndex = cardIndex + 1;
-                    }
+                    
+                    cardIndex = cardIndex - 1;
 
                     // Now scroll into view of cardscrollingdiv child
                     cardsScrollingDiv.children[cardIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
