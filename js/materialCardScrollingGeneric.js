@@ -47,38 +47,28 @@ var materialCardScrollingGeneric = (function () {
         return htmlWrapper;
     }
 
+    that.scrollToDiv = function (tabId) {
+        // tabId is the index of the div to scroll to
+        try {
+            const cardScrollingTabId = document.querySelector(`.materialCardScrollingParentContainer .materialCardsDiv div[tab-id="${tabId}"]`);
+            if (!cardScrollingTabId) { return; }
+
+            cardScrollingTabId.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (error) {
+            console.error(error); // Print the actual error message
+        }
+    }
+
     that.init = function () {
         try {
             document.querySelectorAll(".materialCardScrollingParentContainer").forEach(function (parentDiv) {
                 const cardsScrollingDiv = parentDiv.querySelector('.materialCardsDiv');
-                const scrollAmount = 354;
-
-                // Function to calculate the snap position based on card width
-                function calculateSnapPosition() {
-                    const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
-                    console.log('cardWidth', cardWidth);
-
-                    const snapIndex = Math.round(cardsScrollingDiv.scrollLeft / cardWidth);
-                    return snapIndex * cardWidth;
-                }
 
                 // Hide Left Carousel at first
-                parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
+                // parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
 
-                const hammerManager = new Hammer.Manager(cardsScrollingDiv);
-                const hammerSwipe = new Hammer.Swipe();
-                hammerManager.add(hammerSwipe);
-
-                hammerManager.on('swipeleft', function () {
-                    console.log('swipeleft');
-                });
-
-                hammerManager.on('swiperight', function () {
-                    console.log('swiperight');
-                });
 
                 cardsScrollingDiv.addEventListener('scroll', function (event) {
-                    // Console.log when one of the cards is in the middle
                     const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
                     const cardIndex = Math.round(cardsScrollingDiv.scrollLeft / cardWidth);
 
@@ -88,68 +78,46 @@ var materialCardScrollingGeneric = (function () {
                     }
                 });
 
-                // cardsScrollingDiv.addEventListener('scroll', function (event) {
-                //     // Get if user scroll right or left
-                //     console.log('I am scrolling');
-
-
-                //     // if (cardsScrollingDiv.scrollLeft > 0) {
-                //     //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
-                //     // } else {
-                //     //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'none';
-                //     // }
-                // });
-
-                // Hide Right Carousel if there is no scroll
-                // if (cardsScrollingDiv.scrollWidth <= cardsScrollingDiv.clientWidth) {
-                //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').style.display = 'none';
-                // }
-
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').addEventListener('click', function (event) {
-                    // cardsScrollingDiv.scrollLeft -= scrollAmount;
-                    // if (cardsScrollingDiv.scrollLeft <= 0) {
-                    //     cardsScrollingDiv.scrollLeft = containerWidth - cardsScrollingDiv.clientWidth;
-                    // }
+                    const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
+                    const scrollPos = cardsScrollingDiv.scrollLeft;
+                    let cardIndex = Math.floor((scrollPos + cardsScrollingDiv.offsetWidth) / cardWidth) - 1;
 
-                    const snapPosition = calculateSnapPosition() - scrollAmount;
-                    cardsScrollingDiv.scrollTo({
-                        left: snapPosition,
-                        behavior: 'smooth'
-                    });
+                    console.log('cardIndexA', cardIndex);
+
+                    if (cardIndex < 0) {
+                        return;
+                    }
+
+                    if (cardIndex === 0) {
+                        cardIndex = 1;
+                    } else {
+                        cardIndex = cardIndex + 1;
+                    }
+
+                    // Now scroll into view of cardscrollingdiv child
+                    cardsScrollingDiv.children[cardIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 });
 
                 parentDiv.querySelector('.materialCardsScrolling .overlay.scrollRight').addEventListener('click', function (event) {
-                    // console.log('scrollRight');
-                    // cardsScrollingDiv.scrollLeft += scrollAmount;
+                    const cardWidth = parentDiv.querySelector('.materialCard').offsetWidth;
+                    const scrollPos = cardsScrollingDiv.scrollLeft;
+                    let cardIndex = Math.ceil((scrollPos + cardsScrollingDiv.offsetWidth) / cardWidth) - 1; // Adjusted to the end of the next card
 
-                    // if (cardsScrollingDiv.scrollLeft + cardsScrollingDiv.clientWidth >= containerWidth) {
-                    //     cardsScrollingDiv.scrollLeft = 0;
-                    // } else {
-                    //     // Show Left Carousel
-                    //     parentDiv.querySelector('.materialCardsScrolling .overlay.scrollLeft').style.display = 'flex';
-                    // }
+                    if (cardIndex === 0) {
+                        cardIndex = 1;
+                    }
 
-                    console.log('scrollRight');
+                    if (cardIndex >= cardsScrollingDiv.children.length) {
+                        return;
+                    }
 
-                    const snapPosition = calculateSnapPosition() + scrollAmount;
-                    cardsScrollingDiv.scrollTo({
-                        left: snapPosition,
-                        behavior: 'smooth'
-                    });
+                    console.log('cardIndexB', cardIndex);
+
+                    // Now scroll into view of cardscrollingdiv child 
+                    cardsScrollingDiv.children[cardIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 });
             });
-        } catch (error) {
-            console.error(error); // Print the actual error message
-        }
-    }
-
-    that.scrollToDiv = function (tabId) {
-        // tabId is the index of the div to scroll to
-        try {
-            const cardScrollingTabId = document.querySelector(`.materialCardScrollingParentContainer .materialCardsDiv div[tab-id="${tabId}"]`);
-            if (!cardScrollingTabId) { return; }
-
-            cardScrollingTabId.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } catch (error) {
             console.error(error); // Print the actual error message
         }

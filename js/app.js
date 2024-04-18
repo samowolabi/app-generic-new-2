@@ -517,22 +517,22 @@ app.dialogs.selectPlan = function (settings) {
 						<div tabId="1" class="active">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
-								`<p>$${priceOfferMonthlyPlan1} <span class="line-through">$${priceMonthlyPlan1}</span> /month</p>` :
-								`<p>${priceMonthlyPlan1} /month</p>`
+								`<p>$${priceOfferMonthlyPlan1} <span class="line-through">$${priceMonthlyPlan1}</span> <br> /month</p>` :
+								`<p>${priceMonthlyPlan1} <br> /month</p>`
 							}
 						</div>
 						<div tabId="2">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
-								`<p>$${priceOfferMonthlyPlan2} <span class="line-through">$${priceMonthlyPlan2}</span> /month</p>` :
-								`<p>${priceMonthlyPlan2} /month</p>`
+								`<p>$${priceOfferMonthlyPlan2} <span class="line-through">$${priceMonthlyPlan2}</span> <br> /month</p>` :
+								`<p>${priceMonthlyPlan2} <br> /month</p>`
 							}
 						</div>
 						<div tabId="3">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
 								`<p>$${priceOfferMonthlyPlan3} <span class="line-through">$${priceMonthlyPlan3}</span> /month</p>` :
-								`<p>${priceMonthlyPlan3} /month</p>`
+								`<p>${priceMonthlyPlan3} <br> /month</p>`
 							}
 						</div>
 					</section>
@@ -639,24 +639,24 @@ app.dialogs.selectPlan = function (settings) {
 							<h4>Standard</h4>
 							${
 								isOfferAvailable ?
-									`<p>$${priceOfferYearlyPlan1} <span class="line-through">$${priceYearlyPlan1}</span> /month</p>` :
-									`<p>${priceYearlyPlan1} /month</p>`
+									`<p>$${priceOfferYearlyPlan1} <span class="line-through">$${priceYearlyPlan1}</span> <br> /month</p>` :
+									`<p>${priceYearlyPlan1} <br> /month</p>`
 							}
 						</div>
 						<div tabId="5">
 							<h4>Standard</h4>
 							${
 								isOfferAvailable ?
-									`<p>$${priceOfferYearlyPlan2} <span class="line-through">$${priceYearlyPlan2}</span> /month</p>` :
-									`<p>${priceYearlyPlan2} /month</p>`
+									`<p>$${priceOfferYearlyPlan2} <span class="line-through">$${priceYearlyPlan2}</span> <br> /month</p>` :
+									`<p>${priceYearlyPlan2} <br> /month</p>`
 							}
 						</div>
 						<div tabId="6">
 							<h4>Standard</h4>
 							${
 								isOfferAvailable ?
-									`<p>$${priceOfferYearlyPlan3} <span class="line-through">$${priceYearlyPlan3}</span> /month</p>` :
-									`<p>${priceYearlyPlan3} /month</p>`
+									`<p>$${priceOfferYearlyPlan3} <span class="line-through">$${priceYearlyPlan3}</span> <br> /month</p>` :
+									`<p>${priceYearlyPlan3} <br> /month</p>`
 							}
 						</div>
 					</section>

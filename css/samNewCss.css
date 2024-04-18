@@ -1203,13 +1203,13 @@ section.pricingCategorySwitchSection h4 {
 }
 
 section.pricingCategorySwitchSection p {
-    color: rgba(255,255,255,0.75);
+    color: #78d880;
     font-size: 1.75rem;
     text-align: center;
 }
 
 section.pricingCategorySwitchSection p span.line-through {
-    color: rgba(255,255,255,0.5);
+    color: rgb(197 107 107);
     text-decoration: line-through;
 }
 
