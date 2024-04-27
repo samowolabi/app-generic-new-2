@@ -1093,7 +1093,7 @@ section.pricingTablesSwitchSection {
     justify-content: center;
     align-items: center;
     margin: 4rem 0;
-    font-size: 1.4em;
+    font-size: 1.1em;
     margin-bottom: 0;
     position: sticky;
     top: 0;
@@ -1225,7 +1225,7 @@ section.pricingCategorySwitchSection p span.line-through {
 
     section.pricingCategorySwitchSection {
         position: sticky;
-        top: 71.5px;
+        top: 65.99px;
         left: 0;
         z-index: 30;
         margin-bottom: 1rem;

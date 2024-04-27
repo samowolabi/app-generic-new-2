@@ -6,7 +6,7 @@
 
 .materialCardsScrolling .overlay {
     width: 8.25rem;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -68,6 +68,7 @@
 
 .materialCardsScrolling .materialCardsDiv {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     overflow-x: auto;
     overflow-y: hidden;
@@ -110,6 +111,10 @@
 
 /* Media Queries for tablets */
 @media (max-width: 830px) {
+    .materialCardsScrolling .overlay {
+        display: flex;
+    }
+
     .materialCardsScrolling .materialCardsDiv > div {
         min-width: 100%;
         width: 100%;
@@ -120,6 +125,7 @@
 @media (max-width: 768px) {
     .materialCardsScrolling .overlay {
         width: 4.5rem;
+        display: flex;
     }
     
     .materialCardsScrolling .overlay.scrollLeft {
@@ -130,6 +136,11 @@
     .materialCardsScrolling .overlay.scrollRight {
         display: flex;
         justify-content: flex-end;
+    }
+
+    .materialCardsScrolling .materialCardsDiv {
+        display: flex;
+        justify-content: unset;
     }
 
     .materialCardsScrolling .materialCardsDiv > div {

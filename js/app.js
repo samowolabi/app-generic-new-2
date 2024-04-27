@@ -763,8 +763,8 @@ app.dialogs.selectPlan = function (settings) {
 			</div>
 						
 						<p class="materialParagraph materialThemeDark" style=" font-size: 14px; line-height: 14px; font-style: italic; padding: 30px 20px; background: #3700009e;">
-You may cancel at any time. Your subscription will continue until you cancel. Cancellation takes effect at the end of your current billing period. Taxes may apply. All fees are non-refundable. We reserve the right to modify or discontinue our services (or any part thereof) with or without notice. Offer terms are subject to change.
-</p>
+							You may cancel at any time. Your subscription will continue until you cancel. Cancellation takes effect at the end of your current billing period. Taxes may apply. All fees are non-refundable. We reserve the right to modify or discontinue our services (or any part thereof) with or without notice. Offer terms are subject to change.
+						</p>
 							
 
 						<h3 style="padding-left: 2rem" class="materialHeader materialThemeDark">Frequently Asked Questions</h3>

@@ -53,7 +53,25 @@ var materialCardScrollingGeneric = (function () {
             const cardScrollingTabId = document.querySelector(`.materialCardScrollingParentContainer .materialCardsDiv div[tab-id="${tabId}"]`);
             if (!cardScrollingTabId) { return; }
 
-            cardScrollingTabId.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            cardScrollingTabId.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+            // let rect = document.querySelector('.materialCardsDiv').getBoundingClientRect();
+            // let scrollToY = rect.top + (rect.height / 2) - (window.innerHeight / 2);
+
+            // console.log('scrollToY', scrollToY);
+
+            // setTimeout(function () {
+            //     window.scrollTo({
+            //         top: scrollToY,
+            //         behavior: 'smooth' // Optional: for smooth scrolling effect
+            //     });
+            // }, 500);
+
+            // Scroll to the calculated position
+            // document.querySelector('.materialDialog.maxWidth1200').scrollTo({
+            //     top: scrollToY,
+            //     behavior: 'smooth' // Optional: for smooth scrolling effect
+            // });
         } catch (error) {
             console.error(error); // Print the actual error message
         }
@@ -88,7 +106,7 @@ var materialCardScrollingGeneric = (function () {
                     if (cardIndex <= 0 || cardIndex >= cardsScrollingDiv.children.length) {
                         return;
                     }
-                    
+
                     cardIndex = cardIndex - 1;
 
                     // Now scroll into view of cardscrollingdiv child
