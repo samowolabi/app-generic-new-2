@@ -33,7 +33,7 @@ var materialAccordion = (function () {
             // Function to toggle Accordion
             function toggleAccordion(button, content) {
                 
-                console.error('button', button, 'content', content);
+                // console.error('button', button, 'content', content);
                 
                 button.classList.toggle('active');
                 content.classList.toggle('active');

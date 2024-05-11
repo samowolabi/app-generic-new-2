@@ -517,32 +517,31 @@ app.dialogs.selectPlan = function (settings) {
 						<div tabId="1" class="active">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
-								`<p>$${priceOfferMonthlyPlan1} <span class="line-through">$${priceMonthlyPlan1}</span> <br> /month</p>` :
-								`<p>${priceMonthlyPlan1} <br> /month</p>`
-							}
+			`<p>$${priceOfferMonthlyPlan1} <span class="line-through">$${priceMonthlyPlan1}</span> <br> /month</p>` :
+			`<p>${priceMonthlyPlan1} <br> /month</p>`
+		}
 						</div>
 						<div tabId="2">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
-								`<p>$${priceOfferMonthlyPlan2} <span class="line-through">$${priceMonthlyPlan2}</span> <br> /month</p>` :
-								`<p>${priceMonthlyPlan2} <br> /month</p>`
-							}
+			`<p>$${priceOfferMonthlyPlan2} <span class="line-through">$${priceMonthlyPlan2}</span> <br> /month</p>` :
+			`<p>${priceMonthlyPlan2} <br> /month</p>`
+		}
 						</div>
 						<div tabId="3">
 							<h4>Standard</h4>
 							${isOfferAvailable ?
-								`<p>$${priceOfferMonthlyPlan3} <span class="line-through">$${priceMonthlyPlan3}</span> /month</p>` :
-								`<p>${priceMonthlyPlan3} <br> /month</p>`
-							}
+			`<p>$${priceOfferMonthlyPlan3} <span class="line-through">$${priceMonthlyPlan3}</span> /month</p>` :
+			`<p>${priceMonthlyPlan3} <br> /month</p>`
+		}
 						</div>
 					</section>
 
-					${
-						materialCardScrollingGeneric.create({
-						list: [
-							{
-								tab_id: 1,
-								content: `
+					${materialCardScrollingGeneric.create({
+			list: [
+				{
+					tab_id: 1,
+					content: `
 									<div class="materialCard materialThemeLightGold" style="margin-top: 45px;">
 										<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');">
 											<div class="materialCardImg">
@@ -564,10 +563,10 @@ app.dialogs.selectPlan = function (settings) {
 										</div>
 									</div>
 								`
-						},
-						{
-							tab_id: 2,
-							content: `
+				},
+				{
+					tab_id: 2,
+					content: `
 									<div class="materialCard materialThemeLightGold">
 										<div class="materialCardHeader">
 											<span>Most Popular Choice</span>
@@ -592,10 +591,10 @@ app.dialogs.selectPlan = function (settings) {
 										</div>
 									</div>
 								`
-						},
-						{
-							tab_id: 3,
-							content: `
+				},
+				{
+					tab_id: 3,
+					content: `
 									<div class="materialCard materialThemeLightGold"  style="margin-top: 45px;">
 										<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');">
 											<div class="materialCardImg">
@@ -616,19 +615,19 @@ app.dialogs.selectPlan = function (settings) {
 										</div>
 									</div>
 								`
-						}
-					],
-					onCardsScrollCallback: function (tabId) {
-						if($('.pricingTableSwitch.active').hasClass('pricingTableMonthly')) {
-							$('.pricingCategorySwitchSection div').removeClass('active');
-							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 1) + '"]').addClass('active');
-						} else {
-							$('.pricingCategorySwitchSection div').removeClass('active');
-							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 4) + '"]').addClass('active');
-						}
-					}
-				})
+				}
+			],
+			onCardsScrollCallback: function (tabId) {
+				if ($('.pricingTableSwitch.active').hasClass('pricingTableMonthly')) {
+					$('.pricingCategorySwitchSection div').removeClass('active');
+					$('.pricingCategorySwitchSection div[tabId="' + (tabId + 1) + '"]').addClass('active');
+				} else {
+					$('.pricingCategorySwitchSection div').removeClass('active');
+					$('.pricingCategorySwitchSection div[tabId="' + (tabId + 4) + '"]').addClass('active');
+				}
 			}
+		})
+		}
 
 				</div>
 
@@ -637,35 +636,32 @@ app.dialogs.selectPlan = function (settings) {
 					<section class="pricingCategorySwitchSection">
 						<div tabId="4" class="active">
 							<h4>Standard</h4>
-							${
-								isOfferAvailable ?
-									`<p>$${priceOfferYearlyPlan1} <span class="line-through">$${priceYearlyPlan1}</span> <br> /month</p>` :
-									`<p>${priceYearlyPlan1} <br> /month</p>`
-							}
+							${isOfferAvailable ?
+			`<p>$${priceOfferYearlyPlan1} <span class="line-through">$${priceYearlyPlan1}</span> <br> /month</p>` :
+			`<p>${priceYearlyPlan1} <br> /month</p>`
+		}
 						</div>
 						<div tabId="5">
 							<h4>Standard</h4>
-							${
-								isOfferAvailable ?
-									`<p>$${priceOfferYearlyPlan2} <span class="line-through">$${priceYearlyPlan2}</span> <br> /month</p>` :
-									`<p>${priceYearlyPlan2} <br> /month</p>`
-							}
+							${isOfferAvailable ?
+			`<p>$${priceOfferYearlyPlan2} <span class="line-through">$${priceYearlyPlan2}</span> <br> /month</p>` :
+			`<p>${priceYearlyPlan2} <br> /month</p>`
+		}
 						</div>
 						<div tabId="6">
 							<h4>Standard</h4>
-							${
-								isOfferAvailable ?
-									`<p>$${priceOfferYearlyPlan3} <span class="line-through">$${priceYearlyPlan3}</span> <br> /month</p>` :
-									`<p>${priceYearlyPlan3} <br> /month</p>`
-							}
+							${isOfferAvailable ?
+			`<p>$${priceOfferYearlyPlan3} <span class="line-through">$${priceYearlyPlan3}</span> <br> /month</p>` :
+			`<p>${priceYearlyPlan3} <br> /month</p>`
+		}
 						</div>
 					</section>
 
 				${materialCardScrollingGeneric.create({
-					list: [
-						{
-							tab_id: 4,
-							content: `
+			list: [
+				{
+					tab_id: 4,
+					content: `
 								<div class="materialCard materialThemeLightGold" style="margin-top: 45px;">
 									<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music', '${settings.coupon}');">
 										<div class="materialCardImg">
@@ -687,10 +683,10 @@ app.dialogs.selectPlan = function (settings) {
 									</div>
 								</div>
 							`
-						},
-						{
-							tab_id: 5,
-							content: `
+				},
+				{
+					tab_id: 5,
+					content: `
 								<div class="materialCard materialThemeLightGold">
 									<div class="materialCardHeader">
 										<span>Most Popular Choice</span>
@@ -715,10 +711,10 @@ app.dialogs.selectPlan = function (settings) {
 									</div>
 								</div>
 							`
-						},
-						{
-							tab_id: 6,
-							content: `
+				},
+				{
+					tab_id: 6,
+					content: `
 								<div class="materialCard materialThemeLightGold"  style="margin-top: 45px;">
 										<div class="materialCardTop" data-button="" data-href="javascript: app.checkout('the-ultimate-collection-of-piano-music-lifetime-access', '${settings.coupon}');">
 											<div class="materialCardImg">
@@ -739,27 +735,27 @@ app.dialogs.selectPlan = function (settings) {
 										</div>
 									</div>
 							`
-						}
-					],
-					onCardsScrollCallback: function (tabId) {
-						if($('.pricingTableSwitch.active').hasClass('pricingTableMonthly')) {
-							// Remove active class from all tabs from tab ID 1 to 3
-							for (let i = 1; i <= 3; i++) {
-								$('.pricingCategorySwitchSection div[tabId="' + i + '"]').removeClass('active');
-							}
-
-							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 1) + '"]').addClass('active');
-						} else {
-							// Remove active class from all tabs from tab ID 4 to 6
-							for (let i = 4; i <= 6; i++) {
-								$('.pricingCategorySwitchSection div[tabId="' + i + '"]').removeClass('active');
-							}
-
-							$('.pricingCategorySwitchSection div[tabId="' + (tabId + 4) + '"]').addClass('active');
-						}
-					}
-					})
 				}
+			],
+			onCardsScrollCallback: function (tabId) {
+				if ($('.pricingTableSwitch.active').hasClass('pricingTableMonthly')) {
+					// Remove active class from all tabs from tab ID 1 to 3
+					for (let i = 1; i <= 3; i++) {
+						$('.pricingCategorySwitchSection div[tabId="' + i + '"]').removeClass('active');
+					}
+
+					$('.pricingCategorySwitchSection div[tabId="' + (tabId + 1) + '"]').addClass('active');
+				} else {
+					// Remove active class from all tabs from tab ID 4 to 6
+					for (let i = 4; i <= 6; i++) {
+						$('.pricingCategorySwitchSection div[tabId="' + i + '"]').removeClass('active');
+					}
+
+					$('.pricingCategorySwitchSection div[tabId="' + (tabId + 4) + '"]').addClass('active');
+				}
+			}
+		})
+		}
 			</div>
 						
 						<p class="materialParagraph materialThemeDark" style=" font-size: 14px; line-height: 14px; font-style: italic; padding: 30px 20px; background: #3700009e;">
@@ -841,6 +837,9 @@ app.dialogs.selectPlan = function (settings) {
 		materialCardScrollingGeneric.init();
 
 		$('section.pricingTablesSwitchSection input[type="checkbox"]').on('change', function(event) {
+			// Get the tab ID of the active tab
+			var tabId = $('.pricingCategorySwitchSection div.active').attr('tabId');
+			
 			if(event.target.checked) {
 				$('.pricingTableMonthly').fadeOut(200);
 				$('.pricingTableYearly').fadeIn(200);
@@ -859,9 +858,6 @@ app.dialogs.selectPlan = function (settings) {
 		})
 
 		$('.pricingCategorySwitchSection > div').on('click', function(event) {
-			$('.pricingCategorySwitchSection > div').removeClass('active');
-			$(this).addClass('active');
-
 			// Get Tab ID of the clicked element
 			var tabId = $(this).attr('tabId');
 
