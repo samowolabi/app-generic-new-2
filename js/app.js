@@ -469,9 +469,9 @@ app.dialogs.selectPlan = function (settings) {
 		}
 		</script>`;
 
-		priceMonthly = `<s style="font-size: 0.85em;">$29.90</s> $9.99`;
-		priceYearly = `<s style=" font-size: 0.85em;">$359.00</s> $99.00`;
-		priceLifetime = `<s style=" font-size: 0.85em;">$3999.00</s> $899.00`;
+		priceMonthly = `<s style="font-size: 0.85em;">$29.90</s> <span style="color: #5db564">$9.99</span>`;
+		priceYearly = `<s style=" font-size: 0.85em;">$359.00</s> <span style="color: #5db564">$99.00</span>`;
+		priceLifetime = `<s style=" font-size: 0.85em;">$3999.00</s> <span style="color: #5db564">$899.00</span>`;
 	} else {
 		timerHtml = "";
 		settings.coupon = "";

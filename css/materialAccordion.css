@@ -100,3 +100,19 @@
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon .fa {
     color: #000000;
 }
+
+/* Media Query */
+@media (max-width: 768px) {
+    .materialAccordionContent .materialOutlineLearn li h6 {
+        overflow: unset;
+        white-space: normal;
+    }
+}
+
+/* Media Query */
+@media (max-width: 480px) {
+    .materialAccordionContent .materialOutlineLearn li h6 {
+        overflow: unset;
+        white-space: normal;
+    }
+}
