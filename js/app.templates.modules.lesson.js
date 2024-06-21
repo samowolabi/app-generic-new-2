@@ -827,7 +827,8 @@ app.templates.modules.lesson = {
                                 </span> 
                             </a>
                             -->
-                            <a href="#!/lesson/${lessonData.id}/book${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(lessonData.id)) ? `&p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['content'])}` : `&p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['content'])}`}" target="_blank" style="font-size: 18px;"class="materialButtonFill" id="downloadEbook">
+                            
+                            <a href="#!/lesson/${lessonData.id}/book${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(lessonData.id)) ? `?p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['attachmentUrl'])}` : `?p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['attachmentUrl'])}`}" target="_blank" style="font-size: 18px;"class="materialButtonFill" id="downloadEbook">
                                 <i class="fa fa-book" aria-hidden="true"></i>
                                 Open Book
                             </a>
