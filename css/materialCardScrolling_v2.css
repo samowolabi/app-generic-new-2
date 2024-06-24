@@ -3,6 +3,7 @@
     height: 40px;
     border-radius: 50%;
     background: #ffffff26;
+    z-index: 5;
 }
 
 .slick-prev:hover, .slick-next:hover {
