@@ -397,7 +397,8 @@ app.templates.pages.newHome = {
 								${
 									materialCardScrollingV2.create({
 										data: app.data,
-										list: item.lesson
+										list: item.lesson,
+										limit: 20
 									})
 								}
 							</div>
