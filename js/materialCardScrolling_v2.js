@@ -73,21 +73,24 @@ var materialCardScrollingV2 = (function () {
                           slidesToShow: 3,
                           slidesToScroll: 3,
                           infinite: false,
-                          dots: false
+                          dots: false,
+                          adaptiveHeight: false
                         }
                       },
                       {
                         breakpoint: 600,
                         settings: {
                           slidesToShow: 2,
-                          slidesToScroll: 2
+                          slidesToScroll: 2,
+                          adaptiveHeight: false
                         }
                       },
                       {
                         breakpoint: 480,
                         settings: {
                           slidesToShow: 1,
-                          slidesToScroll: 1
+                          slidesToScroll: 1,
+                          adaptiveHeight: false
                         }
                       }
                     ]
