@@ -394,9 +394,8 @@ app.templates.pages.newHome = {
 						${formatAndValidateData(mergedArrays).map((item, index) => `
 							<div class="app_coursesCardsContainer">
 								<p class="sectionHeader">${item.header}</p>
-
 								${
-									materialCardScrolling.create({
+									materialCardScrollingV2.create({
 										data: app.data,
 										list: item.lesson
 									})
@@ -434,8 +433,9 @@ app.templates.pages.newHome = {
 					<script>
 						console.log("RUNNING");
 						materialHeroSection.init(); 
-						materialFilterPills.init()
-						materialCardScrolling.init()
+						materialFilterPills.init();
+						// materialCardScrolling.init();
+						materialCardScrollingV2.init();
 					</script>
 				`;
 		return html;

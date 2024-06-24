@@ -56,6 +56,19 @@
     padding: 0 3rem;
 }
 
+
+/* Material Card */
+.materialCardInfo h2.materialHeader {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(1.2em * 3); /* Adjust based on line-height */
+    line-height: 1.2em; /* Adjust line height if needed */
+}
+
+
 @media (max-width: 768px) {
     .app_headerDiv {
         padding: 1.2rem;
