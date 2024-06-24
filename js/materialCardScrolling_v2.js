@@ -61,7 +61,7 @@ var materialCardScrollingV2 = (function () {
 
                 $(`.${uniqueClass}`).slick({
                     dots: false,
-                    infinite: true,
+                    infinite: false,
                     speed: 300,
                     slidesToShow: 4,
                     slidesToScroll: 4,
@@ -72,7 +72,7 @@ var materialCardScrollingV2 = (function () {
                         settings: {
                           slidesToShow: 3,
                           slidesToScroll: 3,
-                          infinite: true,
+                          infinite: false,
                           dots: false
                         }
                       },
