@@ -673,7 +673,7 @@ app.templates.modules.lesson = {
                                     if(thisLesson().engagementProgressMaxPercent == 100){ $("#lessonProgressText${lessonData.id}").html("Completed"); }
                                 });
                                 
-                                //Update progress to server every 20 seconds, and add 20 seconds to engagement time
+                                // Update progress to server every 20 seconds, and add 20 seconds to engagement time
                                 app.runTimer(function(){  
                                     thisLesson().engagementTime += 20; 
                                     app.saveToServer(${lessonData.id});  
@@ -1401,9 +1401,7 @@ app.templates.modules.lesson = {
                             <a href="#" class="materialButtonIcon materialThemeDark" data-button="" data-icon-class-on="fa fa-bookmark" data-icon-class-off="fa fa-bookmark-o" style="font-size: 1.5em;"> <i class="fa fa-bookmark"></i> </a>
                         </div>
 
-                        <p class="lessonDescription help-lesson-description-text">
-                            ${lessonData.description}
-                        </p>
+                        ${lessonData?.description ? `<p class="lessonDescription help-lesson-description-text">${lessonData.description}</p>` : ''}
 
                         ${contentBottomHtml}
 
