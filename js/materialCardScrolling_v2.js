@@ -66,6 +66,8 @@ var materialCardScrollingV2 = (function () {
                     slidesToShow: 4,
                     slidesToScroll: 4,
                     adaptiveHeight: true,
+                    swipeToSlide: true,
+                    touchMove: true,
                     responsive: [
                       {
                         breakpoint: 1024,
@@ -74,7 +76,9 @@ var materialCardScrollingV2 = (function () {
                           slidesToScroll: 3,
                           infinite: false,
                           dots: false,
-                          adaptiveHeight: false
+                          adaptiveHeight: false,
+                          swipeToSlide: true,
+                          touchMove: true,
                         }
                       },
                       {
@@ -82,7 +86,9 @@ var materialCardScrollingV2 = (function () {
                         settings: {
                           slidesToShow: 2,
                           slidesToScroll: 2,
-                          adaptiveHeight: false
+                          adaptiveHeight: false,
+                          swipeToSlide: true,
+                          touchMove: true,
                         }
                       },
                       {
@@ -90,7 +96,9 @@ var materialCardScrollingV2 = (function () {
                         settings: {
                           slidesToShow: 1,
                           slidesToScroll: 1,
-                          adaptiveHeight: false
+                          adaptiveHeight: false,
+                          swipeToSlide: true,
+                          touchMove: true,
                         }
                       }
                     ]
