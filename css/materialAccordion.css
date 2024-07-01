@@ -62,14 +62,44 @@
 .materialAccordionContent .materialOutlineLearn li h6 {
     color: #F9F4DE;
     text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow: hidden; 
     width: auto;
+	
+	display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines on new browsers */
+    -webkit-box-orient: vertical;  
+    max-height: 3.3em;  /* Limit to 3 lines on old browsers */
+    line-height: 1.1em;
+    white-space: normal;
 }
 
-.materialAccordionContent .materialOutlineLearn li p {
+.materialAccordionContent .materialOutlineLearn li p.description {
     color: #c8c8c8;
+	
+	display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limit to 1 lines on new browsers */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 1.1em; /* Limit to 1 lines on old browsers */
+    line-height: 1.1em;
+    white-space: normal;
 }
+
+.materialAccordionContent .materialOutlineLearn li p.materialOutlineExpire {
+	color: rgb(212,45,45);
+}
+
+
+.materialAccordionContent .materialOutlineLearn li p.materialOutlineComingSoon {
+    color: #926f00;
+}
+
+.materialAccordionContent .materialOutlineLearn li p.materialOutlineExpire,
+.materialAccordionContent .materialOutlineLearn li p.materialOutlineComingSoon {
+    margin-top: 8px;
+}
+
 
 .materialAccordionContent .materialOutlineLearn li:before {
     width: 5px;
@@ -82,9 +112,7 @@
     left: 21px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: #F4BE37 !important;
-    border-color: #F4BE37 !important;
+    align-items: center; 
 }
 
 .materialAccordionContent .materialOutlineLearn .materialOutlineIcon.active {

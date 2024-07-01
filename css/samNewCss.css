@@ -814,11 +814,11 @@
 }
 
 .app_LessonContainer > div:nth-child(1) {
-    width: 65%;
+    width: 62%;
 }
 
 .app_LessonContainer > div:nth-child(2) {
-    width: 35%;
+    width: 38%;
 }
 
 .app_LessonContainer .app_lessonOverviewSection .courseTitle {
@@ -1321,4 +1321,22 @@ s {
 	.pricingTablesSwitchSection .pills{
 		display: block;
 	} 
+}
+
+
+.promoBarCountdownContainer {
+    color: white;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 8rem;
+}
+
+.promoBarCountdownContainer .promoBarCountdownDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
