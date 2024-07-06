@@ -1739,17 +1739,10 @@ app.refresh = function (lessonId, dataFromServer) {
 }
 
 
-app.refeshBackButtonUrl = function () {
-	var updateBackHref = function (hashHistory) {
-		$(".materialBarDashboardBackBtn").attr("href", `#!${hashHistory[hashHistory.length - 2] || ""}`);
-	}
-
+app.refeshBackButtonUrl = function () { // If the previous route is not the same as the current route, push it to the history else pop it
 	if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
-
 		// get the lessonId from the app.currentRoute
 		let lessonId = app.currentRoute.split("/lesson/")[1];
-
-		console.log('lessonId', app.data.lesson[lessonId]);
 
 		if (!app.data.lesson[lessonId]) {
 			console.log('lessonId not found');
@@ -1758,17 +1751,18 @@ app.refeshBackButtonUrl = function () {
 
 		let parentChapter = app.data.lesson[lessonId].parentChapter;
 		let parentCourse = app.data.chapter[parentChapter].parentCourse;
+
 		app.hashHistory.push("/course/" + parentCourse);
 		app.hashHistory.push(app.currentRoute);
 
-		updateBackHref(app.hashHistory); // Update back button URL
+		// updateBackHref(app.hashHistory); // Update back button URL
 	} else {
 		if (app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) {
 			app.hashHistory.push(app.currentRoute);
 		} else {
 			app.hashHistory.pop();
 		}
-		updateBackHref(app.hashHistory); // Update back button URL
+		// updateBackHref(app.hashHistory); // Update back button URL
 	}
 }
 
@@ -4849,6 +4843,11 @@ CourseSorter = (function () {
 		var courseIds = Object.keys(this.data.course);
 
 		return courseIds.sort(function (a, b) {
+		
+			if(!this.data.course[a].filters || !this.data.course[a].filters[filterName] ||	!this.data.course[b].filters || !this.data.course[b].filters[filterName]){
+				return 0;
+			}
+		
 			var valueA = this.data.course[a].filters[filterName];
 			var valueB = this.data.course[b].filters[filterName];
 
@@ -4882,6 +4881,7 @@ CourseSorter = (function () {
 	CourseSorter.prototype.sortCoursesByAllFilters = function () {
 		var sortedCourses = {};
 		var finalSort = { "lessonsIds": {}, "coursesIds": {} };
+		var result = { "lessonsIds": {}, "coursesIds": {} };
 
 		//Add filter by progress
 		var inProgress = this.filterInProgressOrderedByLastAccessDate();
@@ -4905,8 +4905,39 @@ CourseSorter = (function () {
 			finalSort["coursesIds"][filterName] = sortedCourses[filterName];
 			finalSort["lessonsIds"][filterName] = this.getLessonsFromCourses(sortedCourses[filterName]);
 		}.bind(this));
+		
+		// Helper function to remove duplicates
+		function removeDuplicates(items) {
+			if (!items || !items.length) return [];
+			var seen = {};
+			var out = [];
+			for (var i = 0; i < items.length; i++) {
+				var item = items[i];
+				if (!seen[item]) {
+					seen[item] = true;
+					out.push(item);
+				}
+			}
+			return out;
+		}
+			 
+ 
+		// Second pass to remove duplicates
+		// Iterate over all keys in finalSort to remove duplicates
+		for (var key in finalSort["coursesIds"]) {
+			if (finalSort["coursesIds"].hasOwnProperty(key)) {
+				result["coursesIds"][key] = removeDuplicates(finalSort["coursesIds"][key]);
+			}
+		}
 
-		return finalSort;
+		for (var key in finalSort["lessonsIds"]) {
+			if (finalSort["lessonsIds"].hasOwnProperty(key)) {
+				result["lessonsIds"][key] = removeDuplicates(finalSort["lessonsIds"][key]);
+			}
+		}
+		 
+
+		return result;
 	};
 
 	CourseSorter.prototype.getLessonsFromCourses = function (courseIds) {
@@ -5826,8 +5857,13 @@ var LessonRecommender = function () {
 		var coursesIds = that.__getCourseIds(data, lessonsIds);
 
 		//HARDCODED BECAUSE THERE ARE BUGS
-		that.thisWeekTopRecommendations.coursesIds = [1000000, 1000061, 1000062, 1000001, 1000212];
-
+		if(config.appName === "Members-Only Lessons Dashboard"){
+			that.thisWeekTopRecommendations.coursesIds = [1000, 6000, 8000, 3000, 1000061, 9000, 7000, 4000, 1000137];
+			
+		}
+		else{
+			that.thisWeekTopRecommendations.coursesIds = [1000000, 1000061, 1000062, 1000001, 1000212];
+		}
 		//that.thisWeekTopRecommendations.coursesIds = coursesIds;
 	};
 

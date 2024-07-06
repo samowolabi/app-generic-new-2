@@ -184,7 +184,19 @@ app.templates.pages.course = {
             </div>
         `;
 
+		var activeLessonId = null;
+
         var html = `
+            ${
+                materialTopBar.create({
+                    text: 'Black Friday in June: Get 90% Off',
+                    icon: 'images/newimages/gift.webp',
+                    countdownTime: '2024-07-07T23:59:59-04:00',
+                    color: '#fff',
+                    link: '#'
+                })
+            }
+
             <main class="app_mainContainer maxWidthContainer marginBottom20">
                 <header class="app_heroHeader help-course-hero-section" style="background-image: url(${courseData.image})">
                     <div>
@@ -217,16 +229,16 @@ app.templates.pages.course = {
                 </section>
 
                 <div class="app_LessonContainer">
-                    ${app.templates.modules.lessonsOutline.content(courseId, courseData.stats.lessons.totalProgress)}
+                    ${app.templates.modules.lessonsOutline.content(courseId, courseData.stats.lessons.totalProgress,  activeLessonId)}
                 </div>
             </main>
         `;
 
         html += `
-                <script>
-                    console.log("RUNNING");
-                </script>
-			`;
+            <script>
+                materialTopBar.init();
+            </script>
+		`;
         return html;
     }
 }

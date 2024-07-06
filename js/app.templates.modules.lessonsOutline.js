@@ -120,7 +120,10 @@ app.templates.modules.lessonsOutline = {
 		return html;
 	},
 
-	content: function (courseId, progressPercent) {
+	content: function (courseId, progressPercent, activeLessonId) {
+
+
+
 
 		var data = app.data;
 
@@ -161,36 +164,70 @@ app.templates.modules.lessonsOutline = {
                                     <div class="materialOutlineLearn help-lessons-accordion-content">
                                         <ul class="materialOutlineList"> 
                                             ${data.chapter[chapterId].lessonIds.map(function (lessonId) {
+
+							var activeClass = (activeLessonId === lessonId) ? "active" : "";
+							//If user clicks on current lesson, scroll to top of page; else navigate to new lesson page.
+							var url = (activeLessonId === lessonId) ? `javascript: $('html, body').animate({ scrollTop: $('main').offset().top},500,'linear');` : `#!/lesson/${lessonId}` ;
+ 
+							
+							var lessonType = data.lesson[lessonId].type; 
+							var iconCode;
+							var iconTitle;
+							
+							switch(lessonType){
+								case "video":
+									iconCode = "fa-film";
+									iconTitle = "Video";
+									break;
+								case "ebook":
+									iconCode = "fa-book";
+									iconTitle = "Book";
+									break;
+								case "article":
+									iconCode = "fa-newspaper-o";
+									iconTitle = "Article";
+									break;
+								default:
+									iconCode = "fa-newspaper-o";
+									iconTitle = "Lesson"; 
+							}
+							
+							var lessonTypeHtml = `<i class="fa ${iconCode}" title="${iconTitle}"></i>`;
+
+								
 							return `
-                                                        <li class="materialOutlineView materialOutlineViewComplete"> 
+                                                        <li class="materialOutlineView materialOutlineViewComplete ${activeClass}"> 
                                                             <div class="materialOutlineListBody">
-                                                                <a href="#!/lesson/${lessonId}"> 
+                                                                <a href="${url}"> 
                                                                     <div class="materialOutlineThumbnail" style="background-image: url(${data.lesson[lessonId].image});">
-                                                                        <div class="materialProgressBar">
+                                                                        <div class="mediaType">
+																			${lessonTypeHtml}
+																		</div>
+																		<div class="materialProgressBar materialThemeDark">
                                                                             <div class="materialProgressBarInside " style="width: ${data.lesson[lessonId].progress}%;"></div>
                                                                         </div>
                                                                     </div>
                                                                     <h6>${data.lesson[lessonId].title}</h6>
-                                                                    <p>${data.lesson[lessonId].subtitle}</p>
+                                                                    <p class="description">${data.lesson[lessonId].subtitle}</p>
                                                                     ${data.lesson[lessonId].dateStatus === 'expiredAsap' ? `
-                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring in <span data-countdown="${data.lesson[lessonId].deadlineDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
+                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring in&nbsp;<span data-countdown="${data.lesson[lessonId].deadlineDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
                                                                         ` : data.lesson[lessonId].dateStatus === 'expiringSoon' ? `
                                                                             <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Expiring Soon</p>
                                                                         ` : data.lesson[lessonId].dateStatus === 'comingAsap' ? `
-                                                                            <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Available in <span data-countdown="${data.lesson[lessonId].availableDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
+                                                                            <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Available in&nbsp;<span data-countdown="${data.lesson[lessonId].availableDateString}"><span data-days>00</span><span data-days-caption> Days </span><span data-hours>00</span>:<span data-minutes >00</span>:<span data-seconds>00</span></span></p>
                                                                         ` : data.lesson[lessonId].dateStatus === 'comingSoon' ? `
                                                                             <p class="materialOutlineComingSoon"><i class="fa fa-clock-o"></i>Coming Soon</p>
                                                                         ` : data.lesson[lessonId].dateStatus === 'expired' ? `
-                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Locked</p>
+                                                                            <p class="materialOutlineExpire"><i class="fa fa-lock"></i>Unlock Now</p>
                                                                         ` : ``
-								}
+							}
                                                                 </a>
                                                             </div>
                                                             <div class="materialOutlineIcon ${data.lesson[lessonId].progress >= 94 ? ' active ' : ' '}">${data.lesson[lessonId].progress >= 94 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-circle"></i>'}</div>
                                                         </li>
                                                     `
 						}).join('')
-							}
+						}
                                         </ul>
                                     </div>
                                 `
@@ -208,7 +245,7 @@ app.templates.modules.lessonsOutline = {
 								<div class="materialOutlineListBody">
 									<a href="#!/">
 										<div class="materialOutlineThumbnail" style="background-image: url(https://learn.pianoencyclopedia.com/hydra/HydraCreator/live-editor/modules-assets/webpage-premium/images/showcase-shelf/logo-3d.min.png);">
-											<div class="materialProgressBar ">
+											<div class="materialProgressBar materialThemeDark">
 												<div class="materialProgressBarInside" data-progress="${completenessPorcentage_1}" data-progress-affects-width style="width:10px;"></div>
 											</div>
 										</div>
@@ -235,7 +272,7 @@ app.templates.modules.lessonsOutline = {
 												<div class="materialProgressBarInside" data-progress="${completenessPorcentage_2}" data-progress-affects-width style="width:10px;"></div>
 											</div>
 										</div>
-										<h6>Discover our Digital Home-Study Course "The Logic Behind Music"</h6>
+										<h6 style="-webkit-line-clamp: initial;  -webkit-box-orient: unset; max-height: initial;">Discover our Digital Home-Study Course "The Logic Behind Music"</h6>
 										<p>The most comprehensive course in the world, with a 2-year curriculum of multimedia lessons, including  25,000 interactive piano graphics, animated sheet music, and interactive 3D hands that will show exactly what fingers to use. Quickly learn how to play your favorite songs, play by ear, improvise, and even create your own music - by discovering how music truly works.</p> 
 									</a>
 								</div>

@@ -22,7 +22,6 @@ app.hashHistory = [];
 
 router.hooks({
 	before: function (done, params) {
-
 		// doing some async operation
 		if (app.currentRoute === "" || app.currentRoute === "/newest" || app.currentRoute === "/expiring") {
 			app.dashboardScrollPosition = $(document).scrollTop();
@@ -33,7 +32,6 @@ router.hooks({
 	},
 	after: async function (params) {
 		// after resolving 
-
 		app.currentRoute = function (router) {
 			var route = router._lastRouteResolved.url;
 
@@ -65,15 +63,14 @@ router.hooks({
 		app.session.pageViews++;
 
 		// Update Back button URL
-		// If the previous route is not the same as the current route, push it to the history else pop it
-
 		if (app.data) {
+			console.error("Refresh back button URL", new Date().getTime());
 			app.refeshBackButtonUrl();
 		}
 	},
 	leave: function (params) {
 		// when you are going out of the that route
-
+		console.error("Leaving route", params);
 	}
 });
 
@@ -143,7 +140,6 @@ router.on({
 				window.scrollTo(0, 0);
 			} 
 		});
-
 
 		app.routeId = "/lesson/";
 		$(".materialBarDashboardBackBtn").fadeIn();
@@ -295,7 +291,7 @@ router.on({
 				loading: function () { return app.templates.pages.dashboard.loading(); },
 				contentCondition: function () { return true; },
 				contentTrue: function () { return app.templates.pages.dashboard.__createCourses(app.data, app.data.global.courses.sortedExpiringFirst); },
-				callback: function () { $('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top - 85 }, 500, 'linear'); $("input[value='/expiring/']").prop("checked", true); }
+				callback: function () { $('html, body').animate({ scrollTop: $('main').offset().top }, 500, 'linear'); $("input[value='/expiring/']").prop("checked", true); }
 
 			});
 		}
@@ -323,7 +319,7 @@ router.on({
 				loading: function () { return app.templates.pages.dashboard.loading(); },
 				contentCondition: function () { return true; },
 				contentTrue: function () { return app.templates.pages.dashboard.__createCourses(app.data, app.data.global.courses.sortedNewestFirst); },
-				callback: function () { $('html, body').animate({ scrollTop: $('#dashboard-lessons-header').offset().top - 85 }, 500, 'linear'); $("input[value='/newest/']").prop("checked", true); }
+				callback: function () { $('html, body').animate({ scrollTop: $('main').offset().top - 85 }, 500, 'linear'); $("input[value='/newest/']").prop("checked", true); }
 			});
 		}
 		else {
@@ -392,8 +388,6 @@ var plaformCustomBehavior = function () {
 	var hideCustomDialogs = function () {
 		$("html").addClass("app-custom-dialogs");
 	};
-
-
 
 	function getParameterByName(name, url = window.location.href) {
 		name = name.replace(/[\[\]]/g, '\\$&');

@@ -15,11 +15,11 @@
 	background:transparent;
 }
 .materialBarDashboardNavigation {
-    position: fixed;
+    /* position: fixed;
     left: 0;
     right: 0;
     top: 0;
-    z-index: 9997;
+    z-index: 9997; */
 	-webkit-box-shadow: inset 7px 1px 10px 0px rgba(0, 0, 0, 0.88), 0 1px 3px black;
 	        box-shadow: inset 7px 1px 10px 0px rgba(0, 0, 0, 0.88), 0 1px 3px black;
     background: #171717;
@@ -141,7 +141,7 @@
 }
 
 .materialBarDashboardNavLink {
-    display:none;
+    /* display:none; */
 	opacity: 0.6;
 	font-size: 12px;
 	word-spacing: 2px;

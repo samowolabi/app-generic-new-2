@@ -15,7 +15,7 @@ material.ripple = function(element, settings){
 		settings.opacity = settings.opacity || 1;
 
 		var fx = function(target){
-			target.stopPropagation();
+			//target.stopPropagation(); // Disabled because it breaks all libraries
 			ripplet(target, { 
 				color: settings.color,  
 				centered: settings.centered,
@@ -111,7 +111,7 @@ material.init = function(target){
 		if($(this).data('propagation') !== "yes") {
 			 $(this).click(function(event){
 				/*Prevent propagation of events to parents, which results in double or triple actions */
-				event.stopPropagation();
+				//event.stopPropagation(); // Disabled because it breaks all libraries
 			 });
 		}
     }); 

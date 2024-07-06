@@ -657,7 +657,7 @@
         height: 70vh;
     }
     .app_heroHeader .app_heroSection h4 {
-        font-size: 4.25rem;
+        font-size: 3.7rem;
     }
     .app_heroHeader .app_heroSection p {
         font-size: 1.4rem;
@@ -1321,22 +1321,4 @@ s {
 	.pricingTablesSwitchSection .pills{
 		display: block;
 	} 
-}
-
-
-.promoBarCountdownContainer {
-    color: white;
-    font-size: 1.2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 8rem;
-}
-
-.promoBarCountdownContainer .promoBarCountdownDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
 }

@@ -40,7 +40,18 @@ app.templates.pages.lesson = {
 
         var getLessonIDModuleData = app.templates.modules.lesson.content(lessonId);
 
+
         var html =`
+            ${
+                materialTopBar.create({
+                    text: 'Black Friday in June: Get 90% Off',
+                    icon: 'images/newimages/gift.webp',
+                    countdownTime: '2024-07-07T23:59:59-04:00',
+                    color: '#fff',
+                    link: '#'
+                })
+            }
+            
             <main class="app_mainContainer maxWidthContainer marginBottom20">
                 <ul class="materialBreadCrumbs help-lesson-breadcrumbs">
                     ${dataLesson.breadcrumb.map(function(item){
@@ -52,19 +63,25 @@ app.templates.pages.lesson = {
 
                 <div class="app_LessonContainer">
                     <div>
-                        ${getLessonIDModuleData.html}
-                    </div>
-
+					
+						<div>
+							${getLessonIDModuleData.html}
+						</div>
+						
+						
+						
+					</div>
+					
                     <div>
-                        ${app.templates.modules.lessonsOutline.content(parentCourseId, getLessonIDModuleData.progressPercent)}
+                        ${app.templates.modules.lessonsOutline.content(parentCourseId, getLessonIDModuleData.progressPercent, lessonId)}
                     </div>
                 </div>
 
-                <div class="container marginTop20">
-                    <div class="row action-cards-top">  
-                        ${app.templates.modules.actionCards.content(app.data.user.cards, false, false)} 
-                    </div>
-                </div>
+				<div class="container marginTop10">
+					<div class="row action-cards-top">  
+						${app.templates.modules.actionCards.content(app.data.user.cards, false, false)} 
+					</div>
+				</div>
 
                 <div class="container marginTop10">
                     <div class="row action-cards-bottom">  
@@ -73,6 +90,12 @@ app.templates.pages.lesson = {
                 </div>
             </main>
         `;
+
+        html += `
+            <script>
+                materialTopBar.init();
+            </script>
+		`;
 
         return html;
     },

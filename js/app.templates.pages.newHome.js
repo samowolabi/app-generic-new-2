@@ -302,10 +302,18 @@ app.templates.pages.newHome = {
 
 
 			<main class="app_mainContainer">
-
+				${
+					materialTopBar.create({
+						text: 'Black Friday in June: Get 90% Off',
+						icon: 'images/newimages/gift.webp',
+						countdownTime: '2024-07-07T23:59:59-04:00',
+						color: '#fff',
+						link: '#'
+					})
+				}
 
 				<section class="heroSectionContainer" style="position: relative;">
-					<header class="app_headerContainer" style="position: absolute; top: 10px; width: 100%;">
+					<header class="app_headerContainer" style="position: absolute; top: 35px; width: 100%;">
 						${app.templates.modules.appHeader.content({
 							getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
 						})}
@@ -435,6 +443,7 @@ app.templates.pages.newHome = {
 						console.log("RUNNING");
 						materialHeroSection.init(); 
 						materialFilterPills.init();
+						materialTopBar.init();
 						// materialCardScrolling.init();
 						materialCardScrollingV2.init();
 					</script>
