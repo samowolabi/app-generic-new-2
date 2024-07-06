@@ -305,7 +305,7 @@ app.templates.pages.newHome = {
 				${
 					materialTopBar.create({
 						text: 'Black Friday in June: Get 90% Off',
-						icon: 'images/newimages/gift.webp',
+						icon: 'images/newImages/gift.webp',
 						countdownTime: '2024-07-07T23:59:59-04:00',
 						color: '#fff',
 						link: '#'
