@@ -152,37 +152,48 @@ app.onlyOnceEvery = function (params) {
 		hours = (minutes + 0) / 60;
 	}
 
+	if (!hours) {
+		throw new Error("Invalid time parameters. Please specify days, hours, or minutes.");
+	}
+
 	//TODO test if working correctly.
 	var cookieCheck = function () {
 		uniqueId = "oo-" + uniqueId;
 		var nowDate = new Date();
 		var last = Cookies.get(uniqueId);
-		var lastDate = (last ? (new Date(last)) : false);
-		var lastDateSession = app.session.onlyOnce[uniqueId];
 
-		if (last && lastDate && ((nowDate - lastDate) < (hours * 60 * 60 * 1000))) {
+		var lastDate = (last ? (new Date(last)) : null);
+		var isValidLastDate = lastDate && !isNaN(lastDate.getTime());
+
+		var lastDateSession = (app.session.onlyOnce[uniqueId] ? (new Date(app.session.onlyOnce[uniqueId])) : null);
+		var isValidLastDateSession = lastDateSession && !isNaN(lastDateSession.getTime());
+
+		if (last && lastDate &&  isValidLastDate  && ((nowDate - lastDate) < (hours * 60 * 60 * 1000))) {
 			return false;
 		}
 
 		//If we are on incognito mode, we want to at least remember the last seesion
-		if (lastDateSession && ((nowDate - lastDateSession) < (hours * 60 * 60 * 1000))) {
+		if (lastDateSession && isValidLastDateSession && ((nowDate - lastDateSession) < (hours * 60 * 60 * 1000))) {
 			return false;
 		}
 
-		app.session.onlyOnce[uniqueId] = nowDate;
-		Cookies.set(uniqueId, nowDate, { expires: ((hours + 0) / 24) });
+		app.session.onlyOnce[uniqueId] = nowDate.toISOString();
+		Cookies.set(uniqueId, nowDate.toISOString(), { expires: ((hours + 0) / 24) });
 		return true;
 	}
 
 	var sessionCheck = function () {
 		var nowDate = new Date();
-		var lastDate = app.session.onlyOnce[uniqueId];
+		var last = app.session.onlyOnce[uniqueId];
 
-		if (lastDate && ((nowDate - lastDate) < (hours * 60 * 60 * 1000))) {
+		var lastDate = (last ? (new Date(last)) : null);
+		var isValidLastDate = lastDate && !isNaN(lastDate.getTime());
+
+		if (lastDate && isValidLastDate && ((nowDate - lastDate) < (hours * 60 * 60 * 1000))) {
 			return false;
 		}
 
-		app.session.onlyOnce[uniqueId] = nowDate;
+		app.session.onlyOnce[uniqueId] = nowDate.toISOString();
 		return true;
 	}
 
@@ -1298,15 +1309,32 @@ app.intervalTimerGlobal = setInterval(function () {
 		app.session.__rewardPointsGainedLastSpecialPromotionDialog = 0;
 	}
 
-	var updateTimeElapsed = function () {
-		if (!app.session.__startDate) {
-			app.session.__startDate = new Date();
-		}
+	var updateTimeElapsed = (function () {
+		try {
+			// Check if app.session is defined
+			if (!app.session) throw new Error("Session is not defined");
 
-		var endDate = new Date();
-		var startDate = app.session.__startDate;
-		app.session.timeElapsed = endDate.getTime() - startDate.getTime();
-	}();
+			// Initialize startDate if not already set
+			if (!app.session.__startDate) {
+				app.session.__startDate = (new Date()).toISOString();
+			}
+
+			var endDate = new Date();
+			var startDateString = app.session.__startDate;
+			var startDate = startDateString ? new Date(startDateString) : null;
+
+			// Validate the startDate
+			if (!startDate || isNaN(startDate.getTime())) {
+				throw new Error("Invalid startDate");
+			}
+
+			// Calculate time elapsed
+			app.session.timeElapsed = endDate.getTime() - startDate.getTime();
+
+		} catch (error) {
+			console.error("Error updating time elapsed:", error.message, app.session.__startDate);
+		}
+	})();
 
 	var updateRewardPointsGained = function () {
 		if (app.data.user.profile.rewardPoints) {
@@ -1739,10 +1767,17 @@ app.refresh = function (lessonId, dataFromServer) {
 }
 
 
-app.refeshBackButtonUrl = function () { // If the previous route is not the same as the current route, push it to the history else pop it
+app.refeshBackButtonUrl = function () {
+	var updateBackHref = function (hashHistory) {
+		$(".materialBarDashboardBackBtn").attr("href", `#!${hashHistory[hashHistory.length - 2] || ""}`);
+	}
+
 	if (app.currentRoute.indexOf("/lesson/") > -1 && app.hashHistory.length === 0) {
+
 		// get the lessonId from the app.currentRoute
 		let lessonId = app.currentRoute.split("/lesson/")[1];
+
+		console.log('lessonId', app.data.lesson[lessonId]);
 
 		if (!app.data.lesson[lessonId]) {
 			console.log('lessonId not found');
@@ -1751,18 +1786,17 @@ app.refeshBackButtonUrl = function () { // If the previous route is not the same
 
 		let parentChapter = app.data.lesson[lessonId].parentChapter;
 		let parentCourse = app.data.chapter[parentChapter].parentCourse;
-
 		app.hashHistory.push("/course/" + parentCourse);
 		app.hashHistory.push(app.currentRoute);
 
-		// updateBackHref(app.hashHistory); // Update back button URL
+		updateBackHref(app.hashHistory); // Update back button URL
 	} else {
 		if (app.hashHistory[app.hashHistory.length - 2] !== app.currentRoute) {
 			app.hashHistory.push(app.currentRoute);
 		} else {
 			app.hashHistory.pop();
 		}
-		// updateBackHref(app.hashHistory); // Update back button URL
+		updateBackHref(app.hashHistory); // Update back button URL
 	}
 }
 
@@ -5901,24 +5935,57 @@ var LessonRecommender = function () {
 		that.lessonsRecommendedByType = { lessonsIds: [], coursesIds: [] };
 		that.thisWeekTopRecommendations = { lessonsIds: [], coursesIds: [] };
 
+		console.log("VERDURA1");
 
 		try {
 			var shouldResetRecommendations = false;
 
 			if (!data.user.recommendations || !data.user.recommendations.date || !data.user.recommendations.data) {
+				console.log("VERDURA2");
+
 				shouldResetRecommendations = true;
 			} else {
-				var recommendationDate = new Date(data.user.recommendations.date);
-				var currentDate = new Date();
-				var timeDiff = currentDate - recommendationDate;
-				var days = timeDiff / (1000 * 3600 * 24);
+				console.log("VERDURA3");
 
-				if (days > cacheForDays) {
+				console.log("data.user", data.user);
+				console.log("data.user.recommendations", data.user.recommendations);
+				console.log("data.user.recommendations.date", data.user.recommendations.date);
+				console.log("data.user.recommendations.data", data.user.recommendations.data);
+
+				console.log("!data.user.recommendations", !data.user.recommendations);
+				console.log("!data.user.recommendations.date", !data.user.recommendations.date);
+				console.log("!data.user.recommendations.data", !data.user.recommendations.data);
+
+
+				var recommendationDate = new Date(data.user.recommendations.date);
+
+				var isValidDate = recommendationDate && !isNaN(recommendationDate.getTime());
+
+				if(isValidDate){
+					console.log("RecommendationDate", recommendationDate);
+					var currentDate = new Date();
+					console.log("currentDate", currentDate);
+					var timeDiff = currentDate - recommendationDate;
+					console.log("timeDiff", timeDiff);
+					var days = timeDiff / (1000 * 3600 * 24);
+					console.log("days", days);
+
+
+					console.log("days cacheForDays", days, cacheForDays);
+
+					if (days > cacheForDays) {
+						shouldResetRecommendations = true;
+					}
+
+					console.log("shouldResetRecommendations", shouldResetRecommendations);
+				}
+				else{
 					shouldResetRecommendations = true;
 				}
 			}
 
 			if (shouldResetRecommendations) {
+				console.log("VERDURA4");
 				that.calculateLessonsNewest(data, maxRecommendations);
 				that.calculateLessonsExpiring(data, maxRecommendations);
 				that.calculateLessonsToResume(data, maxRecommendations);
@@ -5938,9 +6005,11 @@ var LessonRecommender = function () {
 				result.date = new Date().toISOString();
 				return result;
 			} else {
+				console.log("VERDURA5");
 				return data.user.recommendations;
 			}
 		} catch (e) {
+			console.log("VERDURA6");
 			console.error('getRecommendations Error: ', e.message, e.stack);
 			return {};
 		}

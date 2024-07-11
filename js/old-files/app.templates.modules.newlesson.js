@@ -835,7 +835,7 @@ app.templates.modules.newlesson = {
 													var elementsTotalCount = $(selectorChildren).length;
 													var progressArrayUniques = removeDuplicateAndKeepOrder(thisLesson().engagementProgressArrayDetails);
 													//Get widthPorcentage with two decimals
-													var widthPorcentage = Math.round((100 / elementsTotalCount) * 100)/ 100;
+													var widthPorcentage = Math.floor((100 / elementsTotalCount) * 100)/ 100;
 													
 													var segmentedProgressBarInsideHtml= "";
 													for(var i=0; i< elementsTotalCount; i++){

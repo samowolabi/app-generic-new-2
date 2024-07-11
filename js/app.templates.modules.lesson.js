@@ -64,7 +64,7 @@ app.templates.modules.lesson = {
         var progressText = (thisLesson.engagementProgressRealPercent == 100) ? "Completed" : "Unfinished";
         var descriptionOrSubtitleHtml = lessonData["description"] ? `<p>${lessonData["description"]}</p>` : `<h2>${lessonData["subtitle"]}</h2>`;
 
-        var countdownHtml = function(date){
+        var countdownHtml = function (date) {
             return `
 				<span data-countdown="${date}"> 
 					<span data-days>00</span>
@@ -145,7 +145,7 @@ app.templates.modules.lesson = {
 
         var unlockButtonContext = "bottom";
 
-        var unlockText = function(thisLesson, context) {
+        var unlockText = function (thisLesson, context) {
             console.log("unlockText was called with context: " + context + " and lesson: " + thisLesson.id);
             var priceMelodyCoins = app.wallet.getCoursePriceFromLesson(thisLesson.id);
             var priceMelodyCoinsBefore = app.wallet.getCoursePriceBeforeFromLesson(thisLesson.id);
@@ -247,8 +247,8 @@ app.templates.modules.lesson = {
                 return getMessageMatrix()[context].default + (pricingText ? " for " + pricingText : "");
             }
         };
-		
-		//Custom expired text based on deadline date, price, and context (top or bottom)
+
+        //Custom expired text based on deadline date, price, and context (top or bottom)
         /*var expiredText = function (thisLesson, context) {
             console.error('thisLesson', thisLesson);
 
@@ -348,7 +348,7 @@ app.templates.modules.lesson = {
 
 
         switch (lessonData.type) {
-             case "interactive-video":
+            case "interactive-video":
 
                 var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
                         <div style="position: relative; display: table;">
@@ -571,23 +571,23 @@ app.templates.modules.lesson = {
                     `;
 
                 var contentBottomHtml = '';
-				break;
-			case "video":	
-				
-				var nextLessonId = app.getNextLessonFromCourse(lessonData.id);
-				if(nextLessonId){
-					var description = "You are almost done...";
-					var buttonText = "Next Lesson";
-					var buttonHref = `#!/lesson/${nextLessonId}`;
-				}
-				else{
-					var description = "There is more.";
-					var buttonText = "Dashboard";
-					var buttonHref = `#!/`;
-				
-				}
-		
-				var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
+                break;
+            case "video":
+
+                var nextLessonId = app.getNextLessonFromCourse(lessonData.id);
+                if (nextLessonId) {
+                    var description = "You are almost done...";
+                    var buttonText = "Next Lesson";
+                    var buttonHref = `#!/lesson/${nextLessonId}`;
+                }
+                else {
+                    var description = "There is more.";
+                    var buttonText = "Dashboard";
+                    var buttonHref = `#!/`;
+
+                }
+
+                var overlayVideoAction = `<div class="materialLessonVideoActionOverlay" style="background: #1d1d1d; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 999; display: none;">
 											<div style="position: relative; display: table;">
 												<div style="display: table-cell; vertical-align: middle; color: wheat; text-align: center; position: relative;">
 													<h3 style="margin-top: 0;">
@@ -598,8 +598,8 @@ app.templates.modules.lesson = {
 												</div>
 											</div>
 										</div>`;
-										
-				var contentTopHtml = `<div class="row"> 
+
+                var contentTopHtml = `<div class="row"> 
 								<div class="col-xs-12">
 									<div class="materialLessonVideo">
 										${overlayVideoAction}
@@ -807,16 +807,16 @@ app.templates.modules.lesson = {
 									${segmentedProgressBarHtml(lessonData.id)}
 								</div>
 							  </div>`;
-				var contentBottomHtml = '';
-				
-				break;
-			case "article":	
-				var contentTopHtml = `<div class="row">
+                var contentBottomHtml = '';
+
+                break;
+            case "article":
+                var contentTopHtml = `<div class="row">
 										<div class="col-xs-12">	
 											${segmentedProgressBarHtml(lessonData.id)}
 										</div>
 									  </div>`;
-				var contentBottomHtml = `<div class="col-xs-12"><article id="article">${lessonData['content']}</article></div>
+                var contentBottomHtml = `<div class="col-xs-12"><article id="article">${lessonData['content']}</article></div>
 										<script>  
 												var thisLesson = function() { return app.data.user.learning[${lessonData.id}]; }
 												var thisLessonId = ${lessonData.id};
@@ -913,7 +913,7 @@ app.templates.modules.lesson = {
 												}, 20000);
 												
 										</script>`;
-				break;
+                break;
             case "article-in-development":
                 var contentTopHtml = `
                     <div>    
@@ -1038,11 +1038,56 @@ app.templates.modules.lesson = {
 
             case "ebook":
 
+                // Generate the URL for the book
+                function generateBookUrl(lessonData, app, hashingAlgorithmPdfViewer) {
+                    try {
+                        // Check if lessonData, app, and hashingAlgorithmPdfViewer are defined
+                        if (!lessonData || !app || !hashingAlgorithmPdfViewer) {
+                            throw new Error("Missing required parameters. Received: " +
+                                "lessonData=" + JSON.stringify(lessonData) + ", " +
+                                "app=" + JSON.stringify(app) + ", " +
+                                "hashingAlgorithmPdfViewer=" + JSON.stringify(hashingAlgorithmPdfViewer));
+                        }
+
+                        // Check if lessonData.id and lessonData.attachmentUrl are defined
+                        if (!lessonData.id || !lessonData.attachmentUrl) {
+                            throw new Error("lessonData must contain 'id' and 'attachmentUrl' properties. Received: " +
+                                JSON.stringify(lessonData));
+                        }
+
+                        // Get the course price
+                        var coursePrice = app.wallet.getCoursePriceFromLesson(lessonData.id);
+
+                        // Determine the 'p' and 'd' values
+                        var p, d;
+                        if (coursePrice === undefined || coursePrice === 0) {
+                            p = 'y';
+                            d = 'y';
+                        } else {
+                            p = 'n';
+                            d = 'n';
+                        }
+
+                        // Generate the hash
+                        var hash = hashingAlgorithmPdfViewer.simpleHash(p, d, lessonData.attachmentUrl);
+
+                        // Return the generated URL
+                        return "?p=" + p + "&d=" + d + "&h=" + hash;
+                    } catch (error) {
+                        console.error("Error generating book URL:", error.message, {
+                            lessonData: lessonData,
+                            app: app,
+                            hashingAlgorithmPdfViewer: hashingAlgorithmPdfViewer
+                        });
+                        throw error;
+                    }
+                }
+
                 var contentTopHtml = `
-                        <div class="lessonPreview article" onclick="router.navigate('#!/lesson/${lessonData.id}/book');">
+                        <div class="lessonPreview article">
                             <div class="overlay">
                                 <div>
-                                    <a href="#!/lesson/${lessonData.id}/book${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(lessonData.id)) ? `?p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['attachmentUrl'])}` : `?p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['attachmentUrl'])}`}" target="_blank" class="materialButtonFill materialThemeDark marginBottom4">Open Book</a>
+                                    <a href="#!/lesson/${lessonData.id}/book${generateBookUrl(lessonData, app, hashingAlgorithmPdfViewer)}" target="_blank" class="materialButtonFill materialThemeDark marginBottom4">Open Book</a>
                                     <h5 class="materialHeader materialTextCenter  materialThemeDark fontFamilyLato">${thisLesson.engagementProgressRealPercent}% Completed</h5>
                                 </div>
                             </div>
@@ -1053,7 +1098,7 @@ app.templates.modules.lesson = {
                                         <div style="background: transparent;  z-index: 2;">
                                             <a href="#!/lesson/${lessonData.id}/book" target="_blank" style="width: 100%;height: 100%;background: transparent;display: block;"></a>
                                         </div>
-                                        <iframe src="${lessonData['content']}${[undefined, 0].includes(app.wallet.getCoursePriceFromLesson(lessonData.id)) ? `&p=y&d=y&h=${hashingAlgorithmPdfViewer.simpleHash('y', 'y', lessonData['attachmentUrl'])}` : `&p=n&d=n&h=${hashingAlgorithmPdfViewer.simpleHash('n', 'n', lessonData['attachmentUrl'])}`}&progressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe src="${lessonData['content']}${generateBookUrl(lessonData, app, hashingAlgorithmPdfViewer)}&progressDetails=${thisLesson.engagementProgressArrayDetails.toString()}&engagementTime=${thisLesson.engagementTime}" frameborder="0" allowfullscreen></iframe>
                                     </div> 
                                 </div>
                             </div>
@@ -1203,7 +1248,7 @@ app.templates.modules.lesson = {
                 break;
 
 
-          
+
 
             case "interactive-pdf":
                 var contentTopHtml = `
@@ -1512,7 +1557,7 @@ app.templates.modules.lesson = {
                 var scarcityHtml = `${unlockButtonHtml(lessonData.dateStatus)}`;
         }
 
-		var lessonDescription = lessonData.description ? `<p class="lessonDescription help-lesson-description-text" style="padding-top:0;">${lessonData.description}</p>` : "";
+        var lessonDescription = lessonData.description ? `<p class="lessonDescription help-lesson-description-text" style="padding-top:0;">${lessonData.description}</p>` : "";
         var html = `
             <div>
                 <div>

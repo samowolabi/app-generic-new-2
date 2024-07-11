@@ -7,7 +7,7 @@ var materialTopBar = (function () {
         var htmlWrapper = `
             <div class="materialTopNavBarContainer">
                 <!-- Navigation Bar -->
-                <div class="materialBarDashboardNavigation materialBarDashboard">
+                <div class="materialBarDashboardNavigation materialBarDashboard topNavigationContainer">
                     <div class="container">
                         <div class="row">
                             <nav

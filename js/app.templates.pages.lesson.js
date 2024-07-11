@@ -42,17 +42,17 @@ app.templates.pages.lesson = {
 
 
         var html =`
-            ${
-                materialTopBar.create({
-                    text: 'Black Friday in June: Get 90% Off',
-                    icon: 'images/newImages/gift.webp',
-                    countdownTime: '2024-07-07T23:59:59-04:00',
-                    color: '#fff',
-                    link: '#'
-                })
-            }
-            
             <main class="app_mainContainer maxWidthContainer marginBottom20">
+                ${
+                    materialTopBar.create({
+                        text: 'Black Friday in June: Get 90% Off',
+                        icon: 'images/newImages/gift.webp',
+                        countdownTime: '2024-07-07T23:59:59-04:00',
+                        color: '#fff',
+                        link: '#'
+                    })
+                }
+
                 <ul class="materialBreadCrumbs help-lesson-breadcrumbs">
                     ${dataLesson.breadcrumb.map(function(item){
                         return `
@@ -67,8 +67,6 @@ app.templates.pages.lesson = {
 						<div>
 							${getLessonIDModuleData.html}
 						</div>
-						
-						
 						
 					</div>
 					
@@ -93,9 +91,10 @@ app.templates.pages.lesson = {
 
         html += `
             <script>
+                console.log("RUNNING");
                 materialTopBar.init();
             </script>
-		`;
+        `;
 
         return html;
     },

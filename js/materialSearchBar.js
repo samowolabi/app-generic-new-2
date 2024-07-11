@@ -176,18 +176,22 @@ var materialSearchBar = (function () {
                 if (!that.showFilterSwitch) { return; }
                 let urlParams = app.getURLParams();
                 if (urlParams) {
+                    var flagFilterApplied = false;
                     Object.keys(urlParams).forEach(function (key) {
                         let selectFilter = document.querySelector(`.materialSearchBar .filterFormsDiv select[data-filter="${key}"]`);
                         if (selectFilter) {
+                            flagFilterApplied = true;
                             selectFilter.value = urlParams[key];
                         }
                     });
 
-                    // Open the filter dropdown
-                    toggleMaterialSearchbar('open');
+                    if (flagFilterApplied) {
+                        // Open the filter dropdown
+                       //toggleMaterialSearchbar('open'); // It's better if we filter but do not open the dialog, which is confusing
 
-                    // Filter the cards
-                    that.filterDropdownFunc();
+                        // Filter the cards
+                        that.filterDropdownFunc();
+                    }
                 }
             }();
 

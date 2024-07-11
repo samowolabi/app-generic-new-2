@@ -98,9 +98,10 @@
 {
     /* white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; */
-    text-overflow: none;
-    overflow: visible;
+    text-overflow: ellipsis;  
+    text-overflow: none;*/
+	text-overflow: ellipsis;
+    overflow: hidden;
     white-space: normal;
     width: 100%;
 }

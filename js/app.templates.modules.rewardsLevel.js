@@ -131,7 +131,7 @@ app.templates.modules.rewardsLevel = {
 		if(maxtRewardsLevelReached){
 		     nextRewardsLevelHtml = `
 		   <h3 class="materialHeader materialThemeGoldDark">Congratulations!</h3>
-		   <p class="materialParagraph">Maximum Rewards Level</p>`;
+		   <p class="materialParagraph materialThemeDark">Maximum Rewards Level</p>`;
 		}else{
 		   nextRewardsLevelHtml = `
 		   <h3 class="materialHeader materialThemeGoldDark">${pointsTotalNextRewardsLevel} points<span> needed</span></h3>

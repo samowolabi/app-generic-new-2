@@ -85,6 +85,8 @@ app.templates.pages.filter = {
                         return;
                     }
 
+                    console.log({data, activeSortFilterKey})
+
                     document.querySelector('.infiniteScrollingContainer').innerHTML = '';
 
                     const columnWidthClass = 'cardSearchResult ' + config.layout.searchResults;

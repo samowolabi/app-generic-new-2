@@ -22,6 +22,7 @@ app.hashHistory = [];
 
 router.hooks({
 	before: function (done, params) {
+
 		// doing some async operation
 		if (app.currentRoute === "" || app.currentRoute === "/newest" || app.currentRoute === "/expiring") {
 			app.dashboardScrollPosition = $(document).scrollTop();
@@ -32,6 +33,7 @@ router.hooks({
 	},
 	after: async function (params) {
 		// after resolving 
+
 		app.currentRoute = function (router) {
 			var route = router._lastRouteResolved.url;
 
@@ -63,14 +65,15 @@ router.hooks({
 		app.session.pageViews++;
 
 		// Update Back button URL
+		// If the previous route is not the same as the current route, push it to the history else pop it
+
 		if (app.data) {
-			console.error("Refresh back button URL", new Date().getTime());
 			app.refeshBackButtonUrl();
 		}
 	},
 	leave: function (params) {
 		// when you are going out of the that route
-		console.error("Leaving route", params);
+
 	}
 });
 
@@ -117,7 +120,7 @@ router.on({
                 var relatedVideoUrl = getRelatedVideoUrl(params.lessonId);
                 var additionalRelatedVideoUrl = relatedVideoUrl ? ("&relatedVideoUrl=" + encodeURIComponent(relatedVideoUrl)): "";
 
-				helpTour.pageLoad('lesson');
+				//helpTour.pageLoad('lesson');
 				materialDialog.iframe("https://pianoencyclopedia.com/en/viewers/interactive-pdf-reader/?file=" + encodeURIComponent(app.data.lesson[params.lessonId].attachmentUrl) + additionalRelatedVideoUrl + "#auto", {})
 			}
 		});
@@ -135,11 +138,12 @@ router.on({
 			contentTrue: function () { return app.templates.pages.lesson.content(params.lessonId); },
 			contentFalse: 	  function(){ return app.templates.pages.lesson.notFound( params.lessonId );},
 			callback:  function() {
-				helpTour.pageLoad('lesson', params.lessonId); 
+				//helpTour.pageLoad('lesson', params.lessonId);
 				if(app.data.user.profile.rewardPoints > 100) { dialogsCompleteProfileFlow(); } 
 				window.scrollTo(0, 0);
 			} 
 		});
+
 
 		app.routeId = "/lesson/";
 		$(".materialBarDashboardBackBtn").fadeIn();
@@ -154,7 +158,7 @@ router.on({
 			contentFalse: function () { return app.templates.pages.search.notFound(params.searchQuery); },
 			callback: function () { 
 				app.setCurrentRouteBottomNavActive();
-				helpTour.pageLoad('search'); 
+				//helpTour.pageLoad('search');
 				window.scrollTo(0, 0);
 			}
 		});
@@ -172,7 +176,7 @@ router.on({
 			contentFalse: function () { return app.templates.pages.filter.notFound(params.filterQuery); },
 			callback: function () {
 				app.setCurrentRouteBottomNavActive();
-				helpTour.pageLoad('filter'); 
+				//helpTour.pageLoad('filter');
 				window.scrollTo(0, 0);
 			}
 		});
@@ -219,7 +223,7 @@ router.on({
 			contentTrue: function () { return app.templates.pages.course.content(params.courseId); },
 			contentFalse: 	  function(){ return app.templates.pages.course.notFound( params.courseId );},
 			callback: function () { 
-				helpTour.pageLoad('course', params.courseId);
+				//helpTour.pageLoad('course', params.courseId);
 				window.scrollTo(0, 0);
 			}
 		});
@@ -237,7 +241,7 @@ router.on({
 			contentTrue: function () { return app.templates.pages.newHome.content(); },
 			callback: function () { 
 				app.setCurrentRouteBottomNavActive();
-				helpTour.pageLoad('home');
+				//helpTour.pageLoad('home');
 				$(document).scrollTop(app.dashboardScrollPosition || 0); 
 			}
 		});
@@ -343,7 +347,7 @@ router.on({
 			contentCondition: function () { return true; },
 			contentTrue: function () { return app.templates.pages.profile.content(); },
 			callback: function () { 
-				helpTour.pageLoad('profile');
+				//helpTour.pageLoad('profile');
 				$(document).scrollTop(app.dashboardScrollPosition || 0); 
 			}
 		});
@@ -388,6 +392,8 @@ var plaformCustomBehavior = function () {
 	var hideCustomDialogs = function () {
 		$("html").addClass("app-custom-dialogs");
 	};
+
+
 
 	function getParameterByName(name, url = window.location.href) {
 		name = name.replace(/[\[\]]/g, '\\$&');

@@ -12,6 +12,7 @@ app.templates.pages.dashboardInfiniteScrolling = {
 			return html;
 	},
 	content : function (){
+
 	 var data = app.data;
 	 var name = data.user.profile.name ? (data.user.profile.name + ",")  : "";
 		
@@ -80,8 +81,8 @@ app.templates.pages.dashboardInfiniteScrolling = {
 									 $(".filterDropdownToggle").html(app.createFiltersHtml()); 
 									  
 									
-									 if($(".filterInput").length == 0){
-										$("button.filterSwitch").hide();								 
+									 if($(".filterInput").length === 0){
+										$("button.filterSwitchBtn").hide();								 
 									 }
 								</script> 
 								

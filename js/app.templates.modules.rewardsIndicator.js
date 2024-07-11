@@ -133,7 +133,7 @@ app.templates.modules.rewardsIndicator = {
 		if(maxtRewardsLevelReached){
 			nextRewardsLevelHtml = `
 		   		<h3 class="materialHeader materialThemeGoldDark">Congratulations!</h3>
-		   		<p class="materialParagraph">Maximum Rewards Level</p>
+		   		<p class="materialParagraph materialThemeDark">Maximum Rewards Level</p>
 		   `;
 		}else{
 		   nextRewardsLevelHtml = `

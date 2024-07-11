@@ -275,8 +275,12 @@ app.templates.pages.newHome = {
 			return lessonIdsData
 		}
 
+		console.log("HAMBURGUESA1");
 		// Merge both arrays (heroSectionArrayCourseIds and heroSectionArrayLessonIds)
 		var heroSectionArray = [...heroSectionArrayCourseIds(), ...heroSectionArrayLessonIds()]
+		console.log("HAMBURGUESA1", heroSectionArrayCourseIds());
+		console.log("HAMBURGUESA2", heroSectionArray);
+
 
 		// Filter Pills
 		let filterPillsData = Object.keys(app.data.explore['coursesIds']).map((item, index) => {
@@ -295,25 +299,25 @@ app.templates.pages.newHome = {
 				body {
 					/* background: #120d0d !important; */
 				}
-				.materialBarDashboardNavigation.materialBarDashboard:nth-child(1) {
+				.materialBarDashboardNavigation.materialBarDashboard.topNavigationContainer {
 					display: none !important;
 				}
 			</style>
 
 
 			<main class="app_mainContainer">
-				${
-					materialTopBar.create({
-						text: 'Black Friday in June: Get 90% Off',
-						icon: 'images/newImages/gift.webp',
-						countdownTime: '2024-07-07T23:59:59-04:00',
-						color: '#fff',
-						link: '#'
-					})
-				}
+			${
+				materialTopBar.create({
+					text: 'Black Friday in June: Get 90% Off',
+					icon: 'images/newImages/gift.webp',
+					countdownTime: '2024-07-07T23:59:59-04:00',
+					color: '#fff',
+					link: '#'
+				})
+			}
 
 				<section class="heroSectionContainer" style="position: relative;">
-					<header class="app_headerContainer" style="position: absolute; top: 35px; width: 100%;">
+					<header class="app_headerContainer" style="position: absolute; top: 27px; width: 100%;">
 						${app.templates.modules.appHeader.content({
 							getSearchandFilterValueCallback: (data) => getValueAndRedirectToSearchPage(data)
 						})}
